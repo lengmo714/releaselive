@@ -26,14 +26,14 @@
     <content>Hexo NexT</content>
   </entry>
   <entry>
-    <title>Open Legacy IE-Only Websites with Microsoft Edge IE Mode</title>
-    <url>/opleieonwe.html</url>
-    <content>Computer Tips Microsoft Edge</content>
-  </entry>
-  <entry>
     <title>Java System.out.print vs println: Line Breaks, Formatting and Examples</title>
     <url>/jasyouprvs.html</url>
     <content>Programming Languages Java</content>
+  </entry>
+  <entry>
+    <title>Open Legacy IE-Only Websites with Microsoft Edge IE Mode</title>
+    <url>/opleieonwe.html</url>
+    <content>Computer Tips Microsoft Edge</content>
   </entry>
   <entry>
     <title>Java Variables: Declaration, Scope, Fields and Constants</title>
@@ -61,14 +61,14 @@
     <content>Java</content>
   </entry>
   <entry>
-    <title>Install lua-cjson with LuaRocks or Source and Verify JSON Encoding</title>
-    <url>/inlucjluso.html</url>
-    <content>Lua JSON</content>
-  </entry>
-  <entry>
     <title>Count Lua Table Fields: Length Operator, pairs and table.nums</title>
     <url>/colutafile.html</url>
     <content>Programming Languages Lua</content>
+  </entry>
+  <entry>
+    <title>Install lua-cjson with LuaRocks or Source and Verify JSON Encoding</title>
+    <url>/inlucjluso.html</url>
+    <content>Lua JSON</content>
   </entry>
   <entry>
     <title>Xcode Paths and Debugging Tools: DerivedData, Simulators, Leaks and Zombies</title>
@@ -106,6 +106,11 @@
     <content>TypeScript</content>
   </entry>
   <entry>
+    <title>Fix Xcode Argument Value 10880 Is Outside the Valid Range</title>
+    <url>/fixcarvaou.html</url>
+    <content>Development Tools macOS iOS Development</content>
+  </entry>
+  <entry>
     <title>Add a Photo Gallery to Hexo NexT with Standalone HTML and iframe</title>
     <url>/adphgahene.html</url>
     <content>Hexo NexT</content>
@@ -116,19 +121,14 @@
     <content>Web Development PWA JavaScript</content>
   </entry>
   <entry>
-    <title>Fix Xcode Argument Value 10880 Is Outside the Valid Range</title>
-    <url>/fixcarvaou.html</url>
-    <content>Development Tools macOS iOS Development</content>
+    <title>Analyze Cocos Creator Web Resource Loading with DevTools and Performance API</title>
+    <url>/ancocrwere.html</url>
+    <content>Cocos Creator Web Performance</content>
   </entry>
   <entry>
     <title>Add Android Calendar Events and Reminders with CalendarContract</title>
     <url>/adancaevre.html</url>
     <content>Android Development Android Calendar</content>
-  </entry>
-  <entry>
-    <title>Analyze Cocos Creator Web Resource Loading with DevTools and Performance API</title>
-    <url>/ancocrwere.html</url>
-    <content>Cocos Creator Web Performance</content>
   </entry>
   <entry>
     <title>Cocos Creator Android Clipboard with TypeScript and Java Native Bridge</title>
@@ -171,9 +171,19 @@
     <content>Programming Languages Lua C</content>
   </entry>
   <entry>
+    <title>Cocos Creator iOS Hot Update Completes but Still Runs Old Code: How to Fix It</title>
+    <url>/cocriohoup.html</url>
+    <content>Cocos Creator iOS Development Hot Update</content>
+  </entry>
+  <entry>
     <title>How to Cancel a ChatGPT Plus Subscription and Stop Auto-Renewal</title>
     <url>/cachplsust.html</url>
     <content>Software Guides ChatGPT</content>
+  </entry>
+  <entry>
+    <title>Cocos Creator iOS EditBox Shows an Extra Input Field Above the Keyboard: Fix</title>
+    <url>/cocrioedsh.html</url>
+    <content>Cocos Creator iOS Development EditBox UITextField</content>
   </entry>
   <entry>
     <title>Check Android APK 16 KB Page Size Support: Native Libraries and ELF Alignment</title>
@@ -181,19 +191,9 @@
     <content>Android Development Android</content>
   </entry>
   <entry>
-    <title>Cocos Creator iOS Hot Update Completes but Still Runs Old Code: How to Fix It</title>
-    <url>/cocriohoup.html</url>
-    <content>Cocos Creator iOS Development Hot Update</content>
-  </entry>
-  <entry>
     <title>Cocos2d-x 3.17 Lua CSB Loading: Controls, Timelines and ViewBase</title>
     <url>/codxlucs.html</url>
     <content>Game Development Lua Cocos2d-x</content>
-  </entry>
-  <entry>
-    <title>Cocos Creator iOS EditBox Shows an Extra Input Field Above the Keyboard: Fix</title>
-    <url>/cocrioedsh.html</url>
-    <content>Cocos Creator iOS Development EditBox UITextField</content>
   </entry>
   <entry>
     <title>Cocos2d-x 3.17 Lua Game Development: Screens, Sprites, UI and Touch</title>
@@ -206,13 +206,18 @@
     <content>Game Development Lua Cocos2d-x</content>
   </entry>
   <entry>
+    <title>Cocos2d-x Lua Hot Updates: Manifests, Verification, Search Paths and Recovery</title>
+    <url>/codxluho.html</url>
+    <content>Game Development Lua Cocos2d-x</content>
+  </entry>
+  <entry>
     <title>Cocos2d-x Lua Keyboard Events: Press, Release and Listener Cleanup</title>
     <url>/codxluke.html</url>
     <content>Game Development Lua Cocos2d-x</content>
   </entry>
   <entry>
-    <title>Cocos2d-x Lua Hot Updates: Manifests, Verification, Search Paths and Recovery</title>
-    <url>/codxluho.html</url>
+    <title>Cocos2d-x Lua Physics Collisions: Bodies, Masks and Contact Listeners</title>
+    <url>/codxluph.html</url>
     <content>Game Development Lua Cocos2d-x</content>
   </entry>
   <entry>
@@ -221,18 +226,13 @@
     <content>Game Development Lua Cocos2d-x</content>
   </entry>
   <entry>
-    <title>Cocos2d-x Lua Virtual Joystick: Touch Direction, Radius and Movement</title>
-    <url>/codxluvi.html</url>
-    <content>Game Development Lua Cocos2d-x</content>
-  </entry>
-  <entry>
     <title>Cocos2d-x Texture Source Analysis: CCTexture2D, PVR and TextureCache</title>
     <url>/codxteso.html</url>
     <content>Game Development Cocos2d-x Textures</content>
   </entry>
   <entry>
-    <title>Cocos2d-x Lua Physics Collisions: Bodies, Masks and Contact Listeners</title>
-    <url>/codxluph.html</url>
+    <title>Cocos2d-x Lua Virtual Joystick: Touch Direction, Radius and Movement</title>
+    <url>/codxluvi.html</url>
     <content>Game Development Lua Cocos2d-x</content>
   </entry>
   <entry>
@@ -241,13 +241,13 @@
     <content>Game Development Lua Cocos2d-x</content>
   </entry>
   <entry>
-    <title>Split Strings in Cocos2d-x Lua with Single or Multi-Character Delimiters</title>
-    <url>/spstcodx.html</url>
+    <title>Cocos2d-x Lua Degrees and Radians: Formulas and Helper Functions</title>
+    <url>/codxlude.html</url>
     <content>Game Development Lua Cocos2d-x</content>
   </entry>
   <entry>
-    <title>Cocos2d-x Lua Degrees and Radians: Formulas and Helper Functions</title>
-    <url>/codxlude.html</url>
+    <title>Split Strings in Cocos2d-x Lua with Single or Multi-Character Delimiters</title>
+    <url>/spstcodx.html</url>
     <content>Game Development Lua Cocos2d-x</content>
   </entry>
   <entry>
@@ -291,24 +291,24 @@
     <content>Game Development Lua Cocos2d-x</content>
   </entry>
   <entry>
-    <title>Cocos Creator 3.7 Playing-Card Perspective Shader with Vertex Offsets</title>
-    <url>/cocrplcape.html</url>
-    <content>Cocos Creator TypeScript Shader</content>
-  </entry>
-  <entry>
     <title>Cocos2d-x Lua Sprite vs ImageView: Image Replacement, Atlases and Scale9</title>
     <url>/codxlusp.html</url>
     <content>Game Development Lua Cocos2d-x</content>
   </entry>
   <entry>
-    <title>Cocos Creator PageView Auto Paging with schedule and scrollToPage</title>
-    <url>/cocrpaaupa.html</url>
-    <content>Cocos Creator TypeScript</content>
+    <title>Cocos Creator 3.7 Playing-Card Perspective Shader with Vertex Offsets</title>
+    <url>/cocrplcape.html</url>
+    <content>Cocos Creator TypeScript Shader</content>
   </entry>
   <entry>
     <title>Fix Cocos Creator VS Code “Could Not Read Source Map” Chrome Debug Error</title>
     <url>/ficocrvsco.html</url>
     <content>Cocos Creator VS Code Chrome</content>
+  </entry>
+  <entry>
+    <title>Cocos Creator PageView Auto Paging with schedule and scrollToPage</title>
+    <url>/cocrpaaupa.html</url>
+    <content>Cocos Creator TypeScript</content>
   </entry>
   <entry>
     <title>Cocos Creator WebSocket: Connect, Send and Parse JSON or Binary Data</title>
@@ -331,11 +331,6 @@
     <content>Cocos Creator</content>
   </entry>
   <entry>
-    <title>Debug Cocos Creator Web with VS Code, Chrome and launch.json</title>
-    <url>/decocrwevs.html</url>
-    <content>Cocos Creator VS Code Chrome</content>
-  </entry>
-  <entry>
     <title>Cocos Creator 3.7 Shine Shader: Material, Light Band and TypeScript Animation</title>
     <url>/cocrshshma.html</url>
     <content>Cocos Creator Shader</content>
@@ -346,13 +341,18 @@
     <content>Game Development Cocos Creator Particle Effects</content>
   </entry>
   <entry>
-    <title>Cocos Creator Circular Mask with Graphics and TypeScript</title>
-    <url>/cocrcimagr.html</url>
-    <content>Cocos Creator TypeScript</content>
+    <title>Debug Cocos Creator Web with VS Code, Chrome and launch.json</title>
+    <url>/decocrwevs.html</url>
+    <content>Cocos Creator VS Code Chrome</content>
   </entry>
   <entry>
     <title>Cocos Creator setSiblingIndex: Reorder Sibling Nodes and Rendering</title>
     <url>/cocrseresi.html</url>
+    <content>Cocos Creator TypeScript</content>
+  </entry>
+  <entry>
+    <title>Cocos Creator Circular Mask with Graphics and TypeScript</title>
+    <url>/cocrcimagr.html</url>
     <content>Cocos Creator TypeScript</content>
   </entry>
   <entry>
@@ -366,18 +366,23 @@
     <content>Cocos Creator TypeScript</content>
   </entry>
   <entry>
-    <title>Cocos Creator Single-Sprite Card Flip with Y-Axis Tween and Frame Swap</title>
-    <url>/cocrsispca.html</url>
-    <content>Cocos Creator</content>
-  </entry>
-  <entry>
     <title>Cocos Creator Shared WebSocket: Connection Service and Message Subscribers</title>
     <url>/cocrshweco.html</url>
     <content>Cocos Creator TypeScript WebSocket</content>
   </entry>
   <entry>
+    <title>Cocos Creator Single-Sprite Card Flip with Y-Axis Tween and Frame Swap</title>
+    <url>/cocrsispca.html</url>
+    <content>Cocos Creator</content>
+  </entry>
+  <entry>
     <title>Get Updated Cocos Creator Label Size with UITransform and Next Frame</title>
     <url>/geupcocrla.html</url>
+    <content>Cocos Creator TypeScript</content>
+  </entry>
+  <entry>
+    <title>Cocos Creator Broadcast Queue with WebSocket and Tween Animation</title>
+    <url>/cocrbrquwe.html</url>
     <content>Cocos Creator TypeScript</content>
   </entry>
   <entry>
@@ -386,14 +391,14 @@
     <content>Cocos Creator</content>
   </entry>
   <entry>
-    <title>Cocos Creator Broadcast Queue with WebSocket and Tween Animation</title>
-    <url>/cocrbrquwe.html</url>
-    <content>Cocos Creator TypeScript</content>
-  </entry>
-  <entry>
     <title>Cocos Creator Double-Click Detection with TOUCH_END Timing</title>
     <url>/cocrdoclde.html</url>
     <content>Cocos Creator TypeScript</content>
+  </entry>
+  <entry>
+    <title>Fix Cocos Creator python Build Script Launch Errors</title>
+    <url>/ficocrpybu.html</url>
+    <content>Cocos Creator python</content>
   </entry>
   <entry>
     <title>Cocos Creator Multiple Sprite Touch Events: Identify and Unbind Nodes</title>
@@ -406,19 +411,14 @@
     <content>Cocos Creator Chrome</content>
   </entry>
   <entry>
-    <title>Compare Git Branches with Beyond Compare: Difftool Setup and Commands</title>
-    <url>/cogibrbeco.html</url>
-    <content>Development Tools Git</content>
-  </entry>
-  <entry>
     <title>Android Image Upload Compression: Bitmap Size, JPEG Quality and File Limit</title>
     <url>/animupcobi.html</url>
     <content>Android Development Java Android</content>
   </entry>
   <entry>
-    <title>Fix Cocos Creator python Build Script Launch Errors</title>
-    <url>/ficocrpybu.html</url>
-    <content>Cocos Creator python</content>
+    <title>Compare Git Branches with Beyond Compare: Difftool Setup and Commands</title>
+    <url>/cogibrbeco.html</url>
+    <content>Development Tools Git</content>
   </entry>
   <entry>
     <title>Telegram Bot Menu Button: Open a Web App or Show Commands</title>
@@ -426,14 +426,14 @@
     <content>Telegram Mini App Deno</content>
   </entry>
   <entry>
-    <title>Cocos Creator Gradient Progress Bar with FILLED Sprite Configuration</title>
-    <url>/cocrgrprba.html</url>
-    <content>Cocos Creator</content>
-  </entry>
-  <entry>
     <title>Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping</title>
     <url>/cocrcimash.html</url>
     <content>Cocos Creator TypeScript Shader</content>
+  </entry>
+  <entry>
+    <title>Cocos Creator Gradient Progress Bar with FILLED Sprite Configuration</title>
+    <url>/cocrgrprba.html</url>
+    <content>Cocos Creator</content>
   </entry>
   <entry>
     <title>Cocos Creator Radial Progress Bar with ProgressBar and Sprite Fill</title>
@@ -461,24 +461,24 @@
     <content>Frontend Development Safari</content>
   </entry>
   <entry>
-    <title>Cocos Creator Native JavaScript Debugging: Build Mode, Port and Android</title>
-    <url>/cocrnajade.html</url>
-    <content>Cocos Creator Debugging</content>
-  </entry>
-  <entry>
     <title>Chrome Remote Debugging for Android: USB and chrome://inspect</title>
     <url>/chredeanus.html</url>
     <content>Frontend Development Chrome</content>
   </entry>
   <entry>
-    <title>Deploy a TRC-20 Token on TRON Nile: Compile, Publish and Verify</title>
-    <url>/detrtotrni.html</url>
-    <content>Blockchain TRON TRC-20</content>
+    <title>Cocos Creator Native JavaScript Debugging: Build Mode, Port and Android</title>
+    <url>/cocrnajade.html</url>
+    <content>Cocos Creator Debugging</content>
   </entry>
   <entry>
     <title>Detect iOS and iPadOS in Frontend Code: User Agent, MacIntel and Touch</title>
     <url>/deioipfrco.html</url>
     <content>Frontend Development iOS Development</content>
+  </entry>
+  <entry>
+    <title>Deploy a TRC-20 Token on TRON Nile: Compile, Publish and Verify</title>
+    <url>/detrtotrni.html</url>
+    <content>Blockchain TRON TRC-20</content>
   </entry>
   <entry>
     <title>Telegram Mini App Mobile vs Desktop Detection with User Agent</title>
@@ -506,14 +506,14 @@
     <content>Web Development PWA JavaScript Go</content>
   </entry>
   <entry>
-    <title>Convert Excel to JSON with Node.js: node-xlsx and File Output</title>
-    <url>/coexjsnojs.html</url>
-    <content>Cocos Creator JSON JavaScript Node.js</content>
-  </entry>
-  <entry>
     <title>Telegram Mini App Close Confirmation with enableClosingConfirmation</title>
     <url>/temiapclco.html</url>
     <content>Telegram Mini App</content>
+  </entry>
+  <entry>
+    <title>Convert Excel to JSON with Node.js: node-xlsx and File Output</title>
+    <url>/coexjsnojs.html</url>
+    <content>Cocos Creator JSON JavaScript Node.js</content>
   </entry>
   <entry>
     <title>Expand a Telegram Mini App on Open with WebApp.ready and expand</title>
@@ -531,24 +531,24 @@
     <content>Android Development Android Google Play SHA-1 App Signing</content>
   </entry>
   <entry>
-    <title>Find Images Larger Than 500 KB Recursively with python</title>
-    <url>/fiimlathkb.html</url>
-    <content>python Utilities python</content>
-  </entry>
-  <entry>
     <title>How to Find an iPhone UDID in Finder for Device Registration</title>
     <url>/fiipudfide.html</url>
     <content>iOS Development</content>
   </entry>
   <entry>
-    <title>Fix Android Facebook Login RuntimeException: Failure Delivering Result</title>
-    <url>/fianfaloru.html</url>
-    <content>Android Development Facebook Android</content>
+    <title>Find Images Larger Than 500 KB Recursively with python</title>
+    <url>/fiimlathkb.html</url>
+    <content>python Utilities python</content>
   </entry>
   <entry>
     <title>Find Unreferenced Cocos Creator Images with UUID Checks and Node.js</title>
     <url>/fiuncocrim.html</url>
     <content>Cocos Creator Node.js</content>
+  </entry>
+  <entry>
+    <title>Fix Android Facebook Login RuntimeException: Failure Delivering Result</title>
+    <url>/fianfaloru.html</url>
+    <content>Android Development Facebook Android</content>
   </entry>
   <entry>
     <title>Fix Cocos Creator Sampler Binding cc_spriteTexture Is Not Bounded in Xcode</title>
@@ -566,6 +566,11 @@
     <content>Android Development Android Studio</content>
   </entry>
   <entry>
+    <title>Fix Cocos Creator Android checkReleaseDuplicateClasses with AndroidX and Jetifier</title>
+    <url>/ficocranch.html</url>
+    <content>Android Development Cocos Creator Android</content>
+  </entry>
+  <entry>
     <title>Fix Android Entry Name classes.dex Collided by Cleaning Build Outputs</title>
     <url>/fianennacl.html</url>
     <content>Android Development Android Studio</content>
@@ -581,16 +586,6 @@
     <content>Android Development Facebook Android</content>
   </entry>
   <entry>
-    <title>Fix Cocos Creator Android checkReleaseDuplicateClasses with AndroidX and Jetifier</title>
-    <url>/ficocranch.html</url>
-    <content>Android Development Cocos Creator Android</content>
-  </entry>
-  <entry>
-    <title>Fix Cocos Creator Font Size Too Big for Texture Atlas Label Warning</title>
-    <url>/ficocrfosi.html</url>
-    <content>Cocos Creator Label</content>
-  </entry>
-  <entry>
     <title>Fix Cocos Creator Cannot Read Properties of Null (reading getGFXTexture)</title>
     <url>/ficocrcare.html</url>
     <content>Cocos Creator</content>
@@ -601,14 +596,19 @@
     <content>Android Development Android Google Sign-In</content>
   </entry>
   <entry>
-    <title>Fix Cocos Creator libwebp.a Mach-O Member Not 8-Byte Aligned in Xcode</title>
-    <url>/ficocrlima.html</url>
-    <content>Cocos Creator iOS Development</content>
+    <title>Fix Cocos Creator Font Size Too Big for Texture Atlas Label Warning</title>
+    <url>/ficocrfosi.html</url>
+    <content>Cocos Creator Label</content>
   </entry>
   <entry>
     <title>Fix Cocos Creator TypeError: IX.atlasName Is Null in Production</title>
     <url>/ficocrtyix.html</url>
     <content>Cocos Creator WebGL</content>
+  </entry>
+  <entry>
+    <title>Fix Cocos Creator libwebp.a Mach-O Member Not 8-Byte Aligned in Xcode</title>
+    <url>/ficocrlima.html</url>
+    <content>Cocos Creator iOS Development</content>
   </entry>
   <entry>
     <title>Fix Cocos Creator run cmake failed and xcodebuild Not Found on iOS</title>
@@ -641,14 +641,14 @@
     <content>Android Development Facebook Android Studio</content>
   </entry>
   <entry>
-    <title>Generate QR Codes in Cocos Creator with TypeScript and Graphics</title>
-    <url>/geqrcococr.html</url>
-    <content>Cocos Creator TypeScript</content>
-  </entry>
-  <entry>
     <title>Getting Started with Lua: Scripts, Syntax, Values, Functions and Tables</title>
     <url>/gestluscsy.html</url>
     <content>Programming Languages Lua</content>
+  </entry>
+  <entry>
+    <title>Generate QR Codes in Cocos Creator with TypeScript and Graphics</title>
+    <url>/geqrcococr.html</url>
+    <content>Cocos Creator TypeScript</content>
   </entry>
   <entry>
     <title>Get Telegram User Profiles with grammY: ID, Status and Photo URL</title>
@@ -681,14 +681,14 @@
     <content>Embedded Development Bluetooth Modules HC-05</content>
   </entry>
   <entry>
-    <title>Add Algolia Search to Hexo: Index Setup, API Keys and Deployment</title>
-    <url>/adalsehein.html</url>
-    <content>Hexo Algolia</content>
-  </entry>
-  <entry>
     <title>Style Hexo Matery Categories with EJS Cards and Notebook CSS Animation</title>
     <url>/sthemacaej.html</url>
     <content>Hexo Matery</content>
+  </entry>
+  <entry>
+    <title>Add Algolia Search to Hexo: Index Setup, API Keys and Deployment</title>
+    <url>/adalsehein.html</url>
+    <content>Hexo Algolia</content>
   </entry>
   <entry>
     <title>Deploy Hexo to Alibaba Cloud with Git Hooks, Nginx and HTTPS</title>
@@ -711,14 +711,14 @@
     <content>Web Development HTTP 404</content>
   </entry>
   <entry>
-    <title>Java Conditional Statements: if, else if, Ternary and switch</title>
-    <url>/jacostifel.html</url>
-    <content>Java</content>
-  </entry>
-  <entry>
     <title>Telegram Bot Payments with grammY: Invoice, Pre-Checkout and Success</title>
     <url>/tebopagrin.html</url>
     <content>Telegram Mini App Deno Payments</content>
+  </entry>
+  <entry>
+    <title>Java Conditional Statements: if, else if, Ternary and switch</title>
+    <url>/jacostifel.html</url>
+    <content>Java</content>
   </entry>
   <entry>
     <title>Edit HTML with python Beautiful Soup: Insert Scripts, Styles and Markup</title>
@@ -751,19 +751,14 @@
     <content>Cocos Creator TypeScript Web</content>
   </entry>
   <entry>
-    <title>Cocos Creator Localization: Rich Text and Named Parameters</title>
-    <url>/cocrlorite.html</url>
-    <content>Cocos Creator TypeScript Localization</content>
-  </entry>
-  <entry>
     <title>Lua Bits and Bytes: Bitwise Operators, string.pack and unpack</title>
     <url>/lubibybiop.html</url>
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
-    <title>Lua C API Overview: State, Stack, Calls, Errors and Memory</title>
-    <url>/lucapovst.html</url>
-    <content>Programming Languages Lua C</content>
+    <title>Cocos Creator Localization: Rich Text and Named Parameters</title>
+    <url>/cocrlorite.html</url>
+    <content>Cocos Creator TypeScript Localization</content>
   </entry>
   <entry>
     <title>Lua Closures: Lexical Scope, Captured Variables and Higher-Order Functions</title>
@@ -786,6 +781,11 @@
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
+    <title>Lua C API Overview: State, Stack, Calls, Errors and Memory</title>
+    <url>/lucapovst.html</url>
+    <content>Programming Languages Lua C</content>
+  </entry>
+  <entry>
     <title>Lua Coroutines: create, resume, yield, States and Iterators</title>
     <url>/lucocrreyi.html</url>
     <content>Programming Languages Lua</content>
@@ -801,18 +801,13 @@
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
-    <title>Lua Date and Time: os.time, os.date, UTC and Calendar Arithmetic</title>
-    <url>/ludatiosti.html</url>
-    <content>Programming Languages Lua</content>
-  </entry>
-  <entry>
     <title>Lua Dot vs Colon Syntax: self, Method Definitions and Calls</title>
     <url>/ludovscosy.html</url>
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
-    <title>Lua Environments Explained: _G, _ENV, Dynamic Globals and Modules</title>
-    <url>/luenexgen.html</url>
+    <title>Lua Date and Time: os.time, os.date, UTC and Calendar Arithmetic</title>
+    <url>/ludatiosti.html</url>
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
@@ -821,8 +816,13 @@
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
-    <title>Lua import vs require: Standard Module Loading and Framework Helpers</title>
-    <url>/luimvsrest.html</url>
+    <title>Lua Garbage Collection: Weak Tables, Caches, Finalizers and Control</title>
+    <url>/lugacoweta.html</url>
+    <content>Programming Languages Lua</content>
+  </entry>
+  <entry>
+    <title>Lua Environments Explained: _G, _ENV, Dynamic Globals and Modules</title>
+    <url>/luenexgen.html</url>
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
@@ -831,18 +831,13 @@
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
+    <title>Lua import vs require: Standard Module Loading and Framework Helpers</title>
+    <url>/luimvsrest.html</url>
+    <content>Programming Languages Lua</content>
+  </entry>
+  <entry>
     <title>Lua Iterators and Generic for: Closures, Stateless Iteration and Order</title>
     <url>/luitgeclst.html</url>
-    <content>Programming Languages Lua</content>
-  </entry>
-  <entry>
-    <title>Lua Garbage Collection: Weak Tables, Caches, Finalizers and Control</title>
-    <url>/lugacoweta.html</url>
-    <content>Programming Languages Lua</content>
-  </entry>
-  <entry>
-    <title>Lua Error Handling with loadfile, pcall, xpcall, error and assert</title>
-    <url>/luerhalopc.html</url>
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
@@ -851,13 +846,18 @@
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
-    <title>Lua Metatables and Metamethods: __index, Operators and Proxies</title>
-    <url>/lumemeinop.html</url>
+    <title>Lua Error Handling with loadfile, pcall, xpcall, error and assert</title>
+    <url>/luerhalopc.html</url>
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
     <title>Lua Modules and Packages: require, Paths, Searchers and Submodules</title>
     <url>/lumoparepa.html</url>
+    <content>Programming Languages Lua</content>
+  </entry>
+  <entry>
+    <title>Lua Metatables and Metamethods: __index, Operators and Proxies</title>
+    <url>/lumemeinop.html</url>
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
@@ -876,13 +876,13 @@
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
-    <title>Lua Strings: Literals, Concatenation, Bytes and UTF-8</title>
-    <url>/lustlicoby.html</url>
+    <title>Lua Shallow vs Deep Copy: Cycles, Shared References and Metatables</title>
+    <url>/lushvsdeco.html</url>
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
-    <title>Lua Shallow vs Deep Copy: Cycles, Shared References and Metatables</title>
-    <url>/lushvsdeco.html</url>
+    <title>Lua Strings: Literals, Concatenation, Bytes and UTF-8</title>
+    <url>/lustlicoby.html</url>
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
@@ -896,11 +896,6 @@
     <content>Programming Languages Lua</content>
   </entry>
   <entry>
-    <title>MATLAB AM Modulation Simulation: Envelope, Coherent Demodulation and Noise</title>
-    <url>/maammosien.html</url>
-    <content>Course Projects MATLAB Communications</content>
-  </entry>
-  <entry>
     <title>MATLAB Speech Denoising with a FLATTOPWIN FIR Filter and Spectrum Analysis</title>
     <url>/maspdeflfi.html</url>
     <content>Course Projects MATLAB Digital Signal Processing</content>
@@ -909,6 +904,11 @@
     <title>App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes</title>
     <url>/apstreregu.html</url>
     <content>Cocos Creator iOS Development App Store App Review Guideline 4.3 ATT Sign in with Apple</content>
+  </entry>
+  <entry>
+    <title>MATLAB AM Modulation Simulation: Envelope, Coherent Demodulation and Noise</title>
+    <url>/maammosien.html</url>
+    <content>Course Projects MATLAB Communications</content>
   </entry>
   <entry>
     <title>Object-Oriented Lua: Classes, self, Inheritance and Private State</title>
@@ -946,14 +946,14 @@
     <content>python Tkinter</content>
   </entry>
   <entry>
-    <title>Build a Legacy quick-Cocos2d-x APK: NDK, Native Libraries and Ant</title>
-    <url>/bulequcod.html</url>
-    <content>Game Development Android quick-Cocos2d-x</content>
-  </entry>
-  <entry>
     <title>Send a One-Time WeChat Reminder with python and itchat</title>
     <url>/seontiwere.html</url>
     <content>python WeChat</content>
+  </entry>
+  <entry>
+    <title>Build a Legacy quick-Cocos2d-x APK: NDK, Native Libraries and Ant</title>
+    <url>/bulequcod.html</url>
+    <content>Game Development Android quick-Cocos2d-x</content>
   </entry>
   <entry>
     <title>Raspberry Pi WireGuard VPN Server: Keys, Forwarding, Firewall and Clients</title>
@@ -966,14 +966,14 @@
     <content>Cocos Creator TypeScript</content>
   </entry>
   <entry>
-    <title>HTML Relationship Timer Page with JavaScript and Background Animation</title>
-    <url>/htretipaja.html</url>
-    <content>Web Design JavaScript HTML</content>
-  </entry>
-  <entry>
     <title>Fix a pip Startup Traceback: Check python and Reinstall pip Safely</title>
     <url>/fipisttrch.html</url>
     <content>Common Bugs python pip</content>
+  </entry>
+  <entry>
+    <title>HTML Relationship Timer Page with JavaScript and Background Animation</title>
+    <url>/htretipaja.html</url>
+    <content>Web Design JavaScript HTML</content>
   </entry>
   <entry>
     <title>Cocos Creator Telegram Payments: Send an Invoice with Bot API</title>
@@ -991,14 +991,14 @@
     <content>Advertisement ISO Certification Business Consulting</content>
   </entry>
   <entry>
-    <title>Show the Android Status Bar in Cocos Creator: Remove SYSTEM_UI_FLAG_FULLSCREEN</title>
-    <url>/shanstbaco.html</url>
-    <content>Cocos Creator Android</content>
-  </entry>
-  <entry>
     <title>How to Show the iOS Status Bar in Cocos Creator: ViewController and Info.plist</title>
     <url>/shiostbaco.html</url>
     <content>Cocos Creator iOS Development</content>
+  </entry>
+  <entry>
+    <title>Show the Android Status Bar in Cocos Creator: Remove SYSTEM_UI_FLAG_FULLSCREEN</title>
+    <url>/shanstbaco.html</url>
+    <content>Cocos Creator Android</content>
   </entry>
   <entry>
     <title>Shuffle a Lua Array with Fisher-Yates: In-Place and Copy Variants</title>
@@ -1031,14 +1031,14 @@
     <content>Engineering Ethics Telecommunications</content>
   </entry>
   <entry>
-    <title>Cocos2d-x Lua tolua API: cast, type and isnull Explained</title>
-    <url>/codxluto.html</url>
-    <content>Game Development Lua Cocos2d-x tolua</content>
-  </entry>
-  <entry>
     <title>Telegram Mini App Bot Setup: BotFather, grammY, Deno and Inline Buttons</title>
     <url>/temiapbose.html</url>
     <content>Telegram Mini App Game</content>
+  </entry>
+  <entry>
+    <title>Cocos2d-x Lua tolua API: cast, type and isnull Explained</title>
+    <url>/codxluto.html</url>
+    <content>Game Development Lua Cocos2d-x tolua</content>
   </entry>
   <entry>
     <title>Remove Decimal Trailing Zeros in TypeScript Without Losing String Precision</title>
@@ -1056,13 +1056,13 @@
     <content>TypeScript Programming Techniques</content>
   </entry>
   <entry>
-    <title>Fix This App Was Built for an Older Version of Android by Updating targetSdkVersion</title>
-    <url>/fiapbuolve.html</url>
+    <title>timeRecords Is at Its Maximum Size 64: Meaning and Test Guidance</title>
+    <url>/timasimete.html</url>
     <content>Android Development Android</content>
   </entry>
   <entry>
-    <title>timeRecords Is at Its Maximum Size 64: Meaning and Test Guidance</title>
-    <url>/timasimete.html</url>
+    <title>Fix This App Was Built for an Older Version of Android by Updating targetSdkVersion</title>
+    <url>/fiapbuolve.html</url>
     <content>Android Development Android</content>
   </entry>
   <entry>
@@ -1071,14 +1071,14 @@
     <content>Cocos Creator TypeScript</content>
   </entry>
   <entry>
-    <title>Valentine&apos;s Day HTML Message Page with a JavaScript Typing Effect</title>
-    <url>/vasdahtme.html</url>
-    <content>Creative Coding JavaScript HTML</content>
-  </entry>
-  <entry>
     <title>VHDL Vending Machine Controller: FSM, Credit, Change and Simulation</title>
     <url>/vhvemacofs.html</url>
     <content>Embedded Development VHDL FPGA</content>
+  </entry>
+  <entry>
+    <title>Valentine&apos;s Day HTML Message Page with a JavaScript Typing Effect</title>
+    <url>/vasdahtme.html</url>
+    <content>Creative Coding JavaScript HTML</content>
   </entry>
   <entry>
     <title>Hide Cocos Creator .meta Files in VS Code with files.exclude</title>
@@ -1146,6 +1146,11 @@
     <content>Programming Languages Lua C API</content>
   </entry>
   <entry>
+    <title>Fix Missing DLL Errors on Windows: App Repair, Runtimes and System Files</title>
+    <url>/fimidlerwi.html</url>
+    <content>Windows Visual Studio</content>
+  </entry>
+  <entry>
     <title>Fix Look for an App in Microsoft Store on Windows 11 for a Trusted EXE</title>
     <url>/filoapmist.html</url>
     <content>Computer Tips Windows 11</content>
@@ -1154,10 +1159,5 @@
     <title>Lua C Module Resource Management: Full Userdata, __gc and Safe Close</title>
     <url>/lucmorema.html</url>
     <content>Programming Languages Lua C API</content>
-  </entry>
-  <entry>
-    <title>Fix Missing DLL Errors on Windows: App Repair, Runtimes and System Files</title>
-    <url>/fimidlerwi.html</url>
-    <content>Windows Visual Studio</content>
   </entry>
 </search>
