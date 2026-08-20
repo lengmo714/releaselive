@@ -196,20 +196,9 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://releaseleaf.com/cocrbaevev.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="winner">
-      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Winner's Dev Notes">
-    </span>
+  <article class="post-block" lang="en">
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h1 class="post-title">
           Cocos Creator Background Events: EVENT_HIDE, EVENT_SHOW and Cleanup
         </h1>
 
@@ -219,8 +208,8 @@
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cocos-Creator/" itemprop="url" rel="index"><span itemprop="name">Cocos Creator</span></a>
+                <span>
+                  <a href="/categories/Cocos-Creator/" rel="index"><span>Cocos Creator</span></a>
                 </span>
             </span>
             <div class="post-description">Subscribe to Cocos Creator Game.EVENT_HIDE and EVENT_SHOW for background and foreground transitions, then remove both callbacks with game.off during cleanup.</div>
@@ -231,7 +220,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body">
 
       
         <h2 id="Register-and-Remove-App-Lifecycle-Listeners"><a href="#Register-and-Remove-App-Lifecycle-Listeners" class="headerlink" title="Register and Remove App Lifecycle Listeners"></a>Register and Remove App Lifecycle Listeners</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; game, <span class="title class_">Game</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">AppLifecycle</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">onLoad</span>(<span class="params"></span>) &#123;</span><br><span class="line">    game.<span class="title function_">on</span>(<span class="title class_">Game</span>.<span class="property">EVENT_HIDE</span>, <span class="variable language_">this</span>.<span class="property">onHide</span>, <span class="variable language_">this</span>);</span><br><span class="line">    game.<span class="title function_">on</span>(<span class="title class_">Game</span>.<span class="property">EVENT_SHOW</span>, <span class="variable language_">this</span>.<span class="property">onShow</span>, <span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">onHide</span>(<span class="params"></span>) &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Application entered the background&#x27;</span>); &#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">onShow</span>(<span class="params"></span>) &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Application returned to the foreground&#x27;</span>); &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">onDestroy</span>(<span class="params"></span>) &#123;</span><br><span class="line">    game.<span class="title function_">off</span>(<span class="title class_">Game</span>.<span class="property">EVENT_HIDE</span>, <span class="variable language_">this</span>.<span class="property">onHide</span>, <span class="variable language_">this</span>);</span><br><span class="line">    game.<span class="title function_">off</span>(<span class="title class_">Game</span>.<span class="property">EVENT_SHOW</span>, <span class="variable language_">this</span>.<span class="property">onShow</span>, <span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

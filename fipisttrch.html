@@ -198,20 +198,9 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://releaseleaf.com/fipisttrch.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="winner">
-      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Winner's Dev Notes">
-    </span>
+  <article class="post-block" lang="en">
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h1 class="post-title">
           Fix a pip Startup Traceback: Check python and Reinstall pip Safely
         </h1>
 
@@ -221,8 +210,8 @@
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Common-Bugs/" itemprop="url" rel="index"><span itemprop="name">Common Bugs</span></a>
+                <span>
+                  <a href="/categories/Common-Bugs/" rel="index"><span>Common Bugs</span></a>
                 </span>
             </span>
             <div class="post-description">Diagnose a pip startup traceback by checking which python interpreter owns pip, then repair it with ensurepip or a clean reinstall instead of source edits.</div>
@@ -233,7 +222,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body">
 
       
         <p>A pip command can fail before package installation begins when the launcher and installed pip package do not match, the environment is corrupted, or the wrong python interpreter is being used.</p>

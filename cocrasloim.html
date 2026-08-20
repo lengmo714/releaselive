@@ -196,20 +196,9 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://releaseleaf.com/cocrasloim.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="winner">
-      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Winner's Dev Notes">
-    </span>
+  <article class="post-block" lang="en">
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h1 class="post-title">
           Cocos Creator assetManager.loadRemote: Images, Audio, Text and Device Files
         </h1>
 
@@ -219,8 +208,8 @@
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cocos-Creator/" itemprop="url" rel="index"><span itemprop="name">Cocos Creator</span></a>
+                <span>
+                  <a href="/categories/Cocos-Creator/" rel="index"><span>Cocos Creator</span></a>
                 </span>
             </span>
             <div class="post-description">Use Cocos Creator assetManager.loadRemote for images with or without extensions, absolute device files, remote audio, and text while specifying asset types.</div>
@@ -231,7 +220,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body">
 
       
         <h2 id="Image-URL-with-a-File-Extension"><a href="#Image-URL-with-a-File-Extension" class="headerlink" title="Image URL with a File Extension"></a>Image URL with a File Extension</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> remoteUrl = <span class="string">&quot;https://unknown.org/someres.png&quot;</span>;</span><br><span class="line">assetManager.<span class="property">loadRemote</span>&lt;<span class="title class_">ImageAsset</span>&gt;(remoteUrl, <span class="keyword">function</span> (<span class="params">err, imageAsset</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">const</span> spriteFrame = <span class="keyword">new</span> <span class="title class_">SpriteFrame</span>();</span><br><span class="line">    <span class="keyword">const</span> texture = <span class="keyword">new</span> <span class="title class_">Texture2D</span>();</span><br><span class="line">    texture.<span class="property">image</span> = imageAsset;</span><br><span class="line">    spriteFrame.<span class="property">texture</span> = texture;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>

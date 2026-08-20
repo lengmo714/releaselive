@@ -195,20 +195,9 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://releaseleaf.com/luimvsrest.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="winner">
-      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Winner's Dev Notes">
-    </span>
+  <article class="post-block" lang="en">
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h1 class="post-title">
           Lua import vs require: Standard Module Loading and Framework Helpers
         </h1>
 
@@ -218,8 +207,8 @@
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
+                <span>
+                  <a href="/categories/Programming-Languages/" rel="index"><span>Programming Languages</span></a>
                 </span>
             </span>
             <div class="post-description">Understand why require is Lua's standard cached module loader while import is usually a framework helper with project-specific path, return-value, or reload behavior.</div>
@@ -230,7 +219,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body">
 
       
         <p>Standard Lua provides <code>require</code>; it does not define a global <code>import</code> function. If a project supports <code>import</code>, that function comes from a framework such as a game engine or from the application’s own utility code, so its exact behavior must be checked in that project.</p>

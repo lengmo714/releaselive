@@ -196,20 +196,9 @@
     
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://releaseleaf.com/luthinstlu.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="winner">
-      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Winner's Dev Notes">
-    </span>
+  <article class="post-block" lang="en">
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h1 class="post-title">
           Lua Threads and Independent States: lua_newthread, resume and yield
         </h1>
 
@@ -219,12 +208,12 @@
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
+                <span>
+                  <a href="/categories/Programming-Languages/" rel="index"><span>Programming Languages</span></a>
                 </span>
                   , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-Languages/Lua/" itemprop="url" rel="index"><span itemprop="name">Lua</span></a>
+                <span>
+                  <a href="/categories/Programming-Languages/Lua/" rel="index"><span>Lua</span></a>
                 </span>
             </span>
             <div class="post-description">Learn cooperative Lua threads within one state, lua_newthread, lua_resume and lua_yield lifecycle rules, plus independent states for isolation and ownership.</div>
@@ -235,7 +224,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body">
 
       
         <p>Lua does not make a single state safely available to arbitrary preemptive threads. Instead, it offers two useful building blocks:</p>
