@@ -925,41 +925,6 @@ pre .javascript .function {
     border-bottom-color: #222;
   }
 }
-.comments {
-  margin-top: 60px;
-  overflow: hidden;
-}
-.comment-button-group {
-  display: flex;
-  flex-wrap: wrap-reverse;
-  justify-content: center;
-  margin: 1em 0;
-}
-.comment-button-group .comment-button {
-  margin: 0.1em 0.2em;
-}
-.comment-button-group .comment-button.active {
-  background: var(--btn-default-hover-bg);
-  border-color: var(--btn-default-hover-border-color);
-  color: var(--btn-default-hover-color);
-}
-.comment-position {
-  display: none;
-}
-.comment-position.active {
-  display: block;
-}
-.tabs-comment {
-  background: var(--content-bg-color);
-  margin-top: 4em;
-  padding-top: 0;
-}
-.tabs-comment .comments {
-  border: 0;
-  box-shadow: none;
-  margin-top: 0;
-  padding-top: 0;
-}
 .container {
   min-height: 100%;
   position: relative;
@@ -1039,16 +1004,6 @@ pre .javascript .function {
   color: #ddd;
   font-size: 0.8125em;
   margin: 10px 0;
-}
-.use-motion .brand {
-  opacity: 0;
-}
-.use-motion .site-title,
-.use-motion .site-subtitle,
-.use-motion .custom-logo-image {
-  opacity: 0;
-  position: relative;
-  top: -10px;
 }
 .site-nav-toggle,
 .site-nav-right {
@@ -1146,9 +1101,6 @@ pre .javascript .function {
 .menu .menu-item span.exturl:hover {
   background: var(--menu-item-bg-color);
 }
-.use-motion .menu-item {
-  opacity: 0;
-}
 .sidebar {
   background: #222;
   bottom: 0;
@@ -1219,7 +1171,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #6affbd;
+  background: #5d1862;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1227,33 +1179,6 @@ pre .javascript .function {
   margin-right: 3px;
   vertical-align: middle;
   width: 4px;
-}
-.sidebar-button {
-  margin-top: 15px;
-}
-.sidebar-button a {
-  border: 1px solid #fc6423;
-  border-radius: 4px;
-  color: #fc6423;
-  display: inline-block;
-  padding: 0 15px;
-}
-.sidebar-button a .fa,
-.sidebar-button a .fab,
-.sidebar-button a .far,
-.sidebar-button a .fas {
-  margin-right: 5px;
-}
-.sidebar-button a:hover {
-  background: #fc6423;
-  border: 1px solid #fc6423;
-  color: #fff;
-}
-.sidebar-button a:hover .fa,
-.sidebar-button a:hover .fab,
-.sidebar-button a:hover .far,
-.sidebar-button a:hover .fas {
-  color: #fff;
 }
 .links-of-blogroll {
   font-size: 0.8125em;
@@ -1606,20 +1531,6 @@ pre .javascript .function {
   margin-top: 40px;
   text-align: center;
 }
-.use-motion .post-block,
-.use-motion .pagination,
-.use-motion .comments {
-  opacity: 0;
-}
-.use-motion .post-header {
-  opacity: 0;
-}
-.use-motion .post-body {
-  opacity: 0;
-}
-.use-motion .collection-header {
-  opacity: 0;
-}
 .posts-collapse {
   margin-left: 35px;
   position: relative;
@@ -1970,24 +1881,6 @@ pre .javascript .function {
 }
 .post-tags a:not(:last-child) {
   margin-right: 10px;
-}
-.post-widgets {
-  border-top: 1px solid #eee;
-  margin-top: 15px;
-  text-align: center;
-}
-.wp_rating {
-  height: 20px;
-  line-height: 20px;
-  margin-top: 10px;
-  padding-top: 6px;
-  text-align: center;
-}
-.social-like {
-  display: flex;
-  font-size: 0.875em;
-  justify-content: center;
-  text-align: center;
 }
 .reward-container {
   margin: 20px auto;
@@ -2682,16 +2575,6 @@ ul.breadcrumb li + li:last-child {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   margin-top: 12px;
 }
-.comments {
-  background: var(--content-bg-color);
-  border-radius: initial;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-  margin-top: 12px;
-  padding: 40px;
-}
-.tabs-comment {
-  margin-top: 1em;
-}
 .content {
   padding-top: initial;
 }
@@ -2761,10 +2644,6 @@ ul.breadcrumb li + li:last-child {
   .post-block + .post-block {
     margin-top: 10px;
   }
-  .comments {
-    margin-top: 10px;
-    padding: 10px 20px;
-  }
   .pagination {
     margin: 10px 0 0;
   }
@@ -2784,10 +2663,6 @@ ul.breadcrumb li + li:last-child {
   }
   .post-block + .post-block {
     margin-top: 8px;
-  }
-  .comments {
-    margin-top: 8px;
-    padding: 10px 12px;
   }
   .pagination {
     margin: 8px 0 0;

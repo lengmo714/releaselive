@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -17,38 +17,39 @@
 
 <link rel="preload" href="/lib/font-awesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"></noscript>
+
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"lengmo714.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"releaselive.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+  <meta name="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="南锋">
-<meta property="og:url" content="https://lengmo714.top/page/19/index.html">
-<meta property="og:site_name" content="南锋">
-<meta property="og:description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="南锋">
-<meta property="article:tag" content="ios">
-<meta property="article:tag" content="android">
-<meta property="article:tag" content="游戏开发">
-<meta property="article:tag" content="quick-cocos">
-<meta property="article:tag" content="游戏上架">
-<meta property="article:tag" content="cocoscreater">
-<meta property="article:tag" content="c语言">
+<meta property="og:title" content="Winner&#39;s Dev Notes">
+<meta property="og:url" content="https://releaselive.com/page/19/index.html">
+<meta property="og:site_name" content="Winner&#39;s Dev Notes">
+<meta property="og:description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="winner">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="game development">
+<meta property="article:tag" content="Quick-Cocos2d-x">
+<meta property="article:tag" content="app publishing">
+<meta property="article:tag" content="Cocos Creator">
+<meta property="article:tag" content="C">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="cocos2dx">
+<meta property="article:tag" content="Cocos2d-x">
 <meta property="article:tag" content="Lua">
-<meta property="article:tag" content="hexo">
-<meta property="article:tag" content="数据手套">
-<meta property="article:tag" content="嵌入式开发">
-<meta property="article:tag" content="stem32">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="data gloves">
+<meta property="article:tag" content="embedded development">
+<meta property="article:tag" content="STM32">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://lengmo714.top/page/19/">
+<link rel="canonical" href="https://releaselive.com/page/19/">
 
 
 
@@ -64,11 +65,11 @@
     sidebar: "",
     isHome : true,
     isPost : false,
-    lang   : 'zh-CN'
+    lang   : 'en'
   };
 </script>
 
-  <title>南锋 - 南奔万里空，脱死锋镝余</title>
+  <title>Winner's Dev Notes - Code, games, and the craft of building better software</title>
   
     <script>
       function sendPageView() {
@@ -92,29 +93,6 @@
 
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -124,7 +102,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="Toggle navigation bar">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -135,10 +113,10 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">南锋</h1>
+      <h1 class="site-title">Winner's Dev Notes</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">南奔万里空，脱死锋镝余</p>
+      <p class="site-subtitle" itemprop="description">Code, games, and the craft of building better software</p>
   </div>
 
   <div class="site-nav-right">
@@ -155,31 +133,31 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
       <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
       </li>
   </ul>
@@ -189,13 +167,13 @@
 
   <div class="search-pop-overlay">
     <div class="popup search-popup">
-        <div class="search-header">
+      <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
+           placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
@@ -228,27 +206,34 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/23361.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/lucocomusc.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/23361.html" class="post-title-link" itemprop="url">Lua C API 自定义类型：用 Userdata 和位操作实现 BitArray</a>
+            <a href="/lucocomusc.html" class="post-title-link" itemprop="url">Lua Coroutine Cooperative Multitasking: Schedulers and Async I/O</a>
         </h2>
 
         <div class="post-meta">
-
-          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
+                </span>
+            </span>
 
         </div>
       </header>
@@ -259,11 +244,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>使用 Lua C API 创建紧凑的 BitArray 自定义类型，讲解 userdata 内存布局、索引校验、位读写、元表及面向对象访问方式。</p>
+          <p>Use Lua coroutines, yield, and resume to build a cooperative task scheduler and coordinate non-blocking network I/O without confusing concurrency with parallel execution.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/23361.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/lucocomusc.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -285,22 +270,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/44511.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/ludelirege.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/44511.html" class="post-title-link" itemprop="url">Lua C API 函数技巧：数组索引、字符串处理与状态保存</a>
+            <a href="/ludelirege.html" class="post-title-link" itemprop="url">Lua Debug Library Reflection: getinfo, Locals, Hooks and Sandboxing</a>
         </h2>
 
         <div class="post-meta">
@@ -308,13 +293,11 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
                 </span>
             </span>
-
-          
 
         </div>
       </header>
@@ -325,11 +308,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>讲解编写 Lua C 函数时如何使用 lua_geti 和 lua_seti 操作数组、校验与处理字符串，并通过注册表和上值安全保存 C 侧状态。</p>
+          <p>Use Lua's debug library to inspect functions, stack frames, local variables, upvalues, coroutines, and execution hooks while understanding performance and sandbox risks.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/44511.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/ludelirege.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -351,22 +334,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/18339.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/lucocrreyi.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/18339.html" class="post-title-link" itemprop="url">Lua 调用 C 函数：lua_CFunction、栈 API、注册和 C 模块</a>
+            <a href="/lucocrreyi.html" class="post-title-link" itemprop="url">Lua Coroutines: create, resume, yield, States and Iterators</a>
         </h2>
 
         <div class="post-meta">
@@ -374,13 +357,11 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
                 </span>
             </span>
-
-          
 
         </div>
       </header>
@@ -391,11 +372,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>介绍 Lua 调用 C 函数的 lua_CFunction 约定和栈式 API，讲解参数读取、结果压栈、错误处理、函数注册、延续以及构建可加载 C 模块。</p>
+          <p>Learn Lua coroutine creation, resume and yield value flow, status transitions, iterator patterns, main-loop ownership, and event-driven program structure.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/18339.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/lucocrreyi.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -417,22 +398,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/21185.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/lugacoweta.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/21185.html" class="post-title-link" itemprop="url">Lua C API 入门：状态机、栈、函数调用、错误与内存</a>
+            <a href="/lugacoweta.html" class="post-title-link" itemprop="url">Lua Garbage Collection: Weak Tables, Caches, Finalizers and Control</a>
         </h2>
 
         <div class="post-meta">
@@ -440,13 +421,11 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
                 </span>
             </span>
-
-          
 
         </div>
       </header>
@@ -457,11 +436,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>从创建 lua_State 和运行脚本开始，系统介绍 Lua C API 栈的压入与查询、受保护函数调用、错误处理、函数注册和内存分配机制。</p>
+          <p>Understand Lua garbage collection through reachability, weak-key and weak-value tables, caches, finalizers, external resources, and practical collectgarbage controls.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/21185.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/lugacoweta.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -483,22 +462,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/28873.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/luenexgen.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/28873.html" class="post-title-link" itemprop="url">Cocos2d-x Lua 键盘事件：监听按下、释放并移除 Listener</a>
+            <a href="/luenexgen.html" class="post-title-link" itemprop="url">Lua Environments Explained: _G, _ENV, Dynamic Globals and Modules</a>
         </h2>
 
         <div class="post-meta">
@@ -506,13 +485,11 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
                 </span>
             </span>
-
-          
 
         </div>
       </header>
@@ -523,11 +500,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>使用 cc.EventListenerKeyboard 在 Cocos2d-x 3.17 Lua 中监听键盘按下和释放事件，处理 KeyCode，并将监听器绑定到节点及正确移除。</p>
+          <p>Understand Lua _G and _ENV, dynamically named globals, undeclared-variable checks, isolated module environments, and explicit environments passed to load.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/28873.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/luenexgen.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -549,22 +526,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/11143.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/shluarfiya.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/11143.html" class="post-title-link" itemprop="url">Lua 协程实现协作式多任务：调度器与异步网络 I/O</a>
+            <a href="/shluarfiya.html" class="post-title-link" itemprop="url">Shuffle a Lua Array with Fisher-Yates: In-Place and Copy Variants</a>
         </h2>
 
         <div class="post-meta">
@@ -572,13 +549,11 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
                 </span>
             </span>
-
-          
 
         </div>
       </header>
@@ -589,11 +564,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>介绍 Lua 使用 coroutine、yield 和 resume 实现协作式多任务的方法，并以调度器和 LuaSocket 非阻塞下载说明协程并发与真正并行的区别。</p>
+          <p>Shuffle a Lua array uniformly with the Fisher-Yates algorithm, understand its linear complexity, and choose between an in-place function and a copied result.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/11143.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/shluarfiya.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -615,22 +590,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/52447.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/oborluclse.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/52447.html" class="post-title-link" itemprop="url">Lua debug 库反射与自省：getinfo、局部变量、钩子和沙盒</a>
+            <a href="/oborluclse.html" class="post-title-link" itemprop="url">Object-Oriented Lua: Classes, self, Inheritance and Private State</a>
         </h2>
 
         <div class="post-meta">
@@ -638,13 +613,11 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
                 </span>
             </span>
-
-          
 
         </div>
       </header>
@@ -655,11 +628,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>介绍 Lua debug 库的反射和自省能力，包括 debug.getinfo、栈帧、局部变量、upvalue、协程、调试钩子、性能分析及沙盒安全风险。</p>
+          <p>Implement object-oriented Lua with tables, functions, metatables, self methods, constructors, inheritance, private state, callable objects, and alternative object models.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/52447.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/oborluclse.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -681,22 +654,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/28748.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/lumemeinop.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/28748.html" class="post-title-link" itemprop="url">Lua 协程教程：create、resume、yield、状态和迭代器</a>
+            <a href="/lumemeinop.html" class="post-title-link" itemprop="url">Lua Metatables and Metamethods: __index, Operators and Proxies</a>
         </h2>
 
         <div class="post-meta">
@@ -704,13 +677,11 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
                 </span>
             </span>
-
-          
 
         </div>
       </header>
@@ -721,11 +692,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>系统讲解 Lua 协程的创建、恢复、挂起和状态变化，说明 resume 与 yield 的参数传递、协程迭代器、主循环所有权和事件驱动结构。</p>
+          <p>Customize Lua arithmetic, comparison, indexing, assignment, calls, and string conversion with metatables, __index, __newindex, and proxy-table patterns.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/28748.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/lumemeinop.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -747,22 +718,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/3472.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/luimvsrest.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/3472.html" class="post-title-link" itemprop="url">Lua 垃圾回收教程：弱表、缓存、析构器和 collectgarbage</a>
+            <a href="/luimvsrest.html" class="post-title-link" itemprop="url">Lua import vs require: Standard Module Loading and Framework Helpers</a>
         </h2>
 
         <div class="post-meta">
@@ -770,13 +741,11 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
                 </span>
             </span>
-
-          
 
         </div>
       </header>
@@ -787,11 +756,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>介绍 Lua 垃圾回收的可达性规则、弱键弱值表、缓存和记忆函数、析构器，以及使用 collectgarbage 控制回收模式、暂停和步长。</p>
+          <p>Understand why require is Lua's standard cached module loader while import is usually a framework helper with project-specific path, return-value, or reload behavior.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/3472.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/luimvsrest.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -813,22 +782,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/64510.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/pypipeskgr.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/64510.html" class="post-title-link" itemprop="url">Lua 环境管理：_G、_ENV、动态全局变量与模块隔离</a>
+            <a href="/pypipeskgr.html" class="post-title-link" itemprop="url">python Pillow Pencil Sketch: Grayscale, Invert, Blur and Color Dodge</a>
         </h2>
 
         <div class="post-meta">
@@ -836,13 +805,11 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
                 </span>
             </span>
-
-          
 
         </div>
       </header>
@@ -853,11 +820,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>系统讲解 Lua 的 _G 与 _ENV、动态名称全局变量、未声明变量检测、非全局环境、模块隔离，以及为 load 显式指定运行环境。</p>
+          <p>Convert a color photo into a pencil sketch with python Pillow by applying grayscale, inversion, Gaussian blur, and color-dodge blending, then save the result.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/64510.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/pypipeskgr.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -879,36 +846,12 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
 
           </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
         </div>
           
   
@@ -921,12 +864,12 @@
   <aside class="sidebar">
     <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          文章目录
+          Table of Contents
         </li>
         <li class="sidebar-nav-overview">
-          站点概览
+          Overview
         </li>
       </ul>
 
@@ -941,36 +884,36 @@
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="南锋"
+        <div class="site-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="winner"
       src="/images/IMG_3307.JPG">
-  <p class="site-author-name" itemprop="name">南锋</p>
-  <div class="site-description" itemprop="description">记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员</div>
+  <p class="site-author-name" itemprop="name">winner</p>
+  <div class="site-description" itemprop="description">Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.</div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">238</span>
-          <span class="site-state-item-name">日志</span>
+          <span class="site-state-item-count">232</span>
+          <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
         <a href="/categories/">
-        <span class="site-state-item-count">26</span>
-        <span class="site-state-item-name">分类</span>
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">categories</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
         <a href="/tags/">
-        <span class="site-state-item-count">35</span>
-        <span class="site-state-item-name">标签</span>
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">tags</span>
         </a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author">
       <span class="links-of-author-item">
         <a href="https://github.com/lengmo714" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lengmo714" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
@@ -981,39 +924,39 @@
         <a href="https://weibo.com/u/3124723200" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3124723200" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://www.douyin.com/user/MS4wLjABAAAAGVvxXoafRJrfCUH8PiT5yO--ToMDJnA_7UpHsFucUuQDDEF4aHy6XOAIedS4rD7W" title="抖音 → https:&#x2F;&#x2F;www.douyin.com&#x2F;user&#x2F;MS4wLjABAAAAGVvxXoafRJrfCUH8PiT5yO--ToMDJnA_7UpHsFucUuQDDEF4aHy6XOAIedS4rD7W" rel="noopener" target="_blank"><i class="fa fa-mobile fa-fw"></i>抖音</a>
+        <a href="https://www.douyin.com/user/MS4wLjABAAAAGVvxXoafRJrfCUH8PiT5yO--ToMDJnA_7UpHsFucUuQDDEF4aHy6XOAIedS4rD7W" title="Douyin → https:&#x2F;&#x2F;www.douyin.com&#x2F;user&#x2F;MS4wLjABAAAAGVvxXoafRJrfCUH8PiT5yO--ToMDJnA_7UpHsFucUuQDDEF4aHy6XOAIedS4rD7W" rel="noopener" target="_blank"><i class="fa fa-mobile fa-fw"></i>Douyin</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
+  <div class="cc-license" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
-  <div class="links-of-blogroll motion-element">
+  <div class="links-of-blogroll">
     <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       Links
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="/Link/" title="&#x2F;Link&#x2F;">友情链接</a>
+          <a href="/Link/" title="&#x2F;Link&#x2F;">Friends and Links</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://blog.csdn.net/Silent_F" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Silent_F" rel="noopener" target="_blank">CSDN</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://lengmo714.top/net/map/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;map&#x2F;index.html">足迹</a>
+          <a href="https://lengmo714.top/net/map/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;map&#x2F;index.html" rel="noopener" target="_blank">Travel Map</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://lengmo714.top/net/Love/baby.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;Love&#x2F;baby.html">恋爱计时</a>
+          <a href="https://lengmo714.top/net/Love/baby.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;Love&#x2F;baby.html" rel="noopener" target="_blank">Relationship Timer</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://lengmo714.top/net/wechat/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;wechat&#x2F;index.html">微信对话生成器</a>
+          <a href="https://lengmo714.top/net/wechat/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;wechat&#x2F;index.html" rel="noopener" target="_blank">WeChat Chat Generator</a>
         </li>
     </ul>
   </div>
        
       </div>
-        <div class="back-to-top motion-element">
+        <div class="back-to-top">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
@@ -1028,8 +971,6 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">湘ICP备 2022022717号 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%E6%B9%98%E5%85%AC%E7%BD%91%E5%AE%89%E5%A4%8743011202000987%E5%8F%B7" rel="noopener" target="_blank">湘公网安备43011202000987号 </a>
-  </div>
 
 <div class="copyright">
   
@@ -1038,17 +979,8 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">南锋</span>
+  <span class="author" itemprop="copyrightHolder">winner</span>
 </div>
-
-        
-
-
-
-
-
-
-
 
       </div>
     </footer>
@@ -1064,8 +996,6 @@
 
 
 <script src="/js/next-boot.js"></script>
-
-
 
 
   
@@ -1095,29 +1025,10 @@
       !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
   </script>
 
-
-
-
   
 <script src="/js/local-search.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  +  
 
 </body>
 </html>

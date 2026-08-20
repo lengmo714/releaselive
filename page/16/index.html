@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -17,38 +17,39 @@
 
 <link rel="preload" href="/lib/font-awesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"></noscript>
+
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"lengmo714.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"releaselive.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+  <meta name="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="南锋">
-<meta property="og:url" content="https://lengmo714.top/page/16/index.html">
-<meta property="og:site_name" content="南锋">
-<meta property="og:description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="南锋">
-<meta property="article:tag" content="ios">
-<meta property="article:tag" content="android">
-<meta property="article:tag" content="游戏开发">
-<meta property="article:tag" content="quick-cocos">
-<meta property="article:tag" content="游戏上架">
-<meta property="article:tag" content="cocoscreater">
-<meta property="article:tag" content="c语言">
+<meta property="og:title" content="Winner&#39;s Dev Notes">
+<meta property="og:url" content="https://releaselive.com/page/16/index.html">
+<meta property="og:site_name" content="Winner&#39;s Dev Notes">
+<meta property="og:description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="winner">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="game development">
+<meta property="article:tag" content="Quick-Cocos2d-x">
+<meta property="article:tag" content="app publishing">
+<meta property="article:tag" content="Cocos Creator">
+<meta property="article:tag" content="C">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="cocos2dx">
+<meta property="article:tag" content="Cocos2d-x">
 <meta property="article:tag" content="Lua">
-<meta property="article:tag" content="hexo">
-<meta property="article:tag" content="数据手套">
-<meta property="article:tag" content="嵌入式开发">
-<meta property="article:tag" content="stem32">
-<meta property="article:tag" content="python">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="data gloves">
+<meta property="article:tag" content="embedded development">
+<meta property="article:tag" content="STM32">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://lengmo714.top/page/16/">
+<link rel="canonical" href="https://releaselive.com/page/16/">
 
 
 
@@ -64,11 +65,11 @@
     sidebar: "",
     isHome : true,
     isPost : false,
-    lang   : 'zh-CN'
+    lang   : 'en'
   };
 </script>
 
-  <title>南锋 - 南奔万里空，脱死锋镝余</title>
+  <title>Winner's Dev Notes - Code, games, and the craft of building better software</title>
   
     <script>
       function sendPageView() {
@@ -92,29 +93,6 @@
 
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -124,7 +102,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="Toggle navigation bar">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -135,10 +113,10 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">南锋</h1>
+      <h1 class="site-title">Winner's Dev Notes</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">南奔万里空，脱死锋镝余</p>
+      <p class="site-subtitle" itemprop="description">Code, games, and the craft of building better software</p>
   </div>
 
   <div class="site-nav-right">
@@ -155,31 +133,31 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
       <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
       </li>
   </ul>
@@ -189,13 +167,13 @@
 
   <div class="search-pop-overlay">
     <div class="popup search-popup">
-        <div class="search-header">
+      <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
+           placeholder="Searching..." spellcheck="false"
            type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
@@ -228,22 +206,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/4a90989.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/inanndmaan.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/4a90989.html" class="post-title-link" itemprop="url">macOS 升级后运行 python 2.7：隔离旧环境并迁移 python 3</a>
+            <a href="/inanndmaan.html" class="post-title-link" itemprop="url">Install Android NDK on macOS with Android Studio or sdkmanager</a>
         </h2>
 
         <div class="post-meta">
@@ -251,13 +229,11 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%B5%E8%84%91%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" itemprop="url" rel="index"><span itemprop="name">电脑使用技巧</span></a>
+                  <a href="/categories/Android-NDK/" itemprop="url" rel="index"><span itemprop="name">Android NDK</span></a>
                 </span>
             </span>
-
-          
 
         </div>
       </header>
@@ -268,11 +244,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>说明 macOS 升级后系统 python 2.7 消失的原因，建议使用容器或版本管理器隔离旧项目，并避免替换系统 python，同时规划迁移到 python 3。</p>
+          <p>Install a project-compatible Android NDK on macOS with Android Studio Side by side or sdkmanager, then configure the NDK path and zsh environment variables.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/4a90989.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/inanndmaan.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -294,22 +270,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/5380d61b.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/nghthtrese.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/5380d61b.html" class="post-title-link" itemprop="url">Cocos2d-x 纹理源码分析：CCTexture2D、PVR 与 TextureCache</a>
+            <a href="/nghthtrese.html" class="post-title-link" itemprop="url">Nginx HTTP to HTTPS Redirect: 301 Server Blocks and TLS Setup</a>
         </h2>
 
         <div class="post-meta">
@@ -317,13 +293,11 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
+                  <a href="/categories/HTTPS/" itemprop="url" rel="index"><span itemprop="name">HTTPS</span></a>
                 </span>
             </span>
-
-          
 
         </div>
       </header>
@@ -334,11 +308,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>从源码层面梳理 Cocos2d-x 的 CCTexture2D 纹理创建和像素格式、PVR 文件加载、CCTextureCache 缓存流程，以及纹理内存占用与释放。</p>
+          <p>Install a TLS certificate, configure separate Nginx port 80 and 443 server blocks, and permanently redirect HTTP requests to HTTPS with status 301.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/5380d61b.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/nghthtrese.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -360,22 +334,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/6f89e884.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/bulequcod.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/6f89e884.html" class="post-title-link" itemprop="url">创建美区 Apple Account：注册步骤、地区设置与注意事项</a>
+            <a href="/bulequcod.html" class="post-title-link" itemprop="url">Build a Legacy quick-Cocos2d-x APK: NDK, Native Libraries and Ant</a>
         </h2>
 
         <div class="post-meta">
@@ -383,85 +357,17 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BD%E5%A4%96AppleID%E6%B3%A8%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">国外AppleID注册</span></a>
+                  <a href="/categories/Game-Development/" itemprop="url" rel="index"><span itemprop="name">Game Development</span></a>
                 </span>
             </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>介绍创建美区 Apple Account 的准备条件、iPhone 或 iPad 注册步骤、App Store 国家与地区设置，以及付款方式、余额和订阅注意事项。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/6f89e884.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/e883772a.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/e883772a.html" class="post-title-link" itemprop="url">Cocos2d-x Lua Sprite 与 ImageView：换图、图集和九宫格区别</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
-                </span>
-            </span>
-
-          
 
         </div>
       </header>
       <figure class="post-cover">
-        <a href="/e883772a.html" aria-label="Cocos2d-x Lua Sprite 与 ImageView：换图、图集和九宫格区别">
-          <img src="https://s1.ax1x.com/2022/11/21/zQ6Gb6.png" alt="Cocos2d-x Lua Sprite 与 ImageView：换图、图集和九宫格区别" width="543" height="260"
+        <a href="/bulequcod.html" aria-label="Build a Legacy quick-Cocos2d-x APK: NDK, Native Libraries and Ant">
+          <img src="https://s1.ax1x.com/2022/11/03/xq6X6A.png" alt="Build a Legacy quick-Cocos2d-x APK: NDK, Native Libraries and Ant" width="543" height="260"
             loading="eager" decoding="async" fetchpriority="high">
         </a>
       </figure>
@@ -472,11 +378,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>对比 Cocos2d-x Lua 中 Sprite 与 ImageView 的适用场景，展示从本地文件和 plist 图集换图的方法，并说明 UI 控件与九宫格能力差异。</p>
+          <p>Reproduce a legacy quick-Cocos2d-x Android build by matching JDK, SDK, NDK, and Ant versions, compiling native libraries, and generating the APK.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/e883772a.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/bulequcod.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -498,22 +404,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/391391b6.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/dequcodx.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/391391b6.html" class="post-title-link" itemprop="url">macOS 安装 Android NDK：Android Studio、sdkmanager 与环境变量</a>
+            <a href="/dequcodx.html" class="post-title-link" itemprop="url">Debug quick-Cocos2d-x Lua in VS Code with launch.json and LuaDebug</a>
         </h2>
 
         <div class="post-meta">
@@ -521,85 +427,17 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-ndk/" itemprop="url" rel="index"><span itemprop="name">Android ndk</span></a>
+                  <a href="/categories/Game-Development/" itemprop="url" rel="index"><span itemprop="name">Game Development</span></a>
                 </span>
             </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在 macOS 安装项目指定版本的 Android NDK，介绍 Android Studio Side by side、sdkmanager、解压路径、Android_NDK_HOME 和 zsh 环境变量配置。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/391391b6.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/f4442f9c.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/f4442f9c.html" class="post-title-link" itemprop="url">Nginx 强制 HTTP 跳转 HTTPS：301 重定向与 TLS 配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/https/" itemprop="url" rel="index"><span itemprop="name">https</span></a>
-                </span>
-            </span>
-
-          
 
         </div>
       </header>
       <figure class="post-cover">
-        <a href="/f4442f9c.html" aria-label="Nginx 强制 HTTP 跳转 HTTPS：301 重定向与 TLS 配置">
-          <img src="https://s1.ax1x.com/2022/11/06/xj0uLt.md.jpg" alt="Nginx 强制 HTTP 跳转 HTTPS：301 重定向与 TLS 配置" width="543" height="260"
+        <a href="/dequcodx.html" aria-label="Debug quick-Cocos2d-x Lua in VS Code with launch.json and LuaDebug">
+          <img src="https://s1.ax1x.com/2022/11/01/x7LPOO.png" alt="Debug quick-Cocos2d-x Lua in VS Code with launch.json and LuaDebug" width="543" height="260"
             loading="lazy" decoding="async">
         </a>
       </figure>
@@ -610,11 +448,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>为域名安装 TLS 证书，配置独立的 Nginx 80 和 443 server 块，将 HTTP 请求永久 301 重定向到 HTTPS，并检查域名和端口设置。</p>
+          <p>Configure a legacy Lua debugger, quick-Cocos2d-x player executable, launch.json, and LuaDebug bootstrap in main.lua for VS Code debugging on Windows.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/f4442f9c.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/dequcodx.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -636,22 +474,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/3315f663.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/fimidlerwi.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/3315f663.html" class="post-title-link" itemprop="url">quick-Cocos2d-x 编译 Android APK：NDK、原生库与 Ant 工程</a>
+            <a href="/fimidlerwi.html" class="post-title-link" itemprop="url">Fix Missing DLL Errors on Windows: App Repair, Runtimes and System Files</a>
         </h2>
 
         <div class="post-meta">
@@ -659,167 +497,21 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-      <figure class="post-cover">
-        <a href="/3315f663.html" aria-label="quick-Cocos2d-x 编译 Android APK：NDK、原生库与 Ant 工程">
-          <img src="https://s1.ax1x.com/2022/11/03/xq6X6A.png" alt="quick-Cocos2d-x 编译 Android APK：NDK、原生库与 Ant 工程" width="543" height="260"
-            loading="lazy" decoding="async">
-        </a>
-      </figure>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>记录旧版 quick-Cocos2d-x Android 项目的构建流程，包括匹配 JDK、SDK、NDK 和 Ant 版本，编译原生库、更新工程并生成 APK。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/3315f663.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/485b0e34.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/485b0e34.html" class="post-title-link" itemprop="url">VS Code 调试 quick-Cocos2d-x Lua：launch.json 与 LuaDebug</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">游戏开发</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-      <figure class="post-cover">
-        <a href="/485b0e34.html" aria-label="VS Code 调试 quick-Cocos2d-x Lua：launch.json 与 LuaDebug">
-          <img src="https://s1.ax1x.com/2022/11/01/x7LPOO.png" alt="VS Code 调试 quick-Cocos2d-x Lua：launch.json 与 LuaDebug" width="543" height="260"
-            loading="lazy" decoding="async">
-        </a>
-      </figure>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在 Windows 上为 quick-Cocos2d-x 配置旧版 Lua 调试插件、player 可执行文件和 launch.json，引入 LuaDebug.lua 并在 main.lua 初始化连接。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/485b0e34.html">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/62d7ce39.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/62d7ce39.html" class="post-title-link" itemprop="url">Windows 缺少 DLL 文件：软件修复、官方运行库与系统检查</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
                 </span>
-                  ，
+                  , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Windows/Visual-Studio/" itemprop="url" rel="index"><span itemprop="name">Visual Studio</span></a>
                 </span>
             </span>
 
-          
-
         </div>
       </header>
       <figure class="post-cover">
-        <a href="/62d7ce39.html" aria-label="Windows 缺少 DLL 文件：软件修复、官方运行库与系统检查">
-          <img src="https://s1.ax1x.com/2022/11/01/x7qaee.jpg" alt="Windows 缺少 DLL 文件：软件修复、官方运行库与系统检查" width="543" height="260"
+        <a href="/fimidlerwi.html" aria-label="Fix Missing DLL Errors on Windows: App Repair, Runtimes and System Files">
+          <img src="https://s1.ax1x.com/2022/11/01/x7qaee.jpg" alt="Fix Missing DLL Errors on Windows: App Repair, Runtimes and System Files" width="543" height="260"
             loading="lazy" decoding="async">
         </a>
       </figure>
@@ -830,11 +522,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>遇到 Windows 或 Visual Studio 缺少 DLL 报错时，优先修复所属软件、安装微软官方 Visual C++ 运行库并检查系统文件，避免使用不可信 DLL 下载站。</p>
+          <p>Diagnose missing DLL errors by repairing the owning Windows application, installing official Microsoft runtimes, checking system files, and avoiding unsafe downloads.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/62d7ce39.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/fimidlerwi.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -856,22 +548,22 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://lengmo714.top/f223ff9c.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/sthemacaej.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/IMG_3307.JPG">
-      <meta itemprop="name" content="南锋">
-      <meta itemprop="description" content="记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="南锋">
+      <meta itemprop="name" content="Winner's Dev Notes">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/f223ff9c.html" class="post-title-link" itemprop="url">Hexo Matery 分类页美化：EJS 卡片结构与 CSS 笔记本动画</a>
+            <a href="/sthemacaej.html" class="post-title-link" itemprop="url">Style Hexo Matery Categories with EJS Cards and Notebook CSS Animation</a>
         </h2>
 
         <div class="post-meta">
@@ -879,19 +571,17 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
+              <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
                 </span>
             </span>
 
-          
-
         </div>
       </header>
       <figure class="post-cover">
-        <a href="/f223ff9c.html" aria-label="Hexo Matery 分类页美化：EJS 卡片结构与 CSS 笔记本动画">
-          <img src="https://s1.ax1x.com/2022/11/03/xqs36I.png" alt="Hexo Matery 分类页美化：EJS 卡片结构与 CSS 笔记本动画" width="543" height="260"
+        <a href="/sthemacaej.html" aria-label="Style Hexo Matery Categories with EJS Cards and Notebook CSS Animation">
+          <img src="https://s1.ax1x.com/2022/11/03/xqs36I.png" alt="Style Hexo Matery Categories with EJS Cards and Notebook CSS Animation" width="543" height="260"
             loading="lazy" decoding="async">
         </a>
       </figure>
@@ -902,11 +592,279 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>修改 Hexo Matery 主题分类页 EJS 模板，将分类标签改为笔记本风格卡片，并通过 CSS 添加颜色、层叠、悬停和翻页动画效果。</p>
+          <p>Replace Hexo Matery category chips with notebook-style EJS cards, then add layered colors, hover effects, and page-like CSS animation for the category page.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/f223ff9c.html">
-                阅读全文 &raquo;
+              <a class="btn" href="/sthemacaej.html">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/trpaaufaov.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/IMG_3307.JPG">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Winner's Dev Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/trpaaufaov.html" class="post-title-link" itemprop="url">Troubleshooting “Password Authentication Failed” over SSH</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SSH/" itemprop="url" rel="index"><span itemprop="name">SSH</span></a>
+                </span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Specify the correct SSH username and use verbose output to diagnose authentication failures.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/trpaaufaov.html">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/cuhenearpa.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/IMG_3307.JPG">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Winner's Dev Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cuhenearpa.html" class="post-title-link" itemprop="url">Customize Hexo NexT Archive Pages with post-collapse and CSS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                </span>
+            </span>
+
+        </div>
+      </header>
+      <figure class="post-cover">
+        <a href="/cuhenearpa.html" aria-label="Customize Hexo NexT Archive Pages with post-collapse and CSS">
+          <img src="https://s1.ax1x.com/2022/11/03/xqsc7T.jpg" alt="Customize Hexo NexT Archive Pages with post-collapse and CSS" width="543" height="260"
+            loading="lazy" decoding="async">
+        </a>
+      </figure>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Customize a Hexo NexT archive page by editing the post-collapse template and CSS for year headings, compact dates, icons, hover cards, and entry layout.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/cuhenearpa.html">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/adjvtrfoma.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/IMG_3307.JPG">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Winner's Dev Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/adjvtrfoma.html" class="post-title-link" itemprop="url">Add a jVectorMap Travel Footprint Map to Hexo NexT</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                </span>
+            </span>
+
+        </div>
+      </header>
+      <figure class="post-cover">
+        <a href="/adjvtrfoma.html" aria-label="Add a jVectorMap Travel Footprint Map to Hexo NexT">
+          <img src="https://s1.ax1x.com/2022/11/03/xqsHHK.jpg" alt="Add a jVectorMap Travel Footprint Map to Hexo NexT" width="543" height="260"
+            loading="lazy" decoding="async">
+        </a>
+      </figure>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Add a jVectorMap travel footprint map to Hexo NexT by configuring geographic data, scripts, colors, city markers, and a standalone page linked from the blog menu.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/adjvtrfoma.html">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://releaselive.com/cprexpafi.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/IMG_3307.JPG">
+      <meta itemprop="name" content="winner">
+      <meta itemprop="description" content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Winner's Dev Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/cprexpafi.html" class="post-title-link" itemprop="url">C Programming Exercises, Part 2: Fibonacci, Matrices and Algorithms</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Languages/" itemprop="url" rel="index"><span itemprop="name">Programming Languages</span></a>
+                </span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Solve a second set of C exercises covering Fibonacci numbers, matrices, binary conversion, loops, arrays, strings, functions, and basic algorithms.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/cprexpafi.html">
+                Read more &raquo;
               </a>
             </div>
           <!--/noindex-->
@@ -928,36 +886,12 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
 
           </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
         </div>
           
   
@@ -970,12 +904,12 @@
   <aside class="sidebar">
     <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          文章目录
+          Table of Contents
         </li>
         <li class="sidebar-nav-overview">
-          站点概览
+          Overview
         </li>
       </ul>
 
@@ -990,36 +924,36 @@
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="南锋"
+        <div class="site-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="winner"
       src="/images/IMG_3307.JPG">
-  <p class="site-author-name" itemprop="name">南锋</p>
-  <div class="site-description" itemprop="description">记录工作中的一些笔记以及一些有趣的代码,致力于成为一个优秀的程序员</div>
+  <p class="site-author-name" itemprop="name">winner</p>
+  <div class="site-description" itemprop="description">Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.</div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">238</span>
-          <span class="site-state-item-name">日志</span>
+          <span class="site-state-item-count">232</span>
+          <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
         <a href="/categories/">
-        <span class="site-state-item-count">26</span>
-        <span class="site-state-item-name">分类</span>
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">categories</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
         <a href="/tags/">
-        <span class="site-state-item-count">35</span>
-        <span class="site-state-item-name">标签</span>
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">tags</span>
         </a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author">
       <span class="links-of-author-item">
         <a href="https://github.com/lengmo714" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lengmo714" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
@@ -1030,39 +964,39 @@
         <a href="https://weibo.com/u/3124723200" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;3124723200" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://www.douyin.com/user/MS4wLjABAAAAGVvxXoafRJrfCUH8PiT5yO--ToMDJnA_7UpHsFucUuQDDEF4aHy6XOAIedS4rD7W" title="抖音 → https:&#x2F;&#x2F;www.douyin.com&#x2F;user&#x2F;MS4wLjABAAAAGVvxXoafRJrfCUH8PiT5yO--ToMDJnA_7UpHsFucUuQDDEF4aHy6XOAIedS4rD7W" rel="noopener" target="_blank"><i class="fa fa-mobile fa-fw"></i>抖音</a>
+        <a href="https://www.douyin.com/user/MS4wLjABAAAAGVvxXoafRJrfCUH8PiT5yO--ToMDJnA_7UpHsFucUuQDDEF4aHy6XOAIedS4rD7W" title="Douyin → https:&#x2F;&#x2F;www.douyin.com&#x2F;user&#x2F;MS4wLjABAAAAGVvxXoafRJrfCUH8PiT5yO--ToMDJnA_7UpHsFucUuQDDEF4aHy6XOAIedS4rD7W" rel="noopener" target="_blank"><i class="fa fa-mobile fa-fw"></i>Douyin</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
+  <div class="cc-license" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
-  <div class="links-of-blogroll motion-element">
+  <div class="links-of-blogroll">
     <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
       Links
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="/Link/" title="&#x2F;Link&#x2F;">友情链接</a>
+          <a href="/Link/" title="&#x2F;Link&#x2F;">Friends and Links</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://blog.csdn.net/Silent_F" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Silent_F" rel="noopener" target="_blank">CSDN</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://lengmo714.top/net/map/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;map&#x2F;index.html">足迹</a>
+          <a href="https://lengmo714.top/net/map/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;map&#x2F;index.html" rel="noopener" target="_blank">Travel Map</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://lengmo714.top/net/Love/baby.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;Love&#x2F;baby.html">恋爱计时</a>
+          <a href="https://lengmo714.top/net/Love/baby.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;Love&#x2F;baby.html" rel="noopener" target="_blank">Relationship Timer</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://lengmo714.top/net/wechat/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;wechat&#x2F;index.html">微信对话生成器</a>
+          <a href="https://lengmo714.top/net/wechat/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;wechat&#x2F;index.html" rel="noopener" target="_blank">WeChat Chat Generator</a>
         </li>
     </ul>
   </div>
        
       </div>
-        <div class="back-to-top motion-element">
+        <div class="back-to-top">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
@@ -1077,8 +1011,6 @@
     <footer class="footer">
       <div class="footer-inner">
         
-  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">湘ICP备 2022022717号 </a><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%E6%B9%98%E5%85%AC%E7%BD%91%E5%AE%89%E5%A4%8743011202000987%E5%8F%B7" rel="noopener" target="_blank">湘公网安备43011202000987号 </a>
-  </div>
 
 <div class="copyright">
   
@@ -1087,17 +1019,8 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">南锋</span>
+  <span class="author" itemprop="copyrightHolder">winner</span>
 </div>
-
-        
-
-
-
-
-
-
-
 
       </div>
     </footer>
@@ -1113,8 +1036,6 @@
 
 
 <script src="/js/next-boot.js"></script>
-
-
 
 
   
@@ -1144,29 +1065,10 @@
       !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
   </script>
 
-
-
-
   
 <script src="/js/local-search.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  +  
 
 </body>
 </html>

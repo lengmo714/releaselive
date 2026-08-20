@@ -202,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return resultRight.id - resultLeft.id;
       });
       resultContent.innerHTML = `<ul class="search-result-list">${resultItems.map(result => result.item).join('')}</ul>`;
-      window.pjax && window.pjax.refresh(resultContent);
     }
   };
 

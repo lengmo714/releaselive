@@ -8,41 +8,6 @@ HTMLElement.prototype.wrap = function(wrapper) {
 
 NexT.utils = {
 
-  /**
-   * Wrap images with fancybox.
-   */
-  wrapImageWithFancyBox: function() {
-    document.querySelectorAll('.post-body :not(a) > img, .post-body > img').forEach(element => {
-      var $image = $(element);
-      var imageLink = $image.attr('data-src') || $image.attr('src');
-      var $imageWrapLink = $image.wrap(`<a class="fancybox fancybox.image" href="${imageLink}" itemscope itemtype="http://schema.org/ImageObject" itemprop="url"></a>`).parent('a');
-      if ($image.is('.post-gallery img')) {
-        $imageWrapLink.attr('data-fancybox', 'gallery').attr('rel', 'gallery');
-      } else if ($image.is('.group-picture img')) {
-        $imageWrapLink.attr('data-fancybox', 'group').attr('rel', 'group');
-      } else {
-        $imageWrapLink.attr('data-fancybox', 'default').attr('rel', 'default');
-      }
-
-      var imageTitle = $image.attr('title') || $image.attr('alt');
-      if (imageTitle) {
-        $imageWrapLink.append(`<p class="image-caption">${imageTitle}</p>`);
-        // Make sure img title tag will show correctly in fancybox
-        $imageWrapLink.attr('title', imageTitle).attr('data-caption', imageTitle);
-      }
-    });
-
-    $.fancybox.defaults.hash = false;
-    $('.fancybox').fancybox({
-      loop   : true,
-      helpers: {
-        overlay: {
-          locked: false
-        }
-      }
-    });
-  },
-
   registerExtURL: function() {
     document.querySelectorAll('span.exturl').forEach(element => {
       let link = document.createElement('a');
@@ -226,7 +191,7 @@ NexT.utils = {
         let target = sel.options[sel.selectedIndex];
         document.querySelectorAll('.lang-select-label span').forEach(span => span.innerText = target.text);
         let url = target.dataset.href;
-        window.pjax ? window.pjax.loadUrl(url) : window.location.href = url;
+        window.location.href = url;
       });
     });
   },
@@ -329,14 +294,6 @@ NexT.utils = {
     return !this.isTablet() && !this.isMobile();
   },
 
-  supportsPDFs: function() {
-    let ua = navigator.userAgent;
-    let isFirefoxWithPDFJS = ua.includes('irefox') && parseInt(ua.split('rv:')[1].split('.')[0], 10) > 18;
-    let supportsPdfMimeType = typeof navigator.mimeTypes['application/pdf'] !== 'undefined';
-    let isIOS = /iphone|ipad|ipod/i.test(ua.toLowerCase());
-    return isFirefoxWithPDFJS || (supportsPdfMimeType && !isIOS);
-  },
-
   /**
    * Init Sidebar & TOC inner dimensions on all pages and for all schemes.
    * Need for Sidebar/TOC inner scrolling if content taller then viewport.
@@ -360,11 +317,9 @@ NexT.utils = {
     var hasTOC = document.querySelector('.post-toc');
     if (hasTOC) {
       sidebarNav.style.display = '';
-      sidebarNav.classList.add('motion-element');
       document.querySelector('.sidebar-nav-toc').click();
     } else {
       sidebarNav.style.display = 'none';
-      sidebarNav.classList.remove('motion-element');
       document.querySelector('.sidebar-nav-overview').click();
     }
     NexT.utils.initSidebarDimension();
@@ -395,21 +350,5 @@ NexT.utils = {
       script.src = url;
       document.head.appendChild(script);
     }
-  },
-
-  loadComments: function(element, callback) {
-    if (!CONFIG.comments.lazyload || !element) {
-      callback();
-      return;
-    }
-    let intersectionObserver = new IntersectionObserver((entries, observer) => {
-      let entry = entries[0];
-      if (entry.isIntersecting) {
-        callback();
-        observer.disconnect();
-      }
-    });
-    intersectionObserver.observe(element);
-    return intersectionObserver;
   }
 };

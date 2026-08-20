@@ -1,4 +1,4 @@
-/* global NexT, CONFIG, Velocity */
+/* global NexT, CONFIG */
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       var deltaX = event.pageX - mousePos.X;
       var deltaY = event.pageY - mousePos.Y;
       var clickingBlankPart = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY)) < 20 && event.target.matches('.main');
-      if (this.isSidebarVisible && (clickingBlankPart || event.target.matches('img.medium-zoom-image, .fancybox img'))) {
+      if (this.isSidebarVisible && clickingBlankPart) {
         this.hideSidebar();
       }
     },
@@ -65,13 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showSidebar: function() {
       this.isSidebarVisible = true;
       this.sidebarEl.classList.add('sidebar-active');
-      if (typeof Velocity === 'function') {
-        Velocity(document.querySelectorAll('.sidebar .motion-element'), isRight ? 'transition.slideRightIn' : 'transition.slideLeftIn', {
-          stagger: 50,
-          drag   : true
-        });
-      }
-
       sidebarToggleLines.close();
       NexT.utils.isDesktop() && window.anime(Object.assign({
         targets : document.body,

@@ -1,4 +1,4 @@
-/* global NexT, CONFIG, Velocity */
+/* global NexT, CONFIG */
 
 NexT.boot = {};
 
@@ -11,18 +11,7 @@ NexT.boot.registerEvents = function() {
   document.querySelector('.site-nav-toggle .toggle').addEventListener('click', () => {
     event.currentTarget.classList.toggle('toggle-close');
     var siteNav = document.querySelector('.site-nav');
-    var animateAction = siteNav.classList.contains('site-nav-on') ? 'slideUp' : 'slideDown';
-
-    if (typeof Velocity === 'function') {
-      Velocity(siteNav, animateAction, {
-        duration: 200,
-        complete: function() {
-          siteNav.classList.toggle('site-nav-on');
-        }
-      });
-    } else {
-      siteNav.classList.toggle('site-nav-on');
-    }
+    siteNav.classList.toggle('site-nav-on');
   });
 
   var TAB_ANIMATE_DURATION = 200;
@@ -79,11 +68,6 @@ NexT.boot.refresh = function() {
    * Register JS handlers by condition option.
    * Need to add config option in Front-End at 'layout/_partials/head.swig' file.
    */
-  CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
-  CONFIG.mediumzoom && window.mediumZoom('.post-body :not(a) > img, .post-body > img');
-  CONFIG.lazyload && window.lozad('.post-body img').observe();
-  CONFIG.pangu && window.pangu.spacingPage();
-
   CONFIG.exturl && NexT.utils.registerExtURL();
   CONFIG.copycode.enable && NexT.utils.registerCopyCode();
   NexT.utils.registerTabsTag();
@@ -94,21 +78,8 @@ NexT.boot.refresh = function() {
   NexT.utils.registerVideoIframe();
 };
 
-NexT.boot.motion = function() {
-  // Define Motion Sequence & Bootstrap Motion.
-  if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .add(NexT.motion.middleWares.logo)
-      .add(NexT.motion.middleWares.menu)
-      .add(NexT.motion.middleWares.postList)
-      .add(NexT.motion.middleWares.sidebar)
-      .bootstrap();
-  }
-  NexT.utils.updateSidebarPosition();
-};
-
 document.addEventListener('DOMContentLoaded', () => {
   NexT.boot.registerEvents();
   NexT.boot.refresh();
-  NexT.boot.motion();
+  NexT.utils.updateSidebarPosition();
 });
