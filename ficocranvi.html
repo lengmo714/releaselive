@@ -30,23 +30,23 @@
 <meta property="og:site_name" content="Winner&#39;s Dev Notes">
 <meta property="og:description" content="Fix static, trails, or uncleared frames in a Cocos Creator 3.7.2 Android build by changing the Camera Clear Flags setting from DEPTH_ONLY to SOLID_COLOR.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://releaselive.com/postImg/kong/1.jpg">
-<meta property="og:image" content="https://releaselive.com/postImg/kong/2.jpg">
-<meta property="og:image" content="https://releaselive.com/postImg/kong/3.jpg">
-<meta property="og:image" content="https://releaselive.com/postImg/kong/4.jpg">
+<meta property="og:image" content="https://releaseleaf.com/postImg/kong/1.jpg">
+<meta property="og:image" content="https://releaseleaf.com/postImg/kong/2.jpg">
+<meta property="og:image" content="https://releaseleaf.com/postImg/kong/3.jpg">
+<meta property="og:image" content="https://releaseleaf.com/postImg/kong/4.jpg">
 <meta property="article:published_time" content="2024-12-23T15:05:47.000Z">
-<meta property="article:modified_time" content="2026-08-20T03:38:40.071Z">
+<meta property="article:modified_time" content="2026-08-20T06:31:30.707Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Cocos Creator">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://releaselive.com/postImg/kong/1.jpg">
+<meta name="twitter:image" content="https://releaseleaf.com/postImg/kong/1.jpg">
 
 <link rel="canonical" href="https://releaseleaf.com/ficocranvi.html">
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ficocranvi.html#article","headline":"Fix Cocos Creator Android Visual Static with Camera Clear Flags","description":"Fix static, trails, or uncleared frames in a Cocos Creator 3.7.2 Android build by changing the Camera Clear Flags setting from DEPTH_ONLY to SOLID_COLOR.","datePublished":"2024-12-23T15:05:47.000Z","dateModified":"2026-08-20T03:38:40.071Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ficocranvi.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, Android","wordCount":71,"image":["https://releaselive.com/postImg/kong/1.jpg"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ficocranvi.html#article","headline":"Fix Cocos Creator Android Visual Static with Camera Clear Flags","description":"Fix static, trails, or uncleared frames in a Cocos Creator 3.7.2 Android build by changing the Camera Clear Flags setting from DEPTH_ONLY to SOLID_COLOR.","datePublished":"2024-12-23T15:05:47.000Z","dateModified":"2026-08-20T06:31:30.707Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ficocranvi.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, Android","wordCount":71,"image":["https://releaseleaf.com/postImg/kong/1.jpg"]}</script>
 
 
 
@@ -241,7 +241,7 @@
       
         <p>Cocos Creator version: 3.7.2.</p>
 <p>An exported Android build displayed static-like corruption on some screens, even though the browser build worked correctly.</p>
-<img src="https://releaselive.com/postImg/kong/1.jpg" width="150" height="200" alt="Visual corruption" decoding="async" loading="eager" fetchpriority="high">
+<img src="https://releaseleaf.com/postImg/kong/1.jpg" width="150" height="200" alt="Visual corruption" decoding="async" loading="eager" fetchpriority="high">
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
 <p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
@@ -249,11 +249,11 @@
 
 <p>There were no errors, and repeated tests showed that asset loading and screen adaptation were unrelated. The cause was the camera’s <code>Clear Flags</code> setting.</p>
 <p>It was initially set to <code>DEPTH_ONLY</code>:</p>
-<p><img src="https://releaselive.com/postImg/kong/2.jpg" alt="DEPTH_ONLY setting" decoding="async" loading="lazy"></p>
+<p><img src="https://releaseleaf.com/postImg/kong/2.jpg" alt="DEPTH_ONLY setting" decoding="async" loading="lazy"></p>
 <p>After reviewing the camera documentation:</p>
-<p><img src="https://releaselive.com/postImg/kong/3.jpg" alt="Clear Flags documentation" decoding="async" loading="lazy"></p>
+<p><img src="https://releaseleaf.com/postImg/kong/3.jpg" alt="Clear Flags documentation" decoding="async" loading="lazy"></p>
 <p>I changed it to <code>SOLID_COLOR</code>, which removed the rendering artifacts:</p>
-<p><img src="https://releaselive.com/postImg/kong/4.jpg" alt="SOLID_COLOR setting" decoding="async" loading="lazy"></p>
+<p><img src="https://releaseleaf.com/postImg/kong/4.jpg" alt="SOLID_COLOR setting" decoding="async" loading="lazy"></p>
 
     </div>
 

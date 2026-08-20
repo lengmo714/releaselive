@@ -30,23 +30,23 @@
 <meta property="og:site_name" content="Winner&#39;s Dev Notes">
 <meta property="og:description" content="Show the Android status bar in a Cocos Creator export by removing SYSTEM_UI_FLAG_FULLSCREEN and checking window flags and immersive-mode settings.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://releaselive.com/postImg/50b3a615/1.png">
-<meta property="og:image" content="https://releaselive.com/postImg/50b3a615/2.png">
-<meta property="og:image" content="https://releaselive.com/postImg/50b3a615/3.png">
-<meta property="og:image" content="https://releaselive.com/postImg/50b3a615/4.png">
+<meta property="og:image" content="https://releaseleaf.com/postImg/50b3a615/1.png">
+<meta property="og:image" content="https://releaseleaf.com/postImg/50b3a615/2.png">
+<meta property="og:image" content="https://releaseleaf.com/postImg/50b3a615/3.png">
+<meta property="og:image" content="https://releaseleaf.com/postImg/50b3a615/4.png">
 <meta property="article:published_time" content="2025-04-30T11:23:56.000Z">
-<meta property="article:modified_time" content="2026-08-20T03:38:40.071Z">
+<meta property="article:modified_time" content="2026-08-20T06:31:30.709Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Cocos Creator">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://releaselive.com/postImg/50b3a615/1.png">
+<meta name="twitter:image" content="https://releaseleaf.com/postImg/50b3a615/1.png">
 
 <link rel="canonical" href="https://releaseleaf.com/shanstbaco.html">
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/shanstbaco.html#article","headline":"Show the Android Status Bar in Cocos Creator: Remove SYSTEM_UI_FLAG_FULLSCREEN","description":"Show the Android status bar in a Cocos Creator export by removing SYSTEM_UI_FLAG_FULLSCREEN and checking window flags and immersive-mode settings.","datePublished":"2025-04-30T11:23:56.000Z","dateModified":"2026-08-20T03:38:40.071Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/shanstbaco.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, Android","wordCount":121,"image":["https://releaselive.com/postImg/50b3a615/1.png"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/shanstbaco.html#article","headline":"Show the Android Status Bar in Cocos Creator: Remove SYSTEM_UI_FLAG_FULLSCREEN","description":"Show the Android status bar in a Cocos Creator export by removing SYSTEM_UI_FLAG_FULLSCREEN and checking window flags and immersive-mode settings.","datePublished":"2025-04-30T11:23:56.000Z","dateModified":"2026-08-20T06:31:30.709Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/shanstbaco.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, Android","wordCount":121,"image":["https://releaseleaf.com/postImg/50b3a615/1.png"]}</script>
 
 
 
@@ -246,14 +246,14 @@
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
 <h2 id="Modify-CocosActivity-java-and-Utils-java"><a href="#Modify-CocosActivity-java-and-Utils-java" class="headerlink" title="Modify CocosActivity.java and Utils.java"></a>Modify CocosActivity.java and Utils.java</h2><p>Modify <code>CocosActivity.java</code> and <code>Utils.java</code>. Note that the first file is <code>CocosActivity.java</code>, not <code>AppActivity.java</code>.</p>
-<p><img src="https://releaselive.com/postImg/50b3a615/1.png" alt="CocosActivity.java changes" decoding="async" loading="eager" fetchpriority="high"></p>
-<p><img src="https://releaselive.com/postImg/50b3a615/2.png" alt="Additional CocosActivity change" decoding="async" loading="lazy"></p>
-<p><img src="https://releaselive.com/postImg/50b3a615/3.png" alt="Utils.java change" decoding="async" loading="lazy"></p>
+<p><img src="https://releaseleaf.com/postImg/50b3a615/1.png" alt="CocosActivity.java changes" decoding="async" loading="eager" fetchpriority="high"></p>
+<p><img src="https://releaseleaf.com/postImg/50b3a615/2.png" alt="Additional CocosActivity change" decoding="async" loading="lazy"></p>
+<p><img src="https://releaseleaf.com/postImg/50b3a615/3.png" alt="Utils.java change" decoding="async" loading="lazy"></p>
 <p>The main change is to comment out the three lines highlighted in those images. The resulting status-bar color may not match your design, so customize it if necessary.</p>
 <h2 id="Configure-an-Optional-Android-Theme"><a href="#Configure-an-Optional-Android-Theme" class="headerlink" title="Configure an Optional Android Theme"></a>Configure an Optional Android Theme</h2><p>In <code>AndroidManifest.xml</code>, change the <code>Android:theme</code> attribute to:</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Android:theme=&quot;@style/CustomTheme&quot;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://releaselive.com/postImg/50b3a615/4.png" alt="Use CustomTheme" decoding="async" loading="lazy"></p>
+<p><img src="https://releaseleaf.com/postImg/50b3a615/4.png" alt="Use CustomTheme" decoding="async" loading="lazy"></p>
 <p>Create <code>res/values/styles.xml</code>:</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;CustomTheme&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;Theme.AppCompat.Light.NoActionBar&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;Android:windowTranslucentStatus&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;Android:windowTranslucentNavigation&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;Android:windowDrawsSystemBarBackgrounds&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;Android:statusBarColor&quot;</span>&gt;</span>@Android:color/transparent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
 

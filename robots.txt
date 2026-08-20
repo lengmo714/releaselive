@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://releaselive.com/sitemap.xml
-Sitemap: https://releaselive.com/baidusitemap.xml
+Sitemap: https://releaseleaf.com/sitemap.xml
+Sitemap: https://releaseleaf.com/baidusitemap.xml
