@@ -31,7 +31,7 @@
 <meta property="og:description" content="Fix stale Cocos Creator Label dimensions after changing Label.string by waiting for the next frame or calling updateRenderData(true) before reading UITransform contentSize.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-23T16:00:43.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.883Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.516Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Cocos Creator">
 <meta property="article:tag" content="TypeScript">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrlasino.html#article","headline":"Cocos Creator Label Size Not Updated: updateRenderData and Next Frame","description":"Fix stale Cocos Creator Label dimensions after changing Label.string by waiting for the next frame or calling updateRenderData(true) before reading UITransform contentSize.","datePublished":"2024-01-23T16:00:43.000Z","dateModified":"2026-08-20T02:47:38.883Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrlasino.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, TypeScript","wordCount":42}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrlasino.html#article","headline":"Cocos Creator Label Size Not Updated: updateRenderData and Next Frame","description":"Fix stale Cocos Creator Label dimensions after changing Label.string by waiting for the next frame or calling updateRenderData(true) before reading UITransform contentSize.","datePublished":"2024-01-23T16:00:43.000Z","dateModified":"2026-08-21T03:47:53.516Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrlasino.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, TypeScript","wordCount":47}</script>
 
 
 
@@ -223,8 +223,14 @@
     <div class="post-body">
 
       
-        <h2 id="Refresh-Label-Render-Data-before-Reading-Size"><a href="#Refresh-Label-Render-Data-before-Reading-Size" class="headerlink" title="Refresh Label Render Data before Reading Size"></a>Refresh Label Render Data before Reading Size</h2><p>Immediately after changing Label text, its UITransform may still contain the previous dimensions. Waiting until the next frame works, but explicitly updating render data is clearer:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<h2 id="Refresh-Label-Render-Data-before-Reading-Size"><a href="#Refresh-Label-Render-Data-before-Reading-Size" class="headerlink" title="Refresh Label Render Data before Reading Size"></a>Refresh Label Render Data before Reading Size</h2><p>Immediately after changing Label text, its UITransform may still contain the previous dimensions. Waiting until the next frame works, but explicitly updating render data is clearer:</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> label = node.<span class="title function_">getComponent</span>(<span class="title class_">Label</span>);</span><br><span class="line">label.<span class="property">string</span> = <span class="string">&#x27;Updated text&#x27;</span>;</span><br><span class="line">label.<span class="title function_">updateRenderData</span>(<span class="literal">true</span>);</span><br><span class="line"><span class="keyword">const</span> size = node.<span class="title function_">getComponent</span>(<span class="title class_">UITransform</span>).<span class="property">contentSize</span>;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -475,16 +481,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

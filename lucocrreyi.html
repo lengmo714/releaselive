@@ -31,7 +31,7 @@
 <meta property="og:description" content="Learn Lua coroutine creation, resume and yield value flow, status transitions, iterator patterns, main-loop ownership, and event-driven program structure.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-17T06:22:53.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.881Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.511Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lucocrreyi.html#article","headline":"Lua Coroutines: create, resume, yield, States and Iterators","description":"Learn Lua coroutine creation, resume and yield value flow, status transitions, iterator patterns, main-loop ownership, and event-driven program structure.","datePublished":"2020-05-17T06:22:53.000Z","dateModified":"2026-08-20T02:47:38.881Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lucocrreyi.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":277}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lucocrreyi.html#article","headline":"Lua Coroutines: create, resume, yield, States and Iterators","description":"Learn Lua coroutine creation, resume and yield value flow, status transitions, iterator patterns, main-loop ownership, and event-driven program structure.","datePublished":"2020-05-17T06:22:53.000Z","dateModified":"2026-08-21T03:47:53.511Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lucocrreyi.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":282}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>A coroutine is an independently suspended execution path with its own stack, local variables, and instruction pointer. Coroutines share the Lua state’s global data, but only one runs at a time. Switching is cooperative rather than preemptive.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>A coroutine is an independently suspended execution path with its own stack, local variables, and instruction pointer. Coroutines share the Lua state’s global data, but only one runs at a time. Switching is cooperative rather than preemptive.</p>
 <h2 id="Create-resume-and-yield"><a href="#Create-resume-and-yield" class="headerlink" title="Create, resume, and yield"></a>Create, resume, and yield</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> co = <span class="built_in">coroutine</span>.<span class="built_in">create</span>(<span class="function"><span class="keyword">function</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;started&quot;</span>, a, b)</span><br><span class="line">    <span class="keyword">local</span> value = <span class="built_in">coroutine</span>.<span class="built_in">yield</span>(a + b)</span><br><span class="line">    <span class="keyword">return</span> value * <span class="number">2</span></span><br><span class="line"><span class="keyword">end</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">coroutine</span>.<span class="built_in">status</span>(co))       <span class="comment">-- suspended</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">coroutine</span>.<span class="built_in">resume</span>(co, <span class="number">2</span>, <span class="number">3</span>)) <span class="comment">-- true, 5</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">coroutine</span>.<span class="built_in">resume</span>(co, <span class="number">10</span>))   <span class="comment">-- true, 20</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">coroutine</span>.<span class="built_in">status</span>(co))       <span class="comment">-- dead</span></span><br></pre></td></tr></table></figure>
 
 <p>The first <code>resume</code> supplies the function arguments. Values passed to <code>yield</code> return from <code>resume</code>; values in the next <code>resume</code> become the result of that <code>yield</code>. Final return values come back from the last <code>resume</code>.</p>
@@ -233,6 +238,7 @@
 <p>The generator retains its local state naturally, avoiding a manually constructed state machine.</p>
 <h2 id="Who-owns-the-main-loop"><a href="#Who-owns-the-main-loop" class="headerlink" title="Who owns the main loop?"></a>Who owns the main loop?</h2><p>Coroutines can invert control between a producer and consumer, or let sequential-looking code pause until an event loop has data. This resolves the architectural question of which component owns the main loop.</p>
 <p>They do not create parallel execution or turn blocking calls into asynchronous ones. Pair them with nonblocking APIs for scalable I&#x2F;O, and use threads or processes when work must execute on multiple CPU cores.</p>
+
 
     </div>
 
@@ -482,16 +488,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

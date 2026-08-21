@@ -31,7 +31,7 @@
 <meta property="og:description" content="Understand Lua _G and _ENV, dynamically named globals, undeclared-variable checks, isolated module environments, and explicit environments passed to load.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-10T07:17:38.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.881Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.512Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/luenexgen.html#article","headline":"Lua Environments Explained: _G, _ENV, Dynamic Globals and Modules","description":"Understand Lua _G and _ENV, dynamically named globals, undeclared-variable checks, isolated module environments, and explicit environments passed to load.","datePublished":"2020-05-10T07:17:38.000Z","dateModified":"2026-08-20T02:47:38.881Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/luenexgen.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":313}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/luenexgen.html#article","headline":"Lua Environments Explained: _G, _ENV, Dynamic Globals and Modules","description":"Understand Lua _G and _ENV, dynamically named globals, undeclared-variable checks, isolated module environments, and explicit environments passed to load.","datePublished":"2020-05-10T07:17:38.000Z","dateModified":"2026-08-21T03:47:53.512Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/luenexgen.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":318}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>Lua presents global variables as entries in an ordinary table. The global environment is normally available through <code>_G</code>, so these expressions are equivalent:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Lua presents global variables as entries in an ordinary table. The global environment is normally available through <code>_G</code>, so these expressions are equivalent:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">answer = <span class="number">42</span></span><br><span class="line"><span class="built_in">_G</span>[<span class="string">&quot;answer&quot;</span>] = <span class="number">42</span></span><br></pre></td></tr></table></figure>
 
 <p>The table representation makes dynamically named globals straightforward, although an explicit application table is usually clearer than adding more global state.</p>
@@ -242,6 +247,7 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> env = &#123; <span class="built_in">print</span> = <span class="built_in">print</span>, value = <span class="number">21</span> &#125;</span><br><span class="line"><span class="keyword">local</span> chunk, err = <span class="built_in">load</span>(<span class="string">&quot;print(value * 2)&quot;</span>, <span class="string">&quot;example&quot;</span>, <span class="string">&quot;t&quot;</span>, env)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> chunk <span class="keyword">then</span> <span class="built_in">error</span>(err) <span class="keyword">end</span></span><br><span class="line">chunk()</span><br></pre></td></tr></table></figure>
 
 <p>An environment alone is not a complete sandbox. Restrict libraries and resource use as well, and never expose capabilities such as unrestricted <code>io</code>, <code>os</code>, <code>package</code>, <code>load</code>, or <code>debug</code> to untrusted scripts unless deliberately controlled.</p>
+
 
     </div>
 
@@ -491,16 +497,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

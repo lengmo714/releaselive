@@ -31,7 +31,7 @@
 <meta property="og:description" content="Start programming in Lua by running scripts and learning syntax, comments, variables, nil, booleans, numbers, strings, functions, tables, and the standalone interpreter.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-31T16:22:31.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.879Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.508Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/gestluscsy.html#article","headline":"Getting Started with Lua: Scripts, Syntax, Values, Functions and Tables","description":"Start programming in Lua by running scripts and learning syntax, comments, variables, nil, booleans, numbers, strings, functions, tables, and the standalone interpreter.","datePublished":"2020-03-31T16:22:31.000Z","dateModified":"2026-08-20T02:47:38.879Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/gestluscsy.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":215}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/gestluscsy.html#article","headline":"Getting Started with Lua: Scripts, Syntax, Values, Functions and Tables","description":"Start programming in Lua by running scripts and learning syntax, comments, variables, nil, booleans, numbers, strings, functions, tables, and the standalone interpreter.","datePublished":"2020-03-31T16:22:31.000Z","dateModified":"2026-08-21T03:47:53.508Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/gestluscsy.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":220}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <h2 id="Run-Your-First-Lua-Program"><a href="#Run-Your-First-Lua-Program" class="headerlink" title="Run Your First Lua Program"></a>Run Your First Lua Program</h2><p>The traditional first Lua program is one line:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<h2 id="Run-Your-First-Lua-Program"><a href="#Run-Your-First-Lua-Program" class="headerlink" title="Run Your First Lua Program"></a>Run Your First Lua Program</h2><p>The traditional first Lua program is one line:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello, world!&quot;</span>)</span><br></pre></td></tr></table></figure>
 
 <p>Save it as <code>hello.lua</code> and run it with the standalone interpreter:</p>
@@ -240,6 +245,7 @@
 <h2 id="Functions-and-tables"><a href="#Functions-and-tables" class="headerlink" title="Functions and tables"></a>Functions and tables</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">greet</span><span class="params">(person)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello, &quot;</span> .. person</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> users = &#123;</span><br><span class="line">    &#123; name = <span class="string">&quot;Ada&quot;</span>, active = <span class="literal">true</span> &#125;,</span><br><span class="line">    &#123; name = <span class="string">&quot;Lin&quot;</span>, active = <span class="literal">false</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _, user <span class="keyword">in</span> <span class="built_in">ipairs</span>(users) <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> user.active <span class="keyword">then</span> <span class="built_in">print</span>(greet(user.name)) <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>The interactive interpreter is useful for experiments. Enter expressions through <code>print</code>, inspect values with <code>type</code>, and exit using the platform’s end-of-file shortcut. For real programs, organize code into modules that return explicit tables instead of relying on globals.</p>
+
 
     </div>
 
@@ -489,16 +495,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

@@ -31,7 +31,7 @@
 <meta property="og:description" content="Install a project-compatible Android NDK on macOS with Android Studio Side by side or sdkmanager, then configure the NDK path and zsh environment variables.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-09T15:23:16.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.871Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.499Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="NDK">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/inanndmaan.html#article","headline":"Install Android NDK on macOS with Android Studio or sdkmanager","description":"Install a project-compatible Android NDK on macOS with Android Studio Side by side or sdkmanager, then configure the NDK path and zsh environment variables.","datePublished":"2022-11-09T15:23:16.000Z","dateModified":"2026-08-20T02:47:38.871Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/inanndmaan.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Android NDK"],"keywords":"Android, NDK","wordCount":154}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/inanndmaan.html#article","headline":"Install Android NDK on macOS with Android Studio or sdkmanager","description":"Install a project-compatible Android NDK on macOS with Android Studio Side by side or sdkmanager, then configure the NDK path and zsh environment variables.","datePublished":"2022-11-09T15:23:16.000Z","dateModified":"2026-08-21T03:47:53.499Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/inanndmaan.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Android NDK"],"keywords":"Android, NDK","wordCount":159}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>Android game projects often require a specific NDK release. Use the version declared by the project’s build scripts rather than automatically choosing the newest one.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Android game projects often require a specific NDK release. Use the version declared by the project’s build scripts rather than automatically choosing the newest one.</p>
 <h2 id="Install-through-Android-Studio"><a href="#Install-through-Android-Studio" class="headerlink" title="Install through Android Studio"></a>Install through Android Studio</h2><p>Open <strong>Settings → Languages &amp; Frameworks → Android SDK → SDK Tools</strong>, enable <strong>NDK (Side by side)</strong>, select <strong>Show Package Details</strong>, and choose the required version. Install CMake as well if the project uses it.</p>
 <p>The command-line equivalent is:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sdkmanager --list | grep <span class="string">&#x27;ndk;&#x27;</span></span><br><span class="line">sdkmanager <span class="string">&#x27;ndk;VERSION_REQUIRED_BY_PROJECT&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -241,6 +246,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br><span class="line"><span class="built_in">test</span> -d <span class="string">&quot;<span class="variable">$Android_NDK_HOME</span>&quot;</span> &amp;&amp; <span class="built_in">echo</span> <span class="string">&#x27;NDK found&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>Very old projects may require archived releases such as r10e. Prefer official Android archives, verify the checksum, and isolate the old toolchain because it does not include current compiler and security updates.</p>
+
 
     </div>
 
@@ -491,16 +497,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

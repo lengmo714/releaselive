@@ -31,7 +31,7 @@
 <meta property="og:description" content="Listen for TOUCH_END on a Cocos Creator node, measure the interval between two events, and trigger double-click behavior with a configurable threshold.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-08-25T15:02:44.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.875Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.505Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Cocos Creator">
 <meta property="article:tag" content="TypeScript">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrdoclde.html#article","headline":"Cocos Creator Double-Click Detection with TOUCH_END Timing","description":"Listen for TOUCH_END on a Cocos Creator node, measure the interval between two events, and trigger double-click behavior with a configurable threshold.","datePublished":"2023-08-25T15:02:44.000Z","dateModified":"2026-08-20T02:47:38.875Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrdoclde.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, TypeScript","wordCount":109}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrdoclde.html#article","headline":"Cocos Creator Double-Click Detection with TOUCH_END Timing","description":"Listen for TOUCH_END on a Cocos Creator node, measure the interval between two events, and trigger double-click behavior with a configurable threshold.","datePublished":"2023-08-25T15:02:44.000Z","dateModified":"2026-08-21T03:47:53.505Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrdoclde.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, TypeScript","wordCount":114}</script>
 
 
 
@@ -223,10 +223,16 @@
     <div class="post-body">
 
       
-        <p>The following component detects a double click by measuring the interval between two <code>TOUCH_END</code> events:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>The following component detects a double click by measuring the interval between two <code>TOUCH_END</code> events:</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; ccclass &#125; = cc.<span class="property">_decorator</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">DoubleClickHandler</span> <span class="keyword">extends</span> <span class="title class_ inherited__">cc.Component</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> lastClickTime = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> doubleClickInterval = <span class="number">300</span>;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">onLoad</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">node</span>.<span class="title function_">on</span>(cc.<span class="property">Node</span>.<span class="property">EventType</span>.<span class="property">TOUCH_END</span>, <span class="variable language_">this</span>.<span class="property">onTouchEnd</span>, <span class="variable language_">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">onDestroy</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">node</span>.<span class="title function_">off</span>(cc.<span class="property">Node</span>.<span class="property">EventType</span>.<span class="property">TOUCH_END</span>, <span class="variable language_">this</span>.<span class="property">onTouchEnd</span>, <span class="variable language_">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">onTouchEnd</span>(<span class="params">event: cc.Event.EventTouch</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> currentTime = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (currentTime - <span class="variable language_">this</span>.<span class="property">lastClickTime</span> &lt;= <span class="variable language_">this</span>.<span class="property">doubleClickInterval</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Double click!&#x27;</span>);</span><br><span class="line">            <span class="comment">// Run the double-click action here.</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">lastClickTime</span> = currentTime;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><code>doubleClickInterval</code> is the maximum time, in milliseconds, allowed between the two clicks. Adjust it to suit the interaction. Removing the listener in <code>onDestroy</code> prevents a stale callback from remaining after the component is destroyed.</p>
+
 
     </div>
 
@@ -476,16 +482,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

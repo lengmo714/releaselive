@@ -31,7 +31,7 @@
 <meta property="og:description" content="Learn Lua&#39;s generic for protocol, build stateful closure and stateless iterators, and implement predictable ordered traversal when normal table iteration is unordered.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-22T14:00:46.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.882Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.512Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/luitgeclst.html#article","headline":"Lua Iterators and Generic for: Closures, Stateless Iteration and Order","description":"Learn Lua's generic for protocol, build stateful closure and stateless iterators, and implement predictable ordered traversal when normal table iteration is unordered.","datePublished":"2020-04-22T14:00:46.000Z","dateModified":"2026-08-20T02:47:38.882Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/luitgeclst.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":269}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/luitgeclst.html#article","headline":"Lua Iterators and Generic for: Closures, Stateless Iteration and Order","description":"Learn Lua's generic for protocol, build stateful closure and stateless iterators, and implement predictable ordered traversal when normal table iteration is unordered.","datePublished":"2020-04-22T14:00:46.000Z","dateModified":"2026-08-21T03:47:53.512Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/luitgeclst.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":274}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>An iterator returns the next value in a sequence each time it is called. Lua’s generic <code>for</code> loop supports both closures that retain state and stateless functions that receive all state explicitly.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>An iterator returns the next value in a sequence each time it is called. Lua’s generic <code>for</code> loop supports both closures that retain state and stateless functions that receive all state explicitly.</p>
 <h2 id="A-closure-iterator"><a href="#A-closure-iterator" class="headerlink" title="A closure iterator"></a>A closure iterator</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">values</span><span class="params">(items)</span></span></span><br><span class="line">    <span class="keyword">local</span> index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">        index = index + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> items[index]</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> values(&#123; <span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span> &#125;) <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(value)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>Iteration ends when the first returned value is <code>nil</code>. A closure is convenient, but each iterator call creates private captured state.</p>
@@ -237,6 +242,7 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">sortedPairs</span><span class="params">(items)</span></span></span><br><span class="line">    <span class="keyword">local</span> keys = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> <span class="built_in">pairs</span>(items) <span class="keyword">do</span> keys[#keys + <span class="number">1</span>] = key <span class="keyword">end</span></span><br><span class="line">    <span class="built_in">table</span>.<span class="built_in">sort</span>(keys)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">local</span> index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">        index = index + <span class="number">1</span></span><br><span class="line">        <span class="keyword">local</span> key = keys[index]</span><br><span class="line">        <span class="keyword">if</span> key ~= <span class="literal">nil</span> <span class="keyword">then</span> <span class="keyword">return</span> key, items[key] <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>Use <code>ipairs</code> or a numeric loop for dense 1-based arrays, <code>pairs</code> for unordered mappings, and a custom iterator when filtering, ordering, or lazy generation is part of the abstraction.</p>
+
 
     </div>
 
@@ -486,16 +492,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

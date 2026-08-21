@@ -31,7 +31,7 @@
 <meta property="og:description" content="Understand why timer callbacks lose their class receiver in Cocos Creator and preserve this with a captured variable, bind, or an arrow function.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-20T14:21:59.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.874Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.503Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Cocos Creator">
 <meta property="article:tag" content="TypeScript">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrtibise.html#article","headline":"Cocos Creator Timer this Binding: setTimeout, setInterval, bind and Arrows","description":"Understand why timer callbacks lose their class receiver in Cocos Creator and preserve this with a captured variable, bind, or an arrow function.","datePublished":"2023-04-20T14:21:59.000Z","dateModified":"2026-08-20T02:47:38.874Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrtibise.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, TypeScript","wordCount":176}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrtibise.html#article","headline":"Cocos Creator Timer this Binding: setTimeout, setInterval, bind and Arrows","description":"Understand why timer callbacks lose their class receiver in Cocos Creator and preserve this with a captured variable, bind, or an arrow function.","datePublished":"2023-04-20T14:21:59.000Z","dateModified":"2026-08-21T03:47:53.503Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrtibise.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, TypeScript","wordCount":181}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>When a traditional function is passed directly to <code>setTimeout</code> or <code>setInterval</code>, it is invoked without the original object’s method-call context. Its <code>this</code> therefore does not reliably refer to the component instance.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>When a traditional function is passed directly to <code>setTimeout</code> or <code>setInterval</code>, it is invoked without the original object’s method-call context. Its <code>this</code> therefore does not reliably refer to the component instance.</p>
 <h2 id="Capture-the-Instance"><a href="#Capture-the-Instance" class="headerlink" title="Capture the Instance"></a>Capture the Instance</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">startBroadcast</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> that = <span class="variable language_">this</span>;</span><br><span class="line">    <span class="built_in">setInterval</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(that.<span class="property">msg</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Bind-the-Callback"><a href="#Bind-the-Callback" class="headerlink" title="Bind the Callback"></a>Bind the Callback</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">startBroadcast</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="built_in">setInterval</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">msg</span>);</span><br><span class="line">    &#125;.<span class="title function_">bind</span>(<span class="variable language_">this</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -239,6 +244,7 @@
 <li>An arrow function does not create its own <code>this</code>; it inherits the surrounding value.</li>
 </ul>
 <p>Store the timer ID and clear it when the Cocos Creator component is disabled or destroyed, or use the component’s <code>schedule</code>&#x2F;<code>unschedule</code> APIs for lifecycle-aware timers.</p>
+
 
     </div>
 
@@ -489,16 +495,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

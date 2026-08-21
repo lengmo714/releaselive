@@ -32,7 +32,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://releaseleaf.com/postImg/714e482d/1.jpg">
 <meta property="article:published_time" content="2026-04-22T03:15:11.000Z">
-<meta property="article:modified_time" content="2026-08-20T03:29:50.510Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.500Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Cocos Creator">
 <meta property="article:tag" content="iOS Development">
@@ -45,7 +45,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrioedsh.html#article","headline":"Cocos Creator iOS EditBox Shows an Extra Input Field Above the Keyboard: Fix","description":"Fix the extra native UITextField or UITextView that appears above the iOS keyboard when using a Cocos Creator 3.7.2 EditBox.","datePublished":"2026-04-22T03:15:11.000Z","dateModified":"2026-08-20T03:29:50.510Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrioedsh.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, iOS Development, EditBox, UITextField","wordCount":343,"image":["https://releaseleaf.com/postImg/714e482d/1.jpg"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrioedsh.html#article","headline":"Cocos Creator iOS EditBox Shows an Extra Input Field Above the Keyboard: Fix","description":"Fix the extra native UITextField or UITextView that appears above the iOS keyboard when using a Cocos Creator 3.7.2 EditBox.","datePublished":"2026-04-22T03:15:11.000Z","dateModified":"2026-08-21T03:47:53.500Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrioedsh.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, iOS Development, EditBox, UITextField","wordCount":348,"image":["https://releaseleaf.com/postImg/714e482d/1.jpg"]}</script>
 
 
 
@@ -227,7 +227,12 @@
     <div class="post-body">
 
       
-        <p>In a Cocos Creator 3.7.2 iOS build, tapping an <code>EditBox</code> may show a small native input field above the system keyboard. This is not a rendering error: the engine uses <code>UITextField</code> or <code>UITextView</code> on the native side to receive text.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>In a Cocos Creator 3.7.2 iOS build, tapping an <code>EditBox</code> may show a small native input field above the system keyboard. This is not a rendering error: the engine uses <code>UITextField</code> or <code>UITextView</code> on the native side to receive text.</p>
 <p><img src="/postImg/714e482d/1.jpg" alt="The native input field above the keyboard" decoding="async" loading="eager" fetchpriority="high"></p>
 <h2 id="Why-EditBox-Creates-a-UITextField-or-UITextView"><a href="#Why-EditBox-Creates-a-UITextField-or-UITextView" class="headerlink" title="Why EditBox Creates a UITextField or UITextView"></a>Why EditBox Creates a UITextField or UITextView</h2><p>The relevant native implementation is <code>EditBox-iOS.mm</code> in the Cocos engine source used to build the exported Xcode project. The precise path varies by engine installation and build mode, so locate the file from Xcode or search the engine source for the iOS <code>EditBox</code> implementation.</p>
 <p>Before changing it, make a copy of the original file and record the engine version. An engine update or a fresh export may overwrite the modification.</p>
@@ -245,6 +250,7 @@
 <li>rotation and safe-area layouts.</li>
 </ul>
 <p>If the field remains visible, verify that the exported project is compiling the modified engine source rather than a cached or prebuilt library. For a maintainable project, keep the adjustment as a small patch that can be reapplied and reviewed whenever Cocos Creator is upgraded.</p>
+
 
     </div>
 
@@ -497,16 +503,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

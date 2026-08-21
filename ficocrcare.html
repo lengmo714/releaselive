@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://pic.imgdb.cn/item/6643274b0ea9cb14038e966b.png">
 <meta property="og:image" content="https://pic.imgdb.cn/item/664327760ea9cb14038eceba.png">
 <meta property="article:published_time" content="2024-01-30T16:38:18.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.878Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.507Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Cocos Creator">
 <meta name="twitter:card" content="summary">
@@ -44,7 +44,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ficocrcare.html#article","headline":"Fix Cocos Creator Cannot Read Properties of Null (reading getGFXTexture)","description":"Fix a Cocos Creator getGFXTexture null error by inspecting the failing SpriteFrame, searching its UUID in Assets, and repairing invalid texture references.","datePublished":"2024-01-30T16:38:18.000Z","dateModified":"2026-08-20T02:47:38.878Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ficocrcare.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator","wordCount":79,"image":["https://s11.ax1x.com/2024/01/30/pFKDIqs.png"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ficocrcare.html#article","headline":"Fix Cocos Creator Cannot Read Properties of Null (reading getGFXTexture)","description":"Fix a Cocos Creator getGFXTexture null error by inspecting the failing SpriteFrame, searching its UUID in Assets, and repairing invalid texture references.","datePublished":"2024-01-30T16:38:18.000Z","dateModified":"2026-08-21T03:47:53.507Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ficocrcare.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator","wordCount":84,"image":["https://s11.ax1x.com/2024/01/30/pFKDIqs.png"]}</script>
 
 
 
@@ -226,7 +226,12 @@
     <div class="post-body">
 
       
-        <h2 id="Identify-the-getGFXTexture-Null-Error"><a href="#Identify-the-getGFXTexture-Null-Error" class="headerlink" title="Identify the getGFXTexture Null Error"></a>Identify the getGFXTexture Null Error</h2><p>The browser repeatedly reported <code>Cannot read properties of null (reading &#39;getGFXTexture&#39;)</code>:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<h2 id="Identify-the-getGFXTexture-Null-Error"><a href="#Identify-the-getGFXTexture-Null-Error" class="headerlink" title="Identify the getGFXTexture Null Error"></a>Identify the getGFXTexture Null Error</h2><p>The browser repeatedly reported <code>Cannot read properties of null (reading &#39;getGFXTexture&#39;)</code>:</p>
 <img src="https://s11.ax1x.com/2024/01/30/pFKDIqs.png" alt="Error" decoding="async" loading="eager" fetchpriority="high">
 
 <h2 id="Trace-the-Invalid-SpriteFrame-by-UUID"><a href="#Trace-the-Invalid-SpriteFrame-by-UUID" class="headerlink" title="Trace the Invalid SpriteFrame by UUID"></a>Trace the Invalid SpriteFrame by UUID</h2><p>The underlying image texture had become invalid or empty. Enable Cocos source debugging in VS Code, stop at the failing frame, and inspect the <code>frame</code> object:</p>
@@ -236,6 +241,7 @@
 <img src="https://pic.imgdb.cn/item/664327760ea9cb14038eceba.png" alt="UUID search" decoding="async" loading="lazy">
 
 <p>Fix the broken asset or reference rather than merely suppressing the null error.</p>
+
 
     </div>
 
@@ -485,16 +491,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

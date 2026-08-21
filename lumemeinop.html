@@ -31,7 +31,7 @@
 <meta property="og:description" content="Customize Lua arithmetic, comparison, indexing, assignment, calls, and string conversion with metatables, __index, __newindex, and proxy-table patterns.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-24T06:23:09.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.882Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.512Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lumemeinop.html#article","headline":"Lua Metatables and Metamethods: __index, Operators and Proxies","description":"Customize Lua arithmetic, comparison, indexing, assignment, calls, and string conversion with metatables, __index, __newindex, and proxy-table patterns.","datePublished":"2020-04-24T06:23:09.000Z","dateModified":"2026-08-20T02:47:38.882Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lumemeinop.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":264}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lumemeinop.html#article","headline":"Lua Metatables and Metamethods: __index, Operators and Proxies","description":"Customize Lua arithmetic, comparison, indexing, assignment, calls, and string conversion with metatables, __index, __newindex, and proxy-table patterns.","datePublished":"2020-04-24T06:23:09.000Z","dateModified":"2026-08-21T03:47:53.512Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lumemeinop.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":269}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>A metatable changes how a Lua value reacts to predefined operations. When ordinary table addition is undefined, for example, Lua looks for an <code>__add</code> metamethod and calls it.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>A metatable changes how a Lua value reacts to predefined operations. When ordinary table addition is undefined, for example, Lua looks for an <code>__add</code> metamethod and calls it.</p>
 <h2 id="A-vector-type"><a href="#A-vector-type" class="headerlink" title="A vector type"></a>A vector type</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> Vector = &#123;&#125;</span><br><span class="line">Vector.<span class="built_in">__index</span> = Vector</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Vector.new</span><span class="params">(x, y)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">setmetatable</span>(&#123; x = x, y = y &#125;, Vector)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Vector.__add</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="keyword">return</span> Vector.new(a.x + b.x, a.y + b.y)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Vector.__eq</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="keyword">return</span> a.x == b.x <span class="keyword">and</span> a.y == b.y</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Vector:__tostring</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">return</span> (<span class="string">&quot;Vector(%g, %g)&quot;</span>):<span class="built_in">format</span>(<span class="built_in">self</span>.x, <span class="built_in">self</span>.y)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(Vector.new(<span class="number">1</span>, <span class="number">2</span>) + Vector.new(<span class="number">3</span>, <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
 
 <p>Arithmetic metamethods include <code>__add</code>, <code>__sub</code>, <code>__mul</code>, <code>__div</code>, <code>__mod</code>, <code>__pow</code>, and unary <code>__unm</code>, with additions depending on the Lua version. Comparison uses <code>__eq</code>, <code>__lt</code>, and <code>__le</code>. Do not mutate operands inside an arithmetic metamethod unless that behavior is explicitly part of the type’s contract.</p>
@@ -234,6 +239,7 @@
 
 <p>This proxy prevents normal assignment through <code>readOnly</code>, but it does not make the original <code>settings</code> table immutable if other code still holds it.</p>
 <p>Other useful metamethods include <code>__call</code> for callable values, <code>__len</code> for length, <code>__pairs</code> in supported versions, <code>__concat</code>, and <code>__gc</code> for finalization of suitable objects. Metamethods are powerful language hooks; keep their behavior unsurprising and document any version-specific semantics.</p>
+
 
     </div>
 
@@ -483,16 +489,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

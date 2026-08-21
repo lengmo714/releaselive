@@ -31,7 +31,7 @@
 <meta property="og:description" content="Read and write files in Lua with io.open, file handles, read formats, lines, write, seek, standard streams, temporary files, renaming, and system commands.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-12T13:18:32.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.882Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.512Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lufiioio.html#article","headline":"Lua File I/O: io.open, read, write, Streams and System Commands","description":"Read and write files in Lua with io.open, file handles, read formats, lines, write, seek, standard streams, temporary files, renaming, and system commands.","datePublished":"2020-04-12T13:18:32.000Z","dateModified":"2026-08-20T02:47:38.882Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lufiioio.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":217}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lufiioio.html#article","headline":"Lua File I/O: io.open, read, write, Streams and System Commands","description":"Read and write files in Lua with io.open, file handles, read formats, lines, write, seek, standard streams, temporary files, renaming, and system commands.","datePublished":"2020-04-12T13:18:32.000Z","dateModified":"2026-08-21T03:47:53.512Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lufiioio.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":222}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>Lua’s I&#x2F;O library has a simple model based on current input&#x2F;output files and a complete model based on explicit file handles. Explicit handles are clearer for all but tiny scripts.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Lua’s I&#x2F;O library has a simple model based on current input&#x2F;output files and a complete model based on explicit file handles. Explicit handles are clearer for all but tiny scripts.</p>
 <h2 id="Reading-a-file"><a href="#Reading-a-file" class="headerlink" title="Reading a file"></a>Reading a file</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> file, err = <span class="built_in">io</span>.<span class="built_in">open</span>(<span class="string">&quot;notes.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> file <span class="keyword">then</span> <span class="built_in">error</span>(err) <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> file:<span class="built_in">lines</span>() <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(line)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">file:<span class="built_in">close</span>()</span><br></pre></td></tr></table></figure>
 
 <p><code>file:read(&quot;l&quot;)</code> reads a line without its newline, <code>&quot;L&quot;</code> keeps the newline in supported versions, <code>&quot;a&quot;</code> reads the remainder, and <code>&quot;n&quot;</code> reads a number. Avoid reading an unbounded file all at once when its size is not trusted.</p>
@@ -234,6 +239,7 @@
 <p>Modes include <code>r</code>, <code>w</code>, and <code>a</code>, optionally combined with <code>+</code> and binary <code>b</code>. Opening with <code>w</code> truncates an existing file. For important data, write to a temporary file in the same directory, flush and close it, then replace the destination using an operating-system-appropriate atomic operation.</p>
 <h2 id="Standard-streams-and-positioning"><a href="#Standard-streams-and-positioning" class="headerlink" title="Standard streams and positioning"></a>Standard streams and positioning</h2><p><code>io.stdin</code>, <code>io.stdout</code>, and <code>io.stderr</code> are standard handles. <code>file:seek(&quot;set&quot;, offset)</code>, <code>&quot;cur&quot;</code>, and <code>&quot;end&quot;</code> reposition seekable files. Text-mode offsets may not behave like raw byte offsets on every platform.</p>
 <p>Always handle open, read, write, and close failures. Lua’s garbage collector may eventually close an abandoned file, but deterministic closure avoids descriptor exhaustion and ensures buffered output is reported promptly.</p>
+
 
     </div>
 
@@ -483,16 +489,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

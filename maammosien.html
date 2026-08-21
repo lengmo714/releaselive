@@ -31,7 +31,7 @@
 <meta property="og:description" content="Simulate conventional AM in MATLAB, inspect time and frequency spectra, compare envelope and coherent demodulation, and evaluate added channel noise.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-01-12T22:35:37.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.882Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.514Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="MATLAB">
 <meta property="article:tag" content="Communications">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/maammosien.html#article","headline":"MATLAB AM Modulation Simulation: Envelope, Coherent Demodulation and Noise","description":"Simulate conventional AM in MATLAB, inspect time and frequency spectra, compare envelope and coherent demodulation, and evaluate added channel noise.","datePublished":"2017-01-12T22:35:37.000Z","dateModified":"2026-08-20T02:47:38.882Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/maammosien.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Course Projects"],"keywords":"MATLAB, Communications","wordCount":237}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/maammosien.html#article","headline":"MATLAB AM Modulation Simulation: Envelope, Coherent Demodulation and Noise","description":"Simulate conventional AM in MATLAB, inspect time and frequency spectra, compare envelope and coherent demodulation, and evaluate added channel noise.","datePublished":"2017-01-12T22:35:37.000Z","dateModified":"2026-08-21T03:47:53.514Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/maammosien.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Course Projects"],"keywords":"MATLAB, Communications","wordCount":242}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>Amplitude modulation is a useful introduction to how a baseband message changes a carrier and how a receiver recovers that message. In conventional AM with carrier,</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Amplitude modulation is a useful introduction to how a baseband message changes a carrier and how a receiver recovers that message. In conventional AM with carrier,</p>
 <p>[<br>s(t) &#x3D; A_c,[1 + \mu m_n(t)]\cos(2\pi f_c t),<br>]</p>
 <p>where the normalized message satisfies <code>|m_n(t)| ≤ 1</code>. Keeping <code>0 ≤ μ ≤ 1</code> avoids overmodulation for envelope detection.</p>
 <h2 id="Generate-the-signal"><a href="#Generate-the-signal" class="headerlink" title="Generate the signal"></a>Generate the signal</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fs = <span class="number">100e3</span>;</span><br><span class="line">duration = <span class="number">0.05</span>;</span><br><span class="line">t = (<span class="number">0</span>:<span class="number">1</span>/fs:duration<span class="number">-1</span>/fs)&#x27;;</span><br><span class="line"></span><br><span class="line">fm = <span class="number">500</span>;</span><br><span class="line">fc = <span class="number">10e3</span>;</span><br><span class="line">Ac = <span class="number">1</span>;</span><br><span class="line">mu = <span class="number">0.7</span>;</span><br><span class="line"></span><br><span class="line">message = <span class="built_in">cos</span>(<span class="number">2</span>*<span class="built_in">pi</span>*fm*t);</span><br><span class="line">carrier = <span class="built_in">cos</span>(<span class="number">2</span>*<span class="built_in">pi</span>*fc*t);</span><br><span class="line">am = Ac * (<span class="number">1</span> + mu*message) .* carrier;</span><br></pre></td></tr></table></figure>
@@ -237,6 +242,7 @@
 <p>Coherent detection requires carrier frequency and phase alignment. The FIR filter introduces group delay that should be compensated before waveform comparison.</p>
 <h2 id="Noise-and-spectrum-analysis"><a href="#Noise-and-spectrum-analysis" class="headerlink" title="Noise and spectrum analysis"></a>Noise and spectrum analysis</h2><p>Add controlled white noise with a documented signal-to-noise ratio, then run both demodulators and compare mean-squared error or output SNR. Plot a properly scaled FFT or use <code>periodogram</code> to show the carrier at <code>fc</code> and sidebands at <code>fc ± fm</code>.</p>
 <p>This simulation demonstrates principles, not a complete radio receiver. Real systems also face bandwidth limits, oscillator error, nonlinear stages, fading, interference, automatic gain control, and filtering constraints.</p>
+
 
     </div>
 
@@ -487,16 +493,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

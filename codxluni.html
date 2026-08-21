@@ -31,7 +31,7 @@
 <meta property="og:description" content="Resize Cocos2d-x Lua panels and buttons without distorting corners by using Scale9Sprite, cap insets, content size, and reusable nine-slice UI textures.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-04-08T09:42:47.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.874Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.502Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="Cocos2d-x">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxluni.html#article","headline":"Cocos2d-x Lua Nine-Slice Scaling: Resize UI with Scale9Sprite","description":"Resize Cocos2d-x Lua panels and buttons without distorting corners by using Scale9Sprite, cap insets, content size, and reusable nine-slice UI textures.","datePublished":"2022-04-08T09:42:47.000Z","dateModified":"2026-08-20T02:47:38.874Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxluni.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":111}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxluni.html#article","headline":"Cocos2d-x Lua Nine-Slice Scaling: Resize UI with Scale9Sprite","description":"Resize Cocos2d-x Lua panels and buttons without distorting corners by using Scale9Sprite, cap insets, content size, and reusable nine-slice UI textures.","datePublished":"2022-04-08T09:42:47.000Z","dateModified":"2026-08-21T03:47:53.502Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxluni.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":116}</script>
 
 
 
@@ -223,12 +223,18 @@
     <div class="post-body">
 
       
-        <p><strong>Environment:</strong> Cocos2d-x 3.17<br><strong>Language:</strong> Lua</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p><strong>Environment:</strong> Cocos2d-x 3.17<br><strong>Language:</strong> Lua</p>
 <h2 id="Resize-UI-without-Distorting-Corners"><a href="#Resize-UI-without-Distorting-Corners" class="headerlink" title="Resize UI without Distorting Corners"></a>Resize UI without Distorting Corners</h2><p>Scaling a normal parent sprite also scales its visual details and may affect the appearance of its child hierarchy. For resizable panels and buttons, nine-slice scaling divides an image into nine regions: the corners remain fixed, the edges stretch in one direction, and the center stretches in both directions.</p>
 <p>Create a scale-nine sprite with quick-Cocos2d-x:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> panel = display.newScale9Sprite(</span><br><span class="line">    <span class="string">&quot;Box.png&quot;</span>,</span><br><span class="line">    <span class="number">0</span>,</span><br><span class="line">    <span class="number">0</span>,</span><br><span class="line">    cc.size(<span class="number">400</span>, <span class="number">300</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
 <p>The exact overload depends on the engine wrapper. For precise control, provide an appropriate cap inset that marks the stretchable center region. Design the source texture with borders and corners that remain visually correct at the smallest supported size.</p>
+
 
     </div>
 
@@ -479,16 +485,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

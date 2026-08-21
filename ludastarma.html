@@ -31,7 +31,7 @@
 <meta property="og:description" content="Build arrays, records, matrices, sparse matrices, linked lists, queues, deques, sets, string buffers, and graphs with Lua tables and suitable access patterns.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-18T10:44:36.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.881Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.511Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ludastarma.html#article","headline":"Lua Data Structures: Arrays, Matrices, Lists, Queues, Sets and Graphs","description":"Build arrays, records, matrices, sparse matrices, linked lists, queues, deques, sets, string buffers, and graphs with Lua tables and suitable access patterns.","datePublished":"2020-04-18T10:44:36.000Z","dateModified":"2026-08-20T02:47:38.881Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ludastarma.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":307}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ludastarma.html#article","headline":"Lua Data Structures: Arrays, Matrices, Lists, Queues, Sets and Graphs","description":"Build arrays, records, matrices, sparse matrices, linked lists, queues, deques, sets, string buffers, and graphs with Lua tables and suitable access patterns.","datePublished":"2020-04-18T10:44:36.000Z","dateModified":"2026-08-21T03:47:53.511Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ludastarma.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":312}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>Lua uses one general-purpose structure—the table—to represent arrays, records, sets, linked lists, matrices, queues, and graphs. The best representation depends on access patterns rather than on a special declaration.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Lua uses one general-purpose structure—the table—to represent arrays, records, sets, linked lists, matrices, queues, and graphs. The best representation depends on access patterns rather than on a special declaration.</p>
 <h2 id="Arrays-and-records"><a href="#Arrays-and-records" class="headerlink" title="Arrays and records"></a>Arrays and records</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> colors = &#123; <span class="string">&quot;red&quot;</span>, <span class="string">&quot;green&quot;</span>, <span class="string">&quot;blue&quot;</span> &#125;</span><br><span class="line"><span class="keyword">for</span> index, value <span class="keyword">in</span> <span class="built_in">ipairs</span>(colors) <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(index, value)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> user = &#123; name = <span class="string">&quot;Ada&quot;</span>, active = <span class="literal">true</span> &#125;</span><br><span class="line"><span class="built_in">print</span>(user.name)</span><br></pre></td></tr></table></figure>
 
 <p>Dense arrays conventionally begin at 1. The length operator is reliable only when there are no unexpected holes; keep an explicit count for sparse collections.</p>
@@ -237,6 +242,7 @@
 
 <p>Removing index 1 from an array repeatedly shifts every remaining element, so a first&#x2F;last index queue is more efficient.</p>
 <p>Graphs can map each node to a set or list of neighbors. Tables make all these models possible; document invariants such as indexing, ownership, ordering, and whether missing values differ from <code>false</code>.</p>
+
 
     </div>
 
@@ -486,16 +492,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

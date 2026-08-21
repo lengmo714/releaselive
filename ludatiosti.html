@@ -31,7 +31,7 @@
 <meta property="og:description" content="Use Lua os.time, os.date, os.difftime, and os.clock for timestamps, calendar tables, formatting, UTC output, time-zone handling, durations, and date arithmetic.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-17T12:12:47.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.881Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.511Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ludatiosti.html#article","headline":"Lua Date and Time: os.time, os.date, UTC and Calendar Arithmetic","description":"Use Lua os.time, os.date, os.difftime, and os.clock for timestamps, calendar tables, formatting, UTC output, time-zone handling, durations, and date arithmetic.","datePublished":"2020-04-17T12:12:47.000Z","dateModified":"2026-08-20T02:47:38.881Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ludatiosti.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":204}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ludatiosti.html#article","headline":"Lua Date and Time: os.time, os.date, UTC and Calendar Arithmetic","description":"Use Lua os.time, os.date, os.difftime, and os.clock for timestamps, calendar tables, formatting, UTC output, time-zone handling, durations, and date arithmetic.","datePublished":"2020-04-17T12:12:47.000Z","dateModified":"2026-08-21T03:47:53.511Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ludatiosti.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":209}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>Lua’s <code>os</code> library represents timestamps with values compatible with the host C runtime. <code>os.time()</code> returns the current time, while <code>os.date()</code> formats or decomposes it.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Lua’s <code>os</code> library represents timestamps with values compatible with the host C runtime. <code>os.time()</code> returns the current time, while <code>os.date()</code> formats or decomposes it.</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> now = <span class="built_in">os</span>.<span class="built_in">time</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">os</span>.<span class="built_in">date</span>(<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>, now))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">os</span>.<span class="built_in">date</span>(<span class="string">&quot;!%Y-%m-%dT%H:%M:%SZ&quot;</span>, now)) <span class="comment">-- UTC</span></span><br></pre></td></tr></table></figure>
 
 <p>Without <code>!</code>, formatting uses the process’s local time zone. <code>%c</code>, <code>%x</code>, and <code>%X</code> are locale dependent and are unsuitable for a stable data format.</p>
@@ -233,6 +238,7 @@
 
 <p>Adding <code>24 * 60 * 60</code> seconds is not always the same as advancing one local calendar day because daylight-saving transitions can change day length. For scheduling across time zones, store an instant plus a named time zone and use a dedicated date-time library or service with a current time-zone database.</p>
 <p>Timestamp range and resolution are platform dependent. Use UTC and an unambiguous interchange format at system boundaries, preserve the original time-zone intent for future events, and convert to local display time only at the user interface.</p>
+
 
     </div>
 
@@ -482,16 +488,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

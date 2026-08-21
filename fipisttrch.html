@@ -32,7 +32,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic.imgdb.cn/item/664340940ea9cb1403bb81b5.png">
 <meta property="article:published_time" content="2019-03-16T15:20:20.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.883Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.516Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="pip">
@@ -43,7 +43,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/fipisttrch.html#article","headline":"Fix a pip Startup Traceback: Check python and Reinstall pip Safely","description":"Diagnose a pip startup traceback by checking which python interpreter owns pip, then repair it with ensurepip or a clean reinstall instead of source edits.","datePublished":"2019-03-16T15:20:20.000Z","dateModified":"2026-08-20T02:47:38.883Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/fipisttrch.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Common Bugs"],"keywords":"python, pip","wordCount":200,"image":["https://pic.imgdb.cn/item/664340940ea9cb1403bb81b5.png"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/fipisttrch.html#article","headline":"Fix a pip Startup Traceback: Check python and Reinstall pip Safely","description":"Diagnose a pip startup traceback by checking which python interpreter owns pip, then repair it with ensurepip or a clean reinstall instead of source edits.","datePublished":"2019-03-16T15:20:20.000Z","dateModified":"2026-08-21T03:47:53.516Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/fipisttrch.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Common Bugs"],"keywords":"python, pip","wordCount":205,"image":["https://pic.imgdb.cn/item/664340940ea9cb1403bb81b5.png"]}</script>
 
 
 
@@ -225,7 +225,12 @@
     <div class="post-body">
 
       
-        <p>A pip command can fail before package installation begins when the launcher and installed pip package do not match, the environment is corrupted, or the wrong python interpreter is being used.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>A pip command can fail before package installation begins when the launcher and installed pip package do not match, the environment is corrupted, or the wrong python interpreter is being used.</p>
 <p><img src="https://pic.imgdb.cn/item/664340940ea9cb1403bb81b5.png" alt="Example pip traceback" decoding="async" loading="eager" fetchpriority="high"></p>
 <p>Do not patch <code>site-packages/pip/__main__.py</code> by hand. That only masks a particular version mismatch and will be overwritten by the next upgrade.</p>
 <h2 id="Confirm-the-interpreter"><a href="#Confirm-the-interpreter" class="headerlink" title="Confirm the interpreter"></a>Confirm the interpreter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br><span class="line">python -m pip --version</span><br></pre></td></tr></table></figure>
@@ -240,6 +245,7 @@
 <p>Activate the environment using the command appropriate for the operating system, then run <code>python -m pip install ...</code> inside it.</p>
 <p>If <code>ensurepip</code> is unavailable, use the operating system or python distribution’s supported package mechanism. Avoid mixing a system-managed python with globally installed pip packages, and do not use administrator privileges merely to silence a permissions error.</p>
 <p>The original issue was observed with python 3.7.2. That runtime and its old pip releases are now legacy; use a maintained python version for new environments whenever project compatibility permits.</p>
+
 
     </div>
 
@@ -490,16 +496,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

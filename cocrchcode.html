@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2023/04/13/ppxRCpq.png">
 <meta property="og:image" content="https://s1.ax1x.com/2023/04/13/ppxRP10.png">
 <meta property="article:published_time" content="2023-04-13T13:57:58.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.875Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.505Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Cocos Creator">
 <meta property="article:tag" content="Chrome">
@@ -44,7 +44,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrchcode.html#article","headline":"Cocos Creator Chrome CORS Debugging with Server Headers and Isolated Profile","description":"Fix Cocos Creator cross-origin requests with server-side CORS headers, using a separate insecure Chrome profile only as a temporary local debugging fallback.","datePublished":"2023-04-13T13:57:58.000Z","dateModified":"2026-08-20T02:47:38.875Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrchcode.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, Chrome","wordCount":128,"image":["https://s1.ax1x.com/2023/04/13/ppxRCpq.png"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrchcode.html#article","headline":"Cocos Creator Chrome CORS Debugging with Server Headers and Isolated Profile","description":"Fix Cocos Creator cross-origin requests with server-side CORS headers, using a separate insecure Chrome profile only as a temporary local debugging fallback.","datePublished":"2023-04-13T13:57:58.000Z","dateModified":"2026-08-21T03:47:53.505Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrchcode.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, Chrome","wordCount":133,"image":["https://s1.ax1x.com/2023/04/13/ppxRCpq.png"]}</script>
 
 
 
@@ -226,7 +226,12 @@
     <div class="post-body">
 
       
-        <p>Cross-origin restrictions are common during local front-end development. The correct solution is normally to configure the API’s CORS response headers or use a development proxy so that the browser can enforce its usual security model.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Cross-origin restrictions are common during local front-end development. The correct solution is normally to configure the API’s CORS response headers or use a development proxy so that the browser can enforce its usual security model.</p>
 <p>For a short-lived Windows debugging session, Chrome can be launched with web security disabled and a dedicated, disposable profile:</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--disable-web-security --user-data-dir=D:\ChromeData\MyChromeDevUserData</span><br></pre></td></tr></table></figure>
 
@@ -240,6 +245,7 @@
 <p>This browser instance does not provide normal origin isolation. Use only the dedicated profile for local test pages, never sign in to personal accounts or browse untrusted sites with it, and close it immediately after debugging. Do not use this as a production fix.</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7019171779478290463">Original reference</a></p>
+
 
     </div>
 
@@ -489,16 +495,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

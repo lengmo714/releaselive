@@ -31,7 +31,7 @@
 <meta property="og:description" content="Inspect and back up local changes, fetch the remote branch, deliberately reset tracked files to match it, and retain branch or reflog recovery options.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-11-15T10:12:38.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.879Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.508Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/sasylogibr.html#article","headline":"Safely Sync a Local Git Branch to Remote with fetch, reset and Recovery","description":"Inspect and back up local changes, fetch the remote branch, deliberately reset tracked files to match it, and retain branch or reflog recovery options.","datePublished":"2019-11-15T10:12:38.000Z","dateModified":"2026-08-20T02:47:38.879Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/sasylogibr.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Development Tools"],"keywords":"Git","wordCount":211}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/sasylogibr.html#article","headline":"Safely Sync a Local Git Branch to Remote with fetch, reset and Recovery","description":"Inspect and back up local changes, fetch the remote branch, deliberately reset tracked files to match it, and retain branch or reflog recovery options.","datePublished":"2019-11-15T10:12:38.000Z","dateModified":"2026-08-21T03:47:53.508Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/sasylogibr.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Development Tools"],"keywords":"Git","wordCount":216}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>Sometimes a local branch must exactly match its remote-tracking branch. This discards local tracked changes and commits that are not present on the remote, so inspect and preserve anything valuable first.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Sometimes a local branch must exactly match its remote-tracking branch. This discards local tracked changes and commits that are not present on the remote, so inspect and preserve anything valuable first.</p>
 <h2 id="Inspect-the-target"><a href="#Inspect-the-target" class="headerlink" title="Inspect the target"></a>Inspect the target</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git status --short --branch</span><br><span class="line">git remote -v</span><br><span class="line">git branch --show-current</span><br><span class="line">git fetch origin</span><br><span class="line">git <span class="built_in">log</span> --oneline --left-right HEAD...origin/main</span><br></pre></td></tr></table></figure>
 
 <p>Replace <code>main</code> with the intended branch. <code>git fetch</code> updates remote-tracking references but does not modify working files.</p>
@@ -235,6 +240,7 @@
 <p>This overwrites tracked working-tree and index changes. Untracked files remain; review them with <code>git status</code> and remove only explicit paths if they are genuinely unwanted. Do not run a broad <code>git clean</code> without first previewing its exact targets.</p>
 <h2 id="Recovery"><a href="#Recovery" class="headerlink" title="Recovery"></a>Recovery</h2><p>The backup branch retains the previous commit. A stash retains saved working-tree changes, and <code>git reflog</code> may locate recent commits even without a backup. These are safety nets, not a substitute for checking the repository and branch before a destructive reset.</p>
 <p>For ordinary collaboration, prefer merging, rebasing, or resolving conflicts. A hard reset is appropriate only when discarding the local state is the actual goal.</p>
+
 
     </div>
 
@@ -484,16 +490,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

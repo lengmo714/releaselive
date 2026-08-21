@@ -31,7 +31,7 @@
 <meta property="og:description" content="Start a lua_State, run code, manipulate and query the Lua C API stack, call functions safely, handle errors, register C functions, and understand allocation.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-26T15:21:06.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.881Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.511Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="C">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lucapovst.html#article","headline":"Lua C API Overview: State, Stack, Calls, Errors and Memory","description":"Start a lua_State, run code, manipulate and query the Lua C API stack, call functions safely, handle errors, register C functions, and understand allocation.","datePublished":"2020-06-26T15:21:06.000Z","dateModified":"2026-08-20T02:47:38.881Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lucapovst.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua, C","wordCount":347}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lucapovst.html#article","headline":"Lua C API Overview: State, Stack, Calls, Errors and Memory","description":"Start a lua_State, run code, manipulate and query the Lua C API stack, call functions safely, handle errors, register C functions, and understand allocation.","datePublished":"2020-06-26T15:21:06.000Z","dateModified":"2026-08-21T03:47:53.511Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lucapovst.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua, C","wordCount":352}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>Lua is both embeddable and extensible. A C application can run Lua as a library, while Lua code can call functions implemented in C. Both directions use the same C API and the same central abstraction: <code>lua_State</code>.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Lua is both embeddable and extensible. A C application can run Lua as a library, while Lua code can call functions implemented in C. Both directions use the same C API and the same central abstraction: <code>lua_State</code>.</p>
 <h2 id="Creating-a-state-and-running-code"><a href="#Creating-a-state-and-running-code" class="headerlink" title="Creating a state and running code"></a>Creating a state and running code</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;lua.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;lauxlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;lualib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    lua_State *L = luaL_newstate();</span><br><span class="line">    <span class="keyword">if</span> (!L) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    luaL_openlibs(L);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (luaL_dostring(L, <span class="string">&quot;return 6 * 7&quot;</span>) != LUA_OK) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;%s\n&quot;</span>, lua_tostring(L, <span class="number">-1</span>));</span><br><span class="line">        lua_close(L);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, (<span class="type">long</span> <span class="type">long</span>)lua_tointeger(L, <span class="number">-1</span>));</span><br><span class="line">    lua_close(L);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Only open the standard libraries a host actually intends to expose, especially in restricted environments.</p>
@@ -239,6 +244,7 @@
 <h2 id="Errors-and-memory"><a href="#Errors-and-memory" class="headerlink" title="Errors and memory"></a>Errors and memory</h2><p>C library functions can report argument errors through <code>luaL_argerror</code> or <code>luaL_error</code>. Because Lua errors may bypass ordinary C control flow, do not rely on cleanup code after an unprotected API call; manage external resources carefully.</p>
 <p>Lua allocates through a configurable allocator supplied to <code>lua_newstate</code>. Objects managed by Lua must remain reachable from the Lua side while C uses them. For arbitrary C memory or operating-system handles, use full userdata with a suitable <code>__gc</code> metamethod and an explicit <code>close</code> operation where deterministic cleanup matters.</p>
 <p>The API favors small primitives over large convenience wrappers. Reliable integrations therefore keep stack effects local, check capacity when necessary, define clear ownership, and test against the exact Lua version used in production.</p>
+
 
     </div>
 
@@ -489,16 +495,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

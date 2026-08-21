@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://pic.imgdb.cn/item/664327ba0ea9cb14038f1b05.png">
 <meta property="og:image" content="https://pic.imgdb.cn/item/664327ed0ea9cb14038f53c9.png">
 <meta property="article:published_time" content="2024-01-21T14:56:16.000Z">
-<meta property="article:modified_time" content="2026-08-20T03:29:50.509Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.507Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Cocos Creator">
 <meta property="article:tag" content="Android">
@@ -44,7 +44,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ficocranch.html#article","headline":"Fix Cocos Creator Android checkReleaseDuplicateClasses with AndroidX and Jetifier","description":"Fix checkReleaseDuplicateClasses in a Cocos Creator Android export by enabling AndroidX and Jetifier and checking duplicate Gradle dependencies.","datePublished":"2024-01-21T14:56:16.000Z","dateModified":"2026-08-20T03:29:50.509Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ficocranch.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Android Development"],"keywords":"Cocos Creator, Android","wordCount":29,"image":["https://pic.imgdb.cn/item/664327ba0ea9cb14038f1b05.png"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ficocranch.html#article","headline":"Fix Cocos Creator Android checkReleaseDuplicateClasses with AndroidX and Jetifier","description":"Fix checkReleaseDuplicateClasses in a Cocos Creator Android export by enabling AndroidX and Jetifier and checking duplicate Gradle dependencies.","datePublished":"2024-01-21T14:56:16.000Z","dateModified":"2026-08-21T03:47:53.507Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ficocranch.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Android Development"],"keywords":"Cocos Creator, Android","wordCount":34,"image":["https://pic.imgdb.cn/item/664327ba0ea9cb14038f1b05.png"]}</script>
 
 
 
@@ -226,7 +226,12 @@
     <div class="post-body">
 
       
-        <p>The exported project failed at <code>checkReleaseDuplicateClasses</code>:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>The exported project failed at <code>checkReleaseDuplicateClasses</code>:</p>
 <img src="https://pic.imgdb.cn/item/664327ba0ea9cb14038f1b05.png" alt="Gradle error" decoding="async" loading="eager" fetchpriority="high">
 
 <p>Add these lines to <code>gradle.properties</code>:</p>
@@ -235,6 +240,7 @@
 <img src="https://pic.imgdb.cn/item/664327ed0ea9cb14038f53c9.png" alt="gradle.properties" decoding="async" loading="lazy">
 
 <p>Sync Gradle and rebuild. If duplicates remain, inspect the dependency tree instead of relying on Jetifier alone.</p>
+
 
     </div>
 
@@ -484,16 +490,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

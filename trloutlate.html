@@ -31,7 +31,7 @@
 <meta property="og:description" content="Shorten a label string by Unicode character count and append an ellipsis when it exceeds a limit.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-08-06T02:52:59.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.873Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.501Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="Cocos2d-x">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/trloutlate.html#article","headline":"Truncating Long UTF-8 Label Text with an Ellipsis in Lua","description":"Shorten a label string by Unicode character count and append an ellipsis when it exceeds a limit.","datePublished":"2021-08-06T02:52:59.000Z","dateModified":"2026-08-20T02:47:38.873Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/trloutlate.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":127}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/trloutlate.html#article","headline":"Truncating Long UTF-8 Label Text with an Ellipsis in Lua","description":"Shorten a label string by Unicode character count and append an ellipsis when it exceeds a limit.","datePublished":"2021-08-06T02:52:59.000Z","dateModified":"2026-08-21T03:47:53.501Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/trloutlate.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":132}</script>
 
 
 
@@ -223,10 +223,16 @@
     <div class="post-body">
 
       
-        <p>Long strings can overflow a fixed label. The original project used a <code>SubUTF8String</code> helper to truncate by characters rather than raw bytes:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Long strings can overflow a fixed label. The original project used a <code>SubUTF8String</code> helper to truncate by characters rather than raw bytes:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">truncateLabel</span><span class="params">(text, maxCharacters)</span></span></span><br><span class="line">    <span class="keyword">if</span> text == <span class="literal">nil</span> <span class="keyword">or</span> maxCharacters == <span class="literal">nil</span> <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> utf8 <span class="keyword">and</span> utf8.<span class="built_in">len</span> <span class="keyword">and</span> utf8.offset <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">local</span> length = utf8.<span class="built_in">len</span>(text)</span><br><span class="line">        <span class="keyword">if</span> length <span class="keyword">and</span> length &gt; maxCharacters <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">local</span> endByte = utf8.offset(text, maxCharacters + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">string</span>.<span class="built_in">sub</span>(text, <span class="number">1</span>, endByte - <span class="number">1</span>) .. <span class="string">&quot;...&quot;</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">return</span> text</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">string</span>.<span class="built_in">len</span>(text) &gt; maxCharacters <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">return</span> SubUTF8String(text, maxCharacters) .. <span class="string">&quot;...&quot;</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> text</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p><code>string.len()</code> counts bytes, so it should not be used by itself as a character count for UTF-8 text. For proportional fonts, character count is only an approximation; measuring rendered width and truncating until it fits produces a more accurate UI.</p>
+
 
     </div>
 
@@ -476,16 +482,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

@@ -31,7 +31,7 @@
 <meta property="og:description" content="Build a radial skill cooldown in Cocos2d-x 3.17 Lua with cc.ProgressTimer, midpoint, radial type, reverse direction, percentage values, and animated progress.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-11T08:43:52.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.873Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.502Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="Cocos2d-x">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxlupr.html#article","headline":"Cocos2d-x Lua ProgressTimer: Build a Radial Skill Cooldown","description":"Build a radial skill cooldown in Cocos2d-x 3.17 Lua with cc.ProgressTimer, midpoint, radial type, reverse direction, percentage values, and animated progress.","datePublished":"2021-11-11T08:43:52.000Z","dateModified":"2026-08-20T02:47:38.873Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxlupr.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":76}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxlupr.html#article","headline":"Cocos2d-x Lua ProgressTimer: Build a Radial Skill Cooldown","description":"Build a radial skill cooldown in Cocos2d-x 3.17 Lua with cc.ProgressTimer, midpoint, radial type, reverse direction, percentage values, and animated progress.","datePublished":"2021-11-11T08:43:52.000Z","dateModified":"2026-08-21T03:47:53.502Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxlupr.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":81}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p><strong>Environment:</strong> Cocos2d-x 3.17<br><strong>Language:</strong> Lua</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p><strong>Environment:</strong> Cocos2d-x 3.17<br><strong>Language:</strong> Lua</p>
 <h2 id="Create-a-Radial-ProgressTimer"><a href="#Create-a-Radial-ProgressTimer" class="headerlink" title="Create a Radial ProgressTimer"></a>Create a Radial ProgressTimer</h2><p>Radial progress indicators are commonly used for skill cooldowns:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createSkillCooldown</span><span class="params">(parent)</span></span></span><br><span class="line">    <span class="keyword">local</span> sprite = cc.Sprite:<span class="built_in">create</span>(<span class="string">&quot;skill.png&quot;</span>)</span><br><span class="line">    <span class="keyword">local</span> progress = cc.ProgressTimer:<span class="built_in">create</span>(sprite)</span><br><span class="line"></span><br><span class="line">    progress:setMidpoint(cc.p(<span class="number">0.5</span>, <span class="number">0.5</span>))</span><br><span class="line">    progress:setType(cc.PROGRESS_TIMER_TYPE_RADIAL)</span><br><span class="line">    progress:setReverseDirection(<span class="literal">true</span>)</span><br><span class="line">    progress:setPercentage(<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">    parent:addChild(progress)</span><br><span class="line">    <span class="keyword">return</span> progress</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
@@ -231,6 +236,7 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">progress:runAction(cc.ProgressTo:<span class="built_in">create</span>(cooldownSeconds, <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
 
 <p>Keep a reference if the cooldown must be cancelled, reset, or synchronized with server state.</p>
+
 
     </div>
 
@@ -481,16 +487,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

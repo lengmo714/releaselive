@@ -31,7 +31,7 @@
 <meta property="og:description" content="Learn Lua table creation and indexing, array-like sequences, iteration with pairs and ipairs, insertion, removal, sorting, copying, identity, and equality behavior.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-09T17:12:41.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.882Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.514Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lutacrinar.html#article","headline":"Lua Tables: Creation, Indexing, Arrays, Iteration and Copying","description":"Learn Lua table creation and indexing, array-like sequences, iteration with pairs and ipairs, insertion, removal, sorting, copying, identity, and equality behavior.","datePublished":"2020-04-09T17:12:41.000Z","dateModified":"2026-08-20T02:47:38.882Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lutacrinar.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":217}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lutacrinar.html#article","headline":"Lua Tables: Creation, Indexing, Arrays, Iteration and Copying","description":"Learn Lua table creation and indexing, array-like sequences, iteration with pairs and ipairs, insertion, removal, sorting, copying, identity, and equality behavior.","datePublished":"2020-04-09T17:12:41.000Z","dateModified":"2026-08-21T03:47:53.514Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lutacrinar.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":222}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <h2 id="Create-and-Index-Lua-Tables"><a href="#Create-and-Index-Lua-Tables" class="headerlink" title="Create and Index Lua Tables"></a>Create and Index Lua Tables</h2><p>Tables are Lua’s only built-in compound data structure. Keys may be any value except <code>nil</code> and NaN; values may be any Lua value. Tables have identity, so two separate tables with equal fields are not equal by default.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<h2 id="Create-and-Index-Lua-Tables"><a href="#Create-and-Index-Lua-Tables" class="headerlink" title="Create and Index Lua Tables"></a>Create and Index Lua Tables</h2><p>Tables are Lua’s only built-in compound data structure. Keys may be any value except <code>nil</code> and NaN; values may be any Lua value. Tables have identity, so two separate tables with equal fields are not equal by default.</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> person = &#123;</span><br><span class="line">    name = <span class="string">&quot;Ada&quot;</span>,</span><br><span class="line">    [<span class="string">&quot;active&quot;</span>] = <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;first array value&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(person.name)</span><br><span class="line"><span class="built_in">print</span>(person[<span class="string">&quot;name&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(person[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
 
 <p>Assigning <code>nil</code> removes a key. Reading a missing key returns <code>nil</code>, so a table cannot distinguish an absent key from one deliberately assigned nil without another representation.</p>
@@ -234,6 +239,7 @@
 <p><code>pairs</code> order is unspecified. <code>ipairs</code> follows consecutive integer keys beginning at 1 and stops at the first missing value.</p>
 <h2 id="Copying-and-comparison"><a href="#Copying-and-comparison" class="headerlink" title="Copying and comparison"></a>Copying and comparison</h2><p><code>local alias = original</code> creates another reference, not a copy. A shallow copy duplicates top-level fields but shares nested tables. Deep copying needs an explicit policy for cycles, metatables, functions, and userdata.</p>
 <p>Raw operations such as <code>rawget</code>, <code>rawset</code>, and <code>rawequal</code> bypass metatable behavior. Use them primarily when implementing proxies or metamethods. For ordinary application code, table access through the normal operators keeps abstractions intact.</p>
+
 
     </div>
 
@@ -483,16 +489,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

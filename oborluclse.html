@@ -31,7 +31,7 @@
 <meta property="og:description" content="Implement object-oriented Lua with tables, functions, metatables, self methods, constructors, inheritance, private state, callable objects, and alternative object models.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-24T14:49:17.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.883Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.515Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/oborluclse.html#article","headline":"Object-Oriented Lua: Classes, self, Inheritance and Private State","description":"Implement object-oriented Lua with tables, functions, metatables, self methods, constructors, inheritance, private state, callable objects, and alternative object models.","datePublished":"2020-04-24T14:49:17.000Z","dateModified":"2026-08-20T02:47:38.883Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/oborluclse.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":296}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/oborluclse.html#article","headline":"Object-Oriented Lua: Classes, self, Inheritance and Private State","description":"Implement object-oriented Lua with tables, functions, metatables, self methods, constructors, inheritance, private state, callable objects, and alternative object models.","datePublished":"2020-04-24T14:49:17.000Z","dateModified":"2026-08-21T03:47:53.515Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/oborluclse.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":301}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>Lua has no built-in <code>class</code> declaration, but tables have identity and mutable state, while functions and metatables provide behavior. Together they support several object models without forcing one on the language.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Lua has no built-in <code>class</code> declaration, but tables have identity and mutable state, while functions and metatables provide behavior. Together they support several object models without forcing one on the language.</p>
 <h2 id="Methods-and-self"><a href="#Methods-and-self" class="headerlink" title="Methods and self"></a>Methods and <code>self</code></h2><p>The colon syntax passes the receiver as the first argument:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> Account = &#123;&#125;</span><br><span class="line">Account.<span class="built_in">__index</span> = Account</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Account.new</span><span class="params">(owner, balance)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">setmetatable</span>(&#123; owner = owner, balance = balance <span class="keyword">or</span> <span class="number">0</span> &#125;, Account)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Account:deposit</span><span class="params">(amount)</span></span></span><br><span class="line">    <span class="built_in">assert</span>(amount &gt; <span class="number">0</span>, <span class="string">&quot;amount must be positive&quot;</span>)</span><br><span class="line">    <span class="built_in">self</span>.balance = <span class="built_in">self</span>.balance + amount</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> account = Account.new(<span class="string">&quot;Ada&quot;</span>, <span class="number">100</span>)</span><br><span class="line">account:deposit(<span class="number">25</span>) <span class="comment">-- Account.deposit(account, 25)</span></span><br></pre></td></tr></table></figure>
 
@@ -239,6 +244,7 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">newAccumulator</span><span class="params">(total)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(value)</span></span></span><br><span class="line">        total = total + value</span><br><span class="line">        <span class="keyword">return</span> total</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>Choose the smallest model that expresses the ownership and behavior clearly. Lua’s flexibility is useful, but consistency within a codebase matters more than imitating every feature of a class-based language.</p>
+
 
     </div>
 
@@ -488,16 +494,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

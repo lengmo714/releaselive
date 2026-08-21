@@ -31,7 +31,7 @@
 <meta property="og:description" content="Manage one WebSocket connection in a Cocos Creator TypeScript service, let other classes subscribe to messages, remove callbacks, and avoid duplicated sockets or listeners.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-16T13:33:30.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.875Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.504Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="WebSocket">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrshweco.html#article","headline":"Cocos Creator Shared WebSocket: Connection Service and Message Subscribers","description":"Manage one WebSocket connection in a Cocos Creator TypeScript service, let other classes subscribe to messages, remove callbacks, and avoid duplicated sockets or listeners.","datePublished":"2023-05-16T13:33:30.000Z","dateModified":"2026-08-20T02:47:38.875Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrshweco.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator","TypeScript"],"keywords":"WebSocket","wordCount":153}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrshweco.html#article","headline":"Cocos Creator Shared WebSocket: Connection Service and Message Subscribers","description":"Manage one WebSocket connection in a Cocos Creator TypeScript service, let other classes subscribe to messages, remove callbacks, and avoid duplicated sockets or listeners.","datePublished":"2023-05-16T13:33:30.000Z","dateModified":"2026-08-21T03:47:53.504Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrshweco.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator","TypeScript"],"keywords":"WebSocket","wordCount":158}</script>
 
 
 
@@ -226,13 +226,19 @@
     <div class="post-body">
 
       
-        <h2 id="Create-a-Shared-WebSocket-Connection"><a href="#Create-a-Shared-WebSocket-Connection" class="headerlink" title="Create a Shared WebSocket Connection"></a>Create a Shared WebSocket Connection</h2><p>Class A can create the WebSocket connection and expose it through a shared service or, in a small browser project, through a global reference:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<h2 id="Create-a-Shared-WebSocket-Connection"><a href="#Create-a-Shared-WebSocket-Connection" class="headerlink" title="Create a Shared WebSocket Connection"></a>Create a Shared WebSocket Connection</h2><p>Class A can create the WebSocket connection and expose it through a shared service or, in a small browser project, through a global reference:</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> socket = <span class="keyword">new</span> <span class="title class_">WebSocket</span>(<span class="string">&#x27;wss://your-socket-url&#x27;</span>);</span><br><span class="line">(<span class="variable language_">window</span> <span class="keyword">as</span> <span class="built_in">any</span>).<span class="property">socket</span> = socket;</span><br><span class="line"></span><br><span class="line">socket.<span class="title function_">addEventListener</span>(<span class="string">&#x27;open&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;WebSocket connection established&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">socket.<span class="title function_">addEventListener</span>(<span class="string">&#x27;message&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Class A received WebSocket data&#x27;</span>, event.<span class="property">data</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>Class B can obtain the same object and add another listener:</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> socket = (<span class="variable language_">window</span> <span class="keyword">as</span> <span class="built_in">any</span>).<span class="property">socket</span> <span class="keyword">as</span> <span class="title class_">WebSocket</span> | <span class="literal">undefined</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (socket) &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleMessage</span> = (<span class="params">event: MessageEvent</span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Class B received WebSocket data&#x27;</span>, event.<span class="property">data</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  socket.<span class="title function_">addEventListener</span>(<span class="string">&#x27;message&#x27;</span>, handleMessage);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Later, when Class B is destroyed:</span></span><br><span class="line">  <span class="comment">// socket.removeEventListener(&#x27;message&#x27;, handleMessage);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Using <code>addEventListener</code> allows both classes to receive messages; assigning <code>socket.onmessage</code> again would replace the previous handler. For a larger project, a dedicated socket manager or event bus is cleaner and easier to type than storing the connection on <code>window</code>. Use <code>wss://</code> in production and implement reconnection, authentication, and error handling as required.</p>
+
 
     </div>
 
@@ -482,16 +488,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

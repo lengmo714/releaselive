@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2023/07/11/pCfAnN8.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2023/07/11/pCfAmAf.jpg">
 <meta property="article:published_time" content="2023-07-11T14:57:45.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.880Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.509Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
@@ -44,7 +44,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/dehealclgi.html#article","headline":"Deploy Hexo to Alibaba Cloud with Git Hooks, Nginx and HTTPS","description":"Deploy generated Hexo files to Alibaba Cloud through a bare Git repository and post-receive hook, then configure Nginx, a domain, and HTTPS.","datePublished":"2023-07-11T14:57:45.000Z","dateModified":"2026-08-20T02:47:38.880Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/dehealclgi.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Hexo"],"keywords":"Hexo","wordCount":260,"image":["https://s1.ax1x.com/2023/07/11/pCfAptO.jpg"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/dehealclgi.html#article","headline":"Deploy Hexo to Alibaba Cloud with Git Hooks, Nginx and HTTPS","description":"Deploy generated Hexo files to Alibaba Cloud through a bare Git repository and post-receive hook, then configure Nginx, a domain, and HTTPS.","datePublished":"2023-07-11T14:57:45.000Z","dateModified":"2026-08-21T03:47:53.509Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/dehealclgi.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Hexo"],"keywords":"Hexo","wordCount":265,"image":["https://s1.ax1x.com/2023/07/11/pCfAptO.jpg"]}</script>
 
 
 
@@ -226,7 +226,12 @@
     <div class="post-body">
 
       
-        <p>This deployment has two parts: pushing Hexo’s generated static files to the server, and configuring a web server to serve that directory.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>This deployment has two parts: pushing Hexo’s generated static files to the server, and configuring a web server to serve that directory.</p>
 <h2 id="Upload-generated-files-with-Git"><a href="#Upload-generated-files-with-Git" class="headerlink" title="Upload generated files with Git"></a>Upload generated files with Git</h2><h3 id="Create-a-dedicated-Git-user"><a href="#Create-a-dedicated-Git-user" class="headerlink" title="Create a dedicated Git user"></a>Create a dedicated Git user</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser git</span><br></pre></td></tr></table></figure>
 
 <p>Configure SSH access for that account. Add your <strong>public</strong> key to <code>~git/.ssh/authorized_keys</code>, then apply restrictive permissions:</p>
@@ -263,6 +268,7 @@
 <li><strong>Files do not deploy:</strong> verify ownership and write permissions for the bare repository and deployment directory, then inspect the Git hook output.</li>
 <li><strong>SSH fails:</strong> confirm the public key, <code>authorized_keys</code> permissions, account shell, and server SSH logs.</li>
 </ul>
+
 
     </div>
 
@@ -512,16 +518,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

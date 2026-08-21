@@ -31,7 +31,7 @@
 <meta property="og:description" content="Build a TypeScript format-string helper that replaces indexed placeholders such as {0} and {1} with variadic arguments while handling repeats and missing values.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-16T13:30:21.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.871Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.499Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="TypeScript">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/tystfoinpl.html#article","headline":"TypeScript String Formatting with {0} and {1} Indexed Placeholders","description":"Build a TypeScript format-string helper that replaces indexed placeholders such as {0} and {1} with variadic arguments while handling repeats and missing values.","datePublished":"2023-05-16T13:30:21.000Z","dateModified":"2026-08-20T02:47:38.871Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/tystfoinpl.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["TypeScript"],"keywords":"TypeScript","wordCount":88}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/tystfoinpl.html#article","headline":"TypeScript String Formatting with {0} and {1} Indexed Placeholders","description":"Build a TypeScript format-string helper that replaces indexed placeholders such as {0} and {1} with variadic arguments while handling repeats and missing values.","datePublished":"2023-05-16T13:30:21.000Z","dateModified":"2026-08-21T03:47:53.499Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/tystfoinpl.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["TypeScript"],"keywords":"TypeScript","wordCount":93}</script>
 
 
 
@@ -222,9 +222,15 @@
     <div class="post-body">
 
       
-        <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">formatString</span>(<span class="params">str: <span class="built_in">string</span>, ...args: <span class="built_in">unknown</span>[]</span>): <span class="built_in">string</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> str.<span class="title function_">replace</span>(<span class="regexp">/\&#123;(\d+)\&#125;/g</span>, <span class="function">(<span class="params">match, indexText</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> index = <span class="title class_">Number</span>(indexText);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> args[index] !== <span class="string">&#x27;undefined&#x27;</span></span><br><span class="line">      ? <span class="title class_">String</span>(args[index])</span><br><span class="line">      : match;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;Alice&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> age = <span class="number">25</span>;</span><br><span class="line"><span class="keyword">const</span> message = <span class="title function_">formatString</span>(</span><br><span class="line">  <span class="string">&#x27;My name is &#123;0&#125; and I am &#123;1&#125; years old.&#x27;</span>,</span><br><span class="line">  name,</span><br><span class="line">  age</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(message);</span><br><span class="line"><span class="comment">// My name is Alice and I am 25 years old.</span></span><br></pre></td></tr></table></figure>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">formatString</span>(<span class="params">str: <span class="built_in">string</span>, ...args: <span class="built_in">unknown</span>[]</span>): <span class="built_in">string</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> str.<span class="title function_">replace</span>(<span class="regexp">/\&#123;(\d+)\&#125;/g</span>, <span class="function">(<span class="params">match, indexText</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> index = <span class="title class_">Number</span>(indexText);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> args[index] !== <span class="string">&#x27;undefined&#x27;</span></span><br><span class="line">      ? <span class="title class_">String</span>(args[index])</span><br><span class="line">      : match;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;Alice&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> age = <span class="number">25</span>;</span><br><span class="line"><span class="keyword">const</span> message = <span class="title function_">formatString</span>(</span><br><span class="line">  <span class="string">&#x27;My name is &#123;0&#125; and I am &#123;1&#125; years old.&#x27;</span>,</span><br><span class="line">  name,</span><br><span class="line">  age</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(message);</span><br><span class="line"><span class="comment">// My name is Alice and I am 25 years old.</span></span><br></pre></td></tr></table></figure>
 
 <p>The regular expression captures the numeric index inside each placeholder. The callback uses that index to retrieve the corresponding argument. If the argument is missing, the original placeholder remains unchanged.</p>
+
 
     </div>
 
@@ -473,16 +479,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

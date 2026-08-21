@@ -31,7 +31,7 @@
 <meta property="og:description" content="Create a Cocos2d-x 3.x Lua physics scene, boundaries and bodies, configure category, collision and contact masks, and receive PhysicsContact events.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-01-26T07:33:05.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.873Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.501Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="Cocos2d-x">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxluph.html#article","headline":"Cocos2d-x Lua Physics Collisions: Bodies, Masks and Contact Listeners","description":"Create a Cocos2d-x 3.x Lua physics scene, boundaries and bodies, configure category, collision and contact masks, and receive PhysicsContact events.","datePublished":"2019-01-26T07:33:05.000Z","dateModified":"2026-08-20T02:47:38.873Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxluph.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":174}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxluph.html#article","headline":"Cocos2d-x Lua Physics Collisions: Bodies, Masks and Contact Listeners","description":"Create a Cocos2d-x 3.x Lua physics scene, boundaries and bodies, configure category, collision and contact masks, and receive PhysicsContact events.","datePublished":"2019-01-26T07:33:05.000Z","dateModified":"2026-08-21T03:47:53.501Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxluph.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":179}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>Cocos2d-x 3.x integrates a physics world with scenes and nodes. A <code>PhysicsBody</code> belongs to a node, while contact events are delivered through <code>EventListenerPhysicsContact</code>.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Cocos2d-x 3.x integrates a physics world with scenes and nodes. A <code>PhysicsBody</code> belongs to a node, while contact events are delivered through <code>EventListenerPhysicsContact</code>.</p>
 <h2 id="Create-a-physics-scene"><a href="#Create-a-physics-scene" class="headerlink" title="Create a physics scene"></a>Create a physics scene</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> scene = cc.Scene:createWithPhysics()</span><br><span class="line"><span class="keyword">local</span> world = scene:getPhysicsWorld()</span><br><span class="line">world:setGravity(cc.p(<span class="number">0</span>, <span class="number">-980</span>))</span><br><span class="line">world:setDebugDrawMask(cc.PhysicsWorld.DEBUGDRAW_ALL)</span><br></pre></td></tr></table></figure>
 
 <p>Disable debug drawing in production.</p>
@@ -237,6 +242,7 @@
 
 <p>The category mask identifies what a body is. The collision mask determines which categories produce physical collision response, and the contact-test mask determines which interactions produce callbacks. A pair is considered according to both bodies’ masks, so define named bit constants instead of unexplained hexadecimal values.</p>
 <p>Contact callbacks run during the physics step. Avoid immediately removing bodies or restructuring the scene in ways the engine version cannot safely handle; queue destructive game actions for the next update when necessary.</p>
+
 
     </div>
 
@@ -487,16 +493,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

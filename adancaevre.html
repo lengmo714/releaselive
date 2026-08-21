@@ -31,7 +31,7 @@
 <meta property="og:description" content="Add calendar events and reminders from an Android app with CalendarContract by opening the system editor or writing through Calendar Provider with runtime permissions.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-09-10T08:24:26.000Z">
-<meta property="article:modified_time" content="2026-08-20T03:29:50.502Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.499Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="Calendar">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/adancaevre.html#article","headline":"Add Android Calendar Events and Reminders with CalendarContract","description":"Add calendar events and reminders from an Android app with CalendarContract by opening the system editor or writing through Calendar Provider with runtime permissions.","datePublished":"2025-09-10T08:24:26.000Z","dateModified":"2026-08-20T03:29:50.502Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/adancaevre.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Android Development"],"keywords":"Android, Calendar","wordCount":250}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/adancaevre.html#article","headline":"Add Android Calendar Events and Reminders with CalendarContract","description":"Add calendar events and reminders from an Android app with CalendarContract by opening the system editor or writing through Calendar Provider with runtime permissions.","datePublished":"2025-09-10T08:24:26.000Z","dateModified":"2026-08-21T03:47:53.499Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/adancaevre.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Android Development"],"keywords":"Android, Calendar","wordCount":255}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>An Android app can add a calendar event in two ways. The simplest and safest option opens the system calendar editor. Direct insertion through Calendar Provider offers more control but requires calendar permissions and account handling.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>An Android app can add a calendar event in two ways. The simplest and safest option opens the system calendar editor. Direct insertion through Calendar Provider offers more control but requires calendar permissions and account handling.</p>
 <h2 id="Option-1-Open-the-System-Calendar-Editor"><a href="#Option-1-Open-the-System-Calendar-Editor" class="headerlink" title="Option 1: Open the System Calendar Editor"></a>Option 1: Open the System Calendar Editor</h2><p>This approach does not require calendar read or write permission because the user reviews and saves the event:</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> start = System.currentTimeMillis() + <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span></span><br><span class="line"><span class="keyword">val</span> end = start + <span class="number">30</span> * <span class="number">60</span> * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> intent = Intent(Intent.ACTION_INSERT).apply &#123;</span><br><span class="line">    <span class="keyword">data</span> = CalendarContract.Events.CONTENT_URI</span><br><span class="line">    putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, start)</span><br><span class="line">    putExtra(CalendarContract.EXTRA_EVENT_END_TIME, end)</span><br><span class="line">    putExtra(CalendarContract.Events.TITLE, <span class="string">&quot;Project reminder&quot;</span>)</span><br><span class="line">    putExtra(CalendarContract.Events.DESCRIPTION, <span class="string">&quot;Review the latest build&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (intent.resolveActivity(packageManager) != <span class="literal">null</span>) &#123;</span><br><span class="line">    startActivity(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -238,6 +243,7 @@
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> reminder = ContentValues().apply &#123;</span><br><span class="line">    put(CalendarContract.Reminders.EVENT_ID, eventId)</span><br><span class="line">    put(CalendarContract.Reminders.MINUTES, <span class="number">10</span>)</span><br><span class="line">    put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT)</span><br><span class="line">&#125;</span><br><span class="line">contentResolver.insert(CalendarContract.Reminders.CONTENT_URI, reminder)</span><br></pre></td></tr></table></figure>
 
 <p>Calendar availability is not guaranteed. A device may have no writable account, a provider may reject a reminder method, or the user may revoke permission. Query for <code>CAL_ACCESS_LEVEL &gt;= CAL_ACCESS_CONTRIBUTOR</code>, handle empty results, and show a clear fallback instead of assuming a fixed calendar ID.</p>
+
 
     </div>
 
@@ -488,16 +494,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

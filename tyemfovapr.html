@@ -31,7 +31,7 @@
 <meta property="og:description" content="Use a practical TypeScript regular expression to check common email formatting, understand client-side limitations, and confirm deliverability on the server.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-12-05T15:15:02.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.871Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.499Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="TypeScript">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/tyemfovapr.html#article","headline":"TypeScript Email Format Validation: Practical Regex and Limitations","description":"Use a practical TypeScript regular expression to check common email formatting, understand client-side limitations, and confirm deliverability on the server.","datePublished":"2023-12-05T15:15:02.000Z","dateModified":"2026-08-20T02:47:38.871Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/tyemfovapr.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["TypeScript"],"keywords":"TypeScript","wordCount":108}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/tyemfovapr.html#article","headline":"TypeScript Email Format Validation: Practical Regex and Limitations","description":"Use a practical TypeScript regular expression to check common email formatting, understand client-side limitations, and confirm deliverability on the server.","datePublished":"2023-12-05T15:15:02.000Z","dateModified":"2026-08-21T03:47:53.499Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/tyemfovapr.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["TypeScript"],"keywords":"TypeScript","wordCount":113}</script>
 
 
 
@@ -222,11 +222,17 @@
     <div class="post-body">
 
       
-        <p>The following TypeScript example uses a regular expression to check whether a string has a common email-address format:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>The following TypeScript example uses a regular expression to check whether a string has a common email-address format:</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> email = <span class="string">&quot;example@email.com&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> emailRegex = <span class="regexp">/^[^\s@]+@[^\s@]+\.[^\s@]+$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (emailRegex.<span class="title function_">test</span>(email)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;email&#125;</span> is a valid email address`</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;email&#125;</span> is not a valid email address`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>The expression requires some non-whitespace characters before <code>@</code>, a domain after it, and a dot followed by another non-empty segment. Calling <code>test()</code> returns a Boolean indicating whether the string matches.</p>
 <p>This is a practical format check, not proof that the address exists or can receive mail. Real email syntax has many edge cases, so production systems should normally combine lightweight client-side validation with a confirmation email.</p>
+
 
     </div>
 
@@ -475,16 +481,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

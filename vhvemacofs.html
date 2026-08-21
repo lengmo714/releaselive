@@ -31,7 +31,7 @@
 <meta property="og:description" content="Design a synchronous VHDL vending-machine controller with an FSM for credit tracking, product selection, change, display output, and waveform verification.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2016-11-10T22:37:06.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.885Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.517Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="VHDL">
 <meta property="article:tag" content="FPGA">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/vhvemacofs.html#article","headline":"VHDL Vending Machine Controller: FSM, Credit, Change and Simulation","description":"Design a synchronous VHDL vending-machine controller with an FSM for credit tracking, product selection, change, display output, and waveform verification.","datePublished":"2016-11-10T22:37:06.000Z","dateModified":"2026-08-20T02:47:38.885Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/vhvemacofs.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Embedded Development"],"keywords":"VHDL, FPGA","wordCount":289}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/vhvemacofs.html#article","headline":"VHDL Vending Machine Controller: FSM, Credit, Change and Simulation","description":"Design a synchronous VHDL vending-machine controller with an FSM for credit tracking, product selection, change, display output, and waveform verification.","datePublished":"2016-11-10T22:37:06.000Z","dateModified":"2026-08-21T03:47:53.517Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/vhvemacofs.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Embedded Development"],"keywords":"VHDL, FPGA","wordCount":294}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>A vending-machine course project is a practical finite-state and datapath design. The controller accepts validated coin pulses, accumulates credit, checks a selected product price, emits a dispense pulse, returns change, and updates a display.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>A vending-machine course project is a practical finite-state and datapath design. The controller accepts validated coin pulses, accumulates credit, checks a selected product price, emits a dispense pulse, returns change, and updates a display.</p>
 <h2 id="Partition-the-design"><a href="#Partition-the-design" class="headerlink" title="Partition the design"></a>Partition the design</h2><ul>
 <li>An input conditioner synchronizes and debounces mechanical coin and button signals.</li>
 <li>A credit register adds accepted denominations and enforces a maximum.</li>
@@ -237,6 +242,7 @@
 <p>Production VHDL needs explicit types and ranges, and simultaneous events need a defined priority. For example, decide whether a coin arriving in the same cycle as selection contributes to that purchase.</p>
 <h2 id="Verification"><a href="#Verification" class="headerlink" title="Verification"></a>Verification</h2><p>The testbench should cover reset, every denomination, exact payment, excess payment, insufficient credit, cancellation, unavailable stock, repeated button pulses, simultaneous inputs, and maximum credit. Assertions should verify that dispense lasts exactly one cycle, credit never leaves its legal range, and value is conserved across credit, product price, and change.</p>
 <p>Inspect waveforms for the controller, BCD conversion, display output, and top-level integration. A clean simulation separates clocked state from combinational next-state logic and initializes every output on every combinational path to prevent unintended latches.</p>
+
 
     </div>
 
@@ -484,16 +490,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

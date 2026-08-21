@@ -31,7 +31,7 @@
 <meta property="og:description" content="Shuffle a Lua array uniformly with the Fisher-Yates algorithm, understand its linear complexity, and choose between an in-place function and a copied result.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-27T06:59:49.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.884Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.516Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/shluarfiya.html#article","headline":"Shuffle a Lua Array with Fisher-Yates: In-Place and Copy Variants","description":"Shuffle a Lua array uniformly with the Fisher-Yates algorithm, understand its linear complexity, and choose between an in-place function and a copied result.","datePublished":"2020-04-27T06:59:49.000Z","dateModified":"2026-08-20T02:47:38.884Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/shluarfiya.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":207}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/shluarfiya.html#article","headline":"Shuffle a Lua Array with Fisher-Yates: In-Place and Copy Variants","description":"Shuffle a Lua array uniformly with the Fisher-Yates algorithm, understand its linear complexity, and choose between an in-place function and a copied result.","datePublished":"2020-04-27T06:59:49.000Z","dateModified":"2026-08-21T03:47:53.516Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/shluarfiya.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":212}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <h2 id="Fisher-Yates-Shuffle-for-Lua-Arrays"><a href="#Fisher-Yates-Shuffle-for-Lua-Arrays" class="headerlink" title="Fisher-Yates Shuffle for Lua Arrays"></a>Fisher-Yates Shuffle for Lua Arrays</h2><p>The Fisher–Yates algorithm shuffles an array uniformly in linear time. Starting at the last element, swap it with a random element at or before its position:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<h2 id="Fisher-Yates-Shuffle-for-Lua-Arrays"><a href="#Fisher-Yates-Shuffle-for-Lua-Arrays" class="headerlink" title="Fisher-Yates Shuffle for Lua Arrays"></a>Fisher-Yates Shuffle for Lua Arrays</h2><p>The Fisher–Yates algorithm shuffles an array uniformly in linear time. Starting at the last element, swap it with a random element at or before its position:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">shuffle</span><span class="params">(items)</span></span></span><br><span class="line">    <span class="keyword">for</span> i = #items, <span class="number">2</span>, <span class="number">-1</span> <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> j = <span class="built_in">math</span>.<span class="built_in">random</span>(i)</span><br><span class="line">        items[i], items[j] = items[j], items[i]</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> items</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>This version modifies the input table. If the original order must be retained, copy the array first:</p>
@@ -230,6 +235,7 @@
 
 <p>Lua arrays are conventionally indexed from 1, so <code>math.random(i)</code> is exactly the range needed. Choosing from 0 can produce a missing element, while repeatedly removing random elements adds unnecessary work and destroys the source array.</p>
 <p>Seed policy depends on the Lua version and application. Recent Lua releases initialize randomness differently from older ones; on an older runtime, seed once during application startup rather than before every shuffle. For simulations and tests, an explicit fixed seed improves reproducibility. For security-sensitive selection, use a cryptographically secure random source instead of <code>math.random</code>.</p>
+
 
     </div>
 
@@ -479,16 +485,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

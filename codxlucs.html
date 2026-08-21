@@ -31,7 +31,7 @@
 <meta property="og:description" content="Load Cocos Studio CSB layouts in Cocos2d-x 3.17 Lua, find controls, register UI events, play timelines, and wrap screens in a reusable ViewBase class.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-12-13T15:37:19.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.872Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.500Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="Cocos2d-x">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxlucs.html#article","headline":"Cocos2d-x 3.17 Lua CSB Loading: Controls, Timelines and ViewBase","description":"Load Cocos Studio CSB layouts in Cocos2d-x 3.17 Lua, find controls, register UI events, play timelines, and wrap screens in a reusable ViewBase class.","datePublished":"2018-12-13T15:37:19.000Z","dateModified":"2026-08-20T02:47:38.872Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxlucs.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":196}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxlucs.html#article","headline":"Cocos2d-x 3.17 Lua CSB Loading: Controls, Timelines and ViewBase","description":"Load Cocos Studio CSB layouts in Cocos2d-x 3.17 Lua, find controls, register UI events, play timelines, and wrap screens in a reusable ViewBase class.","datePublished":"2018-12-13T15:37:19.000Z","dateModified":"2026-08-21T03:47:53.500Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxlucs.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":201}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>Cocos Studio exports a scene or UI layout as a CSB file. Cocos2d-x 3.17 Lua can load the node tree through <code>cc.CSLoader</code>, after which named controls can be found and bound to callbacks.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Cocos Studio exports a scene or UI layout as a CSB file. Cocos2d-x 3.17 Lua can load the node tree through <code>cc.CSLoader</code>, after which named controls can be found and bound to callbacks.</p>
 <h2 id="Load-a-layout-directly"><a href="#Load-a-layout-directly" class="headerlink" title="Load a layout directly"></a>Load a layout directly</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> root = cc.CSLoader:createNode(<span class="string">&quot;ui/MenuScene.csb&quot;</span>)</span><br><span class="line"><span class="built_in">assert</span>(root, <span class="string">&quot;failed to load MenuScene.csb&quot;</span>)</span><br><span class="line"><span class="built_in">self</span>:addChild(root)</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> startButton = root:getChildByName(<span class="string">&quot;Button_Start&quot;</span>)</span><br><span class="line"><span class="built_in">assert</span>(startButton, <span class="string">&quot;Button_Start is missing&quot;</span>)</span><br><span class="line"></span><br><span class="line">startButton:addClickEventListener(<span class="function"><span class="keyword">function</span><span class="params">(sender)</span></span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;start clicked&quot;</span>, sender:getName())</span><br><span class="line"><span class="keyword">end</span>)</span><br></pre></td></tr></table></figure>
 
 <p>For nested controls, either follow the hierarchy with repeated <code>getChildByName</code> calls or use a deliberate recursive lookup helper. Duplicate names make recursive lookup ambiguous, so use unique names for controls that code accesses.</p>
@@ -235,6 +240,7 @@
 <p>The animation name must match the Cocos Studio export.</p>
 <h2 id="A-reusable-view-base"><a href="#A-reusable-view-base" class="headerlink" title="A reusable view base"></a>A reusable view base</h2><p>A project-level <code>ViewBase</code> can define <code>RESOURCE_FILENAME</code>, create the CSB root, expose a binding phase, and centralize lifecycle cleanup. Derived views should declare their resource and bind only the controls they own. Fail early when a required node is missing instead of storing nil and crashing much later.</p>
 <p>Keep CSB names and code changes in the same review, avoid business logic inside the loader, and remove event listeners or scheduled callbacks when the view exits.</p>
+
 
     </div>
 
@@ -485,16 +491,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

@@ -31,7 +31,7 @@
 <meta property="og:description" content="Learn Lua string immutability, literals, escapes, concatenation, length, long strings, conversion, standard library functions, arbitrary bytes, and UTF-8 handling.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-07T16:42:19.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.882Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.514Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lustlicoby.html#article","headline":"Lua Strings: Literals, Concatenation, Bytes and UTF-8","description":"Learn Lua string immutability, literals, escapes, concatenation, length, long strings, conversion, standard library functions, arbitrary bytes, and UTF-8 handling.","datePublished":"2020-04-07T16:42:19.000Z","dateModified":"2026-08-20T02:47:38.882Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lustlicoby.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":201}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lustlicoby.html#article","headline":"Lua Strings: Literals, Concatenation, Bytes and UTF-8","description":"Learn Lua string immutability, literals, escapes, concatenation, length, long strings, conversion, standard library functions, arbitrary bytes, and UTF-8 handling.","datePublished":"2020-04-07T16:42:19.000Z","dateModified":"2026-08-21T03:47:53.514Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lustlicoby.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":206}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>Lua strings are immutable byte sequences. They may contain ordinary text, binary data, and zero bytes. An operation never modifies an existing string; it returns a new one.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Lua strings are immutable byte sequences. They may contain ordinary text, binary data, and zero bytes. An operation never modifies an existing string; it returns a new one.</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> original = <span class="string">&quot;one string&quot;</span></span><br><span class="line"><span class="keyword">local</span> changed = original:<span class="built_in">gsub</span>(<span class="string">&quot;one&quot;</span>, <span class="string">&quot;another&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(original) <span class="comment">-- one string</span></span><br><span class="line"><span class="built_in">print</span>(changed)  <span class="comment">-- another string</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="Literals-and-concatenation"><a href="#Literals-and-concatenation" class="headerlink" title="Literals and concatenation"></a>Literals and concatenation</h2><p>Single- and double-quoted literals support escapes such as <code>\n</code>, <code>\t</code>, <code>\\</code>, and numeric byte escapes. Long brackets are convenient for multiline text:</p>
@@ -236,6 +241,7 @@
 
 <p>Other core functions include <code>string.byte</code>, <code>string.char</code>, <code>string.rep</code>, <code>string.reverse</code>, <code>string.match</code>, <code>string.gmatch</code>, and <code>string.gsub</code>.</p>
 <p>Lua 5.3 and later include <code>utf8</code> helpers such as <code>utf8.len</code>, <code>utf8.codes</code>, and <code>utf8.char</code>. They operate on UTF-8 code points, which are still not always the same as user-perceived characters. Use a Unicode library for normalization, locale-aware case conversion, or grapheme-cluster editing.</p>
+
 
     </div>
 
@@ -485,16 +491,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

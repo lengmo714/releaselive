@@ -31,7 +31,7 @@
 <meta property="og:description" content="Understand Lua garbage collection through reachability, weak-key and weak-value tables, caches, finalizers, external resources, and practical collectgarbage controls.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-15T15:17:59.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.882Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.512Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lugacoweta.html#article","headline":"Lua Garbage Collection: Weak Tables, Caches, Finalizers and Control","description":"Understand Lua garbage collection through reachability, weak-key and weak-value tables, caches, finalizers, external resources, and practical collectgarbage controls.","datePublished":"2020-05-15T15:17:59.000Z","dateModified":"2026-08-20T02:47:38.882Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lugacoweta.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":325}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lugacoweta.html#article","headline":"Lua Garbage Collection: Weak Tables, Caches, Finalizers and Control","description":"Understand Lua garbage collection through reachability, weak-key and weak-value tables, caches, finalizers, external resources, and practical collectgarbage controls.","datePublished":"2020-05-15T15:17:59.000Z","dateModified":"2026-08-21T03:47:53.512Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lugacoweta.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":330}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>Lua automatically reclaims unreachable objects. Garbage collection prevents many manual-memory errors, but it cannot decide when logically obsolete references should be cleared or when an external resource must be released.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Lua automatically reclaims unreachable objects. Garbage collection prevents many manual-memory errors, but it cannot decide when logically obsolete references should be cleared or when an external resource must be released.</p>
 <h2 id="Reachability-and-weak-tables"><a href="#Reachability-and-weak-tables" class="headerlink" title="Reachability and weak tables"></a>Reachability and weak tables</h2><p>An object cannot be collected while a strong reference to it remains. Assign <code>nil</code> when a long-lived table no longer needs an entry. For registries and caches that should not keep objects alive, use a weak table:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> cache = <span class="built_in">setmetatable</span>(&#123;&#125;, &#123; <span class="built_in">__mode</span> = <span class="string">&quot;v&quot;</span> &#125;) <span class="comment">-- weak values</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">intern</span><span class="params">(key, create)</span></span></span><br><span class="line">    <span class="keyword">local</span> value = cache[key]</span><br><span class="line">    <span class="keyword">if</span> value == <span class="literal">nil</span> <span class="keyword">then</span></span><br><span class="line">        value = <span class="built_in">create</span>(key)</span><br><span class="line">        cache[key] = value</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
@@ -237,6 +242,7 @@
 
 <p>Other options can stop and restart collection or tune its behavior, with details varying between Lua releases. Frequent full collections usually hurt latency and throughput. First remove accidental strong references and excessive allocation; tune the collector only after measuring a representative workload.</p>
 <p>Garbage collection manages Lua memory, not application intent. Clear obsolete references, use weak tables for non-owning relationships, and close external resources deterministically.</p>
+
 
     </div>
 
@@ -486,16 +492,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

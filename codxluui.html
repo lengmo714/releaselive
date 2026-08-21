@@ -31,7 +31,7 @@
 <meta property="og:description" content="Compare and use Cocos2d-x Lua ListView, ScrollView, TableView, and PageView based on layout, data size, cell reuse, scrolling direction, and page interaction.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-12-13T05:47:13.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.873Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.501Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="Cocos2d-x">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxluui.html#article","headline":"Cocos2d-x Lua UI Containers: ListView, ScrollView, TableView and PageView","description":"Compare and use Cocos2d-x Lua ListView, ScrollView, TableView, and PageView based on layout, data size, cell reuse, scrolling direction, and page interaction.","datePublished":"2018-12-13T05:47:13.000Z","dateModified":"2026-08-20T02:47:38.873Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxluui.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":221}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxluui.html#article","headline":"Cocos2d-x Lua UI Containers: ListView, ScrollView, TableView and PageView","description":"Compare and use Cocos2d-x Lua ListView, ScrollView, TableView, and PageView based on layout, data size, cell reuse, scrolling direction, and page interaction.","datePublished":"2018-12-13T05:47:13.000Z","dateModified":"2026-08-21T03:47:53.501Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxluui.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":226}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>Cocos2d-x offers several containers with overlapping names but different behavior. Choose one based on layout, data size, and interaction rather than using them interchangeably.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Cocos2d-x offers several containers with overlapping names but different behavior. Choose one based on layout, data size, and interaction rather than using them interchangeably.</p>
 <h2 id="ccui-ListView"><a href="#ccui-ListView" class="headerlink" title="ccui.ListView"></a><code>ccui.ListView</code></h2><p><code>ListView</code> lays out item widgets vertically or horizontally and provides selection events:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> list = ccui.ListView:<span class="built_in">create</span>()</span><br><span class="line">list:setContentSize(cc.size(<span class="number">400</span>, <span class="number">500</span>))</span><br><span class="line">list:setDirection(ccui.ScrollViewDir.vertical)</span><br><span class="line">list:setItemsMargin(<span class="number">8</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index = <span class="number">1</span>, <span class="number">20</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">local</span> button = ccui.Button:<span class="built_in">create</span>(<span class="string">&quot;row.png&quot;</span>)</span><br><span class="line">    button:setTitleText(<span class="string">&quot;Item &quot;</span> .. index)</span><br><span class="line">    list:pushBackCustomItem(button)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
@@ -235,6 +240,7 @@
 
 <p>Listen for page-turn events to update an indicator or lazy-load content. Avoid placing competing horizontal scroll gestures inside a page unless gesture ownership is explicit.</p>
 <p>Use <code>ListView</code> for convenient small lists, <code>TableView</code> for reusable large lists, <code>ScrollView</code> for free-form content, and <code>PageView</code> for discrete swipeable screens.</p>
+
 
     </div>
 
@@ -485,16 +491,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

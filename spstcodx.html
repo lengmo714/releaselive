@@ -31,7 +31,7 @@
 <meta property="og:description" content="Implement a Cocos2d-x Lua string-split helper with string.find and string.sub that treats single or multi-character delimiters literally and returns an array.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-03-21T02:51:47.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.873Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.501Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="Cocos2d-x">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/spstcodx.html#article","headline":"Split Strings in Cocos2d-x Lua with Single or Multi-Character Delimiters","description":"Implement a Cocos2d-x Lua string-split helper with string.find and string.sub that treats single or multi-character delimiters literally and returns an array.","datePublished":"2023-03-21T02:51:47.000Z","dateModified":"2026-08-20T02:47:38.873Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/spstcodx.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":106}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/spstcodx.html#article","headline":"Split Strings in Cocos2d-x Lua with Single or Multi-Character Delimiters","description":"Implement a Cocos2d-x Lua string-split helper with string.find and string.sub that treats single or multi-character delimiters literally and returns an array.","datePublished":"2023-03-21T02:51:47.000Z","dateModified":"2026-08-21T03:47:53.501Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/spstcodx.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":111}</script>
 
 
 
@@ -223,13 +223,19 @@
     <div class="post-body">
 
       
-        <p>This helper splits a string using a literal delimiter and returns the pieces in an array:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>This helper splits a string using a literal delimiter and returns the pieces in an array:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">string.split</span><span class="params">(input, delimiter)</span></span></span><br><span class="line">    <span class="built_in">input</span> = <span class="built_in">tostring</span>(<span class="built_in">input</span>)</span><br><span class="line">    delimiter = <span class="built_in">tostring</span>(delimiter)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> delimiter == <span class="string">&#x27;&#x27;</span> <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">local</span> position = <span class="number">1</span></span><br><span class="line">    <span class="keyword">local</span> result = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> startPos, endPos = <span class="built_in">string</span>.<span class="built_in">find</span>(</span><br><span class="line">            <span class="built_in">input</span>,</span><br><span class="line">            delimiter,</span><br><span class="line">            position,</span><br><span class="line">            <span class="literal">true</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> startPos <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">table</span>.<span class="built_in">insert</span>(result, <span class="built_in">string</span>.<span class="built_in">sub</span>(<span class="built_in">input</span>, position))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">table</span>.<span class="built_in">insert</span>(result, <span class="built_in">string</span>.<span class="built_in">sub</span>(<span class="built_in">input</span>, position, startPos - <span class="number">1</span>))</span><br><span class="line">        position = endPos + <span class="number">1</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>Examples:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span>.split(<span class="string">&quot;Hello,World&quot;</span>, <span class="string">&quot;,&quot;</span>)</span><br><span class="line"><span class="comment">-- &#123;&quot;Hello&quot;, &quot;World&quot;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span>.split(<span class="string">&quot;Hello-+-World-+-Quick&quot;</span>, <span class="string">&quot;-+-&quot;</span>)</span><br><span class="line"><span class="comment">-- &#123;&quot;Hello&quot;, &quot;World&quot;, &quot;Quick&quot;&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>The fourth argument to <code>string.find</code> is <code>true</code>, so the delimiter is treated as plain text rather than a Lua pattern.</p>
+
 
     </div>
 
@@ -479,16 +485,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

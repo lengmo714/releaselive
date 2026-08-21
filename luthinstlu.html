@@ -31,7 +31,7 @@
 <meta property="og:description" content="Learn cooperative Lua threads within one state, lua_newthread, lua_resume and lua_yield lifecycle rules, plus independent states for isolation and ownership.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-23T12:36:53.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.886Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.519Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="C API">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/luthinstlu.html#article","headline":"Lua Threads and Independent States: lua_newthread, resume and yield","description":"Learn cooperative Lua threads within one state, lua_newthread, lua_resume and lua_yield lifecycle rules, plus independent states for isolation and ownership.","datePublished":"2020-07-23T12:36:53.000Z","dateModified":"2026-08-20T02:47:38.886Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/luthinstlu.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages","Lua"],"keywords":"Lua, C API","wordCount":410}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/luthinstlu.html#article","headline":"Lua Threads and Independent States: lua_newthread, resume and yield","description":"Learn cooperative Lua threads within one state, lua_newthread, lua_resume and lua_yield lifecycle rules, plus independent states for isolation and ownership.","datePublished":"2020-07-23T12:36:53.000Z","dateModified":"2026-08-21T03:47:53.519Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/luthinstlu.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages","Lua"],"keywords":"Lua, C API","wordCount":415}</script>
 
 
 
@@ -227,7 +227,12 @@
     <div class="post-body">
 
       
-        <p>Lua does not make a single state safely available to arbitrary preemptive threads. Instead, it offers two useful building blocks:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Lua does not make a single state safely available to arbitrary preemptive threads. Instead, it offers two useful building blocks:</p>
 <ul>
 <li>cooperative threads, usually exposed as coroutines, with separate stacks inside one Lua state;</li>
 <li>independent Lua states, which do not share ordinary Lua memory and can be owned by separate native threads with explicit communication.</li>
@@ -247,6 +252,7 @@
 <h2 id="Independent-states"><a href="#Independent-states" class="headerlink" title="Independent states"></a>Independent states</h2><p>Create isolated states with <code>luaL_newstate()</code> and close each with <code>lua_close()</code>. Independent states have separate globals, registries, heaps, and garbage collectors. They cannot exchange values with <code>lua_xmove</code>; communication must serialize or copy data through an application-defined channel.</p>
 <p>One operating-system thread may own each isolated state, but do not access the same state concurrently unless the embedding application provides strict synchronization. Also avoid invoking Lua on a state from a foreign thread while it is already running.</p>
 <p>Cooperative threads are suited to pausing workflows without shared-memory races. Independent states are suited to isolation or parallel native ownership at the cost of explicit communication and duplicate runtime data.</p>
+
 
     </div>
 
@@ -497,16 +503,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

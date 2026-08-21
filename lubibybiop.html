@@ -31,7 +31,7 @@
 <meta property="og:description" content="Work with binary data in Lua using bitwise operators, arbitrary byte strings, string.pack and string.unpack formats, integer widths, endianness, and binary files.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-18T03:51:18.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.881Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.511Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lubibybiop.html#article","headline":"Lua Bits and Bytes: Bitwise Operators, string.pack and unpack","description":"Work with binary data in Lua using bitwise operators, arbitrary byte strings, string.pack and string.unpack formats, integer widths, endianness, and binary files.","datePublished":"2020-04-18T03:51:18.000Z","dateModified":"2026-08-20T02:47:38.881Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lubibybiop.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":229}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lubibybiop.html#article","headline":"Lua Bits and Bytes: Bitwise Operators, string.pack and unpack","description":"Work with binary data in Lua using bitwise operators, arbitrary byte strings, string.pack and string.unpack formats, integer widths, endianness, and binary files.","datePublished":"2020-04-18T03:51:18.000Z","dateModified":"2026-08-21T03:47:53.511Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lubibybiop.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":234}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>Lua strings can contain arbitrary bytes, including zero. That makes them suitable for binary payloads, while Lua 5.3 and later provide native bitwise operators and packing functions.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Lua strings can contain arbitrary bytes, including zero. That makes them suitable for binary payloads, while Lua 5.3 and later provide native bitwise operators and packing functions.</p>
 <h2 id="Bitwise-operations"><a href="#Bitwise-operations" class="headerlink" title="Bitwise operations"></a>Bitwise operations</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> flags = <span class="number">0</span></span><br><span class="line">flags = flags | <span class="number">0x04</span>       <span class="comment">-- set a bit</span></span><br><span class="line"><span class="keyword">local</span> enabled = flags &amp; <span class="number">0x04</span> ~= <span class="number">0</span></span><br><span class="line">flags = flags &amp; ~<span class="number">0x04</span>      <span class="comment">-- clear a bit</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> high = (<span class="number">0xABCD</span> &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xFF</span></span><br><span class="line"><span class="keyword">local</span> low = <span class="number">0xABCD</span> &amp; <span class="number">0xFF</span></span><br></pre></td></tr></table></figure>
 
 <p>Operators include AND (<code>&amp;</code>), OR (<code>|</code>), exclusive OR (<code>~</code>), NOT (<code>~</code>), shifts (<code>&lt;&lt;</code>, <code>&gt;&gt;</code>), and integer floor division. Exact integer width depends on how Lua was compiled. Lua 5.2 commonly uses the <code>bit32</code> library instead.</p>
@@ -233,6 +238,7 @@
 
 <p>The <code>&gt;</code> prefix selects big-endian order; <code>&lt;</code> selects little-endian. <code>I2</code> and <code>I4</code> are unsigned integers of two and four bytes, while <code>c4</code> is a fixed four-byte string. Always specify byte order and widths in a protocol instead of relying on native layout.</p>
 <p>Validate lengths before unpacking data received from outside the process, place upper bounds on allocations, and treat decoding errors as normal input failures. Binary formats are compact, but they require an explicit schema and versioning strategy.</p>
+
 
     </div>
 
@@ -482,16 +488,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

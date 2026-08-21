@@ -31,7 +31,7 @@
 <meta property="og:description" content="Log in with python itchat, find a consenting WeChat contact by nickname, and send one user-confirmed reminder while avoiding spam and account risk.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-03-29T07:52:01.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.883Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.515Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="WeChat">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/seontiwere.html#article","headline":"Send a One-Time WeChat Reminder with python and itchat","description":"Log in with python itchat, find a consenting WeChat contact by nickname, and send one user-confirmed reminder while avoiding spam and account risk.","datePublished":"2022-03-29T07:52:01.000Z","dateModified":"2026-08-20T02:47:38.883Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/seontiwere.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["python"],"keywords":"python, WeChat","wordCount":161}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/seontiwere.html#article","headline":"Send a One-Time WeChat Reminder with python and itchat","description":"Log in with python itchat, find a consenting WeChat contact by nickname, and send one user-confirmed reminder while avoiding spam and account risk.","datePublished":"2022-03-29T07:52:01.000Z","dateModified":"2026-08-21T03:47:53.515Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/seontiwere.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["python"],"keywords":"python, WeChat","wordCount":166}</script>
 
 
 
@@ -223,11 +223,17 @@
     <div class="post-body">
 
       
-        <p>The original script sent a message forever every half-second. That behavior is spam, can harass the recipient, and may cause account restrictions. This safer adaptation sends exactly one message after explicit confirmation and is suitable only for a contact who has agreed to receive the automated reminder.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>The original script sent a message forever every half-second. That behavior is spam, can harass the recipient, and may cause account restrictions. This safer adaptation sends exactly one message after explicit confirmation and is suitable only for a contact who has agreed to receive the automated reminder.</p>
 <p><code>itchat</code> depends on WeChat web-login behavior that may no longer be available for many accounts, and unofficial automation may conflict with platform terms. Prefer an official API for production use.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Scan the displayed QR code to sign in&quot;</span>)</span><br><span class="line">itchat.auto_login(hotReload=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">remark_name = <span class="built_in">input</span>(<span class="string">&quot;Contact remark name: &quot;</span>).strip()</span><br><span class="line">message = <span class="built_in">input</span>(<span class="string">&quot;One-time reminder text: &quot;</span>).strip()</span><br><span class="line"></span><br><span class="line">matches = itchat.search_friends(remarkName=remark_name)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> matches:</span><br><span class="line">    <span class="keyword">raise</span> SystemExit(<span class="string">&quot;No matching contact was found&quot;</span>)</span><br><span class="line"></span><br><span class="line">confirmation = <span class="built_in">input</span>(</span><br><span class="line">    <span class="string">f&quot;Send this message once to <span class="subst">&#123;remark_name&#125;</span>? Type SEND to confirm: &quot;</span></span><br><span class="line">).strip()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> confirmation == <span class="string">&quot;SEND&quot;</span>:</span><br><span class="line">    itchat.send_msg(</span><br><span class="line">        msg=message,</span><br><span class="line">        toUserName=matches[<span class="number">0</span>][<span class="string">&quot;UserName&quot;</span>]</span><br><span class="line">    )</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Message sent once&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Cancelled&quot;</span>)</span><br></pre></td></tr></table></figure>
 
 <p>Do not turn this into an infinite loop, use it for bulk messaging, evade rate limits, or message people without consent. Never automate sensitive content or credentials through an unofficial client.</p>
+
 
     </div>
 
@@ -477,16 +483,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

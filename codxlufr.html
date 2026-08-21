@@ -31,7 +31,7 @@
 <meta property="og:description" content="Create frame animation in Cocos2d-x 3.17 Lua from plist sprite frames and Animation actions, or load and play a Cocos Studio timeline on a UI node.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-03-08T08:46:08.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.873Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.501Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="Cocos2d-x">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxlufr.html#article","headline":"Cocos2d-x Lua Frame Animation: Sprite Sheets and Studio Timelines","description":"Create frame animation in Cocos2d-x 3.17 Lua from plist sprite frames and Animation actions, or load and play a Cocos Studio timeline on a UI node.","datePublished":"2019-03-08T08:46:08.000Z","dateModified":"2026-08-20T02:47:38.873Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxlufr.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":198}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxlufr.html#article","headline":"Cocos2d-x Lua Frame Animation: Sprite Sheets and Studio Timelines","description":"Create frame animation in Cocos2d-x 3.17 Lua from plist sprite frames and Animation actions, or load and play a Cocos Studio timeline on a UI node.","datePublished":"2019-03-08T08:46:08.000Z","dateModified":"2026-08-21T03:47:53.501Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxlufr.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":203}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>Cocos2d-x 3.17 can play frame animation assembled in code or authored in a Cocos Studio timeline. Code is convenient for a simple sprite-sheet sequence; Studio is useful when animation involves several UI nodes and properties.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Cocos2d-x 3.17 can play frame animation assembled in code or authored in a Cocos Studio timeline. Code is convenient for a simple sprite-sheet sequence; Studio is useful when animation involves several UI nodes and properties.</p>
 <h2 id="Build-animation-from-a-sprite-sheet"><a href="#Build-animation-from-a-sprite-sheet" class="headerlink" title="Build animation from a sprite sheet"></a>Build animation from a sprite sheet</h2><p>Load the plist, collect frames in order, and create an action:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> cache = cc.SpriteFrameCache:getInstance()</span><br><span class="line">cache:addSpriteFrames(<span class="string">&quot;animation/hero.plist&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> frames = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> index = <span class="number">1</span>, <span class="number">12</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">local</span> name = <span class="built_in">string</span>.<span class="built_in">format</span>(<span class="string">&quot;hero_%02d.png&quot;</span>, index)</span><br><span class="line">    <span class="keyword">local</span> frame = cache:getSpriteFrameByName(name)</span><br><span class="line">    <span class="built_in">assert</span>(frame, <span class="string">&quot;missing sprite frame: &quot;</span> .. name)</span><br><span class="line">    frames[#frames + <span class="number">1</span>] = frame</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> sprite = cc.Sprite:createWithSpriteFrame(frames[<span class="number">1</span>])</span><br><span class="line">sprite:setPosition(display.cx, display.cy)</span><br><span class="line"><span class="built_in">self</span>:addChild(sprite)</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> animation = cc.Animation:createWithSpriteFrames(frames, <span class="number">0.08</span>)</span><br><span class="line">sprite:runAction(cc.RepeatForever:<span class="built_in">create</span>(cc.Animate:<span class="built_in">create</span>(animation)))</span><br></pre></td></tr></table></figure>
 
@@ -232,6 +237,7 @@
 
 <p>The named animation must exist in the exported CSB. Retain a reference to the node or timeline when later code needs to stop, switch, or inspect it.</p>
 <p>Use atlases to reduce texture changes, but watch atlas size and memory. Choose an update interval that matches the artwork; duplicating frames to force a high timeline frame rate wastes data without creating smoother source animation.</p>
+
 
     </div>
 
@@ -482,16 +488,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

@@ -31,7 +31,7 @@
 <meta property="og:description" content="Receive real-time WebSocket messages in Cocos Creator, enqueue them, and animate each Label across the screen sequentially with Tween without overlap.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-21T17:01:05.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.875Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.505Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Cocos Creator">
 <meta property="article:tag" content="TypeScript">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrbrquwe.html#article","headline":"Cocos Creator Broadcast Queue with WebSocket and Tween Animation","description":"Receive real-time WebSocket messages in Cocos Creator, enqueue them, and animate each Label across the screen sequentially with Tween without overlap.","datePublished":"2023-04-21T17:01:05.000Z","dateModified":"2026-08-20T02:47:38.875Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrbrquwe.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, TypeScript","wordCount":139}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrbrquwe.html#article","headline":"Cocos Creator Broadcast Queue with WebSocket and Tween Animation","description":"Receive real-time WebSocket messages in Cocos Creator, enqueue them, and animate each Label across the screen sequentially with Tween without overlap.","datePublished":"2023-04-21T17:01:05.000Z","dateModified":"2026-08-21T03:47:53.505Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrbrquwe.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, TypeScript","wordCount":144}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><ol>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><ol>
 <li>Maintain a persistent client-server connection for broadcast messages.</li>
 <li>Append received messages to a queue.</li>
 <li>Periodically remove one message from the queue.</li>
@@ -232,6 +237,7 @@
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">messageQueue</span>: <span class="built_in">string</span>[] = [];</span><br><span class="line"></span><br><span class="line">ws.<span class="title function_">addEventListener</span>(<span class="string">&#x27;message&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> data = <span class="title class_">String</span>(event.<span class="property">data</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Received data:&#x27;</span>, data);</span><br><span class="line">    messageQueue.<span class="title function_">push</span>(data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">this</span>.<span class="title function_">schedule</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> data = messageQueue.<span class="title function_">shift</span>();</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> data === <span class="string">&#x27;undefined&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_view</span>.<span class="property">_TextC_broadcast</span>.<span class="property">string</span> = data;</span><br><span class="line">    <span class="keyword">const</span> broadcastNode = <span class="title function_">instantiate</span>(<span class="variable language_">this</span>.<span class="property">_view</span>.<span class="property">_TextC_broadcast</span>.<span class="property">node</span>);</span><br><span class="line">    broadcastNode.<span class="property">parent</span> = <span class="variable language_">this</span>.<span class="property">_view</span>.<span class="property">_TextC_broadcast</span>.<span class="property">node</span>.<span class="property">parent</span>;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">tween</span>(broadcastNode)</span><br><span class="line">        .<span class="title function_">to</span>(broadcastTime * <span class="number">1.5</span>, &#123; <span class="attr">position</span>: <span class="keyword">new</span> <span class="title class_">Vec3</span>(x, <span class="number">0</span>, <span class="number">0</span>) &#125;)</span><br><span class="line">        .<span class="title function_">call</span>(<span class="function">() =&gt;</span> broadcastNode.<span class="title function_">destroy</span>())</span><br><span class="line">        .<span class="title function_">start</span>();</span><br><span class="line">&#125;, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 
 <p>Using the component scheduler preserves the component’s <code>this</code> context and makes the callback easier to stop when the component is disabled or destroyed. For high message volume, define queue limits and decide whether to drop, combine, or prioritize old messages.</p>
+
 
     </div>
 
@@ -482,16 +488,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

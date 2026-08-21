@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2022/11/01/x7Lk0e.png">
 <meta property="og:image" content="https://s1.ax1x.com/2022/11/01/x7LC6K.png">
 <meta property="article:published_time" content="2022-11-01T14:30:08.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.885Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.517Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="Cocos2d-x">
@@ -46,7 +46,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/dequcodx.html#article","headline":"Debug quick-Cocos2d-x Lua in VS Code with launch.json and LuaDebug","description":"Configure a legacy Lua debugger, quick-Cocos2d-x player executable, launch.json, and LuaDebug bootstrap in main.lua for VS Code debugging on Windows.","datePublished":"2022-11-01T14:30:08.000Z","dateModified":"2026-08-20T02:47:38.885Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/dequcodx.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x, VS Code","wordCount":158,"image":["https://s1.ax1x.com/2022/11/01/x7LPOO.png"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/dequcodx.html#article","headline":"Debug quick-Cocos2d-x Lua in VS Code with launch.json and LuaDebug","description":"Configure a legacy Lua debugger, quick-Cocos2d-x player executable, launch.json, and LuaDebug bootstrap in main.lua for VS Code debugging on Windows.","datePublished":"2022-11-01T14:30:08.000Z","dateModified":"2026-08-21T03:47:53.517Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/dequcodx.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x, VS Code","wordCount":163,"image":["https://s1.ax1x.com/2022/11/01/x7LPOO.png"]}</script>
 
 
 
@@ -228,7 +228,12 @@
     <div class="post-body">
 
       
-        <p>This is the configuration that allowed an older quick-Cocos2d-x project to run and debug from VS Code on Windows.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>This is the configuration that allowed an older quick-Cocos2d-x project to run and debug from VS Code on Windows.</p>
 <h2 id="1-Install-the-Lua-debugger"><a href="#1-Install-the-Lua-debugger" class="headerlink" title="1. Install the Lua debugger"></a>1. Install the Lua debugger</h2><p>The original setup used the <code>luaide-lite</code> extension. Other Lua debuggers use different launch fields, so follow the selected extension’s own documentation.</p>
 <img src="https://s1.ax1x.com/2022/11/01/x7LPOO.png" alt="luaide-lite VS Code extension" decoding="async" loading="eager" fetchpriority="high">
 
@@ -245,6 +250,7 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> breakSocketHandle, debugXpCall = <span class="built_in">require</span>(<span class="string">&quot;LuaDebug&quot;</span>)(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">7003</span>)</span><br><span class="line">cc.Director:getInstance():getScheduler():scheduleScriptFunc(</span><br><span class="line">    breakSocketHandle,</span><br><span class="line">    <span class="number">0.3</span>,</span><br><span class="line">    <span class="literal">false</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
 <p>Make sure the port matches the VS Code configuration and remove or disable the remote-debug bootstrap from production builds.</p>
+
 
     </div>
 
@@ -496,16 +502,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

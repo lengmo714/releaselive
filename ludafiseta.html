@@ -31,7 +31,7 @@
 <meta property="og:description" content="Read Lua data files safely and serialize primitive values, tables, shared references, and cycles while validating input and avoiding unsafe execution of untrusted data.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-18T15:56:16.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.881Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.511Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ludafiseta.html#article","headline":"Lua Data Files and Serialization: Tables, Cycles and Safe Loading","description":"Read Lua data files safely and serialize primitive values, tables, shared references, and cycles while validating input and avoiding unsafe execution of untrusted data.","datePublished":"2020-04-18T15:56:16.000Z","dateModified":"2026-08-20T02:47:38.881Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ludafiseta.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":330}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ludafiseta.html#article","headline":"Lua Data Files and Serialization: Tables, Cycles and Safe Loading","description":"Read Lua data files safely and serialize primitive values, tables, shared references, and cycles while validating input and avoiding unsafe execution of untrusted data.","datePublished":"2020-04-18T15:56:16.000Z","dateModified":"2026-08-21T03:47:53.511Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ludafiseta.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":335}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>Writing a data file is easier than reading one because the writer controls its format. A robust reader must reject malformed, oversized, or unexpected input without leaving partially applied state.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Writing a data file is easier than reading one because the writer controls its format. A robust reader must reject malformed, oversized, or unexpected input without leaving partially applied state.</p>
 <h2 id="Lua-as-a-data-format"><a href="#Lua-as-a-data-format" class="headerlink" title="Lua as a data format"></a>Lua as a data format</h2><p>A trusted configuration file can return a table:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- settings.lua</span></span><br><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">    width = <span class="number">1280</span>,</span><br><span class="line">    height = <span class="number">720</span>,</span><br><span class="line">    fullscreen = <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -238,6 +243,7 @@
 <p>This handles tree-shaped tables, but iteration order is not deterministic and metatables are intentionally omitted.</p>
 <h2 id="Shared-references-and-cycles"><a href="#Shared-references-and-cycles" class="headerlink" title="Shared references and cycles"></a>Shared references and cycles</h2><p>To preserve a general table graph, assign every table an ID, emit constructors first, and then emit assignments between IDs. This two-pass representation can rebuild shared references and cycles. It also needs explicit policies for table keys, metatables, functions, userdata, maximum depth, and output size.</p>
 <p>Serialization is a protocol, not just a recursive function. Version the format, validate the decoded structure, write files atomically when possible, and never assume syntactically valid input is semantically safe.</p>
+
 
     </div>
 
@@ -487,16 +493,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

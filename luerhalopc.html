@@ -31,7 +31,7 @@
 <meta property="og:description" content="Learn Lua code loading and error handling with loadfile, load, pcall, xpcall, error, assert, tracebacks, and protected function calls.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-20T09:26:38.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.882Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.512Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/luerhalopc.html#article","headline":"Lua Error Handling with loadfile, pcall, xpcall, error and assert","description":"Learn Lua code loading and error handling with loadfile, load, pcall, xpcall, error, assert, tracebacks, and protected function calls.","datePublished":"2020-04-20T09:26:38.000Z","dateModified":"2026-08-20T02:47:38.882Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/luerhalopc.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":269}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/luerhalopc.html#article","headline":"Lua Error Handling with loadfile, pcall, xpcall, error and assert","description":"Learn Lua code loading and error handling with loadfile, load, pcall, xpcall, error, assert, tracebacks, and protected function calls.","datePublished":"2020-04-20T09:26:38.000Z","dateModified":"2026-08-21T03:47:53.512Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/luerhalopc.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":274}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>Lua compiles source into an internal function before executing it. Dynamic loading is convenient for configuration, plugins, and generated code, but compilation and execution are separate failure points.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Lua compiles source into an internal function before executing it. Dynamic loading is convenient for configuration, plugins, and generated code, but compilation and execution are separate failure points.</p>
 <h2 id="loadfile-dofile-and-load"><a href="#loadfile-dofile-and-load" class="headerlink" title="loadfile, dofile, and load"></a><code>loadfile</code>, <code>dofile</code>, and <code>load</code></h2><p><code>loadfile</code> compiles a file and returns a function or an error message:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> chunk, err = <span class="built_in">loadfile</span>(<span class="string">&quot;settings.lua&quot;</span>, <span class="string">&quot;t&quot;</span>, &#123;&#125;)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> chunk <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">error</span>(<span class="string">&quot;cannot compile settings: &quot;</span> .. err)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> ok, result = <span class="built_in">pcall</span>(chunk)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> ok <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">error</span>(<span class="string">&quot;cannot run settings: &quot;</span> .. result)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
@@ -238,6 +243,7 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> ok, result = <span class="built_in">xpcall</span>(</span><br><span class="line">    <span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">return</span> divide(<span class="number">10</span>, <span class="number">0</span>) <span class="keyword">end</span>,</span><br><span class="line">    <span class="function"><span class="keyword">function</span><span class="params">(err)</span></span> <span class="keyword">return</span> <span class="built_in">debug</span>.<span class="built_in">traceback</span>(<span class="built_in">tostring</span>(err), <span class="number">2</span>) <span class="keyword">end</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
 <p>Do not catch every error merely to ignore it. Protect boundaries where the program can recover, attach useful context, preserve the original cause, and ensure external resources are closed even when execution fails.</p>
+
 
     </div>
 
@@ -487,16 +493,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

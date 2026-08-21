@@ -32,7 +32,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic.imgdb.cn/item/664349da0ea9cb1403cde7b8.png">
 <meta property="article:published_time" content="2017-05-06T22:29:45.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.884Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.516Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Hardware">
 <meta property="article:tag" content="STM32">
@@ -43,7 +43,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/stcltrhshs.html#article","headline":"STM32 Clock Tree: HSI, HSE, LSI, LSE, PLL and Bus Prescalers","description":"Understand STM32 HSI, HSE, LSI and LSE sources, PLL configuration, AHB and APB prescalers, timer and peripheral clocks, safe startup order, and verification.","datePublished":"2017-05-06T22:29:45.000Z","dateModified":"2026-08-20T02:47:38.884Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/stcltrhshs.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Embedded Development"],"keywords":"Hardware, STM32","wordCount":306,"image":["https://pic.imgdb.cn/item/664349da0ea9cb1403cde7b8.png"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/stcltrhshs.html#article","headline":"STM32 Clock Tree: HSI, HSE, LSI, LSE, PLL and Bus Prescalers","description":"Understand STM32 HSI, HSE, LSI and LSE sources, PLL configuration, AHB and APB prescalers, timer and peripheral clocks, safe startup order, and verification.","datePublished":"2017-05-06T22:29:45.000Z","dateModified":"2026-08-21T03:47:53.516Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/stcltrhshs.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Embedded Development"],"keywords":"Hardware, STM32","wordCount":311,"image":["https://pic.imgdb.cn/item/664349da0ea9cb1403cde7b8.png"]}</script>
 
 
 
@@ -225,7 +225,12 @@
     <div class="post-body">
 
       
-        <p><img src="https://pic.imgdb.cn/item/664349da0ea9cb1403cde7b8.png" alt="Example STM32 clock tree" decoding="async" loading="eager" fetchpriority="high"></p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p><img src="https://pic.imgdb.cn/item/664349da0ea9cb1403cde7b8.png" alt="Example STM32 clock tree" decoding="async" loading="eager" fetchpriority="high"></p>
 <p>An STM32 clock tree selects one or more oscillators, optionally multiplies or divides them through a PLL, and distributes clocks to the CPU, buses, timers, and peripherals. Exact frequencies and constraints are device-specific; use the reference manual and datasheet for the target part.</p>
 <h2 id="Clock-sources"><a href="#Clock-sources" class="headerlink" title="Clock sources"></a>Clock sources</h2><ul>
 <li><strong>HSI</strong> is the internal high-speed RC oscillator. It starts quickly and needs no external component, but is less accurate than a crystal.</li>
@@ -244,6 +249,7 @@
 <li>Update the software’s system-frequency value and configure peripheral clocks.</li>
 </ol>
 <p>Do not copy clock constants between STM32 families. Verify the result by routing a clock to an MCO pin when available, measuring timer behavior, and checking baud rates. Provide a fallback or controlled fault path if an external oscillator fails.</p>
+
 
     </div>
 
@@ -494,16 +500,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

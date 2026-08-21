@@ -31,7 +31,7 @@
 <meta property="og:description" content="A practical Cocos2d-x 3.17 Lua guide to screen adaptation, sprites, buttons, touch events, local storage, fonts, actions, scheduling, and geometry.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-12-05T16:47:36.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.873Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.501Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="Cocos2d-x">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxluga.html#article","headline":"Cocos2d-x 3.17 Lua Game Development: Screens, Sprites, UI and Touch","description":"A practical Cocos2d-x 3.17 Lua guide to screen adaptation, sprites, buttons, touch events, local storage, fonts, actions, scheduling, and geometry.","datePublished":"2018-12-05T16:47:36.000Z","dateModified":"2026-08-20T02:47:38.873Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxluga.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":234}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxluga.html#article","headline":"Cocos2d-x 3.17 Lua Game Development: Screens, Sprites, UI and Touch","description":"A practical Cocos2d-x 3.17 Lua guide to screen adaptation, sprites, buttons, touch events, local storage, fonts, actions, scheduling, and geometry.","datePublished":"2018-12-05T16:47:36.000Z","dateModified":"2026-08-21T03:47:53.501Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxluga.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":239}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>This guide targets Cocos2d-x 3.17 with Lua. Project-generation commands and SDK paths vary by operating system, but the engine concepts below are stable within the 3.x bindings.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>This guide targets Cocos2d-x 3.17 with Lua. Project-generation commands and SDK paths vary by operating system, but the engine concepts below are stable within the 3.x bindings.</p>
 <h2 id="Screen-design-and-sprites"><a href="#Screen-design-and-sprites" class="headerlink" title="Screen design and sprites"></a>Screen design and sprites</h2><p>Configure the design resolution once and choose an appropriate policy for the supported aspect ratiOS. Place important controls inside a safe layout region rather than assuming one fixed screen size.</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> sprite = cc.Sprite:<span class="built_in">create</span>(<span class="string">&quot;images/hero.png&quot;</span>)</span><br><span class="line">sprite:setPosition(display.cx, display.cy)</span><br><span class="line"><span class="built_in">self</span>:addChild(sprite)</span><br></pre></td></tr></table></figure>
 
@@ -239,6 +244,7 @@
 <p>Use the scheduler for repeated updates and unschedule callbacks when their owner exits. Frame animation uses <code>cc.Animation</code> and <code>cc.Animate</code>; UI timelines use CSB actions.</p>
 <h2 id="Geometry"><a href="#Geometry" class="headerlink" title="Geometry"></a>Geometry</h2><p>Use <code>cc.rectContainsPoint</code> for point tests and <code>cc.rectIntersectsRect</code> for axis-aligned rectangle overlap. Direction angles can be calculated with <code>math.atan2</code> where provided by the runtime or the equivalent <code>math.atan(y, x)</code> form in newer Lua versions. Always verify coordinate spaces before comparing geometry.</p>
 <p>Build scenes from small nodes with clear ownership, retain only needed references, and centralize cleanup for listeners, timers, textures, and asynchronous callbacks.</p>
+
 
     </div>
 
@@ -489,16 +495,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

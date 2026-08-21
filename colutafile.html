@@ -31,7 +31,7 @@
 <meta property="og:description" content="Understand why Lua&#39;s length operator applies to sequences, then count every non-nil array or keyed entry with pairs or a table.nums helper.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-03-21T03:18:25.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.871Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.498Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/colutafile.html#article","headline":"Count Lua Table Fields: Length Operator, pairs and table.nums","description":"Understand why Lua's length operator applies to sequences, then count every non-nil array or keyed entry with pairs or a table.nums helper.","datePublished":"2023-03-21T03:18:25.000Z","dateModified":"2026-08-20T02:47:38.871Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/colutafile.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":87}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/colutafile.html#article","headline":"Count Lua Table Fields: Length Operator, pairs and table.nums","description":"Understand why Lua's length operator applies to sequences, then count every non-nil array or keyed entry with pairs or a table.nums helper.","datePublished":"2023-03-21T03:18:25.000Z","dateModified":"2026-08-21T03:47:53.498Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/colutafile.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":92}</script>
 
 
 
@@ -222,11 +222,17 @@
     <div class="post-body">
 
       
-        <p>The Lua <code>#</code> operator is intended for sequence-like tables with consecutive integer keys. It is not a general count of every field, especially when the table contains holes or string keys.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>The Lua <code>#</code> operator is intended for sequence-like tables with consecutive integer keys. It is not a general count of every field, especially when the table contains holes or string keys.</p>
 <p>To count all entries whose value is not <code>nil</code>, iterate with <code>pairs</code>:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">table.nums</span><span class="params">(t)</span></span></span><br><span class="line">    <span class="keyword">local</span> count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">pairs</span>(t) <span class="keyword">do</span></span><br><span class="line">        count = count + <span class="number">1</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> count</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>For <code>&#123; &quot;a&quot;, &quot;b&quot;, &quot;c&quot; &#125;</code>, <code>#t</code> is appropriate. For <code>&#123; name = &quot;Ada&quot;, score = 10 &#125;</code>, use an explicit loop such as <code>table.nums(t)</code>.</p>
+
 
     </div>
 
@@ -475,16 +481,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

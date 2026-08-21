@@ -31,7 +31,7 @@
 <meta property="og:description" content="Design a FLATTOPWIN-window FIR filter in MATLAB for speech with a known out-of-band tone, then compare time waveforms and spectra before and after filtering.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-05-15T03:01:00.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.883Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.515Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="MATLAB">
 <meta property="article:tag" content="Digital Signal Processing">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/maspdeflfi.html#article","headline":"MATLAB Speech Denoising with a FLATTOPWIN FIR Filter and Spectrum Analysis","description":"Design a FLATTOPWIN-window FIR filter in MATLAB for speech with a known out-of-band tone, then compare time waveforms and spectra before and after filtering.","datePublished":"2017-05-15T03:01:00.000Z","dateModified":"2026-08-20T02:47:38.883Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/maspdeflfi.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Course Projects"],"keywords":"MATLAB, Digital Signal Processing","wordCount":268}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/maspdeflfi.html#article","headline":"MATLAB Speech Denoising with a FLATTOPWIN FIR Filter and Spectrum Analysis","description":"Design a FLATTOPWIN-window FIR filter in MATLAB for speech with a known out-of-band tone, then compare time waveforms and spectra before and after filtering.","datePublished":"2017-05-15T03:01:00.000Z","dateModified":"2026-08-21T03:47:53.515Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/maspdeflfi.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Course Projects"],"keywords":"MATLAB, Digital Signal Processing","wordCount":273}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>This course project designs a finite impulse response filter with the window method and applies it to a speech recording contaminated by a single sinusoidal tone. Time-domain waveforms and spectra before and after filtering are compared to evaluate noise suppression and speech distortion.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>This course project designs a finite impulse response filter with the window method and applies it to a speech recording contaminated by a single sinusoidal tone. Time-domain waveforms and spectra before and after filtering are compared to evaluate noise suppression and speech distortion.</p>
 <p>The original project used MATLAB 7.0; the workflow below uses current function forms while preserving the experiment.</p>
 <h2 id="Load-and-inspect-the-signal"><a href="#Load-and-inspect-the-signal" class="headerlink" title="Load and inspect the signal"></a>Load and inspect the signal</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[speech, fs] = audioread(<span class="string">&quot;speech.wav&quot;</span>);</span><br><span class="line">speech = <span class="built_in">mean</span>(speech, <span class="number">2</span>);           <span class="comment">% mono</span></span><br><span class="line">t = (<span class="number">0</span>:<span class="built_in">numel</span>(speech)<span class="number">-1</span>)&#x27; / fs;</span><br><span class="line"></span><br><span class="line">toneFrequency = <span class="number">7000</span>;</span><br><span class="line">noisy = speech + <span class="number">0.08</span> * <span class="built_in">sin</span>(<span class="number">2</span>*<span class="built_in">pi</span>*toneFrequency*t);</span><br><span class="line"></span><br><span class="line">nfft = <span class="number">2</span>^<span class="built_in">nextpow2</span>(<span class="built_in">numel</span>(noisy));</span><br><span class="line">f = (<span class="number">0</span>:nfft/<span class="number">2</span>)&#x27; * fs / nfft;</span><br><span class="line">spectrum = <span class="built_in">abs</span>(fft(noisy, nfft));</span><br><span class="line"><span class="built_in">plot</span>(f, spectrum(<span class="number">1</span>:nfft/<span class="number">2</span>+<span class="number">1</span>));</span><br><span class="line">xlabel(<span class="string">&quot;Frequency (Hz)&quot;</span>);</span><br></pre></td></tr></table></figure>
 
@@ -233,6 +238,7 @@
 <p>An order-<code>N</code> linear-phase FIR filter introduces approximately <code>N/2</code> samples of group delay. Compensate for it when aligning plots or listening comparisons. A flat-top window is valued for amplitude accuracy in spectral measurement, but it has a wide main lobe; compare it with Hamming, Blackman, or a specification-driven design rather than assuming it is optimal for every denoising task.</p>
 <h2 id="Evaluate-the-result"><a href="#Evaluate-the-result" class="headerlink" title="Evaluate the result"></a>Evaluate the result</h2><p>Plot the noisy and filtered spectra using identical axes, listen at a safe normalized level, and measure passband distortion and attenuation at the tone frequency. Do not claim general speech denoising from this experiment: a fixed low-pass filter removes a known out-of-band tone, while broadband or in-band noise requires different methods.</p>
 <p>Save output with <code>audiowrite</code>, keeping samples within <code>[-1, 1]</code> to avoid clipping.</p>
+
 
     </div>
 
@@ -483,16 +489,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

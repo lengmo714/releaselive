@@ -31,7 +31,7 @@
 <meta property="og:description" content="Design an STM32F103 data glove with flex sensors, MPU6050, HC-05 Bluetooth, TFT, and an RTOS for robotic-arm control and virtual-hand mapping.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-06-14T22:27:28.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.876Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.506Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="STM32">
 <meta property="article:tag" content="Sensors">
@@ -42,7 +42,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/stsedaglfl.html#article","headline":"STM32 Sensor Data Glove: Flex Sensors, MPU6050 and Bluetooth","description":"Design an STM32F103 data glove with flex sensors, MPU6050, HC-05 Bluetooth, TFT, and an RTOS for robotic-arm control and virtual-hand mapping.","datePublished":"2017-06-14T22:27:28.000Z","dateModified":"2026-08-20T02:47:38.876Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/stsedaglfl.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Embedded Development"],"keywords":"STM32, Sensors, Human-Computer Interaction","wordCount":348}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/stsedaglfl.html#article","headline":"STM32 Sensor Data Glove: Flex Sensors, MPU6050 and Bluetooth","description":"Design an STM32F103 data glove with flex sensors, MPU6050, HC-05 Bluetooth, TFT, and an RTOS for robotic-arm control and virtual-hand mapping.","datePublished":"2017-06-14T22:27:28.000Z","dateModified":"2026-08-21T03:47:53.506Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/stsedaglfl.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Embedded Development"],"keywords":"STM32, Sensors, Human-Computer Interaction","wordCount":353}</script>
 
 
 
@@ -224,7 +224,12 @@
     <div class="post-body">
 
       
-        <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>A data glove provides a wearable human-computer interface by measuring finger bend and hand orientation. This design combines five flex sensors, an MPU6050 inertial sensor, an HC-05 serial Bluetooth module, a TFT display, and an STM32F103 controller. Firmware written in C runs tasks under µC&#x2F;OS-II and sends processed gesture data to a robotic arm or virtual hand.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>A data glove provides a wearable human-computer interface by measuring finger bend and hand orientation. This design combines five flex sensors, an MPU6050 inertial sensor, an HC-05 serial Bluetooth module, a TFT display, and an STM32F103 controller. Firmware written in C runs tasks under µC&#x2F;OS-II and sends processed gesture data to a robotic arm or virtual hand.</p>
 <h2 id="Hardware-design"><a href="#Hardware-design" class="headerlink" title="Hardware design"></a>Hardware design</h2><p>Each flex sensor forms part of a voltage-divider circuit connected to an ADC channel. Its resistance changes with bending, producing a finger-specific measurement. Because placement and users differ, raw values require per-finger calibration for relaxed and bent poses.</p>
 <p>The MPU6050 combines a three-axis accelerometer and three-axis gyroscope. It communicates over I²C and can provide raw motion samples or processed orientation data through its digital motion processor. The HC-05 transports compact frames over a serial link, while the TFT presents connection, calibration, and gesture status.</p>
 <p>Power integrity, sensor cable strain relief, a common ground, ADC reference stability, and wearable comfort are as important as the component list. Bluetooth command mode and data mode should not be confused during integration.</p>
@@ -232,6 +237,7 @@
 <p>A transmitted frame should include a start marker, version or type, payload length, sequence number, calibrated finger values, orientation data, and checksum. The receiver must reject malformed or stale frames and move the controlled system to a safe state after communication loss.</p>
 <h2 id="Calibration-and-applications"><a href="#Calibration-and-applications" class="headerlink" title="Calibration and applications"></a>Calibration and applications</h2><p>Calibration records the usable range for each finger and maps it to a normalized value. Filtering reduces ADC noise, while orientation fusion limits accelerometer jitter and gyroscope drift. Test static poses, slow and rapid motion, repeated donning, radio interruption, and battery variation.</p>
 <p>The prototype can map the wearer’s hand to a virtual hand or command a five-axis robotic arm. A physical robot additionally requires joint limits, speed limits, an emergency stop, and independent safety logic; wearable input should never be the only protection against hazardous motion.</p>
+
 
     </div>
 
@@ -483,16 +489,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

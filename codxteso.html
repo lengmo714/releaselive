@@ -31,7 +31,7 @@
 <meta property="og:description" content="Trace Cocos2d-x texture creation and pixel formats through CCTexture2D, PVR loading, TextureCache behavior, and the resulting memory ownership and cleanup.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-12-23T12:54:44.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.873Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.501Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Cocos2d-x">
 <meta property="article:tag" content="Textures">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxteso.html#article","headline":"Cocos2d-x Texture Source Analysis: CCTexture2D, PVR and TextureCache","description":"Trace Cocos2d-x texture creation and pixel formats through CCTexture2D, PVR loading, TextureCache behavior, and the resulting memory ownership and cleanup.","datePublished":"2022-12-23T12:54:44.000Z","dateModified":"2026-08-20T02:47:38.873Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxteso.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Cocos2d-x, Textures","wordCount":439}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxteso.html#article","headline":"Cocos2d-x Texture Source Analysis: CCTexture2D, PVR and TextureCache","description":"Trace Cocos2d-x texture creation and pixel formats through CCTexture2D, PVR loading, TextureCache behavior, and the resulting memory ownership and cleanup.","datePublished":"2022-12-23T12:54:44.000Z","dateModified":"2026-08-21T03:47:53.501Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxteso.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Cocos2d-x, Textures","wordCount":444}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>Images displayed by a game eventually become GPU textures. Understanding how Cocos2d-x creates and caches those textures helps explain loading time, memory use, filtering artifacts, and why removing a sprite does not always release its image immediately.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Images displayed by a game eventually become GPU textures. Understanding how Cocos2d-x creates and caches those textures helps explain loading time, memory use, filtering artifacts, and why removing a sprite does not always release its image immediately.</p>
 <p>This article uses the older <code>CC</code>-prefixed class names found in Cocos2d-x 2.x. In newer versions, the same roles are generally represented by <code>Texture2D</code>, <code>Image</code>, and <code>TextureCache</code>.</p>
 <h2 id="CCTexture2D"><a href="#CCTexture2D" class="headerlink" title="CCTexture2D"></a><code>CCTexture2D</code></h2><p><code>CCTexture2D</code> wraps a GPU texture object and records its dimensions, content size, pixel format, scale, and texture coordinates. Initialization normally follows this path:</p>
 <ol>
@@ -250,6 +255,7 @@
 <p>Asynchronous loading moves decoding away from the main update path, but final GPU upload may still need engine-managed synchronization. A callback must also account for scenes or nodes that have been destroyed while loading was in progress.</p>
 <p>Removing a sprite releases one reference; it does not necessarily evict the cached texture. Use the cache’s targeted removal or unused-texture cleanup at deliberate transition points. Avoid clearing the whole cache during active rendering because live sprites may need those resources.</p>
 <p>Profile actual device memory, atlas dimensions, draw calls, and load stalls before changing formats. Texture optimization is most effective when image dimensions, compression, atlas layout, mipmaps, filtering, and cache lifetime are designed together.</p>
+
 
     </div>
 
@@ -500,16 +506,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

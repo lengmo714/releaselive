@@ -31,7 +31,7 @@
 <meta property="og:description" content="Replace an insecure legacy PPTP setup with a Raspberry Pi WireGuard VPN server, including keys, server and client configuration, forwarding, and firewall rules.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-20T06:07:31.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.883Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.515Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="WireGuard">
 <meta property="article:tag" content="Ubuntu">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/rapiwivpse.html#article","headline":"Raspberry Pi WireGuard VPN Server: Keys, Forwarding, Firewall and Clients","description":"Replace an insecure legacy PPTP setup with a Raspberry Pi WireGuard VPN server, including keys, server and client configuration, forwarding, and firewall rules.","datePublished":"2020-04-20T06:07:31.000Z","dateModified":"2026-08-20T02:47:38.883Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/rapiwivpse.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Raspberry Pi","Servers"],"keywords":"WireGuard, Ubuntu","wordCount":275}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/rapiwivpse.html#article","headline":"Raspberry Pi WireGuard VPN Server: Keys, Forwarding, Firewall and Clients","description":"Replace an insecure legacy PPTP setup with a Raspberry Pi WireGuard VPN server, including keys, server and client configuration, forwarding, and firewall rules.","datePublished":"2020-04-20T06:07:31.000Z","dateModified":"2026-08-21T03:47:53.515Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/rapiwivpse.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Raspberry Pi","Servers"],"keywords":"WireGuard, Ubuntu","wordCount":280}</script>
 
 
 
@@ -227,7 +227,12 @@
     <div class="post-body">
 
       
-        <p>The original article used PPTP, a legacy VPN protocol that should no longer be deployed. A current Raspberry Pi or Ubuntu server can provide private remote access with WireGuard instead.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>The original article used PPTP, a legacy VPN protocol that should no longer be deployed. A current Raspberry Pi or Ubuntu server can provide private remote access with WireGuard instead.</p>
 <p>This example assumes the administrator owns the server and network, has a public or forwarded UDP port, and is permitted to operate a VPN in the relevant environment.</p>
 <h2 id="Install-and-create-keys"><a href="#Install-and-create-keys" class="headerlink" title="Install and create keys"></a>Install and create keys</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install wireguard</span><br><span class="line"><span class="built_in">umask</span> 077</span><br><span class="line">wg genkey | <span class="built_in">tee</span> server.key | wg pubkey &gt; server.pub</span><br></pre></td></tr></table></figure>
 
@@ -241,6 +246,7 @@
 
 <p>The example uses split tunneling for the VPN subnet. Use <code>0.0.0.0/0, ::/0</code> only when all client traffic is deliberately meant to traverse the server and IPv6 is configured correctly.</p>
 <p>Start and enable the interface with the platform’s <code>wg-quick</code> system service, then inspect status with <code>sudo wg show</code>. Protect backups of private keys, keep the operating system patched, remove lost clients promptly, and verify local law and network policy before exposing the service.</p>
+
 
     </div>
 
@@ -491,16 +497,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

@@ -31,7 +31,7 @@
 <meta property="og:description" content="Build a compact BitArray custom type with the Lua C API, including userdata storage, bit operations, index validation, metatables, and Lua-style access.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-16T15:01:47.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.876Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.506Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="C">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lucapcuty.html#article","headline":"Lua C API Custom Type: Build a BitArray with Userdata and Metatables","description":"Build a compact BitArray custom type with the Lua C API, including userdata storage, bit operations, index validation, metatables, and Lua-style access.","datePublished":"2020-07-16T15:01:47.000Z","dateModified":"2026-08-20T02:47:38.876Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lucapcuty.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua, C","wordCount":422}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lucapcuty.html#article","headline":"Lua C API Custom Type: Build a BitArray with Userdata and Metatables","description":"Build a compact BitArray custom type with the Lua C API, including userdata storage, bit operations, index validation, metatables, and Lua-style access.","datePublished":"2020-07-16T15:01:47.000Z","dateModified":"2026-08-21T03:47:53.506Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lucapcuty.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua, C","wordCount":427}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>A Lua table can represent a Boolean array, but a native bit array can store each value in one bit. This example focuses on the API design needed to expose a custom C type safely.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>A Lua table can represent a Boolean array, but a native bit array can store each value in one bit. This example focuses on the API design needed to expose a custom C type safely.</p>
 <h2 id="Storage"><a href="#Storage" class="headerlink" title="Storage"></a>Storage</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;limits.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;lua.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;lauxlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BITS_PER_WORD (CHAR_BIT * sizeof(unsigned int))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WORD_INDEX(i) ((unsigned int)(i) / BITS_PER_WORD)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BIT_MASK(i)   (1u &lt;&lt; ((unsigned int)(i) % BITS_PER_WORD))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">size_t</span> size;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> values[];</span><br><span class="line">&#125; BitArray;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BIT_ARRAY_TYPE <span class="string">&quot;Example.BitArray&quot;</span></span></span><br></pre></td></tr></table></figure>
 
 <p>A flexible array member is available in C99. Allocate enough words for the requested number of bits and check for overflow before calculating the byte count.</p>
@@ -239,6 +244,7 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> bitarray = <span class="built_in">require</span>(<span class="string">&quot;bitarray&quot;</span>)</span><br><span class="line"><span class="keyword">local</span> values = bitarray.new(<span class="number">1000</span>)</span><br><span class="line">values[<span class="number">10</span>] = <span class="literal">true</span></span><br><span class="line"><span class="built_in">print</span>(values[<span class="number">10</span>]) <span class="comment">-- true</span></span><br><span class="line"><span class="built_in">print</span>(#values)    <span class="comment">-- 1000</span></span><br><span class="line"><span class="built_in">print</span>(values)     <span class="comment">-- BitArray(1000)</span></span><br></pre></td></tr></table></figure>
 
 <p>Full userdata owns its storage and supports metatables. Light userdata is only a raw pointer value: it has no per-value metatable and is not managed as an owned buffer, so it is better suited to identity keys and non-owning native references than to this array type.</p>
+
 
     </div>
 
@@ -489,16 +495,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

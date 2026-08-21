@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2022/11/03/xq67FO.png">
 <meta property="og:image" content="https://s1.ax1x.com/2022/11/03/xq6Old.png">
 <meta property="article:published_time" content="2022-11-03T15:40:09.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.883Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.515Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="quick-Cocos2d-x">
@@ -45,7 +45,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/bulequcod.html#article","headline":"Build a Legacy quick-Cocos2d-x APK: NDK, Native Libraries and Ant","description":"Reproduce a legacy quick-Cocos2d-x Android build by matching JDK, SDK, NDK, and Ant versions, compiling native libraries, and generating the APK.","datePublished":"2022-11-03T15:40:09.000Z","dateModified":"2026-08-20T02:47:38.883Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/bulequcod.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Android, quick-Cocos2d-x","wordCount":225,"image":["https://s1.ax1x.com/2022/11/03/xq6X6A.png"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/bulequcod.html#article","headline":"Build a Legacy quick-Cocos2d-x APK: NDK, Native Libraries and Ant","description":"Reproduce a legacy quick-Cocos2d-x Android build by matching JDK, SDK, NDK, and Ant versions, compiling native libraries, and generating the APK.","datePublished":"2022-11-03T15:40:09.000Z","dateModified":"2026-08-21T03:47:53.515Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/bulequcod.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Android, quick-Cocos2d-x","wordCount":230,"image":["https://s1.ax1x.com/2022/11/03/xq6X6A.png"]}</script>
 
 
 
@@ -227,7 +227,12 @@
     <div class="post-body">
 
       
-        <p>This article documents a legacy Android build based on quick-Cocos2d-x, an old NDK toolchain, the deprecated Android command-line project generator, and Ant. It is useful for reproducing an existing project, but new Android projects should use a maintained Gradle-based build.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>This article documents a legacy Android build based on quick-Cocos2d-x, an old NDK toolchain, the deprecated Android command-line project generator, and Ant. It is useful for reproducing an existing project, but new Android projects should use a maintained Gradle-based build.</p>
 <h2 id="Install-compatible-tools"><a href="#Install-compatible-tools" class="headerlink" title="Install compatible tools"></a>Install compatible tools</h2><p>The JDK, Android SDK tools, NDK, and Ant versions must match the project. Record them in project documentation or a build image; upgrading only one component can break the build.</p>
 <h2 id="Build-native-libraries"><a href="#Build-native-libraries" class="headerlink" title="Build native libraries"></a>Build native libraries</h2><p>The project did not contain the <code>clean.bat</code> scripts referenced by some tutorials, so native compilation was started from its Android project directory with:</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python .\build_native.py</span><br></pre></td></tr></table></figure>
@@ -247,6 +252,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ant debug</span><br></pre></td></tr></table></figure>
 
 <p>An error such as “source option 5 is no longer supported” means the old build requests Java 5 source&#x2F;target compatibility but the installed JDK no longer accepts it. The durable options are to use the JDK version expected by the legacy project in an isolated environment or migrate the build settings and code to a supported Java&#x2F;Gradle toolchain. Do not weaken a system-wide JDK installation just for one old project.</p>
+
 
     </div>
 
@@ -497,16 +503,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

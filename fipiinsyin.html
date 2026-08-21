@@ -31,7 +31,7 @@
 <meta property="og:description" content="Fix SyntaxError invalid syntax after typing pip install in the python interactive shell by running pip or python -m pip in a system terminal.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-03-16T15:04:12.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.883Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.515Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="pip">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/fipiinsyin.html#article","headline":"Fix pip install SyntaxError invalid syntax in the python Shell","description":"Fix SyntaxError invalid syntax after typing pip install in the python interactive shell by running pip or python -m pip in a system terminal.","datePublished":"2019-03-16T15:04:12.000Z","dateModified":"2026-08-20T02:47:38.883Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/fipiinsyin.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Common Bugs"],"keywords":"python, pip","wordCount":163}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/fipiinsyin.html#article","headline":"Fix pip install SyntaxError invalid syntax in the python Shell","description":"Fix SyntaxError invalid syntax after typing pip install in the python interactive shell by running pip or python -m pip in a system terminal.","datePublished":"2019-03-16T15:04:12.000Z","dateModified":"2026-08-21T03:47:53.515Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/fipiinsyin.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Common Bugs"],"keywords":"python, pip","wordCount":168}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>If typing this produces <code>SyntaxError: invalid syntax</code>:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>If typing this produces <code>SyntaxError: invalid syntax</code>:</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; pip3 install ipython</span><br></pre></td></tr></table></figure>
 
 <p>the command was entered inside python’s interactive prompt. <code>pip</code> is a shell command, not python syntax.</p>
@@ -236,6 +241,7 @@
 
 <p>Activate it using the operating system’s normal command, upgrade pip if needed, and install the dependency. In a Jupyter notebook, use the notebook-aware <code>%pip install ipython</code> magic rather than invoking pip as ordinary python code.</p>
 <p>If the command still fails outside the interpreter, read the final part of the traceback. Network failures, permissions, unsupported python versions, and build-tool errors require different fixes; <code>SyntaxError</code> at the <code>pip install</code> words specifically indicates that a shell command was entered in a python context.</p>
+
 
     </div>
 
@@ -485,16 +491,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

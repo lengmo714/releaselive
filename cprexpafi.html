@@ -31,7 +31,7 @@
 <meta property="og:description" content="Solve a second set of C exercises covering Fibonacci numbers, matrices, binary conversion, loops, arrays, strings, functions, and basic algorithms.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-19T14:46:27.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.872Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.500Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="C">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cprexpafi.html#article","headline":"C Programming Exercises, Part 2: Fibonacci, Matrices and Algorithms","description":"Solve a second set of C exercises covering Fibonacci numbers, matrices, binary conversion, loops, arrays, strings, functions, and basic algorithms.","datePublished":"2022-10-19T14:46:27.000Z","dateModified":"2026-08-20T02:47:38.872Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cprexpafi.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"C","wordCount":416}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cprexpafi.html#article","headline":"C Programming Exercises, Part 2: Fibonacci, Matrices and Algorithms","description":"Solve a second set of C exercises covering Fibonacci numbers, matrices, binary conversion, loops, arrays, strings, functions, and basic algorithms.","datePublished":"2022-10-19T14:46:27.000Z","dateModified":"2026-08-21T03:47:53.500Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cprexpafi.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"C","wordCount":421}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>This collection contains practice problems commonly used in introductory C courses. Rather than memorizing answers, define the input range, select a data type that cannot overflow, separate parsing from computation, and test boundary cases.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>This collection contains practice problems commonly used in introductory C courses. Rather than memorizing answers, define the input range, select a data type that cannot overflow, separate parsing from computation, and test boundary cases.</p>
 <h2 id="Split-number-property"><a href="#Split-number-property" class="headerlink" title="Split-number property"></a>Split-number property</h2><p>For a given digit count <code>n &lt; 8</code>, find every <code>n</code>-digit integer that equals the square of the sum of its left and right parts. When <code>n</code> is odd, the middle digit belongs to the left part.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">power10</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> result = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (n-- &gt; <span class="number">0</span>) result *= <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">int</span> n, found = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n) != <span class="number">1</span> || n &lt; <span class="number">1</span> || n &gt;= <span class="number">8</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> split = power10(n / <span class="number">2</span>);</span><br><span class="line">    <span class="type">int</span> begin = n == <span class="number">1</span> ? <span class="number">0</span> : power10(n - <span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> end = power10(n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> value = begin; value &lt; end; ++value) &#123;</span><br><span class="line">        <span class="type">int</span> sum = value / split + value % split;</span><br><span class="line">        <span class="keyword">if</span> (sum * sum == value) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, value);</span><br><span class="line">            found = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!found) <span class="built_in">puts</span>(<span class="string">&quot;NO FOUND&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -237,6 +242,7 @@
 
 <p>Other exercises cover snake matrices, sorted insertion and deletion, phone books, factorial and polynomial sums, numerical approximations of <code>e</code> and sine, digit decomposition, Josephus-style counting, projectile rebound, and the monkey-and-peaches recurrence.</p>
 <p>Compile with warnings enabled—for example <code>-Wall -Wextra -Wpedantic</code>—and add tests for zero, one, maximum input, duplicates, empty strings, and malformed input. Those habits are more valuable than any individual answer in a question bank.</p>
+
 
     </div>
 
@@ -486,16 +492,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

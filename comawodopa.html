@@ -31,7 +31,7 @@
 <meta property="og:description" content="Convert Markdown to Microsoft Word DOCX with the Pandoc command line or a pypandoc python script, including installation, output paths, images, and reference styles.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-12-19T04:39:00.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.871Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.499Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Markdown">
 <meta property="article:tag" content="Word">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/comawodopa.html#article","headline":"Convert Markdown to Word DOCX with Pandoc or pypandoc","description":"Convert Markdown to Microsoft Word DOCX with the Pandoc command line or a pypandoc python script, including installation, output paths, images, and reference styles.","datePublished":"2023-12-19T04:39:00.000Z","dateModified":"2026-08-20T02:47:38.871Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/comawodopa.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Technology"],"keywords":"Markdown, Word","wordCount":187}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/comawodopa.html#article","headline":"Convert Markdown to Word DOCX with Pandoc or pypandoc","description":"Convert Markdown to Microsoft Word DOCX with the Pandoc command line or a pypandoc python script, including installation, output paths, images, and reference styles.","datePublished":"2023-12-19T04:39:00.000Z","dateModified":"2026-08-21T03:47:53.499Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/comawodopa.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Technology"],"keywords":"Markdown, Word","wordCount":192}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>Markdown is convenient for everyday writing, but sometimes a document needs to be shared, edited, or printed in Microsoft Word format. Here are two simple ways to convert Markdown to a <code>.docx</code> file.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Markdown is convenient for everyday writing, but sometimes a document needs to be shared, edited, or printed in Microsoft Word format. Here are two simple ways to convert Markdown to a <code>.docx</code> file.</p>
 <h2 id="Use-a-pypandoc-python-Script"><a href="#Use-a-pypandoc-python-Script" class="headerlink" title="Use a pypandoc python Script"></a>Use a pypandoc python Script</h2><p>Install <code>pypandoc</code>, a python wrapper for the Pandoc document converter, and use the following example:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pypandoc</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">markdown_to_word</span>(<span class="params">markdown_text, output_path</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        output = pypandoc.convert_text(</span><br><span class="line">            markdown_text,</span><br><span class="line">            <span class="string">&#x27;docx&#x27;</span>,</span><br><span class="line">            <span class="built_in">format</span>=<span class="string">&#x27;md&#x27;</span>,</span><br><span class="line">            outputfile=output_path</span><br><span class="line">        )</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Conversion successful. Word document saved at: <span class="subst">&#123;output_path&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Error during conversion: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    markdown_text = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    # Markdown to Word</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    This is a sample Markdown text.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    - Item 1</span></span><br><span class="line"><span class="string">    - Item 2</span></span><br><span class="line"><span class="string">    - Item 3</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    output_path = <span class="string">&quot;output.docx&quot;</span></span><br><span class="line">    markdown_to_word(markdown_text, output_path)</span><br></pre></td></tr></table></figure>
 
@@ -232,6 +237,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pandoc input.md -o output.docx</span><br></pre></td></tr></table></figure>
 
 <p>This is usually the simplest option when you already have the Markdown content in a file.</p>
+
 
     </div>
 
@@ -482,16 +488,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

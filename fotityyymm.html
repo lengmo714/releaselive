@@ -31,7 +31,7 @@
 <meta property="og:description" content="Convert an ISO timestamp into YYYY-MM-DD HH:mm:ss with TypeScript and JavaScript Date, including month adjustment and zero-padded date and time fields.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-29T15:18:19.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.885Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.517Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="TypeScript">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/fotityyymm.html#article","headline":"Format a Timestamp in TypeScript as YYYY-MM-DD HH:mm:ss","description":"Convert an ISO timestamp into YYYY-MM-DD HH:mm:ss with TypeScript and JavaScript Date, including month adjustment and zero-padded date and time fields.","datePublished":"2023-11-29T15:18:19.000Z","dateModified":"2026-08-20T02:47:38.885Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/fotityyymm.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"TypeScript","wordCount":120}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/fotityyymm.html#article","headline":"Format a Timestamp in TypeScript as YYYY-MM-DD HH:mm:ss","description":"Convert an ISO timestamp into YYYY-MM-DD HH:mm:ss with TypeScript and JavaScript Date, including month adjustment and zero-padded date and time fields.","datePublished":"2023-11-29T15:18:19.000Z","dateModified":"2026-08-21T03:47:53.517Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/fotityyymm.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"TypeScript","wordCount":125}</script>
 
 
 
@@ -222,12 +222,18 @@
     <div class="post-body">
 
       
-        <p>I needed to display a timestamp alongside a player’s match history in this format:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>I needed to display a timestamp alongside a player’s match history in this format:</p>
 <p><code>2023-11-29 10:08:04</code></p>
 <p>The server returned the value as <code>2023-11-29T10:08:04.33+08:00</code>, so I formatted it with the following TypeScript code:</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> timestamp = <span class="string">&quot;2023-11-29T10:08:04.33+08:00&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>(timestamp);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> year = date.<span class="title function_">getFullYear</span>();</span><br><span class="line"><span class="keyword">const</span> month = (date.<span class="title function_">getMonth</span>() + <span class="number">1</span>).<span class="title function_">toString</span>().<span class="title function_">padStart</span>(<span class="number">2</span>, <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> day = date.<span class="title function_">getDate</span>().<span class="title function_">toString</span>().<span class="title function_">padStart</span>(<span class="number">2</span>, <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> hours = date.<span class="title function_">getHours</span>().<span class="title function_">toString</span>().<span class="title function_">padStart</span>(<span class="number">2</span>, <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> minutes = date.<span class="title function_">getMinutes</span>().<span class="title function_">toString</span>().<span class="title function_">padStart</span>(<span class="number">2</span>, <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> seconds = date.<span class="title function_">getSeconds</span>().<span class="title function_">toString</span>().<span class="title function_">padStart</span>(<span class="number">2</span>, <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> formattedDate = <span class="string">`<span class="subst">$&#123;year&#125;</span>-<span class="subst">$&#123;month&#125;</span>-<span class="subst">$&#123;day&#125;</span> <span class="subst">$&#123;hours&#125;</span>:<span class="subst">$&#123;minutes&#125;</span>:<span class="subst">$&#123;seconds&#125;</span>`</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(formattedDate);</span><br></pre></td></tr></table></figure>
 
 <p><code>new Date(timestamp)</code> reads the offset in the ISO timestamp, while the local getter methods format the result in the runtime’s local time zone. If the output must always use a specific time zone regardless of the user’s device, use <code>Intl.DateTimeFormat</code> with an explicit <code>timeZone</code> option or format it on the server.</p>
+
 
     </div>
 
@@ -476,16 +482,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

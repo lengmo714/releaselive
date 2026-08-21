@@ -31,7 +31,7 @@
 <meta property="og:description" content="Learn how Lua calls C functions through lua_CFunction and the stack API, including argument checks, pushed results, errors, registration, continuations, and loadable modules.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-27T17:00:51.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.872Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.500Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="C">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/caclufure.html#article","headline":"Calling C from Lua: Functions, Registration, and Modules","description":"Learn how Lua calls C functions through lua_CFunction and the stack API, including argument checks, pushed results, errors, registration, continuations, and loadable modules.","datePublished":"2020-06-27T17:00:51.000Z","dateModified":"2026-08-20T02:47:38.872Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/caclufure.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua, C","wordCount":282}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/caclufure.html#article","headline":"Calling C from Lua: Functions, Registration, and Modules","description":"Learn how Lua calls C functions through lua_CFunction and the stack API, including argument checks, pushed results, errors, registration, continuations, and loadable modules.","datePublished":"2020-06-27T17:00:51.000Z","dateModified":"2026-08-21T03:47:53.500Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/caclufure.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua, C","wordCount":287}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p>Lua cannot call an arbitrary C function directly. A callable function must follow the <code>lua_CFunction</code> convention:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Lua cannot call an arbitrary C function directly. A callable function must follow the <code>lua_CFunction</code> convention:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="title function_">int</span> <span class="params">(*lua_CFunction)</span><span class="params">(lua_State *L)</span>;</span><br></pre></td></tr></table></figure>
 
 <p>Arguments are available on a private stack starting at index 1. The function pushes its results and returns their count. Each invocation gets its own stack frame, including recursive calls.</p>
@@ -242,6 +247,7 @@
 <p>The exported loader must be named <code>luaopen_&lt;module&gt;</code>. Exact compiler and linker flags depend on the Lua version and operating system; compile and link against the same Lua ABI used by the host application.</p>
 <h2 id="Errors-and-continuations"><a href="#Errors-and-continuations" class="headerlink" title="Errors and continuations"></a>Errors and continuations</h2><p>Use <code>luaL_error</code> for an invalid operation in a library function. When C calls back into Lua, prefer <code>lua_pcall</code> if the host needs to recover from errors. Yielding across C boundaries requires the continuation APIs, such as <code>lua_yieldk</code> and <code>lua_pcallk</code>; a plain C call frame cannot always be resumed safely.</p>
 <p>The central rule is simple: treat the Lua stack as the function’s calling convention, validate every argument, and make ownership of every pushed value explicit.</p>
+
 
     </div>
 
@@ -492,16 +498,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

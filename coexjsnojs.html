@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2023/08/14/pPMrnpQ.png">
 <meta property="og:image" content="https://s1.ax1x.com/2023/08/14/pPMrefg.png">
 <meta property="article:published_time" content="2023-08-14T14:36:07.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.877Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.506Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="Node.js">
@@ -45,7 +45,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/coexjsnojs.html#article","headline":"Convert Excel to JSON with Node.js: node-xlsx and File Output","description":"Use Node.js and node-xlsx to read spreadsheets from a directory, convert worksheet rows into keyed objects, and write formatted JSON files.","datePublished":"2023-08-14T14:36:07.000Z","dateModified":"2026-08-20T02:47:38.877Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/coexjsnojs.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator","JSON"],"keywords":"JavaScript, Node.js","wordCount":185,"image":["https://s1.ax1x.com/2023/08/14/pPMrZtS.png"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/coexjsnojs.html#article","headline":"Convert Excel to JSON with Node.js: node-xlsx and File Output","description":"Use Node.js and node-xlsx to read spreadsheets from a directory, convert worksheet rows into keyed objects, and write formatted JSON files.","datePublished":"2023-08-14T14:36:07.000Z","dateModified":"2026-08-21T03:47:53.506Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/coexjsnojs.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator","JSON"],"keywords":"JavaScript, Node.js","wordCount":190,"image":["https://s1.ax1x.com/2023/08/14/pPMrZtS.png"]}</script>
 
 
 
@@ -231,7 +231,12 @@
     <div class="post-body">
 
       
-        <p>Place the script beside a folder named <code>excel</code>:</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Place the script beside a folder named <code>excel</code>:</p>
 <img src="https://s1.ax1x.com/2023/08/14/pPMrZtS.png" alt="Script and Excel folder layout" decoding="async" loading="eager" fetchpriority="high">
 
 <p>Example spreadsheet:</p>
@@ -247,6 +252,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> xlsx = <span class="built_in">require</span>(<span class="string">&#x27;node-xlsx&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> excelDirectory = path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;excel&#x27;</span>);</span><br><span class="line"></span><br><span class="line">fs.<span class="title function_">readdir</span>(excelDirectory, <span class="function">(<span class="params">readError, files</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (readError) <span class="keyword">throw</span> readError;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> filename <span class="keyword">of</span> files) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="regexp">/\.xlsx?$/i</span>.<span class="title function_">test</span>(filename)) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> sourcePath = path.<span class="title function_">join</span>(excelDirectory, filename);</span><br><span class="line">    <span class="keyword">const</span> workbook = xlsx.<span class="title function_">parse</span>(sourcePath);</span><br><span class="line">    <span class="keyword">const</span> rows = workbook[<span class="number">0</span>].<span class="property">data</span>;</span><br><span class="line">    <span class="keyword">if</span> (rows.<span class="property">length</span> &lt; <span class="number">2</span>) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> headers = rows[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">const</span> result = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> rowIndex = <span class="number">2</span>; rowIndex &lt; rows.<span class="property">length</span>; rowIndex++) &#123;</span><br><span class="line">      <span class="keyword">const</span> row = rows[rowIndex];</span><br><span class="line">      <span class="keyword">const</span> key = row[<span class="number">0</span>];</span><br><span class="line">      <span class="keyword">if</span> (key === <span class="literal">undefined</span> || key === <span class="literal">null</span> || key === <span class="string">&#x27;&#x27;</span>) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">      result[key] = &#123;&#125;;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> column = <span class="number">1</span>; column &lt; headers.<span class="property">length</span>; column++) &#123;</span><br><span class="line">        result[key][headers[column]] = row[column];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> outputName = <span class="string">`<span class="subst">$&#123;path.parse(filename).name&#125;</span>.json`</span>;</span><br><span class="line">    <span class="keyword">const</span> outputPath = path.<span class="title function_">join</span>(excelDirectory, outputName);</span><br><span class="line"></span><br><span class="line">    fs.<span class="title function_">writeFile</span>(outputPath, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(result), <span class="function"><span class="params">writeError</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (writeError) <span class="keyword">throw</span> writeError;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Created <span class="subst">$&#123;outputName&#125;</span>`</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>This version filters for Excel files, uses the first data column as each object’s key, and uses the header row for property names. Adjust the header and starting-row indexes to match your workbook structure.</p>
+
 
     </div>
 
@@ -496,16 +502,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

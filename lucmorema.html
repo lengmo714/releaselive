@@ -31,7 +31,7 @@
 <meta property="og:description" content="Wrap native handles in Lua full userdata, validate their metatable, implement an idempotent close method, and register __gc as a final cleanup fallback.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-22T00:52:38.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.886Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.519Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="C API">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lucmorema.html#article","headline":"Lua C Module Resource Management: Full Userdata, __gc and Safe Close","description":"Wrap native handles in Lua full userdata, validate their metatable, implement an idempotent close method, and register __gc as a final cleanup fallback.","datePublished":"2020-07-22T00:52:38.000Z","dateModified":"2026-08-20T02:47:38.886Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lucmorema.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages","Lua"],"keywords":"Lua, C API","wordCount":237}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/lucmorema.html#article","headline":"Lua C Module Resource Management: Full Userdata, __gc and Safe Close","description":"Wrap native handles in Lua full userdata, validate their metatable, implement an idempotent close method, and register __gc as a final cleanup fallback.","datePublished":"2020-07-22T00:52:38.000Z","dateModified":"2026-08-21T03:47:53.519Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/lucmorema.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages","Lua"],"keywords":"Lua, C API","wordCount":242}</script>
 
 
 
@@ -227,7 +227,12 @@
     <div class="post-body">
 
       
-        <p>Native resources such as file handles, sockets, and XML parsers need deterministic cleanup even when exposed to Lua’s garbage-collected world. A common design is to store the native pointer in full userdata and give it a type-specific metatable.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Native resources such as file handles, sockets, and XML parsers need deterministic cleanup even when exposed to Lua’s garbage-collected world. A common design is to store the native pointer in full userdata and give it a type-specific metatable.</p>
 <p>For an Expat parser binding:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    XML_Parser parser;</span><br><span class="line">    lua_State *L;</span><br><span class="line">&#125; ParserHandle;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PARSER_METATABLE <span class="string">&quot;Example.ExpatParser&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> ParserHandle *<span class="title function_">check_parser</span><span class="params">(lua_State *L, <span class="type">int</span> index)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (ParserHandle *)luaL_checkudata(</span><br><span class="line">        L,</span><br><span class="line">        index,</span><br><span class="line">        PARSER_METATABLE</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -239,6 +244,7 @@
 <h2 id="Register-methods-and-finalization"><a href="#Register-methods-and-finalization" class="headerlink" title="Register methods and finalization"></a>Register methods and finalization</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">const</span> luaL_Reg parser_methods[] = &#123;</span><br><span class="line">    &#123;<span class="string">&quot;parse&quot;</span>, parser_parse&#125;,</span><br><span class="line">    &#123;<span class="string">&quot;close&quot;</span>, parser_close&#125;,</span><br><span class="line">    &#123;<span class="string">&quot;__gc&quot;</span>, parser_close&#125;,</span><br><span class="line">    &#123;<span class="literal">NULL</span>, <span class="literal">NULL</span>&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">const</span> luaL_Reg module_functions[] = &#123;</span><br><span class="line">    &#123;<span class="string">&quot;new&quot;</span>, parser_new&#125;,</span><br><span class="line">    &#123;<span class="literal">NULL</span>, <span class="literal">NULL</span>&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">luaopen_example_parser</span><span class="params">(lua_State *L)</span> &#123;</span><br><span class="line">    luaL_newmetatable(L, PARSER_METATABLE);</span><br><span class="line">    lua_pushvalue(L, <span class="number">-1</span>);</span><br><span class="line">    lua_setfield(L, <span class="number">-2</span>, <span class="string">&quot;__index&quot;</span>);</span><br><span class="line">    luaL_setfuncs(L, parser_methods, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    luaL_newlib(L, module_functions);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Expose <code>close()</code> so callers can release scarce resources promptly. Treat <code>__gc</code> as a fallback because collection timing is nondeterministic. If callbacks retain Lua references, release their registry references during close and ensure native callbacks cannot fire after the state or userdata is gone.</p>
+
 
     </div>
 
@@ -489,16 +495,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

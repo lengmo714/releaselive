@@ -31,7 +31,7 @@
 <meta property="og:description" content="Use Lua&#39;s debug library to inspect functions, stack frames, local variables, upvalues, coroutines, and execution hooks while understanding performance and sandbox risks.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-26T07:17:09.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.882Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.514Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ludelirege.html#article","headline":"Lua Debug Library Reflection: getinfo, Locals, Hooks and Sandboxing","description":"Use Lua's debug library to inspect functions, stack frames, local variables, upvalues, coroutines, and execution hooks while understanding performance and sandbox risks.","datePublished":"2020-05-26T07:17:09.000Z","dateModified":"2026-08-20T02:47:38.882Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ludelirege.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":318}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/ludelirege.html#article","headline":"Lua Debug Library Reflection: getinfo, Locals, Hooks and Sandboxing","description":"Use Lua's debug library to inspect functions, stack frames, local variables, upvalues, coroutines, and execution hooks while understanding performance and sandbox risks.","datePublished":"2020-05-26T07:17:09.000Z","dateModified":"2026-08-21T03:47:53.514Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/ludelirege.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Programming Languages"],"keywords":"Lua","wordCount":323}</script>
 
 
 
@@ -222,7 +222,12 @@
     <div class="post-body">
 
       
-        <p>Dynamic features such as <code>type</code>, <code>pairs</code>, <code>load</code>, and environments already give Lua a degree of reflection. The <code>debug</code> library goes further: it can inspect stack frames, local variables, upvalues, and execution events.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>Dynamic features such as <code>type</code>, <code>pairs</code>, <code>load</code>, and environments already give Lua a degree of reflection. The <code>debug</code> library goes further: it can inspect stack frames, local variables, upvalues, and execution events.</p>
 <p>This power has a cost. Debug operations can be slow and can break normal lexical boundaries, so application logic should not depend on them unless there is a strong reason.</p>
 <h2 id="Function-and-stack-information"><a href="#Function-and-stack-information" class="headerlink" title="Function and stack information"></a>Function and stack information</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">describe</span><span class="params">(fn)</span></span></span><br><span class="line">    <span class="keyword">local</span> info = <span class="built_in">debug</span>.<span class="built_in">getinfo</span>(fn, <span class="string">&quot;Snu&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        source = info.short_src,</span><br><span class="line">        firstLine = info.linedefined,</span><br><span class="line">        parameters = info.nparams,</span><br><span class="line">        upvalues = info.nups,</span><br><span class="line">        isVararg = info.isvararg</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
@@ -236,6 +241,7 @@
 
 <p>Hooks are the foundation of debuggers, tracers, profilers, and instruction-budget guards. They add overhead, and an instruction limit is only one part of sandboxing.</p>
 <h2 id="Security-boundary"><a href="#Security-boundary" class="headerlink" title="Security boundary"></a>Security boundary</h2><p>Do not expose the <code>debug</code> library to untrusted scripts. It can inspect or mutate values that ordinary Lua code cannot reach and can undermine an otherwise restricted environment. A sandbox should start from a small allowlist of functions, exclude <code>debug</code>, restrict loading and I&#x2F;O, and enforce resource limits outside the script where possible.</p>
+
 
     </div>
 
@@ -485,16 +491,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

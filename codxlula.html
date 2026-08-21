@@ -31,7 +31,7 @@
 <meta property="og:description" content="Set bounded Label dimensions for automatic wrapping in Cocos2d-x Lua, with a UTF-8-aware manual line-breaking fallback for specialized layouts.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-19T05:57:59.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.873Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.502Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Lua">
 <meta property="article:tag" content="Cocos2d-x">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxlula.html#article","headline":"Cocos2d-x Lua Label Wrapping with Bounded Width and UTF-8 Fallback","description":"Set bounded Label dimensions for automatic wrapping in Cocos2d-x Lua, with a UTF-8-aware manual line-breaking fallback for specialized layouts.","datePublished":"2021-06-19T05:57:59.000Z","dateModified":"2026-08-20T02:47:38.873Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxlula.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":119}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/codxlula.html#article","headline":"Cocos2d-x Lua Label Wrapping with Bounded Width and UTF-8 Fallback","description":"Set bounded Label dimensions for automatic wrapping in Cocos2d-x Lua, with a UTF-8-aware manual line-breaking fallback for specialized layouts.","datePublished":"2021-06-19T05:57:59.000Z","dateModified":"2026-08-21T03:47:53.502Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/codxlula.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Game Development"],"keywords":"Lua, Cocos2d-x","wordCount":124}</script>
 
 
 
@@ -223,7 +223,12 @@
     <div class="post-body">
 
       
-        <p><strong>Environment:</strong> Cocos2d-x 3.17<br><strong>Language:</strong> Lua</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p><strong>Environment:</strong> Cocos2d-x 3.17<br><strong>Language:</strong> Lua</p>
 <p>For a <code>cc.Label</code>, the simplest wrapping method is usually to assign a width and use an overflow or dimensions mode supported by the engine version:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> label = cc.Label:createWithSystemFont(</span><br><span class="line">    longText,</span><br><span class="line">    <span class="string">&quot;Arial&quot;</span>,</span><br><span class="line">    <span class="number">24</span>,</span><br><span class="line">    cc.size(<span class="number">360</span>, <span class="number">0</span>),</span><br><span class="line">    cc.TEXT_ALIGNMENT_LEFT,</span><br><span class="line">    cc.VERTICAL_TEXT_ALIGNMENT_TOP</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
@@ -232,6 +237,7 @@
 
 <p>This lets the engine wrap according to font metrics, which is more accurate than treating Chinese characters as three bytes and ASCII characters as one byte.</p>
 <p>If the project requires manual wrapping, iterate UTF-8 code points and measure candidate lines with the actual font. Insert <code>\n</code> at word boundaries where possible. Byte-based splitting can break multibyte characters and cannot reliably predict rendered width for proportional fonts, emoji, combining marks, or mixed scripts.</p>
+
 
     </div>
 
@@ -481,16 +487,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

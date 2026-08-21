@@ -31,7 +31,7 @@
 <meta property="og:description" content="Read the Arduino Mega 2560 reference schematic block by block, covering power switching, USB-to-serial, ATmega2560, clock, reset, and connectors.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-05-06T22:31:50.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.872Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.500Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="Arduino">
 <meta property="article:tag" content="Hardware">
@@ -41,7 +41,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/armescexpo.html#article","headline":"Arduino Mega 2560 Schematic Explained: Power, USB, MCU, Clock and Reset","description":"Read the Arduino Mega 2560 reference schematic block by block, covering power switching, USB-to-serial, ATmega2560, clock, reset, and connectors.","datePublished":"2017-05-06T22:31:50.000Z","dateModified":"2026-08-20T02:47:38.872Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/armescexpo.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Embedded Development"],"keywords":"Arduino, Hardware","wordCount":301}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/armescexpo.html#article","headline":"Arduino Mega 2560 Schematic Explained: Power, USB, MCU, Clock and Reset","description":"Read the Arduino Mega 2560 reference schematic block by block, covering power switching, USB-to-serial, ATmega2560, clock, reset, and connectors.","datePublished":"2017-05-06T22:31:50.000Z","dateModified":"2026-08-21T03:47:53.500Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/armescexpo.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Embedded Development"],"keywords":"Arduino, Hardware","wordCount":306}</script>
 
 
 
@@ -223,13 +223,19 @@
     <div class="post-body">
 
       
-        <p>The Arduino Mega 2560 reference design becomes easier to read when divided into functional blocks instead of following every wire at once. Always use the schematic revision matching the actual board; compatible clones may substitute parts or change protection circuitry.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p>The Arduino Mega 2560 reference design becomes easier to read when divided into functional blocks instead of following every wire at once. Always use the schematic revision matching the actual board; compatible clones may substitute parts or change protection circuitry.</p>
 <h2 id="Power-path"><a href="#Power-path" class="headerlink" title="Power path"></a>Power path</h2><p>The board can receive power from USB or an external input. Regulation produces the logic rails, while selection circuitry prevents the external supply and USB source from driving each other. Decoupling capacitors handle fast current changes close to integrated circuits; bulk capacitors support slower transients.</p>
 <p>Do not infer safe input range from a single regulator rating. Connector polarity, regulator dissipation, protection devices, and board temperature all matter. A measured rail slightly below its nominal voltage can reflect instrument accuracy, load, cable drop, or regulator tolerance.</p>
 <h2 id="Main-controller"><a href="#Main-controller" class="headerlink" title="Main controller"></a>Main controller</h2><p>The ATmega2560 provides the application CPU, flash, SRAM, GPIO, timers, ADC channels, and serial interfaces. Header labels map board pin names to microcontroller ports, but alternate functions share pins. Consult both the schematic and the ATmega2560 datasheet before assigning timers, UARTs, SPI, I²C, or external interrupts.</p>
 <h2 id="USB-to-serial-section"><a href="#USB-to-serial-section" class="headerlink" title="USB-to-serial section"></a>USB-to-serial section</h2><p>An auxiliary USB-capable microcontroller translates USB communication into the main controller’s UART. Its D+ and D− routing, USB connector protection, clock, firmware header, and serial connection form a separate subsystem. Control signaling can pulse reset to support automatic sketch upload.</p>
 <h2 id="Clock-and-reset"><a href="#Clock-and-reset" class="headerlink" title="Clock and reset"></a>Clock and reset</h2><p>Clock sources and their load components establish timing for the controllers. The reset network combines pull resistors, a button, programming headers, and automatic reset behavior. Changing its capacitance or pull values can affect startup and uploading.</p>
 <h2 id="How-to-review-a-schematic"><a href="#How-to-review-a-schematic" class="headerlink" title="How to review a schematic"></a>How to review a schematic</h2><p>Start with net labels and power symbols, identify component references, and cross-check every IC pin against its datasheet. Then trace one use case—power-up, USB upload, UART traffic, or analog measurement—through all blocks. Schematics describe intended connectivity; they do not replace layout, bill-of-materials, or electrical-limit documentation.</p>
+
 
     </div>
 
@@ -480,16 +486,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>

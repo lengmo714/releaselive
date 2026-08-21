@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://pic.imgdb.cn/item/66433d5b0ea9cb1403b5ea9e.png">
 <meta property="og:image" content="https://pic.imgdb.cn/item/66433d5b0ea9cb1403b5ea13.png">
 <meta property="article:published_time" content="2021-06-08T16:17:15.000Z">
-<meta property="article:modified_time" content="2026-08-20T03:29:50.505Z">
+<meta property="article:modified_time" content="2026-08-21T03:47:53.499Z">
 <meta property="article:author" content="winner">
 <meta property="article:tag" content="macOS">
 <meta property="article:tag" content="iOS Development">
@@ -48,7 +48,7 @@
 
 
   
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/fixcarvaou.html#article","headline":"Fix Xcode Argument Value 10880 Is Outside the Valid Range","description":"Fix the Xcode error Argument value 10880 is outside the valid range after a macOS or Xcode upgrade by tracing incompatible macros in an older Cocos project.","datePublished":"2021-06-08T16:17:15.000Z","dateModified":"2026-08-20T03:29:50.505Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/fixcarvaou.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Development Tools"],"keywords":"macOS, iOS Development","wordCount":164,"image":["https://pic.imgdb.cn/item/66433d1d0ea9cb1403b5a7ca.png"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/fixcarvaou.html#article","headline":"Fix Xcode Argument Value 10880 Is Outside the Valid Range","description":"Fix the Xcode error Argument value 10880 is outside the valid range after a macOS or Xcode upgrade by tracing incompatible macros in an older Cocos project.","datePublished":"2021-06-08T16:17:15.000Z","dateModified":"2026-08-21T03:47:53.499Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/fixcarvaou.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Development Tools"],"keywords":"macOS, iOS Development","wordCount":169,"image":["https://pic.imgdb.cn/item/66433d1d0ea9cb1403b5a7ca.png"]}</script>
 
 
 
@@ -230,7 +230,12 @@
     <div class="post-body">
 
       
-        <p><strong>Historical environment:</strong> macOS 11.4 and Xcode 12.5.</p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+<p><strong>Historical environment:</strong> macOS 11.4 and Xcode 12.5.</p>
 <p>After upgrading macOS and Xcode, an older Cocos project failed with an error indicating that argument value <code>10880</code> was outside the valid range.</p>
 <ol>
 <li><p>Double-click the compiler diagnostic to open the failing expression.</p>
@@ -249,6 +254,7 @@
 <p><img src="https://pic.imgdb.cn/item/66433d5b0ea9cb1403b5ea13.png" alt="Modified constant" decoding="async" loading="lazy"></p>
 <p>Before adopting such a change, compare the affected third-party library against its upstream Xcode 12 compatibility patch. An intrinsic’s immediate value encodes behavior; merely forcing it into range may compile while changing the algorithm. Prefer upgrading the engine&#x2F;library or applying a documented upstream patch, and add a test for the code path. Keep local vendor changes in a patch file because regenerated project or dependency files can overwrite them.</p>
 <p>The workaround resolved this diagnostic but exposed another build problem afterward, so it was not a complete project-level fix.</p>
+
 
     </div>
 
@@ -498,16 +504,5 @@
 
 
 
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760"
-     crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3160571902547760"
-     data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></body>
+</body>
 </html>
