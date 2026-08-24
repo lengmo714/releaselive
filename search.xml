@@ -1160,4 +1160,9 @@
     <url>/lucmorema.html</url>
     <content>Programming Languages Lua C API</content>
   </entry>
+  <entry>
+    <title>Reliable WebSocket Reconnection in Cocos Creator: Heartbeats, Backoff and App Resume</title>
+    <url>/cocwssreco.html</url>
+    <content>Cocos Creator TypeScript WebSocket</content>
+  </entry>
 </search>

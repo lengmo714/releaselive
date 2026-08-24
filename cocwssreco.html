@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/favicon-32x32-next.png" color="#222">
+  <meta name="yandex-verification" content="7f4abda1472881d3">
+  <meta name="baidu-site-verification" content="5lU3qr1ysBwet0Uc">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="preload" href="/lib/font-awesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"></noscript>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"releaseleaf.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Build a production-ready WebSocket client for Cocos Creator with a connection state machine, exponential backoff, heartbeat timeout, queued messages and safe foreground reconnection.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reliable WebSocket Reconnection in Cocos Creator: Heartbeats, Backoff and App Resume">
+<meta property="og:url" content="https://releaseleaf.com/cocwssreco.html">
+<meta property="og:site_name" content="Winner&#39;s Dev Notes">
+<meta property="og:description" content="Build a production-ready WebSocket client for Cocos Creator with a connection state machine, exponential backoff, heartbeat timeout, queued messages and safe foreground reconnection.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-08-24T03:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-24T12:10:40.914Z">
+<meta property="article:author" content="winner">
+<meta property="article:tag" content="Cocos Creator">
+<meta property="article:tag" content="TypeScript">
+<meta property="article:tag" content="WebSocket">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://releaseleaf.com/cocwssreco.html">
+
+
+  
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocwssreco.html#article","headline":"Reliable WebSocket Reconnection in Cocos Creator: Heartbeats, Backoff and App Resume","description":"Build a production-ready WebSocket client for Cocos Creator with a connection state machine, exponential backoff, heartbeat timeout, queued messages and safe foreground reconnection.","datePublished":"2026-08-24T03:00:00.000Z","dateModified":"2026-08-24T12:10:40.914Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocwssreco.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, TypeScript, WebSocket","wordCount":1358}</script>
+
+
+
+
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Reliable WebSocket Reconnection in Cocos Creator: Heartbeats, Backoff and App Resume | Winner's Dev Notes</title>
+  
+    <script>
+      function sendPageView() {
+        if (CONFIG.hostname !== location.hostname) return;
+        var uid = localStorage.getItem('uid') || (Math.random() + '.' + Math.random());
+        localStorage.setItem('uid', uid);
+        navigator.sendBeacon('https://www.google-analytics.com/collect', new URLSearchParams({
+          v  : 1,
+          tid: 'G-XDK58GP86Z',
+          cid: uid,
+          t  : 'pageview',
+          dp : encodeURIComponent(location.pathname)
+        }));
+      }
+      document.addEventListener('pjax:complete', sendPageView);
+      sendPageView();
+    </script>
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Winner's Dev Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code, games, and the craft of building better software</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+      <li class="menu-item menu-item-contact">
+        <a href="https://t.me/winnerPlus7" rel="noopener" target="_blank"><i class="fab fa-telegram-plane fa-fw"></i>Contact Me
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article class="post-block" lang="en">
+      <header class="post-header">
+        <h1 class="post-title">
+          Reliable WebSocket Reconnection in Cocos Creator: Heartbeats, Backoff and App Resume
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span>
+                  <a href="/categories/Cocos-Creator/" rel="index"><span>Cocos Creator</span></a>
+                </span>
+            </span>
+            <div class="post-description">Build a production-ready WebSocket client for Cocos Creator with a connection state machine, exponential backoff, heartbeat timeout, queued messages and safe foreground reconnection.</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body">
+
+      
+        <p>WebSocket code often looks correct in a browser preview but fails in a real game build. Put the app in the background for a few minutes, switch networks, or let a router silently drop an idle TCP connection and the common result is the same: the socket object still exists, but the player can no longer receive game messages.</p>
+<p>The fix is not to call <code>new WebSocket()</code> from every error callback. A reliable client needs a small state machine that owns the socket lifecycle:</p>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
+<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<ul>
+<li>only one active connection attempt;</li>
+<li>a heartbeat that detects half-open connections;</li>
+<li>exponential backoff so a server outage does not cause a reconnect storm;</li>
+<li>a bounded queue for messages produced while offline;</li>
+<li>a fresh connection when the game returns to the foreground.</li>
+</ul>
+<p>This article uses Cocos Creator 3.x and TypeScript. The browser <code>WebSocket</code> API is also used by Cocos Creator’s native JavaScript environment, so the overall design works for Web, Android and iOS builds. Test your target platform, because proxy, TLS and background-network behavior can differ.</p>
+<h2 id="The-failure-mode-an-open-socket-is-not-proof-of-a-live-connection"><a href="#The-failure-mode-an-open-socket-is-not-proof-of-a-live-connection" class="headerlink" title="The failure mode: an open socket is not proof of a live connection"></a>The failure mode: an open socket is not proof of a live connection</h2><p><code>socket.readyState === WebSocket.OPEN</code> only means the local runtime believes the WebSocket is open. A mobile device can lose connectivity without immediately receiving a TCP close event. The server may already have discarded the connection while the client continues to show <code>OPEN</code>.</p>
+<p>That is why reconnecting only in <code>onclose</code> is incomplete. The client must periodically send an application-level ping and require a response within a deadline. If the deadline expires, close the stale socket locally and let the normal reconnect path take over.</p>
+<h2 id="A-reconnecting-WebSocket-client"><a href="#A-reconnecting-WebSocket-client" class="headerlink" title="A reconnecting WebSocket client"></a>A reconnecting WebSocket client</h2><p>Create <code>ReconnectWebSocket.ts</code> in your project scripts folder. This example uses JSON frames with <code>ping</code> and <code>pong</code> messages; use the equivalent protocol messages if your server already has them.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">enum</span> <span class="title class_">SocketState</span> &#123;</span><br><span class="line">  <span class="title class_">Idle</span> = <span class="string">&quot;idle&quot;</span>,</span><br><span class="line">  <span class="title class_">Connecting</span> = <span class="string">&quot;connecting&quot;</span>,</span><br><span class="line">  <span class="title class_">Open</span> = <span class="string">&quot;open&quot;</span>,</span><br><span class="line">  <span class="title class_">WaitingToReconnect</span> = <span class="string">&quot;waiting-to-reconnect&quot;</span>,</span><br><span class="line">  <span class="title class_">Closed</span> = <span class="string">&quot;closed&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">SocketMessage</span> = <span class="title class_">Record</span>&lt;<span class="built_in">string</span>, <span class="built_in">unknown</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">ReconnectWebSocket</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">socket</span>: <span class="title class_">WebSocket</span> | <span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">private</span> state = <span class="title class_">SocketState</span>.<span class="property">Idle</span>;</span><br><span class="line">  <span class="keyword">private</span> retryCount = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">reconnectTimer</span>: <span class="title class_">ReturnType</span>&lt;<span class="keyword">typeof</span> <span class="built_in">setTimeout</span>&gt; | <span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">heartbeatTimer</span>: <span class="title class_">ReturnType</span>&lt;<span class="keyword">typeof</span> <span class="built_in">setInterval</span>&gt; | <span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">pongTimer</span>: <span class="title class_">ReturnType</span>&lt;<span class="keyword">typeof</span> <span class="built_in">setTimeout</span>&gt; | <span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="attr">pendingMessages</span>: <span class="built_in">string</span>[] = [];</span><br><span class="line">  <span class="keyword">private</span> manuallyClosed = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="attr">onMessage</span>: (<span class="function">(<span class="params">message: SocketMessage</span>) =&gt;</span> <span class="built_in">void</span>) | <span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="attr">onStateChange</span>: (<span class="function">(<span class="params">state: SocketState</span>) =&gt;</span> <span class="built_in">void</span>) | <span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> <span class="keyword">readonly</span> url: <span class="built_in">string</span>,</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> <span class="keyword">readonly</span> heartbeatMs = <span class="number">20_000</span>,</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> <span class="keyword">readonly</span> pongTimeoutMs = <span class="number">8_000</span>,</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> <span class="keyword">readonly</span> maxQueuedMessages = <span class="number">100</span>,</span></span><br><span class="line"><span class="params">  </span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">connect</span>(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === <span class="title class_">SocketState</span>.<span class="property">Connecting</span> || <span class="variable language_">this</span>.<span class="property">state</span> === <span class="title class_">SocketState</span>.<span class="property">Open</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">manuallyClosed</span> = <span class="literal">false</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">clearReconnectTimer</span>();</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="title class_">SocketState</span>.<span class="property">Connecting</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> socket = <span class="keyword">new</span> <span class="title class_">WebSocket</span>(<span class="variable language_">this</span>.<span class="property">url</span>);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">socket</span> = socket;</span><br><span class="line">      socket.<span class="property">onopen</span> = <span class="function">() =&gt;</span> <span class="variable language_">this</span>.<span class="title function_">handleOpen</span>(socket);</span><br><span class="line">      socket.<span class="property">onmessage</span> = <span class="function">(<span class="params">event</span>) =&gt;</span> <span class="variable language_">this</span>.<span class="title function_">handleMessage</span>(socket, event.<span class="property">data</span>);</span><br><span class="line">      socket.<span class="property">onerror</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// onerror is not guaranteed to be followed by useful details.</span></span><br><span class="line">        <span class="comment">// onclose owns the reconnect decision.</span></span><br><span class="line">      &#125;;</span><br><span class="line">      socket.<span class="property">onclose</span> = <span class="function">() =&gt;</span> <span class="variable language_">this</span>.<span class="title function_">handleClose</span>(socket);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;WebSocket creation failed&quot;</span>, error);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="title class_">SocketState</span>.<span class="property">Idle</span>);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">scheduleReconnect</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">send</span>(<span class="attr">message</span>: <span class="title class_">SocketMessage</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> serialized = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(message);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">socket</span>?.<span class="property">readyState</span> === <span class="title class_">WebSocket</span>.<span class="property">OPEN</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">socket</span>.<span class="title function_">send</span>(serialized);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Do not allow a long outage to grow memory forever.</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">pendingMessages</span>.<span class="property">length</span> &gt;= <span class="variable language_">this</span>.<span class="property">maxQueuedMessages</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">pendingMessages</span>.<span class="title function_">shift</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">pendingMessages</span>.<span class="title function_">push</span>(serialized);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">connect</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">close</span>(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">manuallyClosed</span> = <span class="literal">true</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">clearReconnectTimer</span>();</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">stopHeartbeat</span>();</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="title class_">SocketState</span>.<span class="property">Closed</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> socket = <span class="variable language_">this</span>.<span class="property">socket</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">socket</span> = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (socket &amp;&amp; socket.<span class="property">readyState</span> &lt; <span class="title class_">WebSocket</span>.<span class="property">CLOSING</span>) &#123;</span><br><span class="line">      socket.<span class="title function_">close</span>(<span class="number">1000</span>, <span class="string">&quot;client closed&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">reconnectNow</span>(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">manuallyClosed</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">retryCount</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">dropCurrentSocket</span>();</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">connect</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">handleOpen</span>(<span class="attr">socket</span>: <span class="title class_">WebSocket</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="comment">// Ignore callbacks from a connection that was replaced meanwhile.</span></span><br><span class="line">    <span class="keyword">if</span> (socket !== <span class="variable language_">this</span>.<span class="property">socket</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">retryCount</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="title class_">SocketState</span>.<span class="property">Open</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">startHeartbeat</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="variable language_">this</span>.<span class="property">pendingMessages</span>.<span class="property">length</span> &gt; <span class="number">0</span> &amp;&amp; socket.<span class="property">readyState</span> === <span class="title class_">WebSocket</span>.<span class="property">OPEN</span>) &#123;</span><br><span class="line">      socket.<span class="title function_">send</span>(<span class="variable language_">this</span>.<span class="property">pendingMessages</span>.<span class="title function_">shift</span>()!);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">handleMessage</span>(<span class="attr">socket</span>: <span class="title class_">WebSocket</span>, <span class="attr">rawData</span>: <span class="built_in">unknown</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (socket !== <span class="variable language_">this</span>.<span class="property">socket</span> || <span class="keyword">typeof</span> rawData !== <span class="string">&quot;string&quot;</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="attr">message</span>: <span class="title class_">SocketMessage</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      message = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(rawData) <span class="keyword">as</span> <span class="title class_">SocketMessage</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">&quot;Ignoring non-JSON WebSocket frame&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (message.<span class="property">type</span> === <span class="string">&quot;pong&quot;</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">clearPongTimer</span>();</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">onMessage</span>?.(message);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">handleClose</span>(<span class="attr">socket</span>: <span class="title class_">WebSocket</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (socket !== <span class="variable language_">this</span>.<span class="property">socket</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">socket</span> = <span class="literal">null</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">stopHeartbeat</span>();</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">manuallyClosed</span>) <span class="variable language_">this</span>.<span class="title function_">scheduleReconnect</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">scheduleReconnect</span>(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">manuallyClosed</span> || <span class="variable language_">this</span>.<span class="property">reconnectTimer</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(<span class="title class_">SocketState</span>.<span class="property">WaitingToReconnect</span>);</span><br><span class="line">    <span class="keyword">const</span> exponentialDelay = <span class="title class_">Math</span>.<span class="title function_">min</span>(<span class="number">1_000</span> * <span class="number">2</span> ** <span class="variable language_">this</span>.<span class="property">retryCount</span>, <span class="number">30_000</span>);</span><br><span class="line">    <span class="keyword">const</span> jitter = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">500</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">retryCount</span> += <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">reconnectTimer</span> = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">reconnectTimer</span> = <span class="literal">null</span>;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">connect</span>();</span><br><span class="line">    &#125;, exponentialDelay + jitter);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">startHeartbeat</span>(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">stopHeartbeat</span>();</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">heartbeatTimer</span> = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">socket</span>?.<span class="property">readyState</span> !== <span class="title class_">WebSocket</span>.<span class="property">OPEN</span>) <span class="keyword">return</span>;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">socket</span>.<span class="title function_">send</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; <span class="attr">type</span>: <span class="string">&quot;ping&quot;</span>, <span class="attr">time</span>: <span class="title class_">Date</span>.<span class="title function_">now</span>() &#125;));</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">clearPongTimer</span>();</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">pongTimer</span> = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">&quot;WebSocket heartbeat timed out&quot;</span>);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">dropCurrentSocket</span>();</span><br><span class="line">      &#125;, <span class="variable language_">this</span>.<span class="property">pongTimeoutMs</span>);</span><br><span class="line">    &#125;, <span class="variable language_">this</span>.<span class="property">heartbeatMs</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">stopHeartbeat</span>(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">heartbeatTimer</span>) <span class="built_in">clearInterval</span>(<span class="variable language_">this</span>.<span class="property">heartbeatTimer</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">heartbeatTimer</span> = <span class="literal">null</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">clearPongTimer</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">dropCurrentSocket</span>(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> socket = <span class="variable language_">this</span>.<span class="property">socket</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">socket</span> = <span class="literal">null</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">stopHeartbeat</span>();</span><br><span class="line">    <span class="keyword">if</span> (socket &amp;&amp; socket.<span class="property">readyState</span> &lt; <span class="title class_">WebSocket</span>.<span class="property">CLOSING</span>) socket.<span class="title function_">close</span>();</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">manuallyClosed</span>) <span class="variable language_">this</span>.<span class="title function_">scheduleReconnect</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">clearReconnectTimer</span>(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">reconnectTimer</span>) <span class="built_in">clearTimeout</span>(<span class="variable language_">this</span>.<span class="property">reconnectTimer</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">reconnectTimer</span> = <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">clearPongTimer</span>(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">pongTimer</span>) <span class="built_in">clearTimeout</span>(<span class="variable language_">this</span>.<span class="property">pongTimer</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">pongTimer</span> = <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">setState</span>(<span class="attr">state</span>: <span class="title class_">SocketState</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> === state) <span class="keyword">return</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = state;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">onStateChange</span>?.(state);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Server-side-heartbeat-contract"><a href="#Server-side-heartbeat-contract" class="headerlink" title="Server-side heartbeat contract"></a>Server-side heartbeat contract</h2><p>The sample expects the server to return a <code>pong</code> frame when it receives <code>ping</code>:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ping&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;time&quot;</span><span class="punctuation">:</span> <span class="number">1760000000000</span> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pong&quot;</span> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Do not treat an arbitrary incoming message as a heartbeat response unless your protocol guarantees frequent server traffic. An explicit <code>pong</code> makes a stalled connection detectable even when the game is otherwise idle.</p>
+<h2 id="Connect-the-client-to-a-Cocos-Creator-component"><a href="#Connect-the-client-to-a-Cocos-Creator-component" class="headerlink" title="Connect the client to a Cocos Creator component"></a>Connect the client to a Cocos Creator component</h2><p>Keep the socket owner alive for as long as the game session needs it. A boot scene node marked as persistent is a simple option.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; _decorator, <span class="title class_">Component</span>, director, game &#125; <span class="keyword">from</span> <span class="string">&quot;cc&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ReconnectWebSocket</span>, <span class="title class_">SocketState</span> &#125; <span class="keyword">from</span> <span class="string">&quot;./ReconnectWebSocket&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; ccclass &#125; = _decorator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ccclass</span>(<span class="string">&quot;GameSocket&quot;</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">GameSocket</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> client!: <span class="title class_">ReconnectWebSocket</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">onLoad</span>(<span class="params"></span>) &#123;</span><br><span class="line">    director.<span class="title function_">addPersistRootNode</span>(<span class="variable language_">this</span>.<span class="property">node</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">client</span> = <span class="keyword">new</span> <span class="title class_">ReconnectWebSocket</span>(<span class="string">&quot;wss://example.com/game&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">client</span>.<span class="property">onStateChange</span> = <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;socket state:&quot;</span>, state);</span><br><span class="line">      <span class="comment">// Update a connection indicator here if needed.</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">client</span>.<span class="property">onMessage</span> = <span class="function">(<span class="params">message</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// Validate message.type and payload before using it in game state.</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;server message&quot;</span>, message);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">client</span>.<span class="title function_">connect</span>();</span><br><span class="line">    game.<span class="title function_">on</span>(game.<span class="property">EVENT_SHOW</span>, <span class="variable language_">this</span>.<span class="property">onGameShow</span>, <span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">onDestroy</span>(<span class="params"></span>) &#123;</span><br><span class="line">    game.<span class="title function_">off</span>(game.<span class="property">EVENT_SHOW</span>, <span class="variable language_">this</span>.<span class="property">onGameShow</span>, <span class="variable language_">this</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">client</span>.<span class="title function_">close</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">onGameShow</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// The OS may have suspended networking in the background. Reconnect instead</span></span><br><span class="line">    <span class="comment">// of trusting the old readyState.</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">client</span>.<span class="title function_">reconnectNow</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>EVENT_SHOW</code> is a useful recovery point, but it should not be the only one. The heartbeat still protects a player who changes Wi-Fi or loses mobile data while the app remains visible.</p>
+<h2 id="Avoid-these-common-reconnection-bugs"><a href="#Avoid-these-common-reconnection-bugs" class="headerlink" title="Avoid these common reconnection bugs"></a>Avoid these common reconnection bugs</h2><h3 id="Creating-multiple-sockets"><a href="#Creating-multiple-sockets" class="headerlink" title="Creating multiple sockets"></a>Creating multiple sockets</h3><p>If <code>onerror</code>, <code>onclose</code>, a button handler and <code>EVENT_SHOW</code> all call <code>connect()</code> without a guard, several live sockets can exist at once. That causes duplicated messages, duplicated login requests and race conditions. The <code>Connecting</code> and <code>Open</code> checks above ensure one connection owner.</p>
+<h3 id="Retrying-immediately-in-a-loop"><a href="#Retrying-immediately-in-a-loop" class="headerlink" title="Retrying immediately in a loop"></a>Retrying immediately in a loop</h3><p>An instant retry loop drains battery and overloads a server exactly when it is least healthy. Exponential backoff with a small random jitter spreads clients across time. Cap the delay so recovery after a long outage is still reasonably quick.</p>
+<h3 id="Replaying-unsafe-messages"><a href="#Replaying-unsafe-messages" class="headerlink" title="Replaying unsafe messages"></a>Replaying unsafe messages</h3><p>Queuing every outbound packet is dangerous. A chat message may be safe to retry; a purchase, reward claim or “use item” command may not be. Add a message identifier and make important server actions idempotent, or mark those messages as non-retryable and show a retry UI instead.</p>
+<h3 id="Treating-a-reconnect-as-a-resumed-session"><a href="#Treating-a-reconnect-as-a-resumed-session" class="headerlink" title="Treating a reconnect as a resumed session"></a>Treating a reconnect as a resumed session</h3><p>A new WebSocket is a new transport connection. Authenticate again if your protocol requires it, then request a fresh game snapshot or synchronization point. Never assume events missed while offline can be reconstructed from the local client alone.</p>
+<h2 id="Test-on-real-devices"><a href="#Test-on-real-devices" class="headerlink" title="Test on real devices"></a>Test on real devices</h2><p>Before shipping, test at least these cases on Android and iOS:</p>
+<ol>
+<li>Start the game with no network, then restore Wi-Fi.</li>
+<li>Switch between Wi-Fi and cellular data while connected.</li>
+<li>Background the app for several minutes, then return to it.</li>
+<li>Stop the WebSocket server briefly and confirm retry intervals increase.</li>
+<li>Send messages while offline and verify only retry-safe frames are replayed.</li>
+<li>Force a delayed or missing <code>pong</code> and verify the stale socket is replaced.</li>
+</ol>
+<p>The essential rule is simple: the socket object is not your connection state. Your state machine, heartbeat and server synchronization protocol are. Once those responsibilities are explicit, WebSocket behavior in Cocos Creator becomes predictable even on unreliable mobile networks.</p>
+
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.png" alt="winner WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="winner Alipay">
+        <p>Alipay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>winner
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://releaseleaf.com/cocwssreco.html" title="Reliable WebSocket Reconnection in Cocos Creator: Heartbeats, Backoff and App Resume">https://releaseleaf.com/cocwssreco.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Cocos-Creator/" rel="tag"><i class="fa fa-tag"></i> Cocos Creator</a>
+              <a href="/tags/TypeScript/" rel="tag"><i class="fa fa-tag"></i> TypeScript</a>
+              <a href="/tags/WebSocket/" rel="tag"><i class="fa fa-tag"></i> WebSocket</a>
+          </div>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/apstreregu.html" rel="prev" title="App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes">
+      <i class="fa fa-chevron-left"></i> App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-failure-mode-an-open-socket-is-not-proof-of-a-live-connection"><span class="nav-number">1.</span> <span class="nav-text">The failure mode: an open socket is not proof of a live connection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-reconnecting-WebSocket-client"><span class="nav-number">2.</span> <span class="nav-text">A reconnecting WebSocket client</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Server-side-heartbeat-contract"><span class="nav-number">3.</span> <span class="nav-text">Server-side heartbeat contract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connect-the-client-to-a-Cocos-Creator-component"><span class="nav-number">4.</span> <span class="nav-text">Connect the client to a Cocos Creator component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Avoid-these-common-reconnection-bugs"><span class="nav-number">5.</span> <span class="nav-text">Avoid these common reconnection bugs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-multiple-sockets"><span class="nav-number">5.1.</span> <span class="nav-text">Creating multiple sockets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Retrying-immediately-in-a-loop"><span class="nav-number">5.2.</span> <span class="nav-text">Retrying immediately in a loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Replaying-unsafe-messages"><span class="nav-number">5.3.</span> <span class="nav-text">Replaying unsafe messages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Treating-a-reconnect-as-a-resumed-session"><span class="nav-number">5.4.</span> <span class="nav-text">Treating a reconnect as a resumed session</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test-on-real-devices"><span class="nav-number">6.</span> <span class="nav-text">Test on real devices</span></a></li></ol></div>
+      </div>
+       <div class="sidebar-bottom-banner">
+            <a href="#小程序://时间折现/H74iLnpGbvfY3yH" target="_blank" rel="noopener">
+              <img src="/images/share.png" alt="banner">
+            </a>
+          </div>      
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="winner"
+      src="/images/IMG_3307.JPG">
+  <p class="site-author-name" itemprop="name">winner</p>
+  <div class="site-description" itemprop="description">Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.</div>
+</div>
+<div class="site-state-wrap">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <a href="/categories/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <a href="/tags/">
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="/Link/" title="&#x2F;Link&#x2F;">Friends and Links</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/Silent_F" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Silent_F" rel="noopener" target="_blank">CSDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://lengmo714.top/net/map/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;map&#x2F;index.html" rel="noopener" target="_blank">Travel Map</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://lengmo714.top/net/wechat/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;wechat&#x2F;index.html" rel="noopener" target="_blank">WeChat Chat Generator</a>
+        </li>
+    </ul>
+  </div>
+       
+      </div>
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">winner</span>
+</div>
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+</body>
+</html>
