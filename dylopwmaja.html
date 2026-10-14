@@ -1,472 +1,159 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/favicon-32x32-next.png" color="#222">
-  <meta name="yandex-verification" content="7f4abda1472881d3">
-  <meta name="baidu-site-verification" content="5lU3qr1ysBwet0Uc">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="preload" href="/lib/font-awesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"></noscript>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"releaseleaf.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="Inject a manifest link with JavaScript and generate manifest.json dynamically on a Go server to vary language, theme, start_url, and asset paths.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Dynamically Load a PWA Manifest with JavaScript and a Go Server">
-<meta property="og:url" content="https://releaseleaf.com/dylopwmaja.html">
-<meta property="og:site_name" content="Winner&#39;s Dev Notes">
-<meta property="og:description" content="Inject a manifest link with JavaScript and generate manifest.json dynamically on a Go server to vary language, theme, start_url, and asset paths.">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-02-13T06:22:12.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.877Z">
-<meta property="article:author" content="winner">
-<meta property="article:tag" content="PWA">
-<meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content="Go">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://releaseleaf.com/dylopwmaja.html">
-
-
-  
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/dylopwmaja.html#article","headline":"Dynamically Load a PWA Manifest with JavaScript and a Go Server","description":"Inject a manifest link with JavaScript and generate manifest.json dynamically on a Go server to vary language, theme, start_url, and asset paths.","datePublished":"2025-02-13T06:22:12.000Z","dateModified":"2026-08-20T02:47:38.877Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/dylopwmaja.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Web Development"],"keywords":"PWA, JavaScript, Go","wordCount":226}</script>
-
-
-
-
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'en'
-  };
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TBZBDMSJ');</script>
-<!-- End Google Tag Manager -->
-
-  <title>Dynamically Load a PWA Manifest with JavaScript and a Go Server | Winner's Dev Notes</title>
-  
-
-
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Winner's Dev Notes</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Code, games, and the craft of building better software</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
-        </a>
-      </li>
-      <li class="menu-item menu-item-contact">
-        <a href="https://t.me/winnerPlus7" rel="noopener" target="_blank"><i class="fab fa-telegram-plane fa-fw"></i>Contact Me
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-      <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article class="post-block" lang="en">
-      <header class="post-header">
-        <h1 class="post-title">
-          Dynamically Load a PWA Manifest with JavaScript and a Go Server
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span>
-                  <a href="/categories/Web-Development/" rel="index"><span>Web Development</span></a>
-                </span>
-            </span>
-            <div class="post-description">Inject a manifest link with JavaScript and generate manifest.json dynamically on a Go server to vary language, theme, start_url, and asset paths.</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body">
-
-      
-        <p>This continues the earlier PWA installation article. Dynamic manifests are useful when selecting a manifest by language, theme, environment, or start URL.</p>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
-<p>Replace the static manifest link:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;manifest&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/manifest.json&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>with:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;manifest&quot;</span> <span class="attr">id</span>=<span class="string">&quot;my-manifest&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Build a server URL and assign it at runtime:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;https://lengmo714.top&#x27;</span> + <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">search</span>;</span><br><span class="line"><span class="keyword">let</span> params = &#123;</span><br><span class="line">  <span class="attr">start_url</span>: url,</span><br><span class="line">  <span class="attr">i1</span>: <span class="string">&#x27;/icon-192x192.png&#x27;</span>,</span><br><span class="line">  <span class="attr">i2</span>: <span class="string">&#x27;/icon-512x512.png&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> encoded = <span class="built_in">encodeURIComponent</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(params));</span><br><span class="line"><span class="keyword">const</span> manifestURL = <span class="string">&#x27;https://example.com/manifest?p=&#x27;</span> + encoded;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#my-manifest&#x27;</span>).<span class="title function_">setAttribute</span>(<span class="string">&#x27;href&#x27;</span>, manifestURL);</span><br></pre></td></tr></table></figure>
-
-<p>The server receives the start URL and icon paths and returns JSON. A minimal Go implementation is:</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">&quot;encoding/json&quot;</span></span><br><span class="line">  <span class="string">&quot;fmt&quot;</span></span><br><span class="line">  <span class="string">&quot;net/http&quot;</span></span><br><span class="line">  <span class="string">&quot;net/url&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Manifest <span class="keyword">struct</span> &#123;</span><br><span class="line">  Name <span class="type">string</span> <span class="string">`json:&quot;name&quot;`</span></span><br><span class="line">  ShortName <span class="type">string</span> <span class="string">`json:&quot;short_name&quot;`</span></span><br><span class="line">  StartURL <span class="type">string</span> <span class="string">`json:&quot;start_url&quot;`</span></span><br><span class="line">  Display <span class="type">string</span> <span class="string">`json:&quot;display&quot;`</span></span><br><span class="line">  ThemeColor <span class="type">string</span> <span class="string">`json:&quot;theme_color&quot;`</span></span><br><span class="line">  BackgroundColor <span class="type">string</span> <span class="string">`json:&quot;background_color&quot;`</span></span><br><span class="line">  Icons []Icon <span class="string">`json:&quot;icons&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Icon <span class="keyword">struct</span> &#123;</span><br><span class="line">  Src <span class="type">string</span> <span class="string">`json:&quot;src&quot;`</span></span><br><span class="line">  Sizes <span class="type">string</span> <span class="string">`json:&quot;sizes&quot;`</span></span><br><span class="line">  Type <span class="type">string</span> <span class="string">`json:&quot;type&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">manifestHandler</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">  p := r.URL.Query().Get(<span class="string">&quot;p&quot;</span>)</span><br><span class="line">  <span class="keyword">if</span> p == <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">    http.Error(w, <span class="string">`&#123;&quot;error&quot;:&quot;Missing parameter &#x27;p&#x27;&quot;&#125;`</span>, http.StatusBadRequest)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  decoded, err := url.QueryUnescape(p)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123; http.Error(w, <span class="string">&quot;Invalid parameter&quot;</span>, <span class="number">400</span>); <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> data <span class="keyword">map</span>[<span class="type">string</span>]<span class="type">string</span></span><br><span class="line">  <span class="keyword">if</span> json.Unmarshal([]<span class="type">byte</span>(decoded), &amp;data) != <span class="literal">nil</span> &#123;</span><br><span class="line">    http.Error(w, <span class="string">&quot;Invalid JSON&quot;</span>, <span class="number">400</span>); <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  result := Manifest&#123;</span><br><span class="line">    Name: data[<span class="string">&quot;name&quot;</span>], ShortName: data[<span class="string">&quot;name&quot;</span>], StartURL: data[<span class="string">&quot;start_url&quot;</span>],</span><br><span class="line">    Display: <span class="string">&quot;standalone&quot;</span>, ThemeColor: <span class="string">&quot;#ffffff&quot;</span>, BackgroundColor: <span class="string">&quot;#000000&quot;</span>,</span><br><span class="line">    Icons: []Icon&#123;</span><br><span class="line">      &#123;Src: data[<span class="string">&quot;i1&quot;</span>], Sizes: <span class="string">&quot;192x192&quot;</span>, Type: <span class="string">&quot;image/png&quot;</span>&#125;,</span><br><span class="line">      &#123;Src: data[<span class="string">&quot;i2&quot;</span>], Sizes: <span class="string">&quot;512x512&quot;</span>, Type: <span class="string">&quot;image/png&quot;</span>&#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">  w.Header().Set(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json&quot;</span>)</span><br><span class="line">  json.NewEncoder(w).Encode(result)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  http.HandleFunc(<span class="string">&quot;/manifest&quot;</span>, manifestHandler)</span><br><span class="line">  fmt.Println(<span class="string">&quot;Server running at http://localhost:8080&quot;</span>)</span><br><span class="line">  http.ListenAndServe(<span class="string">&quot;:8080&quot;</span>, <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-    </div>
-
-    
-    
-    
-        <div class="reward-container">
-  <div></div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechat.png" alt="winner WeChat Pay">
-        <p>WeChat Pay</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="winner Alipay">
-        <p>Alipay</p>
-      </div>
-
-  </div>
-</div>
-
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>winner
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="https://releaseleaf.com/dylopwmaja.html" title="Dynamically Load a PWA Manifest with JavaScript and a Go Server">https://releaseleaf.com/dylopwmaja.html</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/PWA/" rel="tag"><i class="fa fa-tag"></i> PWA</a>
-              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
-              <a href="/tags/Go/" rel="tag"><i class="fa fa-tag"></i> Go</a>
-          </div>
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/cogibrbeco.html" rel="prev" title="Compare Git Branches with Beyond Compare: Difftool Setup and Commands">
-      <i class="fa fa-chevron-left"></i> Compare Git Branches with Beyond Compare: Difftool Setup and Commands
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/ficocrrucm.html" rel="next" title="Fix Cocos Creator run cmake failed and xcodebuild Not Found on iOS">
-      Fix Cocos Creator run cmake failed and xcodebuild Not Found on iOS <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-       <div class="sidebar-bottom-banner">
-            <a href="#小程序://时间折现/H74iLnpGbvfY3yH" target="_blank" rel="noopener">
-              <img src="/images/share.png" alt="banner">
-            </a>
-          </div>      
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="winner"
-      src="/images/IMG_3307.JPG">
-  <p class="site-author-name" itemprop="name">winner</p>
-  <div class="site-description" itemprop="description">Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.</div>
-</div>
-<div class="site-state-wrap">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">233</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <a href="/categories/">
-        <span class="site-state-item-count">24</span>
-        <span class="site-state-item-name">categories</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <a href="/tags/">
-        <span class="site-state-item-count">40</span>
-        <span class="site-state-item-name">tags</span>
-        </a>
-      </div>
-  </nav>
-</div>
-  <div class="cc-license" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-  <div class="links-of-blogroll">
-    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="/Link/" title="&#x2F;Link&#x2F;">Friends and Links</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://blog.csdn.net/Silent_F" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Silent_F" rel="noopener" target="_blank">CSDN</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://lengmo714.top/net/map/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;map&#x2F;index.html" rel="noopener" target="_blank">Travel Map</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://lengmo714.top/net/wechat/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;wechat&#x2F;index.html" rel="noopener" target="_blank">WeChat Chat Generator</a>
-        </li>
-    </ul>
-  </div>
-       
-      </div>
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-<div class="copyright">
-  
-  &copy; 2017 – 
-  <span itemprop="copyrightYear">2026</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">winner</span>
-</div>
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-  
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
-
-  
-<script src="/js/local-search.js"></script>
-
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBZBDMSJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-</body>
-</html>
+<!doctype html><html lang=en-US data-theme=light><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color content="#222222"><meta name=generator content="Hugo 0.168.0"><link rel=icon sizes=16x16 href=/images/favicon-16x16-next.png><link rel=icon sizes=32x32 href=/images/favicon-32x32-next.png><link rel=apple-touch-icon href=/images/favicon-16x16-next.png><link rel=canonical href=https://releaseleaf.com/dylopwmaja.html><link rel=alternate type=application/rss+xml title="Winner's Dev Notes" href=https://releaseleaf.com/rss.xml><meta name=description content="Inject a manifest link with JavaScript and generate manifest.json dynamically on a Go server to vary language, theme, start_url, and asset paths."><meta itemprop=description content="Inject a manifest link with JavaScript and generate manifest.json dynamically on a Go server to vary language, theme, start_url, and asset paths."><meta itemprop=name content="Dynamically Load a PWA Manifest with JavaScript and a Go Server"><meta itemprop=image content="https://releaseleaf.com/images/comment_bg.png"><script type=application/ld+json>{"@context":"https://schema.org","@id":"https://releaseleaf.com/dylopwmaja.html#article","@type":"BlogPosting","articleSection":["Web Development"],"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"dateModified":"2025-02-13T14:22:12+08:00","datePublished":"2025-02-13T14:22:12+08:00","description":"Inject a manifest link with JavaScript and generate manifest.json dynamically on a Go server to vary language, theme, start_url, and asset paths.","headline":"Dynamically Load a PWA Manifest with JavaScript and a Go Server","image":["https://releaseleaf.com/images/comment_bg.png"],"inLanguage":"en-US","keywords":"PWA, JavaScript, Go","mainEntityOfPage":{"@id":"https://releaseleaf.com/dylopwmaja.html","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"},"name":"Winner's Dev Notes"},"wordCount":303}</script><meta property="og:type" content="article"><meta property="og:title" content="Dynamically Load a PWA Manifest with JavaScript and a Go Server"><meta property="og:description" content="Inject a manifest link with JavaScript and generate manifest.json dynamically on a Go server to vary language, theme, start_url, and asset paths."><meta property="og:image" content="https://releaseleaf.com/images/comment_bg.png"><meta property="og:url" content="https://releaseleaf.com/dylopwmaja.html"><meta property="og:site_name" content="Winner's Dev Notes"><meta property="og:locale" content="en_US"><meta property="article:published_time" content="2025-02-13T14:22:12+08:00"><meta property="article:modified_time" content="2025-02-13T14:22:12+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Dynamically Load a PWA Manifest with JavaScript and a Go Server"><meta name=twitter:description content="Inject a manifest link with JavaScript and generate manifest.json dynamically on a Go server to vary language, theme, start_url, and asset paths."><meta name=twitter:image content="https://releaseleaf.com/images/comment_bg.png"><link type=text/css rel=stylesheet href=https://releaseleaf.com/js/3rd/font-awesome/6.7.2/css/all.min.css><link type=text/css rel=stylesheet href=https://releaseleaf.com/js/3rd/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://releaseleaf.com/js/3rd/viewerjs/1.11.6/viewer.min.css><link rel=stylesheet href="/css/main.min.css?=1791958088"><style type=text/css>.post-footer hr:after{content:"Thanks for reading"}.flinks-list-footer hr:after{content:"Thanks for reading"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return 0[0];const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),0[0]):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><title>Dynamically Load a PWA Manifest with JavaScript and a Go Server - Winner's Dev Notes</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript><script>(function(e,t,n,s,o){e[s]=e[s]||[],e[s].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var a=t.getElementsByTagName(n)[0],i=t.createElement(n),r=s!="dataLayer"?"&l="+s:"";i.async=!0,i.src="https://www.googletagmanager.com/gtm.js?id="+o+r,a.parentNode.insertBefore(i,a)})(window,document,"script","dataLayer","GTM-TBZBDMSJ")</script><style>.post-body img{height:auto;max-width:100%}.post-cover{display:block;max-height:300px;object-fit:cover;margin:0 auto 24px}.post-body iframe{max-width:100%}.post-body pre{overflow-x:auto}</style></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Winner's Dev Notes</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Code, games, and the craft of building better software</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>Home</a></li><li class="menu-item menu-item-about"><a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>About</a></li><li class="menu-item menu-item-tags"><a href=/tags/ class=hvr-icon-pulse rel=section><i class="fa fa-tags hvr-icon"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href=/categories/ class=hvr-icon-pulse rel=section><i class="fa fa-th hvr-icon"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>Archives</a></li><li class="menu-item menu-item-photos"><a href=/photos/ class=hvr-icon-pulse rel=section><i class="fa fa-camera hvr-icon"></i>Photos</a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>Search</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=Searching... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>TOC</li><li class=sidebar-nav-overview>Overview</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=winner src=/imgs/img-lazy-loading.gif data-src=/images/IMG_3307.JPG><p class=site-author-name itemprop=name>winner</p><div class=site-description itemprop=description>Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>233</span>
+<span class=site-state-item-name>Posts</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>24</span>
+<span class=site-state-item-name>Categories</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>40</span>
+<span class=site-state-item-name>Tags</span></a></div></nav></div><div class="links-of-social site-overview-item animated"></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en class=cc-opacity rel=noopener target=_blank title="Creative Commons"><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt="Creative Commons"></a></div><div class="links-of-blogroll site-overview-item animated"><div class=links-of-blogroll-title><i class="fa fa-link fa-fw"></i>
+Links</div><ul class=links-of-blogroll-list><li class=links-of-blogroll-item><a href=/Link/ title=/Link/ target=_blank>Friends and Links</a></li><li class=links-of-blogroll-item><a href=https://blog.csdn.net/Silent_F title=https://blog.csdn.net/Silent_F target=_blank>CSDN</a></li><li class=links-of-blogroll-item><a href=https://lengmo714.top/net/map/index.html title=https://lengmo714.top/net/map/index.html target=_blank>Travel Map</a></li><li class=links-of-blogroll-item><a href=https://lengmo714.top/net/wechat/index.html title=https://lengmo714.top/net/wechat/index.html target=_blank>WeChat Chat Generator</a></li></ul></div></div></div></div><div class="sidebar-card-widget back-to-top-card"><div class="back-to-top animated" role=button aria-label><i class="fa fa-arrow-up"></i>
+<span>0%</span></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title="Change Theme"><i class="fas fa-adjust"></i></div></div><div class=reading-progress-bar></div><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang=en-US><link itemprop=mainEntityOfPage href=https://releaseleaf.com/dylopwmaja.html><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/images/IMG_3307.JPG"><meta itemprop=name content="winner"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="winner"><meta itemprop=description content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="Dynamically Load a PWA Manifest with JavaScript and a Go Server"><meta itemprop=description content="Inject a manifest link with JavaScript and generate manifest.json dynamically on a Go server to vary language, theme, start_url, and asset paths."></span><header class=post-header><h1 class=post-title itemprop="name headline">Dynamically Load a PWA Manifest with JavaScript and a Go Server</h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="fas fa-solid fa-folder-open"></i>
+</span><span class=post-meta-item-text title="Classify at">Classify at:
+</span><span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/web-development/ itemprop=url rel=index><span itemprop=name>Web Development</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=Words><span class=post-meta-item-icon><i class="fas fa-solid fa-file-word"></i>
+</span><span class=post-meta-item-text>Words:</span>
+<span>303</span>
+</span><span class=post-meta-item title=Read><span class=post-meta-item-icon><i class="fas fa-solid fa-clock"></i>
+</span><span class=post-meta-item-text>Read:&ap;</span>
+<span>2min</span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><p>This continues the earlier PWA installation article. Dynamic manifests are useful when selecting a manifest by language, theme, environment, or start URL.</p><p>Replace the static manifest link:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-0-1><a class=lnlinks href=#hl-0-1>1</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>link</span> <span class=na>rel</span><span class=o>=</span><span class=s>&#34;manifest&#34;</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;/manifest.json&#34;</span><span class=p>&gt;</span></span></span></code></pre></td></tr></table></div></div><p>with:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-1-1><a class=lnlinks href=#hl-1-1>1</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>link</span> <span class=na>rel</span><span class=o>=</span><span class=s>&#34;manifest&#34;</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;my-manifest&#34;</span><span class=p>&gt;</span></span></span></code></pre></td></tr></table></div></div><p>Build a server URL and assign it at runtime:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-2-1><a class=lnlinks href=#hl-2-1>1</a>
+</span><span class=lnt id=hl-2-2><a class=lnlinks href=#hl-2-2>2</a>
+</span><span class=lnt id=hl-2-3><a class=lnlinks href=#hl-2-3>3</a>
+</span><span class=lnt id=hl-2-4><a class=lnlinks href=#hl-2-4>4</a>
+</span><span class=lnt id=hl-2-5><a class=lnlinks href=#hl-2-5>5</a>
+</span><span class=lnt id=hl-2-6><a class=lnlinks href=#hl-2-6>6</a>
+</span><span class=lnt id=hl-2-7><a class=lnlinks href=#hl-2-7>7</a>
+</span><span class=lnt id=hl-2-8><a class=lnlinks href=#hl-2-8>8</a>
+</span><span class=lnt id=hl-2-9><a class=lnlinks href=#hl-2-9>9</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>url</span> <span class=o>=</span> <span class=s1>&#39;https://lengmo714.top&#39;</span> <span class=o>+</span> <span class=nb>window</span><span class=p>.</span><span class=nx>location</span><span class=p>.</span><span class=nx>search</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>params</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>start_url</span><span class=o>:</span> <span class=nx>url</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>i1</span><span class=o>:</span> <span class=s1>&#39;/icon-192x192.png&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>i2</span><span class=o>:</span> <span class=s1>&#39;/icon-512x512.png&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>encoded</span> <span class=o>=</span> <span class=nb>encodeURIComponent</span><span class=p>(</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>params</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>manifestURL</span> <span class=o>=</span> <span class=s1>&#39;https://example.com/manifest?p=&#39;</span> <span class=o>+</span> <span class=nx>encoded</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nb>document</span><span class=p>.</span><span class=nx>querySelector</span><span class=p>(</span><span class=s1>&#39;#my-manifest&#39;</span><span class=p>).</span><span class=nx>setAttribute</span><span class=p>(</span><span class=s1>&#39;href&#39;</span><span class=p>,</span> <span class=nx>manifestURL</span><span class=p>);</span></span></span></code></pre></td></tr></table></div></div><p>The server receives the start URL and icon paths and returns JSON. A minimal Go implementation is:</p><a id=more></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-3-1><a class=lnlinks href=#hl-3-1> 1</a>
+</span><span class=lnt id=hl-3-2><a class=lnlinks href=#hl-3-2> 2</a>
+</span><span class=lnt id=hl-3-3><a class=lnlinks href=#hl-3-3> 3</a>
+</span><span class=lnt id=hl-3-4><a class=lnlinks href=#hl-3-4> 4</a>
+</span><span class=lnt id=hl-3-5><a class=lnlinks href=#hl-3-5> 5</a>
+</span><span class=lnt id=hl-3-6><a class=lnlinks href=#hl-3-6> 6</a>
+</span><span class=lnt id=hl-3-7><a class=lnlinks href=#hl-3-7> 7</a>
+</span><span class=lnt id=hl-3-8><a class=lnlinks href=#hl-3-8> 8</a>
+</span><span class=lnt id=hl-3-9><a class=lnlinks href=#hl-3-9> 9</a>
+</span><span class=lnt id=hl-3-10><a class=lnlinks href=#hl-3-10>10</a>
+</span><span class=lnt id=hl-3-11><a class=lnlinks href=#hl-3-11>11</a>
+</span><span class=lnt id=hl-3-12><a class=lnlinks href=#hl-3-12>12</a>
+</span><span class=lnt id=hl-3-13><a class=lnlinks href=#hl-3-13>13</a>
+</span><span class=lnt id=hl-3-14><a class=lnlinks href=#hl-3-14>14</a>
+</span><span class=lnt id=hl-3-15><a class=lnlinks href=#hl-3-15>15</a>
+</span><span class=lnt id=hl-3-16><a class=lnlinks href=#hl-3-16>16</a>
+</span><span class=lnt id=hl-3-17><a class=lnlinks href=#hl-3-17>17</a>
+</span><span class=lnt id=hl-3-18><a class=lnlinks href=#hl-3-18>18</a>
+</span><span class=lnt id=hl-3-19><a class=lnlinks href=#hl-3-19>19</a>
+</span><span class=lnt id=hl-3-20><a class=lnlinks href=#hl-3-20>20</a>
+</span><span class=lnt id=hl-3-21><a class=lnlinks href=#hl-3-21>21</a>
+</span><span class=lnt id=hl-3-22><a class=lnlinks href=#hl-3-22>22</a>
+</span><span class=lnt id=hl-3-23><a class=lnlinks href=#hl-3-23>23</a>
+</span><span class=lnt id=hl-3-24><a class=lnlinks href=#hl-3-24>24</a>
+</span><span class=lnt id=hl-3-25><a class=lnlinks href=#hl-3-25>25</a>
+</span><span class=lnt id=hl-3-26><a class=lnlinks href=#hl-3-26>26</a>
+</span><span class=lnt id=hl-3-27><a class=lnlinks href=#hl-3-27>27</a>
+</span><span class=lnt id=hl-3-28><a class=lnlinks href=#hl-3-28>28</a>
+</span><span class=lnt id=hl-3-29><a class=lnlinks href=#hl-3-29>29</a>
+</span><span class=lnt id=hl-3-30><a class=lnlinks href=#hl-3-30>30</a>
+</span><span class=lnt id=hl-3-31><a class=lnlinks href=#hl-3-31>31</a>
+</span><span class=lnt id=hl-3-32><a class=lnlinks href=#hl-3-32>32</a>
+</span><span class=lnt id=hl-3-33><a class=lnlinks href=#hl-3-33>33</a>
+</span><span class=lnt id=hl-3-34><a class=lnlinks href=#hl-3-34>34</a>
+</span><span class=lnt id=hl-3-35><a class=lnlinks href=#hl-3-35>35</a>
+</span><span class=lnt id=hl-3-36><a class=lnlinks href=#hl-3-36>36</a>
+</span><span class=lnt id=hl-3-37><a class=lnlinks href=#hl-3-37>37</a>
+</span><span class=lnt id=hl-3-38><a class=lnlinks href=#hl-3-38>38</a>
+</span><span class=lnt id=hl-3-39><a class=lnlinks href=#hl-3-39>39</a>
+</span><span class=lnt id=hl-3-40><a class=lnlinks href=#hl-3-40>40</a>
+</span><span class=lnt id=hl-3-41><a class=lnlinks href=#hl-3-41>41</a>
+</span><span class=lnt id=hl-3-42><a class=lnlinks href=#hl-3-42>42</a>
+</span><span class=lnt id=hl-3-43><a class=lnlinks href=#hl-3-43>43</a>
+</span><span class=lnt id=hl-3-44><a class=lnlinks href=#hl-3-44>44</a>
+</span><span class=lnt id=hl-3-45><a class=lnlinks href=#hl-3-45>45</a>
+</span><span class=lnt id=hl-3-46><a class=lnlinks href=#hl-3-46>46</a>
+</span><span class=lnt id=hl-3-47><a class=lnlinks href=#hl-3-47>47</a>
+</span><span class=lnt id=hl-3-48><a class=lnlinks href=#hl-3-48>48</a>
+</span><span class=lnt id=hl-3-49><a class=lnlinks href=#hl-3-49>49</a>
+</span><span class=lnt id=hl-3-50><a class=lnlinks href=#hl-3-50>50</a>
+</span><span class=lnt id=hl-3-51><a class=lnlinks href=#hl-3-51>51</a>
+</span><span class=lnt id=hl-3-52><a class=lnlinks href=#hl-3-52>52</a>
+</span><span class=lnt id=hl-3-53><a class=lnlinks href=#hl-3-53>53</a>
+</span><span class=lnt id=hl-3-54><a class=lnlinks href=#hl-3-54>54</a>
+</span><span class=lnt id=hl-3-55><a class=lnlinks href=#hl-3-55>55</a>
+</span><span class=lnt id=hl-3-56><a class=lnlinks href=#hl-3-56>56</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span><span class=w> </span><span class=nx>main</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=p>(</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=s>&#34;encoding/json&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=s>&#34;fmt&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=s>&#34;net/http&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=s>&#34;net/url&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>type</span><span class=w> </span><span class=nx>Manifest</span><span class=w> </span><span class=kd>struct</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>Name</span><span class=w> </span><span class=kt>string</span><span class=w> </span><span class=s>`json:&#34;name&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>ShortName</span><span class=w> </span><span class=kt>string</span><span class=w> </span><span class=s>`json:&#34;short_name&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>StartURL</span><span class=w> </span><span class=kt>string</span><span class=w> </span><span class=s>`json:&#34;start_url&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>Display</span><span class=w> </span><span class=kt>string</span><span class=w> </span><span class=s>`json:&#34;display&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>ThemeColor</span><span class=w> </span><span class=kt>string</span><span class=w> </span><span class=s>`json:&#34;theme_color&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>BackgroundColor</span><span class=w> </span><span class=kt>string</span><span class=w> </span><span class=s>`json:&#34;background_color&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>Icons</span><span class=w> </span><span class=p>[]</span><span class=nx>Icon</span><span class=w> </span><span class=s>`json:&#34;icons&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>type</span><span class=w> </span><span class=nx>Icon</span><span class=w> </span><span class=kd>struct</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>Src</span><span class=w> </span><span class=kt>string</span><span class=w> </span><span class=s>`json:&#34;src&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>Sizes</span><span class=w> </span><span class=kt>string</span><span class=w> </span><span class=s>`json:&#34;sizes&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>Type</span><span class=w> </span><span class=kt>string</span><span class=w> </span><span class=s>`json:&#34;type&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>func</span><span class=w> </span><span class=nf>manifestHandler</span><span class=p>(</span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>p</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>r</span><span class=p>.</span><span class=nx>URL</span><span class=p>.</span><span class=nf>Query</span><span class=p>().</span><span class=nf>Get</span><span class=p>(</span><span class=s>&#34;p&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>if</span><span class=w> </span><span class=nx>p</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=s>&#34;&#34;</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>http</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=nx>w</span><span class=p>,</span><span class=w> </span><span class=s>`{&#34;error&#34;:&#34;Missing parameter &#39;p&#39;&#34;}`</span><span class=p>,</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>StatusBadRequest</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=k>return</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>decoded</span><span class=p>,</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>url</span><span class=p>.</span><span class=nf>QueryUnescape</span><span class=p>(</span><span class=nx>p</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>if</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>!=</span><span class=w> </span><span class=kc>nil</span><span class=w> </span><span class=p>{</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=nx>w</span><span class=p>,</span><span class=w> </span><span class=s>&#34;Invalid parameter&#34;</span><span class=p>,</span><span class=w> </span><span class=mi>400</span><span class=p>);</span><span class=w> </span><span class=k>return</span><span class=w> </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=kd>var</span><span class=w> </span><span class=nx>data</span><span class=w> </span><span class=kd>map</span><span class=p>[</span><span class=kt>string</span><span class=p>]</span><span class=kt>string</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=k>if</span><span class=w> </span><span class=nx>json</span><span class=p>.</span><span class=nf>Unmarshal</span><span class=p>([]</span><span class=nb>byte</span><span class=p>(</span><span class=nx>decoded</span><span class=p>),</span><span class=w> </span><span class=o>&amp;</span><span class=nx>data</span><span class=p>)</span><span class=w> </span><span class=o>!=</span><span class=w> </span><span class=kc>nil</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>http</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=nx>w</span><span class=p>,</span><span class=w> </span><span class=s>&#34;Invalid JSON&#34;</span><span class=p>,</span><span class=w> </span><span class=mi>400</span><span class=p>);</span><span class=w> </span><span class=k>return</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>result</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>Manifest</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Name</span><span class=p>:</span><span class=w> </span><span class=nx>data</span><span class=p>[</span><span class=s>&#34;name&#34;</span><span class=p>],</span><span class=w> </span><span class=nx>ShortName</span><span class=p>:</span><span class=w> </span><span class=nx>data</span><span class=p>[</span><span class=s>&#34;name&#34;</span><span class=p>],</span><span class=w> </span><span class=nx>StartURL</span><span class=p>:</span><span class=w> </span><span class=nx>data</span><span class=p>[</span><span class=s>&#34;start_url&#34;</span><span class=p>],</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Display</span><span class=p>:</span><span class=w> </span><span class=s>&#34;standalone&#34;</span><span class=p>,</span><span class=w> </span><span class=nx>ThemeColor</span><span class=p>:</span><span class=w> </span><span class=s>&#34;#ffffff&#34;</span><span class=p>,</span><span class=w> </span><span class=nx>BackgroundColor</span><span class=p>:</span><span class=w> </span><span class=s>&#34;#000000&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Icons</span><span class=p>:</span><span class=w> </span><span class=p>[]</span><span class=nx>Icon</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>{</span><span class=nx>Src</span><span class=p>:</span><span class=w> </span><span class=nx>data</span><span class=p>[</span><span class=s>&#34;i1&#34;</span><span class=p>],</span><span class=w> </span><span class=nx>Sizes</span><span class=p>:</span><span class=w> </span><span class=s>&#34;192x192&#34;</span><span class=p>,</span><span class=w> </span><span class=nx>Type</span><span class=p>:</span><span class=w> </span><span class=s>&#34;image/png&#34;</span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>{</span><span class=nx>Src</span><span class=p>:</span><span class=w> </span><span class=nx>data</span><span class=p>[</span><span class=s>&#34;i2&#34;</span><span class=p>],</span><span class=w> </span><span class=nx>Sizes</span><span class=p>:</span><span class=w> </span><span class=s>&#34;512x512&#34;</span><span class=p>,</span><span class=w> </span><span class=nx>Type</span><span class=p>:</span><span class=w> </span><span class=s>&#34;image/png&#34;</span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>json</span><span class=p>.</span><span class=nf>NewEncoder</span><span class=p>(</span><span class=nx>w</span><span class=p>).</span><span class=nf>Encode</span><span class=p>(</span><span class=nx>result</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>func</span><span class=w> </span><span class=nf>main</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>http</span><span class=p>.</span><span class=nf>HandleFunc</span><span class=p>(</span><span class=s>&#34;/manifest&#34;</span><span class=p>,</span><span class=w> </span><span class=nx>manifestHandler</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Server running at http://localhost:8080&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>http</span><span class=p>.</span><span class=nf>ListenAndServe</span><span class=p>(</span><span class=s>&#34;:8080&#34;</span><span class=p>,</span><span class=w> </span><span class=kc>nil</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div></div><footer class=post-footer><div class=post-tags><a href=/tags/pwa/>PWA
+</a><a href=/tags/javascript/>JavaScript
+</a><a href=/tags/go/>Go</a></div><hr><aside aria-label=Advertisement><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin=anonymous></script><ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-3160571902547760 data-ad-slot=8630948880></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></aside><div class=reward-container><div>If this article helped, you can support my work.</div><button>
+Donate</button><div class=post-reward><div class=post-reward-item><img src=/imgs/img-lazy-loading.gif data-src=/images/alipay.png alt="winner - Alipay">
+<span>Alipay</span></div><div class=post-reward-item><img src=/imgs/img-lazy-loading.gif data-src=/images/wechat.png alt="winner - WechatPay">
+<span>WechatPay</span></div></div></div><div class=post-copyright><img src=/imgs/cc/cc.svg class=cc-icon width=75 height=75 align=right alt="Creative Commons" title="Creative Commons"><ul><li class=post-copyright-title><strong>Post Title:</strong>
+Dynamically Load a PWA Manifest with JavaScript and a Go Server</li><li class=post-copyright-author><strong>Written By: </strong>winner</li><li class=post-copyright-link><strong>Post Link:</strong>
+<a id=post-cr-link href=https://releaseleaf.com/dylopwmaja.html title="Dynamically Load a PWA Manifest with JavaScript and a Go Server">https://releaseleaf.com/dylopwmaja.html</a></li><li class=post-copyright-license><strong>Copyright Notice: </strong>This work is licensed under <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en>BY-NC-SA</a> .</li><li><div class=license-icons><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en target=_blank><img src=/imgs/cc/big/by_nc_sa.svg alt=BY-NC-SA title=BY-NC-SA>
+</a><a href=https://notbyai.fyi target=_blank><img src=/imgs/notbyai/en/white.svg title="Not By AI"></a></div></li></ul></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/ficocrrucm.html rel=next title="Fix Cocos Creator run cmake failed and xcodebuild Not Found on iOS"><i class="fa fa-chevron-left"></i> Fix Cocos Creator run cmake failed and xcodebuild Not Found on iOS</a></div><div class="post-nav-prev post-nav-item"><a href=/cogibrbeco.html rel=prev title="Compare Git Branches with Beyond Compare: Difftool Setup and Commands">Compare Git Branches with Beyond Compare: Difftool Setup and Commands
+<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
+<span itemprop=copyrightYear>2017 - 2026
+</span><span class=with-love><i class="fa fa-heart"></i>
+</span><span class=author itemprop=copyrightHolder>winner</span></div><div class=powered-by>Powered by <a href=https://gohugo.io title=0.168.0 target=_blank>Hugo</a> & <a href=https://github.com/hugo-next/hugo-theme-next title=4.8.3 target=_blank>Hugo NexT.Gemini</a></div></div></footer><script class=next-config data-name=page type=application/json>{"clipboard":{"js":{"alias":"clipboard","file":"dist/clipboard.min.js","name":"clipboard.js","version":"2.0.11"}},"comments":false,"expired":false,"isHome":false,"isPage":true,"path":"dylopwmaja.html","permalink":"https://releaseleaf.com/dylopwmaja.html","title":"Dynamically Load a PWA Manifest with JavaScript and a Go Server","toc":true}</script><script type=text/javascript src=https://releaseleaf.com/js/3rd/animejs/3.2.2/anime.min.js crossorigin=anonymous defer></script><script type=text/javascript src=https://releaseleaf.com/js/3rd/viewerjs/1.11.6/viewer.min.js crossorigin=anonymous defer></script><script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":false,"save":"manual"},"copybtn":true,"darkmode":false,"hostname":"https://releaseleaf.com/","i18n":{"ds_day":" Day Ago","ds_days":" Day ","ds_hour":" Hour Ago","ds_hours":" Hour ","ds_just":"Just","ds_min":" Min Ago","ds_mins":" Min","ds_month":" Month Ago","ds_years":" Year ","empty":"We didn't find any results for the search: ${query}","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","placeholder":"Searching..."},"isMultiLang":false,"lang":"en-US","lazyload":false,"localSearch":{"enable":true,"limit":1e4,"path":"/search.xml","preload":false,"topnperarticle":1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"postmeta":{"comments":{"enable":false},"views":{"enable":false}},"root":"/","scheme":"Gemini","share":{"enable":false},"sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"local","router":{"name":"local","type":"modern","url":"https://releaseleaf.com/js/3rd"}},"version":"4.8.3"}</script><script type=text/javascript src="/js/main.min.js?=1791958088" defer></script><script type=text/javascript src="/js/clipboard.min.js?=1791958088" defer></script><noscript><iframe title="Google Tag Manager" src="https://www.googletagmanager.com/ns.html?id=GTM-TBZBDMSJ" height=0 width=0 style=display:none;visibility:hidden></iframe></noscript><script>(function(){var e=document.querySelector('link[rel="canonical"]'),t=new Image;t.src="https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif?l="+encodeURIComponent(e?e.href:location.href)+"&r="+encodeURIComponent(document.referrer)})()</script></body></html>

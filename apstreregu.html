@@ -1,508 +1,272 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/favicon-32x32-next.png" color="#222">
-  <meta name="yandex-verification" content="7f4abda1472881d3">
-  <meta name="baidu-site-verification" content="5lU3qr1ysBwet0Uc">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="preload" href="/lib/font-awesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"></noscript>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"releaseleaf.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="A real-world App Store review case covering Guideline 4.8 login services, 4.3(a) spam rejection, Guideline 5.1.2(i), ATT permission issues, and the fixes that eventually passed review.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes">
-<meta property="og:url" content="https://releaseleaf.com/apstreregu.html">
-<meta property="og:site_name" content="Winner&#39;s Dev Notes">
-<meta property="og:description" content="A real-world App Store review case covering Guideline 4.8 login services, 4.3(a) spam rejection, Guideline 5.1.2(i), ATT permission issues, and the fixes that eventually passed review.">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-07-29T09:56:54.000Z">
-<meta property="article:modified_time" content="2026-08-20T03:29:50.508Z">
-<meta property="article:author" content="winner">
-<meta property="article:tag" content="iOS Development">
-<meta property="article:tag" content="App Store">
-<meta property="article:tag" content="App Review">
-<meta property="article:tag" content="Guideline 4.3">
-<meta property="article:tag" content="ATT">
-<meta property="article:tag" content="Sign in with Apple">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://releaseleaf.com/apstreregu.html">
-
-
-  
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/apstreregu.html#article","headline":"App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes","description":"A real-world App Store review case covering Guideline 4.8 login services, 4.3(a) spam rejection, Guideline 5.1.2(i), ATT permission issues, and the fixes that eventually passed review.","datePublished":"2026-07-29T09:56:54.000Z","dateModified":"2026-08-20T03:29:50.508Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/apstreregu.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"iOS Development, App Store, App Review, Guideline 4.3, ATT, Sign in with Apple","wordCount":2004}</script>
-
-
-
-
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'en'
-  };
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TBZBDMSJ');</script>
-<!-- End Google Tag Manager -->
-
-  <title>App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes | Winner's Dev Notes</title>
-  
-
-
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Winner's Dev Notes</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Code, games, and the craft of building better software</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
-        </a>
-      </li>
-      <li class="menu-item menu-item-contact">
-        <a href="https://t.me/winnerPlus7" rel="noopener" target="_blank"><i class="fab fa-telegram-plane fa-fw"></i>Contact Me
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-      <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article class="post-block" lang="en">
-      <header class="post-header">
-        <h1 class="post-title">
-          App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span>
-                  <a href="/categories/Cocos-Creator/" rel="index"><span>Cocos Creator</span></a>
-                </span>
-            </span>
-            <div class="post-description">A real-world App Store review case covering Guideline 4.8 login services, 4.3(a) spam rejection, Guideline 5.1.2(i), ATT permission issues, and the fixes that eventually passed review.</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body">
-
-      
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-<p>Submitting my first iOS app to the App Store resulted in four review attempts and three rejections before approval. The main issues involved Guideline 4.8 login services, Guideline 4.3(a) Design - Spam, Guideline 5.1.2(i), Sign in with Apple, and App Tracking Transparency (ATT). This article documents the rejection messages, their causes, and the changes that eventually passed review.</p>
-<h2 id="Guideline-4-8-Rejection-Login-Services"><a href="#Guideline-4-8-Rejection-Login-Services" class="headerlink" title="Guideline 4.8 Rejection: Login Services"></a>Guideline 4.8 Rejection: Login Services</h2><h3 id="Reasons-for-rejection"><a href="#Reasons-for-rejection" class="headerlink" title="Reasons for rejection"></a>Reasons for rejection</h3><ol>
-<li>The game offered Google as a third-party login method. My understanding is that Apple requires Sign in with Apple whenever an app provides third-party login.</li>
-<li>This type of game could not be submitted through an individual developer account; it required a company developer account.</li>
-</ol>
-<h3 id="Rejection-message"><a href="#Rejection-message" class="headerlink" title="Rejection message"></a>Rejection message</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Hello,</span><br><span class="line">Thank you for submitting the new app, VG Poker Tour, for review. We noticed some issues that require your attention. Please see below for additional information.</span><br><span class="line">If you have any questions, we are here to help. Reply to this message in App Store Connect and let us know.</span><br><span class="line">Review Environment</span><br><span class="line"> Submission ID: 8a757069-67a3-4a21-88b5-d4467f24e64a</span><br><span class="line"> Review date: July 04, 2026</span><br><span class="line"> Review Device: iPhone 17 Pro Max</span><br><span class="line"> Version reviewed: 1.0.0 (6)App Review Guideline Issue</span><br><span class="line">Issue Description</span><br><span class="line">In order to reduce fraudulent activity on the App Store and comply with government requests to address illegal online gambling activity, we are no longer allowing simulated gambling apps submitted by individual developers.</span><br><span class="line">We found that you have submitted this app under an individual account and the app includes simulated gambling features or you indicated in the Ratings section of App Store Connect that it contains gambling features. While you can no longer distribute gambling apps from this account, you may continue to submit and distribute other types of apps to the App Store.</span><br><span class="line">Going forward only verified accounts from incorporated business entities may submit gambling apps for distribution on the App Store. Visit the Enrollment page to learn more about enrolling an organization in the Apple Developer Program. For information on transferring an app to another developer account, please review the App transfer overview page in App Store Connect Help.</span><br><span class="line">As a reminder, the App Review Guidelines state that it is your responsibility to ensure the app complies with all legal requirements in any location where you make it available.</span><br><span class="line"> Guideline 4.8 - Design - Login ServicesIssue Description</span><br><span class="line">The app uses a third-party login service, but does not appear to offer as an equivalent login option another login service with all of the following features:</span><br><span class="line">●The login option limits data collection to the user’s name and email address.</span><br><span class="line">●The login option allows users to keep their email address private from all parties as part of setting up their account.</span><br><span class="line">●The login option does not collect interactions with the app for advertising purposes without consent.</span><br><span class="line">Next Steps</span><br><span class="line">Revise the app to offer as an equivalent login option another login service that meets all of the above requirements.</span><br><span class="line">If the app already includes another login service that meets all of the above requirements, reply to App Review in App Store Connect, identify which login service meets all of the requirements, and explain why it meets all of the requirements.</span><br><span class="line">Note that Sign in with Apple is a login service that meets all the requirements specified in guideline 4.8.</span><br><span class="line">Resources</span><br><span class="line">Learn about Sign in with Apple.</span><br><span class="line">● SupportReply to this message in your preferred language if you need assistance. If you need additional support, use the Contact Us module.</span><br><span class="line">●Consult with fellow developers and Apple engineers on the Apple Developer Forums.</span><br><span class="line">●Provide feedback on this message and your review experience by completing a short survey.</span><br><span class="line">Test on the latest betas</span><br><span class="line"> Betas of iOS 27, iPadOS 27, macOS 27, tvOS 27 and visionOS 27 are now available. Download the latest betas to prepare your app for upcoming software releases. Learn more about installing and using Apple beta software.</span><br></pre></td></tr></table></figure>
-
-<h3 id="What-I-changed"><a href="#What-I-changed" class="headerlink" title="What I changed"></a>What I changed</h3><ol>
-<li>Submitted the app through a company developer account.</li>
-<li>Hid the Google login button in the game.</li>
-<li>Deleted the app from the original individual account.</li>
-</ol>
-<h2 id="Guideline-4-3-a-Rejection-Design-Spam"><a href="#Guideline-4-3-a-Rejection-Design-Spam" class="headerlink" title="Guideline 4.3(a) Rejection: Design - Spam"></a>Guideline 4.3(a) Rejection: Design - Spam</h2><h3 id="Reason-for-rejection"><a href="#Reason-for-rejection" class="headerlink" title="Reason for rejection"></a>Reason for rejection</h3><p>Many developers have probably heard of Guideline 4.3. My case did not seem too serious at this stage; Apple only indicated that the app was highly similar to other apps.</p>
-<h3 id="Rejection-message-1"><a href="#Rejection-message-1" class="headerlink" title="Rejection message"></a>Rejection message</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Hello,</span><br><span class="line">We noticed this is your first app submission and want to congratulate you on joining the Apple Developer Program. We look forward to working together on your submissions.</span><br><span class="line">When App Review identifies an issue with a submission, we’ll contact you with a message in App Store Connect with details about what we found and how to resolve the issue. Learn more about App Review and tips for a smooth review experience.</span><br><span class="line">See below for additional information about the issues that require your attention for this submission. If you have any questions, we are here to help. Reply to this message in App Store Connect and let us know.</span><br><span class="line">Review Environment</span><br><span class="line"> Submission ID: 42d7f395-2c6d-458a-91e3-5d9aa709336b</span><br><span class="line"> Review date: July 16, 2026</span><br><span class="line"> Review Device: iPad Air 11-inch (M3)</span><br><span class="line"> Version reviewed: 1.0.0 (2)Guideline 4.3(a) - Design - Spam</span><br><span class="line">Issue Description</span><br><span class="line">We noticed the app shares a similar binary, metadata, and/or concept as apps submitted to the App Store by other developers, with only minor differences.</span><br><span class="line">Submitting similar or repackaged apps is a form of spam that creates clutter and makes it difficult for users to discover new apps.</span><br><span class="line">Next Steps</span><br><span class="line">Since we do not accept spam apps on the App Store, we encourage you to review the app concept and submit a unique app with distinct content and functionality.</span><br><span class="line">Resources</span><br><span class="line">Some factors that contribute to a spam rejection may include:</span><br><span class="line">● Submitting an app with the same source code or assets as other apps already submitted to the App Store</span><br><span class="line">● Creating and submitting multiple similar apps using a repackaged app template</span><br><span class="line">● Purchasing an app template with problematic code from a third party</span><br><span class="line">● Submitting several similar apps across multiple accounts</span><br><span class="line">Learn more about our requirements to prevent spam in guideline 4.3.</span><br><span class="line">● SupportReply to this message in your preferred language if you need assistance. If you need additional support, use the Contact Us module.</span><br><span class="line">● Consult with fellow developers and Apple engineers on the Apple Developer Forums.</span><br><span class="line">● Provide feedback on this message and your review experience by completing a short survey.</span><br><span class="line">Test on the latest betas</span><br><span class="line"> Betas of iOS 27, iPadOS 27, macOS 27, tvOS 27 and visionOS 27 are now available. Download the latest betas to prepare your app for upcoming software releases. Learn more about installing and using Apple beta software.</span><br></pre></td></tr></table></figure>
-
-<h3 id="What-I-changed-1"><a href="#What-I-changed-1" class="headerlink" title="What I changed"></a>What I changed</h3><ol>
-<li>Reprocessed every image used by Cocos, changing its MD5 hash and modifying pixels.</li>
-<li>Renamed every function used for communication between Cocos and native code, and renamed Objective-C resources.</li>
-<li>Applied obfuscation again, rebuilt the app with a new bundle identifier, and resubmitted it.</li>
-<li>Deleted the previously rejected build.</li>
-</ol>
-<h2 id="Rejected-for-Similarity-to-a-Previously-Removed-App"><a href="#Rejected-for-Similarity-to-a-Previously-Removed-App" class="headerlink" title="Rejected for Similarity to a Previously Removed App"></a>Rejected for Similarity to a Previously Removed App</h2><h3 id="Reason-for-rejection-1"><a href="#Reason-for-rejection-1" class="headerlink" title="Reason for rejection"></a>Reason for rejection</h3><p>This Guideline 4.3 rejection was much more alarming than the previous one. Apple explicitly stated that the app was similar to apps associated with a terminated developer account.</p>
-<h3 id="Rejection-message-2"><a href="#Rejection-message-2" class="headerlink" title="Rejection message"></a>Rejection message</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Guideline 4.3(a) - Design - Spam</span><br><span class="line">Issue Description</span><br><span class="line">We noticed the app shares a similar binary, metadata, and/or concept as apps previously submitted by a terminated Apple Developer Program account.</span><br><span class="line">Submitting similar or repackaged apps is a form of spam that creates clutter and makes it difficult for users to discover new apps.</span><br><span class="line">Next Steps</span><br><span class="line">Since we do not accept spam apps on the App Store, we encourage you to review the app concept and submit a unique app with distinct content and functionality.</span><br><span class="line">Resources</span><br><span class="line">Some factors that contribute to a spam rejection may include:</span><br><span class="line">●Submitting an app with the same source code or assets as other apps already submitted to the App Store</span><br><span class="line">●Creating and submitting multiple similar apps using a repackaged app template</span><br><span class="line">●Purchasing an app template with problematic code from a third party</span><br><span class="line">●Submitting several similar apps across multiple accounts</span><br><span class="line">Learn more about our requirements to prevent spam in guideline 4.3.</span><br></pre></td></tr></table></figure>
-
-<h3 id="What-I-changed-2"><a href="#What-I-changed-2" class="headerlink" title="What I changed"></a>What I changed</h3><ol>
-<li>Renamed and re-exported every Cocos prefab.</li>
-<li>Renamed libraries, all function keys used between Cocos and native code, and the files exposed by Objective-C.</li>
-<li>Changed the bundle identifier and resubmitted the app.</li>
-<li>Deleted the previously rejected build.</li>
-</ol>
-<h2 id="Guideline-5-1-2-i-ATT-Permission-Did-Not-Appear"><a href="#Guideline-5-1-2-i-ATT-Permission-Did-Not-Appear" class="headerlink" title="Guideline 5.1.2(i): ATT Permission Did Not Appear"></a>Guideline 5.1.2(i): ATT Permission Did Not Appear</h2><h3 id="Reason-for-rejection-2"><a href="#Reason-for-rejection-2" class="headerlink" title="Reason for rejection"></a>Reason for rejection</h3><p>The App Tracking Transparency prompt did not appear. This rejection was easier to deal with because it meant the app had at least passed the automated review.</p>
-<h3 id="Rejection-message-3"><a href="#Rejection-message-3" class="headerlink" title="Rejection message"></a>Rejection message</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">Hello,</span><br><span class="line"></span><br><span class="line">We noticed this is your first app submission and want to congratulate you on joining the Apple Developer Program. We look forward to working together on your submissions.</span><br><span class="line"></span><br><span class="line">When App Review identifies an issue with a submission, we’ll contact you with a message in App Store Connect with details about what we found and how to resolve the issue. Learn more about App Review and tips for a smooth review experience.</span><br><span class="line"></span><br><span class="line">See below for additional information about the issues that require your attention for this submission. If you have any questions, we are here to help. Reply to this message in App Store Connect and let us know.</span><br><span class="line"></span><br><span class="line">Review Environment</span><br><span class="line">Submission ID: ec594106-b528-4d6a-8798-7f328ae50f21</span><br><span class="line">Review date: July 25, 2026</span><br><span class="line">Review Device: iPad Air 11-inch (M3)</span><br><span class="line">Version reviewed: 1.0.0 (1)</span><br><span class="line"></span><br><span class="line">Guideline 5.1.2(i) - Legal - Privacy - Data Use and Sharing</span><br><span class="line"></span><br><span class="line">Issue Description</span><br><span class="line"></span><br><span class="line">The app privacy information provided in App Store Connect indicates the app collects data in order to track the user, including Device ID. However, the app does not use App Tracking Transparency to request the user&#x27;s permission before tracking their activity.</span><br><span class="line"></span><br><span class="line">Apps need to receive the user’s permission through the AppTrackingTransparency framework before collecting data used to track them. This requirement protects the privacy of users.</span><br><span class="line"></span><br><span class="line">Next Steps</span><br><span class="line"></span><br><span class="line">Here are three ways to resolve this issue:</span><br><span class="line"></span><br><span class="line">- If the app does not currently track, update the app privacy information in App Store Connect. You must have the Account Holder or Admin role to update app privacy information. If you are unable to change the privacy label, reply to this message in App Store Connect, and make sure your App Privacy Information in App Store Connect is up to date before submitting your next update for review.</span><br><span class="line"></span><br><span class="line">- If this app does not track on the platform associated with this submission, but tracks on other platforms, notify App Review by replying to the rejection in App Store Connect. You should also reply if this app does not track on the platform associated with this submission but tracks on other Apple platforms this app is available on.</span><br><span class="line"></span><br><span class="line">- If the app tracks users on all supported platforms, the app must use App Tracking Transparency to request permission before collecting data used to track. When resubmitting, indicate in the Review Notes where the permission request is located.</span><br><span class="line"></span><br><span class="line">Note that if the app behaves differently in different countries or regions, you should provide a way for App Review to review these variations in the app submission. Additionally, these differences should be documented in the Review Notes section of App Store Connect.</span><br><span class="line"></span><br><span class="line">Resources</span><br><span class="line"></span><br><span class="line">- Tracking is linking data collected from the app with third-party data for advertising purposes, or sharing the collected data with a data broker. Learn more about tracking.</span><br><span class="line">- See Frequently Asked Questions about the requirements for apps that track users.</span><br><span class="line">- Learn more about designing appropriate permission requests.</span><br><span class="line">Support</span><br><span class="line">- Reply to this message in your preferred language if you need assistance. If you need additional support, use the Contact Us module.</span><br><span class="line">- Consult with fellow developers and Apple engineers on the Apple Developer Forums.</span><br><span class="line">- Provide feedback on this message and your review experience by completing a short survey.</span><br><span class="line"></span><br><span class="line">Test on the latest betas</span><br><span class="line">Betas of iOS 27, iPadOS 27, macOS 27, tvOS 27 and visionOS 27 are now available. Download the latest betas to prepare your app for upcoming software releases. Learn more about installing and using Apple beta software.</span><br></pre></td></tr></table></figure>
-
-<h3 id="What-I-changed-3"><a href="#What-I-changed-3" class="headerlink" title="What I changed"></a>What I changed</h3><p>I changed when the ATT prompt appears so that it is shown on the login screen.</p>
-<p>This was a little strange because the prompt appeared correctly in my local tests but did not appear during Apple’s review. I suspected that I had previously requested ATT permission too early. There is a common pitfall here: if another permission dialog is being displayed when the app tries to show the ATT prompt, the ATT prompt may fail to appear.</p>
-<p>After fixing the ATT prompt timing, the app passed review.</p>
-<blockquote>
-<p>Unfortunately, I then discovered a bug caused by my own oversight, so I had to submit the app again and begin another round with App Review.</p>
-</blockquote>
-
-
-    </div>
-
-    
-    
-    
-        <div class="reward-container">
-  <div></div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechat.png" alt="winner WeChat Pay">
-        <p>WeChat Pay</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="winner Alipay">
-        <p>Alipay</p>
-      </div>
-
-  </div>
-</div>
-
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>winner
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="https://releaseleaf.com/apstreregu.html" title="App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes">https://releaseleaf.com/apstreregu.html</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/iOS-Development/" rel="tag"><i class="fa fa-tag"></i> iOS Development</a>
-              <a href="/tags/App-Store/" rel="tag"><i class="fa fa-tag"></i> App Store</a>
-              <a href="/tags/App-Review/" rel="tag"><i class="fa fa-tag"></i> App Review</a>
-              <a href="/tags/Guideline-4-3/" rel="tag"><i class="fa fa-tag"></i> Guideline 4.3</a>
-              <a href="/tags/ATT/" rel="tag"><i class="fa fa-tag"></i> ATT</a>
-              <a href="/tags/Sign-in-with-Apple/" rel="tag"><i class="fa fa-tag"></i> Sign in with Apple</a>
-          </div>
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/xcarbununo.html" rel="prev" title="Xcode Archive Build Number Not Updating: Fix CFBundleVersion">
-      <i class="fa fa-chevron-left"></i> Xcode Archive Build Number Not Updating: Fix CFBundleVersion
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/cocwssreco.html" rel="next" title="Reliable WebSocket Reconnection in Cocos Creator: Heartbeats, Backoff and App Resume">
-      Reliable WebSocket Reconnection in Cocos Creator: Heartbeats, Backoff and App Resume <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Guideline-4-8-Rejection-Login-Services"><span class="nav-number">1.</span> <span class="nav-text">Guideline 4.8 Rejection: Login Services</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reasons-for-rejection"><span class="nav-number">1.1.</span> <span class="nav-text">Reasons for rejection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rejection-message"><span class="nav-number">1.2.</span> <span class="nav-text">Rejection message</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-I-changed"><span class="nav-number">1.3.</span> <span class="nav-text">What I changed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Guideline-4-3-a-Rejection-Design-Spam"><span class="nav-number">2.</span> <span class="nav-text">Guideline 4.3(a) Rejection: Design - Spam</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reason-for-rejection"><span class="nav-number">2.1.</span> <span class="nav-text">Reason for rejection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rejection-message-1"><span class="nav-number">2.2.</span> <span class="nav-text">Rejection message</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-I-changed-1"><span class="nav-number">2.3.</span> <span class="nav-text">What I changed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rejected-for-Similarity-to-a-Previously-Removed-App"><span class="nav-number">3.</span> <span class="nav-text">Rejected for Similarity to a Previously Removed App</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reason-for-rejection-1"><span class="nav-number">3.1.</span> <span class="nav-text">Reason for rejection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rejection-message-2"><span class="nav-number">3.2.</span> <span class="nav-text">Rejection message</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-I-changed-2"><span class="nav-number">3.3.</span> <span class="nav-text">What I changed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Guideline-5-1-2-i-ATT-Permission-Did-Not-Appear"><span class="nav-number">4.</span> <span class="nav-text">Guideline 5.1.2(i): ATT Permission Did Not Appear</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reason-for-rejection-2"><span class="nav-number">4.1.</span> <span class="nav-text">Reason for rejection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rejection-message-3"><span class="nav-number">4.2.</span> <span class="nav-text">Rejection message</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-I-changed-3"><span class="nav-number">4.3.</span> <span class="nav-text">What I changed</span></a></li></ol></li></ol></div>
-      </div>
-       <div class="sidebar-bottom-banner">
-            <a href="#小程序://时间折现/H74iLnpGbvfY3yH" target="_blank" rel="noopener">
-              <img src="/images/share.png" alt="banner">
-            </a>
-          </div>      
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="winner"
-      src="/images/IMG_3307.JPG">
-  <p class="site-author-name" itemprop="name">winner</p>
-  <div class="site-description" itemprop="description">Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.</div>
-</div>
-<div class="site-state-wrap">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">233</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <a href="/categories/">
-        <span class="site-state-item-count">24</span>
-        <span class="site-state-item-name">categories</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <a href="/tags/">
-        <span class="site-state-item-count">40</span>
-        <span class="site-state-item-name">tags</span>
-        </a>
-      </div>
-  </nav>
-</div>
-  <div class="cc-license" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-  <div class="links-of-blogroll">
-    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="/Link/" title="&#x2F;Link&#x2F;">Friends and Links</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://blog.csdn.net/Silent_F" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Silent_F" rel="noopener" target="_blank">CSDN</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://lengmo714.top/net/map/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;map&#x2F;index.html" rel="noopener" target="_blank">Travel Map</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://lengmo714.top/net/wechat/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;wechat&#x2F;index.html" rel="noopener" target="_blank">WeChat Chat Generator</a>
-        </li>
-    </ul>
-  </div>
-       
-      </div>
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-<div class="copyright">
-  
-  &copy; 2017 – 
-  <span itemprop="copyrightYear">2026</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">winner</span>
-</div>
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-  
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
-
-  
-<script src="/js/local-search.js"></script>
-
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBZBDMSJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-</body>
-</html>
+<!doctype html><html lang=en-US data-theme=light><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color content="#222222"><meta name=generator content="Hugo 0.168.0"><link rel=icon sizes=16x16 href=/images/favicon-16x16-next.png><link rel=icon sizes=32x32 href=/images/favicon-32x32-next.png><link rel=apple-touch-icon href=/images/favicon-16x16-next.png><link rel=canonical href=https://releaseleaf.com/apstreregu.html><link rel=alternate type=application/rss+xml title="Winner's Dev Notes" href=https://releaseleaf.com/rss.xml><meta name=description content="A real-world App Store review case covering Guideline 4.8 login services, 4.3(a) spam rejection, Guideline 5.1.2(i), ATT permission issues, and the fixes that eventually passed review."><meta itemprop=description content="A real-world App Store review case covering Guideline 4.8 login services, 4.3(a) spam rejection, Guideline 5.1.2(i), ATT permission issues, and the fixes that eventually passed review."><meta itemprop=name content="App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes"><meta itemprop=image content="https://releaseleaf.com/images/comment_bg.png"><script type=application/ld+json>{"@context":"https://schema.org","@id":"https://releaseleaf.com/apstreregu.html#article","@type":"BlogPosting","articleSection":["Cocos Creator"],"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"dateModified":"2026-07-29T17:56:54+08:00","datePublished":"2026-07-29T17:56:54+08:00","description":"A real-world App Store review case covering Guideline 4.8 login services, 4.3(a) spam rejection, Guideline 5.1.2(i), ATT permission issues, and the fixes that eventually passed review.","headline":"App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes","image":["https://releaseleaf.com/images/comment_bg.png"],"inLanguage":"en-US","keywords":"iOS Development, App Store, App Review, Guideline 4.3, ATT, Sign in with Apple","mainEntityOfPage":{"@id":"https://releaseleaf.com/apstreregu.html","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"},"name":"Winner's Dev Notes"},"wordCount":2207}</script><meta property="og:type" content="article"><meta property="og:title" content="App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes"><meta property="og:description" content="A real-world App Store review case covering Guideline 4.8 login services, 4.3(a) spam rejection, Guideline 5.1.2(i), ATT permission issues, and the fixes that eventually passed review."><meta property="og:image" content="https://releaseleaf.com/images/comment_bg.png"><meta property="og:url" content="https://releaseleaf.com/apstreregu.html"><meta property="og:site_name" content="Winner's Dev Notes"><meta property="og:locale" content="en_US"><meta property="article:published_time" content="2026-07-29T17:56:54+08:00"><meta property="article:modified_time" content="2026-07-29T17:56:54+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes"><meta name=twitter:description content="A real-world App Store review case covering Guideline 4.8 login services, 4.3(a) spam rejection, Guideline 5.1.2(i), ATT permission issues, and the fixes that eventually passed review."><meta name=twitter:image content="https://releaseleaf.com/images/comment_bg.png"><link type=text/css rel=stylesheet href=https://releaseleaf.com/js/3rd/font-awesome/6.7.2/css/all.min.css><link type=text/css rel=stylesheet href=https://releaseleaf.com/js/3rd/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://releaseleaf.com/js/3rd/viewerjs/1.11.6/viewer.min.css><link rel=stylesheet href="/css/main.min.css?=1791958088"><style type=text/css>.post-footer hr:after{content:"Thanks for reading"}.flinks-list-footer hr:after{content:"Thanks for reading"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return 0[0];const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),0[0]):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><title>App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes - Winner's Dev Notes</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript><script>(function(e,t,n,s,o){e[s]=e[s]||[],e[s].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var a=t.getElementsByTagName(n)[0],i=t.createElement(n),r=s!="dataLayer"?"&l="+s:"";i.async=!0,i.src="https://www.googletagmanager.com/gtm.js?id="+o+r,a.parentNode.insertBefore(i,a)})(window,document,"script","dataLayer","GTM-TBZBDMSJ")</script><style>.post-body img{height:auto;max-width:100%}.post-cover{display:block;max-height:300px;object-fit:cover;margin:0 auto 24px}.post-body iframe{max-width:100%}.post-body pre{overflow-x:auto}</style></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Winner's Dev Notes</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Code, games, and the craft of building better software</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>Home</a></li><li class="menu-item menu-item-about"><a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>About</a></li><li class="menu-item menu-item-tags"><a href=/tags/ class=hvr-icon-pulse rel=section><i class="fa fa-tags hvr-icon"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href=/categories/ class=hvr-icon-pulse rel=section><i class="fa fa-th hvr-icon"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>Archives</a></li><li class="menu-item menu-item-photos"><a href=/photos/ class=hvr-icon-pulse rel=section><i class="fa fa-camera hvr-icon"></i>Photos</a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>Search</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=Searching... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>TOC</li><li class=sidebar-nav-overview>Overview</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><a href=#guideline-48-rejection-login-services>Guideline 4.8 Rejection: Login Services</a><ul><li><a href=#reasons-for-rejection>Reasons for rejection</a></li><li><a href=#rejection-message>Rejection message</a></li><li><a href=#what-i-changed>What I changed</a></li></ul></li><li><a href=#guideline-43a-rejection-design---spam>Guideline 4.3(a) Rejection: Design - Spam</a><ul><li><a href=#reason-for-rejection>Reason for rejection</a></li><li><a href=#rejection-message-1>Rejection message</a></li><li><a href=#what-i-changed-1>What I changed</a></li></ul></li><li><a href=#rejected-for-similarity-to-a-previously-removed-app>Rejected for Similarity to a Previously Removed App</a><ul><li><a href=#reason-for-rejection-1>Reason for rejection</a></li><li><a href=#rejection-message-2>Rejection message</a></li><li><a href=#what-i-changed-2>What I changed</a></li></ul></li><li><a href=#guideline-512i-att-permission-did-not-appear>Guideline 5.1.2(i): ATT Permission Did Not Appear</a><ul><li><a href=#reason-for-rejection-2>Reason for rejection</a></li><li><a href=#rejection-message-3>Rejection message</a></li><li><a href=#what-i-changed-3>What I changed</a></li></ul></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=winner src=/imgs/img-lazy-loading.gif data-src=/images/IMG_3307.JPG><p class=site-author-name itemprop=name>winner</p><div class=site-description itemprop=description>Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>233</span>
+<span class=site-state-item-name>Posts</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>24</span>
+<span class=site-state-item-name>Categories</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>40</span>
+<span class=site-state-item-name>Tags</span></a></div></nav></div><div class="links-of-social site-overview-item animated"></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en class=cc-opacity rel=noopener target=_blank title="Creative Commons"><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt="Creative Commons"></a></div><div class="links-of-blogroll site-overview-item animated"><div class=links-of-blogroll-title><i class="fa fa-link fa-fw"></i>
+Links</div><ul class=links-of-blogroll-list><li class=links-of-blogroll-item><a href=/Link/ title=/Link/ target=_blank>Friends and Links</a></li><li class=links-of-blogroll-item><a href=https://blog.csdn.net/Silent_F title=https://blog.csdn.net/Silent_F target=_blank>CSDN</a></li><li class=links-of-blogroll-item><a href=https://lengmo714.top/net/map/index.html title=https://lengmo714.top/net/map/index.html target=_blank>Travel Map</a></li><li class=links-of-blogroll-item><a href=https://lengmo714.top/net/wechat/index.html title=https://lengmo714.top/net/wechat/index.html target=_blank>WeChat Chat Generator</a></li></ul></div></div></div></div><div class="sidebar-card-widget back-to-top-card"><div class="back-to-top animated" role=button aria-label><i class="fa fa-arrow-up"></i>
+<span>0%</span></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title="Change Theme"><i class="fas fa-adjust"></i></div></div><div class=reading-progress-bar></div><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang=en-US><link itemprop=mainEntityOfPage href=https://releaseleaf.com/apstreregu.html><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/images/IMG_3307.JPG"><meta itemprop=name content="winner"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="winner"><meta itemprop=description content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes"><meta itemprop=description content="A real-world App Store review case covering Guideline 4.8 login services, 4.3(a) spam rejection, Guideline 5.1.2(i), ATT permission issues, and the fixes that eventually passed review."></span><header class=post-header><h1 class=post-title itemprop="name headline">App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes</h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="fas fa-solid fa-folder-open"></i>
+</span><span class=post-meta-item-text title="Classify at">Classify at:
+</span><span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/cocos-creator/ itemprop=url rel=index><span itemprop=name>Cocos Creator</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=Words><span class=post-meta-item-icon><i class="fas fa-solid fa-file-word"></i>
+</span><span class=post-meta-item-text>Words:</span>
+<span>2207</span>
+</span><span class=post-meta-item title=Read><span class=post-meta-item-icon><i class="fas fa-solid fa-clock"></i>
+</span><span class=post-meta-item-text>Read:&ap;</span>
+<span>11min</span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><p>Submitting my first iOS app to the App Store resulted in four review attempts and three rejections before approval. The main issues involved Guideline 4.8 login services, Guideline 4.3(a) Design - Spam, Guideline 5.1.2(i), Sign in with Apple, and App Tracking Transparency (ATT). This article documents the rejection messages, their causes, and the changes that eventually passed review.</p><h2 id=guideline-48-rejection-login-services>Guideline 4.8 Rejection: Login Services
+<a class=header-anchor href=#guideline-48-rejection-login-services></a></h2><h3 id=reasons-for-rejection>Reasons for rejection
+<a class=header-anchor href=#reasons-for-rejection></a></h3><ol><li>The game offered Google as a third-party login method. My understanding is that Apple requires Sign in with Apple whenever an app provides third-party login.</li><li>This type of game could not be submitted through an individual developer account; it required a company developer account.</li></ol><h3 id=rejection-message>Rejection message
+<a class=header-anchor href=#rejection-message></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-0-1><a class=lnlinks href=#hl-0-1> 1</a>
+</span><span class=lnt id=hl-0-2><a class=lnlinks href=#hl-0-2> 2</a>
+</span><span class=lnt id=hl-0-3><a class=lnlinks href=#hl-0-3> 3</a>
+</span><span class=lnt id=hl-0-4><a class=lnlinks href=#hl-0-4> 4</a>
+</span><span class=lnt id=hl-0-5><a class=lnlinks href=#hl-0-5> 5</a>
+</span><span class=lnt id=hl-0-6><a class=lnlinks href=#hl-0-6> 6</a>
+</span><span class=lnt id=hl-0-7><a class=lnlinks href=#hl-0-7> 7</a>
+</span><span class=lnt id=hl-0-8><a class=lnlinks href=#hl-0-8> 8</a>
+</span><span class=lnt id=hl-0-9><a class=lnlinks href=#hl-0-9> 9</a>
+</span><span class=lnt id=hl-0-10><a class=lnlinks href=#hl-0-10>10</a>
+</span><span class=lnt id=hl-0-11><a class=lnlinks href=#hl-0-11>11</a>
+</span><span class=lnt id=hl-0-12><a class=lnlinks href=#hl-0-12>12</a>
+</span><span class=lnt id=hl-0-13><a class=lnlinks href=#hl-0-13>13</a>
+</span><span class=lnt id=hl-0-14><a class=lnlinks href=#hl-0-14>14</a>
+</span><span class=lnt id=hl-0-15><a class=lnlinks href=#hl-0-15>15</a>
+</span><span class=lnt id=hl-0-16><a class=lnlinks href=#hl-0-16>16</a>
+</span><span class=lnt id=hl-0-17><a class=lnlinks href=#hl-0-17>17</a>
+</span><span class=lnt id=hl-0-18><a class=lnlinks href=#hl-0-18>18</a>
+</span><span class=lnt id=hl-0-19><a class=lnlinks href=#hl-0-19>19</a>
+</span><span class=lnt id=hl-0-20><a class=lnlinks href=#hl-0-20>20</a>
+</span><span class=lnt id=hl-0-21><a class=lnlinks href=#hl-0-21>21</a>
+</span><span class=lnt id=hl-0-22><a class=lnlinks href=#hl-0-22>22</a>
+</span><span class=lnt id=hl-0-23><a class=lnlinks href=#hl-0-23>23</a>
+</span><span class=lnt id=hl-0-24><a class=lnlinks href=#hl-0-24>24</a>
+</span><span class=lnt id=hl-0-25><a class=lnlinks href=#hl-0-25>25</a>
+</span><span class=lnt id=hl-0-26><a class=lnlinks href=#hl-0-26>26</a>
+</span><span class=lnt id=hl-0-27><a class=lnlinks href=#hl-0-27>27</a>
+</span><span class=lnt id=hl-0-28><a class=lnlinks href=#hl-0-28>28</a>
+</span><span class=lnt id=hl-0-29><a class=lnlinks href=#hl-0-29>29</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>Hello,
+</span></span><span class=line><span class=cl>Thank you for submitting the new app, VG Poker Tour, for review. We noticed some issues that require your attention. Please see below for additional information.
+</span></span><span class=line><span class=cl>If you have any questions, we are here to help. Reply to this message in App Store Connect and let us know.
+</span></span><span class=line><span class=cl>Review Environment
+</span></span><span class=line><span class=cl> Submission ID: 8a757069-67a3-4a21-88b5-d4467f24e64a
+</span></span><span class=line><span class=cl> Review date: July 04, 2026
+</span></span><span class=line><span class=cl> Review Device: iPhone 17 Pro Max
+</span></span><span class=line><span class=cl> Version reviewed: 1.0.0 (6)App Review Guideline Issue
+</span></span><span class=line><span class=cl>Issue Description
+</span></span><span class=line><span class=cl>In order to reduce fraudulent activity on the App Store and comply with government requests to address illegal online gambling activity, we are no longer allowing simulated gambling apps submitted by individual developers.
+</span></span><span class=line><span class=cl>We found that you have submitted this app under an individual account and the app includes simulated gambling features or you indicated in the Ratings section of App Store Connect that it contains gambling features. While you can no longer distribute gambling apps from this account, you may continue to submit and distribute other types of apps to the App Store.
+</span></span><span class=line><span class=cl>Going forward only verified accounts from incorporated business entities may submit gambling apps for distribution on the App Store. Visit the Enrollment page to learn more about enrolling an organization in the Apple Developer Program. For information on transferring an app to another developer account, please review the App transfer overview page in App Store Connect Help.
+</span></span><span class=line><span class=cl>As a reminder, the App Review Guidelines state that it is your responsibility to ensure the app complies with all legal requirements in any location where you make it available.
+</span></span><span class=line><span class=cl> Guideline 4.8 - Design - Login ServicesIssue Description
+</span></span><span class=line><span class=cl>The app uses a third-party login service, but does not appear to offer as an equivalent login option another login service with all of the following features:
+</span></span><span class=line><span class=cl>●The login option limits data collection to the user’s name and email address.
+</span></span><span class=line><span class=cl>●The login option allows users to keep their email address private from all parties as part of setting up their account.
+</span></span><span class=line><span class=cl>●The login option does not collect interactions with the app for advertising purposes without consent.
+</span></span><span class=line><span class=cl>Next Steps
+</span></span><span class=line><span class=cl>Revise the app to offer as an equivalent login option another login service that meets all of the above requirements.
+</span></span><span class=line><span class=cl>If the app already includes another login service that meets all of the above requirements, reply to App Review in App Store Connect, identify which login service meets all of the requirements, and explain why it meets all of the requirements.
+</span></span><span class=line><span class=cl>Note that Sign in with Apple is a login service that meets all the requirements specified in guideline 4.8.
+</span></span><span class=line><span class=cl>Resources
+</span></span><span class=line><span class=cl>Learn about Sign in with Apple.
+</span></span><span class=line><span class=cl>● SupportReply to this message in your preferred language if you need assistance. If you need additional support, use the Contact Us module.
+</span></span><span class=line><span class=cl>●Consult with fellow developers and Apple engineers on the Apple Developer Forums.
+</span></span><span class=line><span class=cl>●Provide feedback on this message and your review experience by completing a short survey.
+</span></span><span class=line><span class=cl>Test on the latest betas
+</span></span><span class=line><span class=cl> Betas of iOS 27, iPadOS 27, macOS 27, tvOS 27 and visionOS 27 are now available. Download the latest betas to prepare your app for upcoming software releases. Learn more about installing and using Apple beta software.</span></span></code></pre></td></tr></table></div></div><h3 id=what-i-changed>What I changed
+<a class=header-anchor href=#what-i-changed></a></h3><ol><li>Submitted the app through a company developer account.</li><li>Hid the Google login button in the game.</li><li>Deleted the app from the original individual account.</li></ol><h2 id=guideline-43a-rejection-design---spam>Guideline 4.3(a) Rejection: Design - Spam
+<a class=header-anchor href=#guideline-43a-rejection-design---spam></a></h2><h3 id=reason-for-rejection>Reason for rejection
+<a class=header-anchor href=#reason-for-rejection></a></h3><p>Many developers have probably heard of Guideline 4.3. My case did not seem too serious at this stage; Apple only indicated that the app was highly similar to other apps.</p><a id=more></a><h3 id=rejection-message-1>Rejection message
+<a class=header-anchor href=#rejection-message-1></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-1-1><a class=lnlinks href=#hl-1-1> 1</a>
+</span><span class=lnt id=hl-1-2><a class=lnlinks href=#hl-1-2> 2</a>
+</span><span class=lnt id=hl-1-3><a class=lnlinks href=#hl-1-3> 3</a>
+</span><span class=lnt id=hl-1-4><a class=lnlinks href=#hl-1-4> 4</a>
+</span><span class=lnt id=hl-1-5><a class=lnlinks href=#hl-1-5> 5</a>
+</span><span class=lnt id=hl-1-6><a class=lnlinks href=#hl-1-6> 6</a>
+</span><span class=lnt id=hl-1-7><a class=lnlinks href=#hl-1-7> 7</a>
+</span><span class=lnt id=hl-1-8><a class=lnlinks href=#hl-1-8> 8</a>
+</span><span class=lnt id=hl-1-9><a class=lnlinks href=#hl-1-9> 9</a>
+</span><span class=lnt id=hl-1-10><a class=lnlinks href=#hl-1-10>10</a>
+</span><span class=lnt id=hl-1-11><a class=lnlinks href=#hl-1-11>11</a>
+</span><span class=lnt id=hl-1-12><a class=lnlinks href=#hl-1-12>12</a>
+</span><span class=lnt id=hl-1-13><a class=lnlinks href=#hl-1-13>13</a>
+</span><span class=lnt id=hl-1-14><a class=lnlinks href=#hl-1-14>14</a>
+</span><span class=lnt id=hl-1-15><a class=lnlinks href=#hl-1-15>15</a>
+</span><span class=lnt id=hl-1-16><a class=lnlinks href=#hl-1-16>16</a>
+</span><span class=lnt id=hl-1-17><a class=lnlinks href=#hl-1-17>17</a>
+</span><span class=lnt id=hl-1-18><a class=lnlinks href=#hl-1-18>18</a>
+</span><span class=lnt id=hl-1-19><a class=lnlinks href=#hl-1-19>19</a>
+</span><span class=lnt id=hl-1-20><a class=lnlinks href=#hl-1-20>20</a>
+</span><span class=lnt id=hl-1-21><a class=lnlinks href=#hl-1-21>21</a>
+</span><span class=lnt id=hl-1-22><a class=lnlinks href=#hl-1-22>22</a>
+</span><span class=lnt id=hl-1-23><a class=lnlinks href=#hl-1-23>23</a>
+</span><span class=lnt id=hl-1-24><a class=lnlinks href=#hl-1-24>24</a>
+</span><span class=lnt id=hl-1-25><a class=lnlinks href=#hl-1-25>25</a>
+</span><span class=lnt id=hl-1-26><a class=lnlinks href=#hl-1-26>26</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>Hello,
+</span></span><span class=line><span class=cl>We noticed this is your first app submission and want to congratulate you on joining the Apple Developer Program. We look forward to working together on your submissions.
+</span></span><span class=line><span class=cl>When App Review identifies an issue with a submission, we’ll contact you with a message in App Store Connect with details about what we found and how to resolve the issue. Learn more about App Review and tips for a smooth review experience.
+</span></span><span class=line><span class=cl>See below for additional information about the issues that require your attention for this submission. If you have any questions, we are here to help. Reply to this message in App Store Connect and let us know.
+</span></span><span class=line><span class=cl>Review Environment
+</span></span><span class=line><span class=cl> Submission ID: 42d7f395-2c6d-458a-91e3-5d9aa709336b
+</span></span><span class=line><span class=cl> Review date: July 16, 2026
+</span></span><span class=line><span class=cl> Review Device: iPad Air 11-inch (M3)
+</span></span><span class=line><span class=cl> Version reviewed: 1.0.0 (2)Guideline 4.3(a) - Design - Spam
+</span></span><span class=line><span class=cl>Issue Description
+</span></span><span class=line><span class=cl>We noticed the app shares a similar binary, metadata, and/or concept as apps submitted to the App Store by other developers, with only minor differences.
+</span></span><span class=line><span class=cl>Submitting similar or repackaged apps is a form of spam that creates clutter and makes it difficult for users to discover new apps.
+</span></span><span class=line><span class=cl>Next Steps
+</span></span><span class=line><span class=cl>Since we do not accept spam apps on the App Store, we encourage you to review the app concept and submit a unique app with distinct content and functionality.
+</span></span><span class=line><span class=cl>Resources
+</span></span><span class=line><span class=cl>Some factors that contribute to a spam rejection may include:
+</span></span><span class=line><span class=cl>● Submitting an app with the same source code or assets as other apps already submitted to the App Store
+</span></span><span class=line><span class=cl>● Creating and submitting multiple similar apps using a repackaged app template
+</span></span><span class=line><span class=cl>● Purchasing an app template with problematic code from a third party
+</span></span><span class=line><span class=cl>● Submitting several similar apps across multiple accounts
+</span></span><span class=line><span class=cl>Learn more about our requirements to prevent spam in guideline 4.3.
+</span></span><span class=line><span class=cl>● SupportReply to this message in your preferred language if you need assistance. If you need additional support, use the Contact Us module.
+</span></span><span class=line><span class=cl>● Consult with fellow developers and Apple engineers on the Apple Developer Forums.
+</span></span><span class=line><span class=cl>● Provide feedback on this message and your review experience by completing a short survey.
+</span></span><span class=line><span class=cl>Test on the latest betas
+</span></span><span class=line><span class=cl> Betas of iOS 27, iPadOS 27, macOS 27, tvOS 27 and visionOS 27 are now available. Download the latest betas to prepare your app for upcoming software releases. Learn more about installing and using Apple beta software.</span></span></code></pre></td></tr></table></div></div><h3 id=what-i-changed-1>What I changed
+<a class=header-anchor href=#what-i-changed-1></a></h3><ol><li>Reprocessed every image used by Cocos, changing its MD5 hash and modifying pixels.</li><li>Renamed every function used for communication between Cocos and native code, and renamed Objective-C resources.</li><li>Applied obfuscation again, rebuilt the app with a new bundle identifier, and resubmitted it.</li><li>Deleted the previously rejected build.</li></ol><h2 id=rejected-for-similarity-to-a-previously-removed-app>Rejected for Similarity to a Previously Removed App
+<a class=header-anchor href=#rejected-for-similarity-to-a-previously-removed-app></a></h2><h3 id=reason-for-rejection-1>Reason for rejection
+<a class=header-anchor href=#reason-for-rejection-1></a></h3><p>This Guideline 4.3 rejection was much more alarming than the previous one. Apple explicitly stated that the app was similar to apps associated with a terminated developer account.</p><h3 id=rejection-message-2>Rejection message
+<a class=header-anchor href=#rejection-message-2></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-2-1><a class=lnlinks href=#hl-2-1> 1</a>
+</span><span class=lnt id=hl-2-2><a class=lnlinks href=#hl-2-2> 2</a>
+</span><span class=lnt id=hl-2-3><a class=lnlinks href=#hl-2-3> 3</a>
+</span><span class=lnt id=hl-2-4><a class=lnlinks href=#hl-2-4> 4</a>
+</span><span class=lnt id=hl-2-5><a class=lnlinks href=#hl-2-5> 5</a>
+</span><span class=lnt id=hl-2-6><a class=lnlinks href=#hl-2-6> 6</a>
+</span><span class=lnt id=hl-2-7><a class=lnlinks href=#hl-2-7> 7</a>
+</span><span class=lnt id=hl-2-8><a class=lnlinks href=#hl-2-8> 8</a>
+</span><span class=lnt id=hl-2-9><a class=lnlinks href=#hl-2-9> 9</a>
+</span><span class=lnt id=hl-2-10><a class=lnlinks href=#hl-2-10>10</a>
+</span><span class=lnt id=hl-2-11><a class=lnlinks href=#hl-2-11>11</a>
+</span><span class=lnt id=hl-2-12><a class=lnlinks href=#hl-2-12>12</a>
+</span><span class=lnt id=hl-2-13><a class=lnlinks href=#hl-2-13>13</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>Guideline 4.3(a) - Design - Spam
+</span></span><span class=line><span class=cl>Issue Description
+</span></span><span class=line><span class=cl>We noticed the app shares a similar binary, metadata, and/or concept as apps previously submitted by a terminated Apple Developer Program account.
+</span></span><span class=line><span class=cl>Submitting similar or repackaged apps is a form of spam that creates clutter and makes it difficult for users to discover new apps.
+</span></span><span class=line><span class=cl>Next Steps
+</span></span><span class=line><span class=cl>Since we do not accept spam apps on the App Store, we encourage you to review the app concept and submit a unique app with distinct content and functionality.
+</span></span><span class=line><span class=cl>Resources
+</span></span><span class=line><span class=cl>Some factors that contribute to a spam rejection may include:
+</span></span><span class=line><span class=cl>●Submitting an app with the same source code or assets as other apps already submitted to the App Store
+</span></span><span class=line><span class=cl>●Creating and submitting multiple similar apps using a repackaged app template
+</span></span><span class=line><span class=cl>●Purchasing an app template with problematic code from a third party
+</span></span><span class=line><span class=cl>●Submitting several similar apps across multiple accounts
+</span></span><span class=line><span class=cl>Learn more about our requirements to prevent spam in guideline 4.3.</span></span></code></pre></td></tr></table></div></div><h3 id=what-i-changed-2>What I changed
+<a class=header-anchor href=#what-i-changed-2></a></h3><ol><li>Renamed and re-exported every Cocos prefab.</li><li>Renamed libraries, all function keys used between Cocos and native code, and the files exposed by Objective-C.</li><li>Changed the bundle identifier and resubmitted the app.</li><li>Deleted the previously rejected build.</li></ol><h2 id=guideline-512i-att-permission-did-not-appear>Guideline 5.1.2(i): ATT Permission Did Not Appear
+<a class=header-anchor href=#guideline-512i-att-permission-did-not-appear></a></h2><h3 id=reason-for-rejection-2>Reason for rejection
+<a class=header-anchor href=#reason-for-rejection-2></a></h3><p>The App Tracking Transparency prompt did not appear. This rejection was easier to deal with because it meant the app had at least passed the automated review.</p><h3 id=rejection-message-3>Rejection message
+<a class=header-anchor href=#rejection-message-3></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-3-1><a class=lnlinks href=#hl-3-1> 1</a>
+</span><span class=lnt id=hl-3-2><a class=lnlinks href=#hl-3-2> 2</a>
+</span><span class=lnt id=hl-3-3><a class=lnlinks href=#hl-3-3> 3</a>
+</span><span class=lnt id=hl-3-4><a class=lnlinks href=#hl-3-4> 4</a>
+</span><span class=lnt id=hl-3-5><a class=lnlinks href=#hl-3-5> 5</a>
+</span><span class=lnt id=hl-3-6><a class=lnlinks href=#hl-3-6> 6</a>
+</span><span class=lnt id=hl-3-7><a class=lnlinks href=#hl-3-7> 7</a>
+</span><span class=lnt id=hl-3-8><a class=lnlinks href=#hl-3-8> 8</a>
+</span><span class=lnt id=hl-3-9><a class=lnlinks href=#hl-3-9> 9</a>
+</span><span class=lnt id=hl-3-10><a class=lnlinks href=#hl-3-10>10</a>
+</span><span class=lnt id=hl-3-11><a class=lnlinks href=#hl-3-11>11</a>
+</span><span class=lnt id=hl-3-12><a class=lnlinks href=#hl-3-12>12</a>
+</span><span class=lnt id=hl-3-13><a class=lnlinks href=#hl-3-13>13</a>
+</span><span class=lnt id=hl-3-14><a class=lnlinks href=#hl-3-14>14</a>
+</span><span class=lnt id=hl-3-15><a class=lnlinks href=#hl-3-15>15</a>
+</span><span class=lnt id=hl-3-16><a class=lnlinks href=#hl-3-16>16</a>
+</span><span class=lnt id=hl-3-17><a class=lnlinks href=#hl-3-17>17</a>
+</span><span class=lnt id=hl-3-18><a class=lnlinks href=#hl-3-18>18</a>
+</span><span class=lnt id=hl-3-19><a class=lnlinks href=#hl-3-19>19</a>
+</span><span class=lnt id=hl-3-20><a class=lnlinks href=#hl-3-20>20</a>
+</span><span class=lnt id=hl-3-21><a class=lnlinks href=#hl-3-21>21</a>
+</span><span class=lnt id=hl-3-22><a class=lnlinks href=#hl-3-22>22</a>
+</span><span class=lnt id=hl-3-23><a class=lnlinks href=#hl-3-23>23</a>
+</span><span class=lnt id=hl-3-24><a class=lnlinks href=#hl-3-24>24</a>
+</span><span class=lnt id=hl-3-25><a class=lnlinks href=#hl-3-25>25</a>
+</span><span class=lnt id=hl-3-26><a class=lnlinks href=#hl-3-26>26</a>
+</span><span class=lnt id=hl-3-27><a class=lnlinks href=#hl-3-27>27</a>
+</span><span class=lnt id=hl-3-28><a class=lnlinks href=#hl-3-28>28</a>
+</span><span class=lnt id=hl-3-29><a class=lnlinks href=#hl-3-29>29</a>
+</span><span class=lnt id=hl-3-30><a class=lnlinks href=#hl-3-30>30</a>
+</span><span class=lnt id=hl-3-31><a class=lnlinks href=#hl-3-31>31</a>
+</span><span class=lnt id=hl-3-32><a class=lnlinks href=#hl-3-32>32</a>
+</span><span class=lnt id=hl-3-33><a class=lnlinks href=#hl-3-33>33</a>
+</span><span class=lnt id=hl-3-34><a class=lnlinks href=#hl-3-34>34</a>
+</span><span class=lnt id=hl-3-35><a class=lnlinks href=#hl-3-35>35</a>
+</span><span class=lnt id=hl-3-36><a class=lnlinks href=#hl-3-36>36</a>
+</span><span class=lnt id=hl-3-37><a class=lnlinks href=#hl-3-37>37</a>
+</span><span class=lnt id=hl-3-38><a class=lnlinks href=#hl-3-38>38</a>
+</span><span class=lnt id=hl-3-39><a class=lnlinks href=#hl-3-39>39</a>
+</span><span class=lnt id=hl-3-40><a class=lnlinks href=#hl-3-40>40</a>
+</span><span class=lnt id=hl-3-41><a class=lnlinks href=#hl-3-41>41</a>
+</span><span class=lnt id=hl-3-42><a class=lnlinks href=#hl-3-42>42</a>
+</span><span class=lnt id=hl-3-43><a class=lnlinks href=#hl-3-43>43</a>
+</span><span class=lnt id=hl-3-44><a class=lnlinks href=#hl-3-44>44</a>
+</span><span class=lnt id=hl-3-45><a class=lnlinks href=#hl-3-45>45</a>
+</span><span class=lnt id=hl-3-46><a class=lnlinks href=#hl-3-46>46</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>Hello,
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>We noticed this is your first app submission and want to congratulate you on joining the Apple Developer Program. We look forward to working together on your submissions.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>When App Review identifies an issue with a submission, we’ll contact you with a message in App Store Connect with details about what we found and how to resolve the issue. Learn more about App Review and tips for a smooth review experience.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>See below for additional information about the issues that require your attention for this submission. If you have any questions, we are here to help. Reply to this message in App Store Connect and let us know.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Review Environment
+</span></span><span class=line><span class=cl>Submission ID: ec594106-b528-4d6a-8798-7f328ae50f21
+</span></span><span class=line><span class=cl>Review date: July 25, 2026
+</span></span><span class=line><span class=cl>Review Device: iPad Air 11-inch (M3)
+</span></span><span class=line><span class=cl>Version reviewed: 1.0.0 (1)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Guideline 5.1.2(i) - Legal - Privacy - Data Use and Sharing
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Issue Description
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>The app privacy information provided in App Store Connect indicates the app collects data in order to track the user, including Device ID. However, the app does not use App Tracking Transparency to request the user&#39;s permission before tracking their activity.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Apps need to receive the user’s permission through the AppTrackingTransparency framework before collecting data used to track them. This requirement protects the privacy of users.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Next Steps
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Here are three ways to resolve this issue:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>- If the app does not currently track, update the app privacy information in App Store Connect. You must have the Account Holder or Admin role to update app privacy information. If you are unable to change the privacy label, reply to this message in App Store Connect, and make sure your App Privacy Information in App Store Connect is up to date before submitting your next update for review.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>- If this app does not track on the platform associated with this submission, but tracks on other platforms, notify App Review by replying to the rejection in App Store Connect. You should also reply if this app does not track on the platform associated with this submission but tracks on other Apple platforms this app is available on.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>- If the app tracks users on all supported platforms, the app must use App Tracking Transparency to request permission before collecting data used to track. When resubmitting, indicate in the Review Notes where the permission request is located.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Note that if the app behaves differently in different countries or regions, you should provide a way for App Review to review these variations in the app submission. Additionally, these differences should be documented in the Review Notes section of App Store Connect.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Resources
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>- Tracking is linking data collected from the app with third-party data for advertising purposes, or sharing the collected data with a data broker. Learn more about tracking.
+</span></span><span class=line><span class=cl>- See Frequently Asked Questions about the requirements for apps that track users.
+</span></span><span class=line><span class=cl>- Learn more about designing appropriate permission requests.
+</span></span><span class=line><span class=cl>Support
+</span></span><span class=line><span class=cl>- Reply to this message in your preferred language if you need assistance. If you need additional support, use the Contact Us module.
+</span></span><span class=line><span class=cl>- Consult with fellow developers and Apple engineers on the Apple Developer Forums.
+</span></span><span class=line><span class=cl>- Provide feedback on this message and your review experience by completing a short survey.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Test on the latest betas
+</span></span><span class=line><span class=cl>Betas of iOS 27, iPadOS 27, macOS 27, tvOS 27 and visionOS 27 are now available. Download the latest betas to prepare your app for upcoming software releases. Learn more about installing and using Apple beta software.</span></span></code></pre></td></tr></table></div></div><h3 id=what-i-changed-3>What I changed
+<a class=header-anchor href=#what-i-changed-3></a></h3><p>I changed when the ATT prompt appears so that it is shown on the login screen.</p><p>This was a little strange because the prompt appeared correctly in my local tests but did not appear during Apple&rsquo;s review. I suspected that I had previously requested ATT permission too early. There is a common pitfall here: if another permission dialog is being displayed when the app tries to show the ATT prompt, the ATT prompt may fail to appear.</p><p>After fixing the ATT prompt timing, the app passed review.</p><blockquote><p>Unfortunately, I then discovered a bug caused by my own oversight, so I had to submit the app again and begin another round with App Review.</p></blockquote></div><footer class=post-footer><div class=post-tags><a href=/tags/ios-development/>iOS Development
+</a><a href=/tags/app-store/>App Store
+</a><a href=/tags/app-review/>App Review
+</a><a href=/tags/guideline-4.3/>Guideline 4.3
+</a><a href=/tags/att/>ATT
+</a><a href=/tags/sign-in-with-apple/>Sign in with Apple</a></div><hr><aside aria-label=Advertisement><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin=anonymous></script><ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-3160571902547760 data-ad-slot=8630948880></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></aside><div class=reward-container><div>If this article helped, you can support my work.</div><button>
+Donate</button><div class=post-reward><div class=post-reward-item><img src=/imgs/img-lazy-loading.gif data-src=/images/alipay.png alt="winner - Alipay">
+<span>Alipay</span></div><div class=post-reward-item><img src=/imgs/img-lazy-loading.gif data-src=/images/wechat.png alt="winner - WechatPay">
+<span>WechatPay</span></div></div></div><div class=post-copyright><img src=/imgs/cc/cc.svg class=cc-icon width=75 height=75 align=right alt="Creative Commons" title="Creative Commons"><ul><li class=post-copyright-title><strong>Post Title:</strong>
+App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes</li><li class=post-copyright-author><strong>Written By: </strong>winner</li><li class=post-copyright-link><strong>Post Link:</strong>
+<a id=post-cr-link href=https://releaseleaf.com/apstreregu.html title="App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes">https://releaseleaf.com/apstreregu.html</a></li><li class=post-copyright-license><strong>Copyright Notice: </strong>This work is licensed under <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en>BY-NC-SA</a> .</li><li><div class=license-icons><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en target=_blank><img src=/imgs/cc/big/by_nc_sa.svg alt=BY-NC-SA title=BY-NC-SA>
+</a><a href=https://notbyai.fyi target=_blank><img src=/imgs/notbyai/en/white.svg title="Not By AI"></a></div></li></ul></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/cocwssreco.html rel=next title="Reliable WebSocket Reconnection in Cocos Creator: Heartbeats, Backoff and App Resume"><i class="fa fa-chevron-left"></i> Reliable WebSocket Reconnection in Cocos Creator: Heartbeats, Backoff and App Resume</a></div><div class="post-nav-prev post-nav-item"><a href=/xcarbununo.html rel=prev title="Xcode Archive Build Number Not Updating: Fix CFBundleVersion">Xcode Archive Build Number Not Updating: Fix CFBundleVersion
+<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
+<span itemprop=copyrightYear>2017 - 2026
+</span><span class=with-love><i class="fa fa-heart"></i>
+</span><span class=author itemprop=copyrightHolder>winner</span></div><div class=powered-by>Powered by <a href=https://gohugo.io title=0.168.0 target=_blank>Hugo</a> & <a href=https://github.com/hugo-next/hugo-theme-next title=4.8.3 target=_blank>Hugo NexT.Gemini</a></div></div></footer><script class=next-config data-name=page type=application/json>{"clipboard":{"js":{"alias":"clipboard","file":"dist/clipboard.min.js","name":"clipboard.js","version":"2.0.11"}},"comments":false,"expired":false,"isHome":false,"isPage":true,"path":"apstreregu.html","permalink":"https://releaseleaf.com/apstreregu.html","title":"App Store Review Rejection Guide: Guideline 4.8, 4.3(a), 5.1.2(i) and ATT Fixes","toc":true}</script><script type=text/javascript src=https://releaseleaf.com/js/3rd/animejs/3.2.2/anime.min.js crossorigin=anonymous defer></script><script type=text/javascript src=https://releaseleaf.com/js/3rd/viewerjs/1.11.6/viewer.min.js crossorigin=anonymous defer></script><script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":false,"save":"manual"},"copybtn":true,"darkmode":false,"hostname":"https://releaseleaf.com/","i18n":{"ds_day":" Day Ago","ds_days":" Day ","ds_hour":" Hour Ago","ds_hours":" Hour ","ds_just":"Just","ds_min":" Min Ago","ds_mins":" Min","ds_month":" Month Ago","ds_years":" Year ","empty":"We didn't find any results for the search: ${query}","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","placeholder":"Searching..."},"isMultiLang":false,"lang":"en-US","lazyload":false,"localSearch":{"enable":true,"limit":1e4,"path":"/search.xml","preload":false,"topnperarticle":1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"postmeta":{"comments":{"enable":false},"views":{"enable":false}},"root":"/","scheme":"Gemini","share":{"enable":false},"sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"local","router":{"name":"local","type":"modern","url":"https://releaseleaf.com/js/3rd"}},"version":"4.8.3"}</script><script type=text/javascript src="/js/main.min.js?=1791958088" defer></script><script type=text/javascript src="/js/clipboard.min.js?=1791958088" defer></script><noscript><iframe title="Google Tag Manager" src="https://www.googletagmanager.com/ns.html?id=GTM-TBZBDMSJ" height=0 width=0 style=display:none;visibility:hidden></iframe></noscript><script>(function(){var e=document.querySelector('link[rel="canonical"]'),t=new Image;t.src="https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif?l="+encodeURIComponent(e?e.href:location.href)+"&r="+encodeURIComponent(document.referrer)})()</script></body></html>

@@ -1,4 +1,3 @@
-# ===== 正常搜索引擎：全放行 =====
 User-agent: Googlebot
 Allow: /
 
@@ -8,7 +7,6 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-# ===== AI 搜索引擎：放行（让 AI 答案引用我们） =====
 User-agent: OAI-SearchBot
 Allow: /
 
@@ -39,11 +37,9 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
-# ===== 训练型爬虫：放行 GPTBot（内容被训练=品牌曝光），其余不专门接待 =====
 User-agent: GPTBot
 Allow: /
 
-# ===== 广告爬虫：屏蔽（不做 AdSense，poker 站以 affiliate 变现） =====
 User-agent: AdsBot-Google
 Disallow: /
 

@@ -1,481 +1,234 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/favicon-32x32-next.png" color="#222">
-  <meta name="yandex-verification" content="7f4abda1472881d3">
-  <meta name="baidu-site-verification" content="5lU3qr1ysBwet0Uc">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="preload" href="/lib/font-awesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"></noscript>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"releaseleaf.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="Create a circular Sprite mask in Cocos Creator 3.7.2 with a custom effect, material and fragment shader that clips pixels outside a UV-space radius.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping">
-<meta property="og:url" content="https://releaseleaf.com/cocrcimash.html">
-<meta property="og:site_name" content="Winner&#39;s Dev Notes">
-<meta property="og:description" content="Create a circular Sprite mask in Cocos Creator 3.7.2 with a custom effect, material and fragment shader that clips pixels outside a UV-space radius.">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://releaseleaf.com/postImg/eff95905/2.png">
-<meta property="og:image" content="https://releaseleaf.com/postImg/eff95905/1.png">
-<meta property="article:published_time" content="2026-03-09T03:11:06.000Z">
-<meta property="article:modified_time" content="2026-08-20T02:47:38.876Z">
-<meta property="article:author" content="winner">
-<meta property="article:tag" content="Cocos Creator">
-<meta property="article:tag" content="TypeScript">
-<meta property="article:tag" content="Shader">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://releaseleaf.com/postImg/eff95905/2.png">
-
-<link rel="canonical" href="https://releaseleaf.com/cocrcimash.html">
-
-
-  
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://releaseleaf.com/cocrcimash.html#article","headline":"Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping","description":"Create a circular Sprite mask in Cocos Creator 3.7.2 with a custom effect, material and fragment shader that clips pixels outside a UV-space radius.","datePublished":"2026-03-09T03:11:06.000Z","dateModified":"2026-08-20T02:47:38.876Z","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://releaseleaf.com/cocrcimash.html"},"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"publisher":{"@type":"Organization","name":"Winner's Dev Notes","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"}},"articleSection":["Cocos Creator"],"keywords":"Cocos Creator, TypeScript, Shader","wordCount":410,"image":["https://releaseleaf.com/postImg/eff95905/2.png"]}</script>
-
-
-
-
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'en'
-  };
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TBZBDMSJ');</script>
-<!-- End Google Tag Manager -->
-
-  <title>Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping | Winner's Dev Notes</title>
-  
-
-
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Winner's Dev Notes</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Code, games, and the craft of building better software</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
-        </a>
-      </li>
-      <li class="menu-item menu-item-contact">
-        <a href="https://t.me/winnerPlus7" rel="noopener" target="_blank"><i class="fab fa-telegram-plane fa-fw"></i>Contact Me
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-      <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article class="post-block" lang="en">
-      <header class="post-header">
-        <h1 class="post-title">
-          Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span>
-                  <a href="/categories/Cocos-Creator/" rel="index"><span>Cocos Creator</span></a>
-                </span>
-            </span>
-            <div class="post-description">Create a circular Sprite mask in Cocos Creator 3.7.2 with a custom effect, material and fragment shader that clips pixels outside a UV-space radius.</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body">
-
-      
-        <p>This example uses Cocos Creator 3.7.2. Other versions may behave differently.</p>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin="anonymous"></script>
-<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3160571902547760" data-ad-slot="8630948880"></ins></p>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
-<p>An earlier article explained how to create a circle with the Mask component: <a target="_blank" rel="noopener" href="https://lengmo714.top/661b115d.html">Creating a Circular Mask in Cocos Creator</a>. This article achieves the same visual result with a shader. The two approaches can produce different draw-call behavior.</p>
-<h2 id="Create-circle-mask-effect"><a href="#Create-circle-mask-effect" class="headerlink" title="Create circle-mask.effect"></a>Create circle-mask.effect</h2><p>Paste in the following effect:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">// Copyright (c) 2017-2020 Xiamen Yaji Software Co., Ltd.</span><br><span class="line">CCEffect %&#123;</span><br><span class="line">  techniques:</span><br><span class="line">  - passes:</span><br><span class="line">    - vert: sprite-vs:vert</span><br><span class="line">      frag: sprite-fs:frag</span><br><span class="line">      depthStencilState:</span><br><span class="line">        depthTest: false</span><br><span class="line">        depthWrite: false</span><br><span class="line">      blendState:</span><br><span class="line">        targets:</span><br><span class="line">        - blend: true</span><br><span class="line">          blendSrc: src_alpha</span><br><span class="line">          blendDst: one_minus_src_alpha</span><br><span class="line">          blendDstAlpha: one_minus_src_alpha</span><br><span class="line">      rasterizerState:</span><br><span class="line">        cullMode: none</span><br><span class="line">      properties:</span><br><span class="line">        alphaThreshold: &#123; value: 0.5 &#125;</span><br><span class="line">        radius: &#123; value: 0.5, editor: &#123; tooltip: &quot;Circle radius (0–0.5; 0.5 touches the edges)&quot; &#125; &#125;</span><br><span class="line">        softness: &#123; value: 0.003, editor: &#123; tooltip: &quot;Edge feathering; smaller values produce a harder edge&quot; &#125; &#125;</span><br><span class="line">&#125;%</span><br><span class="line"></span><br><span class="line">CCProgram sprite-vs %&#123;</span><br><span class="line">  precision highp float;</span><br><span class="line">  #include &lt;builtin/uniforms/cc-global&gt;</span><br><span class="line">  #if USE_LOCAL</span><br><span class="line">    #include &lt;builtin/uniforms/cc-local&gt;</span><br><span class="line">  #endif</span><br><span class="line">  #if SAMPLE_FROM_RT</span><br><span class="line">    #include &lt;common/common-define&gt;</span><br><span class="line">  #endif</span><br><span class="line">  in vec3 a_position;</span><br><span class="line">  in vec2 a_texCoord;</span><br><span class="line">  in vec4 a_color;</span><br><span class="line"></span><br><span class="line">  out vec4 color;</span><br><span class="line">  out vec2 uv0;</span><br><span class="line"></span><br><span class="line">  vec4 vert () &#123;</span><br><span class="line">    vec4 pos = vec4(a_position, 1);</span><br><span class="line">    #if USE_LOCAL</span><br><span class="line">      pos = cc_matWorld * pos;</span><br><span class="line">    #endif</span><br><span class="line">    #if USE_PIXEL_ALIGNMENT</span><br><span class="line">      pos = cc_matView * pos;</span><br><span class="line">      pos.xyz = floor(pos.xyz);</span><br><span class="line">      pos = cc_matProj * pos;</span><br><span class="line">    #else</span><br><span class="line">      pos = cc_matViewProj * pos;</span><br><span class="line">    #endif</span><br><span class="line">    uv0 = a_texCoord;</span><br><span class="line">    #if SAMPLE_FROM_RT</span><br><span class="line">      CC_HANDLE_RT_SAMPLE_FLIP(uv0);</span><br><span class="line">    #endif</span><br><span class="line">    color = a_color;</span><br><span class="line">    return pos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;%</span><br><span class="line"></span><br><span class="line">CCProgram sprite-fs %&#123;</span><br><span class="line">  precision highp float;</span><br><span class="line">  #include &lt;builtin/internal/embedded-alpha&gt;</span><br><span class="line">  #include &lt;builtin/internal/alpha-test&gt;</span><br><span class="line">  in vec4 color;</span><br><span class="line"></span><br><span class="line">  #if USE_TEXTURE</span><br><span class="line">    in vec2 uv0;</span><br><span class="line">    #pragma builtin(local)</span><br><span class="line">    layout(set = 2, binding = 12) uniform sampler2D cc_spriteTexture;</span><br><span class="line">  #endif</span><br><span class="line"></span><br><span class="line">  uniform Constant &#123;</span><br><span class="line">    float radius;</span><br><span class="line">    float softness;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  vec4 frag () &#123;</span><br><span class="line">    vec4 o = vec4(1, 1, 1, 1);</span><br><span class="line">    #if USE_TEXTURE</span><br><span class="line">      o *= CCSampleWithAlphaSeparated(cc_spriteTexture, uv0);</span><br><span class="line">      #if IS_GRAY</span><br><span class="line">        float gray = 0.2126 * o.r + 0.7152 * o.g + 0.0722 * o.b;</span><br><span class="line">        o.r = o.g = o.b = gray;</span><br><span class="line">      #endif</span><br><span class="line">    #endif</span><br><span class="line">    o *= color;</span><br><span class="line"></span><br><span class="line">    #if USE_TEXTURE</span><br><span class="line">      vec2 center = vec2(0.5, 0.5);</span><br><span class="line">      float dist = distance(uv0, center);</span><br><span class="line">      float a = smoothstep(radius, radius - softness, dist);</span><br><span class="line">      o.a *= a;</span><br><span class="line">      if (o.a &lt;= 0.001) discard;</span><br><span class="line">    #endif</span><br><span class="line"></span><br><span class="line">    ALPHA_TEST(o);</span><br><span class="line">    return o;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;%</span><br></pre></td></tr></table></figure>
-
-<h2 id="Create-a-Material"><a href="#Create-a-Material" class="headerlink" title="Create a Material"></a>Create a Material</h2><p>Create a material and select <code>circle-mask.effect</code> in its <code>Effect</code> field.</p>
-<h2 id="Assign-the-Material-to-a-Sprite"><a href="#Assign-the-Material-to-a-Sprite" class="headerlink" title="Assign the Material to a Sprite"></a>Assign the Material to a Sprite</h2><p>On the sprite node’s Sprite component, assign the <code>circle-mask.mtl</code> material:</p>
-<p><img src="/postImg/eff95905/2.png" alt="Assign the material" decoding="async" loading="eager" fetchpriority="high"></p>
-<h2 id="Shader-Mask-Notes"><a href="#Shader-Mask-Notes" class="headerlink" title="Shader Mask Notes"></a>Shader Mask Notes</h2><ol>
-<li><p>If the image becomes solid white after assigning the material, enable <code>USE TEXTURE</code> in the material.</p>
-<p><img src="/postImg/eff95905/1.png" alt="Enable USE TEXTURE" decoding="async" loading="lazy"></p>
-</li>
-<li><p>Remotely loaded resources may not become circular after loading, so this approach is recommended for local resources.</p>
-</li>
-<li><p>A non-square image will appear as an ellipse rather than a circle.</p>
-</li>
-</ol>
-
-
-    </div>
-
-    
-    
-    
-        <div class="reward-container">
-  <div></div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    Donate
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechat.png" alt="winner WeChat Pay">
-        <p>WeChat Pay</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/alipay.png" alt="winner Alipay">
-        <p>Alipay</p>
-      </div>
-
-  </div>
-</div>
-
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>winner
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="https://releaseleaf.com/cocrcimash.html" title="Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping">https://releaseleaf.com/cocrcimash.html</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/Cocos-Creator/" rel="tag"><i class="fa fa-tag"></i> Cocos Creator</a>
-              <a href="/tags/TypeScript/" rel="tag"><i class="fa fa-tag"></i> TypeScript</a>
-              <a href="/tags/Shader/" rel="tag"><i class="fa fa-tag"></i> Shader</a>
-          </div>
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/saredeipwe.html" rel="prev" title="Safari Remote Debugging for iPhone: Web Inspector and Develop Menu">
-      <i class="fa fa-chevron-left"></i> Safari Remote Debugging for iPhone: Web Inspector and Develop Menu
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/xcstcoshca.html" rel="next" title="Xcode Stuck on ‘Copying Shared Cache Symbols’: Causes and Fixes">
-      Xcode Stuck on ‘Copying Shared Cache Symbols’: Causes and Fixes <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-circle-mask-effect"><span class="nav-number">1.</span> <span class="nav-text">Create circle-mask.effect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-Material"><span class="nav-number">2.</span> <span class="nav-text">Create a Material</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assign-the-Material-to-a-Sprite"><span class="nav-number">3.</span> <span class="nav-text">Assign the Material to a Sprite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shader-Mask-Notes"><span class="nav-number">4.</span> <span class="nav-text">Shader Mask Notes</span></a></li></ol></div>
-      </div>
-       <div class="sidebar-bottom-banner">
-            <a href="#小程序://时间折现/H74iLnpGbvfY3yH" target="_blank" rel="noopener">
-              <img src="/images/share.png" alt="banner">
-            </a>
-          </div>      
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="winner"
-      src="/images/IMG_3307.JPG">
-  <p class="site-author-name" itemprop="name">winner</p>
-  <div class="site-description" itemprop="description">Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.</div>
-</div>
-<div class="site-state-wrap">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">233</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <a href="/categories/">
-        <span class="site-state-item-count">24</span>
-        <span class="site-state-item-name">categories</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <a href="/tags/">
-        <span class="site-state-item-count">40</span>
-        <span class="site-state-item-name">tags</span>
-        </a>
-      </div>
-  </nav>
-</div>
-  <div class="cc-license" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-  <div class="links-of-blogroll">
-    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="/Link/" title="&#x2F;Link&#x2F;">Friends and Links</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://blog.csdn.net/Silent_F" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;Silent_F" rel="noopener" target="_blank">CSDN</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://lengmo714.top/net/map/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;map&#x2F;index.html" rel="noopener" target="_blank">Travel Map</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://lengmo714.top/net/wechat/index.html" title="https:&#x2F;&#x2F;lengmo714.top&#x2F;net&#x2F;wechat&#x2F;index.html" rel="noopener" target="_blank">WeChat Chat Generator</a>
-        </li>
-    </ul>
-  </div>
-       
-      </div>
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-<div class="copyright">
-  
-  &copy; 2017 – 
-  <span itemprop="copyrightYear">2026</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">winner</span>
-</div>
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-  
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
-
-  
-<script src="/js/local-search.js"></script>
-
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBZBDMSJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-</body>
-</html>
+<!doctype html><html lang=en-US data-theme=light><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color content="#222222"><meta name=generator content="Hugo 0.168.0"><link rel=icon sizes=16x16 href=/images/favicon-16x16-next.png><link rel=icon sizes=32x32 href=/images/favicon-32x32-next.png><link rel=apple-touch-icon href=/images/favicon-16x16-next.png><link rel=canonical href=https://releaseleaf.com/cocrcimash.html><link rel=alternate type=application/rss+xml title="Winner's Dev Notes" href=https://releaseleaf.com/rss.xml><meta name=description content="Create a circular Sprite mask in Cocos Creator 3.7.2 with a custom effect, material and fragment shader that clips pixels outside a UV-space radius."><meta itemprop=description content="Create a circular Sprite mask in Cocos Creator 3.7.2 with a custom effect, material and fragment shader that clips pixels outside a UV-space radius."><meta itemprop=name content="Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping"><meta itemprop=image content="https://releaseleaf.com/postImg/eff95905/2.png"><script type=application/ld+json>{"@context":"https://schema.org","@id":"https://releaseleaf.com/cocrcimash.html#article","@type":"BlogPosting","articleSection":["Cocos Creator"],"author":{"@type":"Person","name":"winner","url":"https://releaseleaf.com/about/"},"dateModified":"2026-03-09T11:11:06+08:00","datePublished":"2026-03-09T11:11:06+08:00","description":"Create a circular Sprite mask in Cocos Creator 3.7.2 with a custom effect, material and fragment shader that clips pixels outside a UV-space radius.","headline":"Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping","image":["https://releaseleaf.com/postImg/eff95905/2.png"],"inLanguage":"en-US","keywords":"Cocos Creator, TypeScript, Shader","mainEntityOfPage":{"@id":"https://releaseleaf.com/cocrcimash.html","@type":"WebPage"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://releaseleaf.com/images/IMG_3307.JPG"},"name":"Winner's Dev Notes"},"wordCount":515}</script><meta property="og:type" content="article"><meta property="og:title" content="Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping"><meta property="og:description" content="Create a circular Sprite mask in Cocos Creator 3.7.2 with a custom effect, material and fragment shader that clips pixels outside a UV-space radius."><meta property="og:image" content="https://releaseleaf.com/postImg/eff95905/2.png"><meta property="og:url" content="https://releaseleaf.com/cocrcimash.html"><meta property="og:site_name" content="Winner's Dev Notes"><meta property="og:locale" content="en_US"><meta property="article:published_time" content="2026-03-09T11:11:06+08:00"><meta property="article:modified_time" content="2026-03-09T11:11:06+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping"><meta name=twitter:description content="Create a circular Sprite mask in Cocos Creator 3.7.2 with a custom effect, material and fragment shader that clips pixels outside a UV-space radius."><meta name=twitter:image content="https://releaseleaf.com/postImg/eff95905/2.png"><link type=text/css rel=stylesheet href=https://releaseleaf.com/js/3rd/font-awesome/6.7.2/css/all.min.css><link type=text/css rel=stylesheet href=https://releaseleaf.com/js/3rd/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://releaseleaf.com/js/3rd/viewerjs/1.11.6/viewer.min.css><link rel=stylesheet href="/css/main.min.css?=1791958088"><style type=text/css>.post-footer hr:after{content:"Thanks for reading"}.flinks-list-footer hr:after{content:"Thanks for reading"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return 0[0];const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),0[0]):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><title>Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping - Winner's Dev Notes</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript><script>(function(e,t,n,s,o){e[s]=e[s]||[],e[s].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var a=t.getElementsByTagName(n)[0],i=t.createElement(n),r=s!="dataLayer"?"&l="+s:"";i.async=!0,i.src="https://www.googletagmanager.com/gtm.js?id="+o+r,a.parentNode.insertBefore(i,a)})(window,document,"script","dataLayer","GTM-TBZBDMSJ")</script><style>.post-body img{height:auto;max-width:100%}.post-cover{display:block;max-height:300px;object-fit:cover;margin:0 auto 24px}.post-body iframe{max-width:100%}.post-body pre{overflow-x:auto}</style></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Winner's Dev Notes</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Code, games, and the craft of building better software</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>Home</a></li><li class="menu-item menu-item-about"><a href=/about/ class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>About</a></li><li class="menu-item menu-item-tags"><a href=/tags/ class=hvr-icon-pulse rel=section><i class="fa fa-tags hvr-icon"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href=/categories/ class=hvr-icon-pulse rel=section><i class="fa fa-th hvr-icon"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>Archives</a></li><li class="menu-item menu-item-photos"><a href=/photos/ class=hvr-icon-pulse rel=section><i class="fa fa-camera hvr-icon"></i>Photos</a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>Search</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=Searching... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>TOC</li><li class=sidebar-nav-overview>Overview</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><a href=#create-circle-maskeffect>Create circle-mask.effect</a></li><li><a href=#create-a-material>Create a Material</a></li><li><a href=#assign-the-material-to-a-sprite>Assign the Material to a Sprite</a></li><li><a href=#shader-mask-notes>Shader Mask Notes</a></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=winner src=/imgs/img-lazy-loading.gif data-src=/images/IMG_3307.JPG><p class=site-author-name itemprop=name>winner</p><div class=site-description itemprop=description>Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software.</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>233</span>
+<span class=site-state-item-name>Posts</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>24</span>
+<span class=site-state-item-name>Categories</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>40</span>
+<span class=site-state-item-name>Tags</span></a></div></nav></div><div class="links-of-social site-overview-item animated"></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en class=cc-opacity rel=noopener target=_blank title="Creative Commons"><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt="Creative Commons"></a></div><div class="links-of-blogroll site-overview-item animated"><div class=links-of-blogroll-title><i class="fa fa-link fa-fw"></i>
+Links</div><ul class=links-of-blogroll-list><li class=links-of-blogroll-item><a href=/Link/ title=/Link/ target=_blank>Friends and Links</a></li><li class=links-of-blogroll-item><a href=https://blog.csdn.net/Silent_F title=https://blog.csdn.net/Silent_F target=_blank>CSDN</a></li><li class=links-of-blogroll-item><a href=https://lengmo714.top/net/map/index.html title=https://lengmo714.top/net/map/index.html target=_blank>Travel Map</a></li><li class=links-of-blogroll-item><a href=https://lengmo714.top/net/wechat/index.html title=https://lengmo714.top/net/wechat/index.html target=_blank>WeChat Chat Generator</a></li></ul></div></div></div></div><div class="sidebar-card-widget back-to-top-card"><div class="back-to-top animated" role=button aria-label><i class="fa fa-arrow-up"></i>
+<span>0%</span></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title="Change Theme"><i class="fas fa-adjust"></i></div></div><div class=reading-progress-bar></div><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang=en-US><link itemprop=mainEntityOfPage href=https://releaseleaf.com/cocrcimash.html><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/images/IMG_3307.JPG"><meta itemprop=name content="winner"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="winner"><meta itemprop=description content="Practical notes on iOS, Android, Cocos, Lua, web development, embedded systems, and the lessons learned while building software."></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping"><meta itemprop=description content="Create a circular Sprite mask in Cocos Creator 3.7.2 with a custom effect, material and fragment shader that clips pixels outside a UV-space radius."></span><header class=post-header><h1 class=post-title itemprop="name headline">Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping</h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="fas fa-solid fa-folder-open"></i>
+</span><span class=post-meta-item-text title="Classify at">Classify at:
+</span><span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/cocos-creator/ itemprop=url rel=index><span itemprop=name>Cocos Creator</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=Words><span class=post-meta-item-icon><i class="fas fa-solid fa-file-word"></i>
+</span><span class=post-meta-item-text>Words:</span>
+<span>515</span>
+</span><span class=post-meta-item title=Read><span class=post-meta-item-icon><i class="fas fa-solid fa-clock"></i>
+</span><span class=post-meta-item-text>Read:&ap;</span>
+<span>3min</span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><p>This example uses Cocos Creator 3.7.2. Other versions may behave differently.</p><p>An earlier article explained how to create a circle with the Mask component:
+<a href=https://lengmo714.top/661b115d.html title="Creating a Circular Mask in Cocos Creator" rel="noopener external nofollow noreferrer" target=_blank class=exturl>Creating a Circular Mask in Cocos Creator
+</a>. This article achieves the same visual result with a shader. The two approaches can produce different draw-call behavior.</p><h2 id=create-circle-maskeffect>Create circle-mask.effect
+<a class=header-anchor href=#create-circle-maskeffect></a></h2><p>Paste in the following effect:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-0-1><a class=lnlinks href=#hl-0-1>  1</a>
+</span><span class=lnt id=hl-0-2><a class=lnlinks href=#hl-0-2>  2</a>
+</span><span class=lnt id=hl-0-3><a class=lnlinks href=#hl-0-3>  3</a>
+</span><span class=lnt id=hl-0-4><a class=lnlinks href=#hl-0-4>  4</a>
+</span><span class=lnt id=hl-0-5><a class=lnlinks href=#hl-0-5>  5</a>
+</span><span class=lnt id=hl-0-6><a class=lnlinks href=#hl-0-6>  6</a>
+</span><span class=lnt id=hl-0-7><a class=lnlinks href=#hl-0-7>  7</a>
+</span><span class=lnt id=hl-0-8><a class=lnlinks href=#hl-0-8>  8</a>
+</span><span class=lnt id=hl-0-9><a class=lnlinks href=#hl-0-9>  9</a>
+</span><span class=lnt id=hl-0-10><a class=lnlinks href=#hl-0-10> 10</a>
+</span><span class=lnt id=hl-0-11><a class=lnlinks href=#hl-0-11> 11</a>
+</span><span class=lnt id=hl-0-12><a class=lnlinks href=#hl-0-12> 12</a>
+</span><span class=lnt id=hl-0-13><a class=lnlinks href=#hl-0-13> 13</a>
+</span><span class=lnt id=hl-0-14><a class=lnlinks href=#hl-0-14> 14</a>
+</span><span class=lnt id=hl-0-15><a class=lnlinks href=#hl-0-15> 15</a>
+</span><span class=lnt id=hl-0-16><a class=lnlinks href=#hl-0-16> 16</a>
+</span><span class=lnt id=hl-0-17><a class=lnlinks href=#hl-0-17> 17</a>
+</span><span class=lnt id=hl-0-18><a class=lnlinks href=#hl-0-18> 18</a>
+</span><span class=lnt id=hl-0-19><a class=lnlinks href=#hl-0-19> 19</a>
+</span><span class=lnt id=hl-0-20><a class=lnlinks href=#hl-0-20> 20</a>
+</span><span class=lnt id=hl-0-21><a class=lnlinks href=#hl-0-21> 21</a>
+</span><span class=lnt id=hl-0-22><a class=lnlinks href=#hl-0-22> 22</a>
+</span><span class=lnt id=hl-0-23><a class=lnlinks href=#hl-0-23> 23</a>
+</span><span class=lnt id=hl-0-24><a class=lnlinks href=#hl-0-24> 24</a>
+</span><span class=lnt id=hl-0-25><a class=lnlinks href=#hl-0-25> 25</a>
+</span><span class=lnt id=hl-0-26><a class=lnlinks href=#hl-0-26> 26</a>
+</span><span class=lnt id=hl-0-27><a class=lnlinks href=#hl-0-27> 27</a>
+</span><span class=lnt id=hl-0-28><a class=lnlinks href=#hl-0-28> 28</a>
+</span><span class=lnt id=hl-0-29><a class=lnlinks href=#hl-0-29> 29</a>
+</span><span class=lnt id=hl-0-30><a class=lnlinks href=#hl-0-30> 30</a>
+</span><span class=lnt id=hl-0-31><a class=lnlinks href=#hl-0-31> 31</a>
+</span><span class=lnt id=hl-0-32><a class=lnlinks href=#hl-0-32> 32</a>
+</span><span class=lnt id=hl-0-33><a class=lnlinks href=#hl-0-33> 33</a>
+</span><span class=lnt id=hl-0-34><a class=lnlinks href=#hl-0-34> 34</a>
+</span><span class=lnt id=hl-0-35><a class=lnlinks href=#hl-0-35> 35</a>
+</span><span class=lnt id=hl-0-36><a class=lnlinks href=#hl-0-36> 36</a>
+</span><span class=lnt id=hl-0-37><a class=lnlinks href=#hl-0-37> 37</a>
+</span><span class=lnt id=hl-0-38><a class=lnlinks href=#hl-0-38> 38</a>
+</span><span class=lnt id=hl-0-39><a class=lnlinks href=#hl-0-39> 39</a>
+</span><span class=lnt id=hl-0-40><a class=lnlinks href=#hl-0-40> 40</a>
+</span><span class=lnt id=hl-0-41><a class=lnlinks href=#hl-0-41> 41</a>
+</span><span class=lnt id=hl-0-42><a class=lnlinks href=#hl-0-42> 42</a>
+</span><span class=lnt id=hl-0-43><a class=lnlinks href=#hl-0-43> 43</a>
+</span><span class=lnt id=hl-0-44><a class=lnlinks href=#hl-0-44> 44</a>
+</span><span class=lnt id=hl-0-45><a class=lnlinks href=#hl-0-45> 45</a>
+</span><span class=lnt id=hl-0-46><a class=lnlinks href=#hl-0-46> 46</a>
+</span><span class=lnt id=hl-0-47><a class=lnlinks href=#hl-0-47> 47</a>
+</span><span class=lnt id=hl-0-48><a class=lnlinks href=#hl-0-48> 48</a>
+</span><span class=lnt id=hl-0-49><a class=lnlinks href=#hl-0-49> 49</a>
+</span><span class=lnt id=hl-0-50><a class=lnlinks href=#hl-0-50> 50</a>
+</span><span class=lnt id=hl-0-51><a class=lnlinks href=#hl-0-51> 51</a>
+</span><span class=lnt id=hl-0-52><a class=lnlinks href=#hl-0-52> 52</a>
+</span><span class=lnt id=hl-0-53><a class=lnlinks href=#hl-0-53> 53</a>
+</span><span class=lnt id=hl-0-54><a class=lnlinks href=#hl-0-54> 54</a>
+</span><span class=lnt id=hl-0-55><a class=lnlinks href=#hl-0-55> 55</a>
+</span><span class=lnt id=hl-0-56><a class=lnlinks href=#hl-0-56> 56</a>
+</span><span class=lnt id=hl-0-57><a class=lnlinks href=#hl-0-57> 57</a>
+</span><span class=lnt id=hl-0-58><a class=lnlinks href=#hl-0-58> 58</a>
+</span><span class=lnt id=hl-0-59><a class=lnlinks href=#hl-0-59> 59</a>
+</span><span class=lnt id=hl-0-60><a class=lnlinks href=#hl-0-60> 60</a>
+</span><span class=lnt id=hl-0-61><a class=lnlinks href=#hl-0-61> 61</a>
+</span><span class=lnt id=hl-0-62><a class=lnlinks href=#hl-0-62> 62</a>
+</span><span class=lnt id=hl-0-63><a class=lnlinks href=#hl-0-63> 63</a>
+</span><span class=lnt id=hl-0-64><a class=lnlinks href=#hl-0-64> 64</a>
+</span><span class=lnt id=hl-0-65><a class=lnlinks href=#hl-0-65> 65</a>
+</span><span class=lnt id=hl-0-66><a class=lnlinks href=#hl-0-66> 66</a>
+</span><span class=lnt id=hl-0-67><a class=lnlinks href=#hl-0-67> 67</a>
+</span><span class=lnt id=hl-0-68><a class=lnlinks href=#hl-0-68> 68</a>
+</span><span class=lnt id=hl-0-69><a class=lnlinks href=#hl-0-69> 69</a>
+</span><span class=lnt id=hl-0-70><a class=lnlinks href=#hl-0-70> 70</a>
+</span><span class=lnt id=hl-0-71><a class=lnlinks href=#hl-0-71> 71</a>
+</span><span class=lnt id=hl-0-72><a class=lnlinks href=#hl-0-72> 72</a>
+</span><span class=lnt id=hl-0-73><a class=lnlinks href=#hl-0-73> 73</a>
+</span><span class=lnt id=hl-0-74><a class=lnlinks href=#hl-0-74> 74</a>
+</span><span class=lnt id=hl-0-75><a class=lnlinks href=#hl-0-75> 75</a>
+</span><span class=lnt id=hl-0-76><a class=lnlinks href=#hl-0-76> 76</a>
+</span><span class=lnt id=hl-0-77><a class=lnlinks href=#hl-0-77> 77</a>
+</span><span class=lnt id=hl-0-78><a class=lnlinks href=#hl-0-78> 78</a>
+</span><span class=lnt id=hl-0-79><a class=lnlinks href=#hl-0-79> 79</a>
+</span><span class=lnt id=hl-0-80><a class=lnlinks href=#hl-0-80> 80</a>
+</span><span class=lnt id=hl-0-81><a class=lnlinks href=#hl-0-81> 81</a>
+</span><span class=lnt id=hl-0-82><a class=lnlinks href=#hl-0-82> 82</a>
+</span><span class=lnt id=hl-0-83><a class=lnlinks href=#hl-0-83> 83</a>
+</span><span class=lnt id=hl-0-84><a class=lnlinks href=#hl-0-84> 84</a>
+</span><span class=lnt id=hl-0-85><a class=lnlinks href=#hl-0-85> 85</a>
+</span><span class=lnt id=hl-0-86><a class=lnlinks href=#hl-0-86> 86</a>
+</span><span class=lnt id=hl-0-87><a class=lnlinks href=#hl-0-87> 87</a>
+</span><span class=lnt id=hl-0-88><a class=lnlinks href=#hl-0-88> 88</a>
+</span><span class=lnt id=hl-0-89><a class=lnlinks href=#hl-0-89> 89</a>
+</span><span class=lnt id=hl-0-90><a class=lnlinks href=#hl-0-90> 90</a>
+</span><span class=lnt id=hl-0-91><a class=lnlinks href=#hl-0-91> 91</a>
+</span><span class=lnt id=hl-0-92><a class=lnlinks href=#hl-0-92> 92</a>
+</span><span class=lnt id=hl-0-93><a class=lnlinks href=#hl-0-93> 93</a>
+</span><span class=lnt id=hl-0-94><a class=lnlinks href=#hl-0-94> 94</a>
+</span><span class=lnt id=hl-0-95><a class=lnlinks href=#hl-0-95> 95</a>
+</span><span class=lnt id=hl-0-96><a class=lnlinks href=#hl-0-96> 96</a>
+</span><span class=lnt id=hl-0-97><a class=lnlinks href=#hl-0-97> 97</a>
+</span><span class=lnt id=hl-0-98><a class=lnlinks href=#hl-0-98> 98</a>
+</span><span class=lnt id=hl-0-99><a class=lnlinks href=#hl-0-99> 99</a>
+</span><span class=lnt id=hl-0-100><a class=lnlinks href=#hl-0-100>100</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=o>//</span> <span class=n>Copyright</span> <span class=p>(</span><span class=n>c</span><span class=p>)</span> <span class=mi>2017</span><span class=o>-</span><span class=mi>2020</span> <span class=n>Xiamen</span> <span class=n>Yaji</span> <span class=n>Software</span> <span class=n>Co</span><span class=o>.</span><span class=p>,</span> <span class=n>Ltd</span><span class=o>.</span>
+</span></span><span class=line><span class=cl><span class=n>CCEffect</span> <span class=o>%</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>techniques</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>  <span class=o>-</span> <span class=n>passes</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=o>-</span> <span class=n>vert</span><span class=p>:</span> <span class=n>sprite</span><span class=o>-</span><span class=n>vs</span><span class=p>:</span><span class=n>vert</span>
+</span></span><span class=line><span class=cl>      <span class=n>frag</span><span class=p>:</span> <span class=n>sprite</span><span class=o>-</span><span class=n>fs</span><span class=p>:</span><span class=n>frag</span>
+</span></span><span class=line><span class=cl>      <span class=n>depthStencilState</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>depthTest</span><span class=p>:</span> <span class=bp>false</span>
+</span></span><span class=line><span class=cl>        <span class=n>depthWrite</span><span class=p>:</span> <span class=bp>false</span>
+</span></span><span class=line><span class=cl>      <span class=n>blendState</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>targets</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=o>-</span> <span class=n>blend</span><span class=p>:</span> <span class=bp>true</span>
+</span></span><span class=line><span class=cl>          <span class=n>blendSrc</span><span class=p>:</span> <span class=n>src_alpha</span>
+</span></span><span class=line><span class=cl>          <span class=n>blendDst</span><span class=p>:</span> <span class=n>one_minus_src_alpha</span>
+</span></span><span class=line><span class=cl>          <span class=n>blendDstAlpha</span><span class=p>:</span> <span class=n>one_minus_src_alpha</span>
+</span></span><span class=line><span class=cl>      <span class=n>rasterizerState</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>cullMode</span><span class=p>:</span> <span class=n>none</span>
+</span></span><span class=line><span class=cl>      <span class=n>properties</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>alphaThreshold</span><span class=p>:</span> <span class=p>{</span> <span class=n>value</span><span class=p>:</span> <span class=mf>0.5</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>radius</span><span class=p>:</span> <span class=p>{</span> <span class=n>value</span><span class=p>:</span> <span class=mf>0.5</span><span class=p>,</span> <span class=n>editor</span><span class=p>:</span> <span class=p>{</span> <span class=n>tooltip</span><span class=p>:</span> <span class=s2>&#34;Circle radius (0–0.5; 0.5 touches the edges)&#34;</span> <span class=p>}</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>softness</span><span class=p>:</span> <span class=p>{</span> <span class=n>value</span><span class=p>:</span> <span class=mf>0.003</span><span class=p>,</span> <span class=n>editor</span><span class=p>:</span> <span class=p>{</span> <span class=n>tooltip</span><span class=p>:</span> <span class=s2>&#34;Edge feathering; smaller values produce a harder edge&#34;</span> <span class=p>}</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span><span class=o>%</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>CCProgram</span> <span class=n>sprite</span><span class=o>-</span><span class=n>vs</span> <span class=o>%</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>precision</span> <span class=n>highp</span> <span class=ne>float</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#include &lt;builtin/uniforms/cc-global&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#if USE_LOCAL</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#include &lt;builtin/uniforms/cc-local&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#endif</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#if SAMPLE_FROM_RT</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#include &lt;common/common-define&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#endif</span>
+</span></span><span class=line><span class=cl>  <span class=ow>in</span> <span class=n>vec3</span> <span class=n>a_position</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=ow>in</span> <span class=n>vec2</span> <span class=n>a_texCoord</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=ow>in</span> <span class=n>vec4</span> <span class=n>a_color</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>out</span> <span class=n>vec4</span> <span class=n>color</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>out</span> <span class=n>vec2</span> <span class=n>uv0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>vec4</span> <span class=n>vert</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>vec4</span> <span class=n>pos</span> <span class=o>=</span> <span class=n>vec4</span><span class=p>(</span><span class=n>a_position</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#if USE_LOCAL</span>
+</span></span><span class=line><span class=cl>      <span class=n>pos</span> <span class=o>=</span> <span class=n>cc_matWorld</span> <span class=o>*</span> <span class=n>pos</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#endif</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#if USE_PIXEL_ALIGNMENT</span>
+</span></span><span class=line><span class=cl>      <span class=n>pos</span> <span class=o>=</span> <span class=n>cc_matView</span> <span class=o>*</span> <span class=n>pos</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=n>pos</span><span class=o>.</span><span class=n>xyz</span> <span class=o>=</span> <span class=nb>floor</span><span class=p>(</span><span class=n>pos</span><span class=o>.</span><span class=n>xyz</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=n>pos</span> <span class=o>=</span> <span class=n>cc_matProj</span> <span class=o>*</span> <span class=n>pos</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#else</span>
+</span></span><span class=line><span class=cl>      <span class=n>pos</span> <span class=o>=</span> <span class=n>cc_matViewProj</span> <span class=o>*</span> <span class=n>pos</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#endif</span>
+</span></span><span class=line><span class=cl>    <span class=n>uv0</span> <span class=o>=</span> <span class=n>a_texCoord</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#if SAMPLE_FROM_RT</span>
+</span></span><span class=line><span class=cl>      <span class=n>CC_HANDLE_RT_SAMPLE_FLIP</span><span class=p>(</span><span class=n>uv0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#endif</span>
+</span></span><span class=line><span class=cl>    <span class=n>color</span> <span class=o>=</span> <span class=n>a_color</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>pos</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span><span class=o>%</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>CCProgram</span> <span class=n>sprite</span><span class=o>-</span><span class=n>fs</span> <span class=o>%</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>precision</span> <span class=n>highp</span> <span class=ne>float</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#include &lt;builtin/internal/embedded-alpha&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#include &lt;builtin/internal/alpha-test&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=ow>in</span> <span class=n>vec4</span> <span class=n>color</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>#if USE_TEXTURE</span>
+</span></span><span class=line><span class=cl>    <span class=ow>in</span> <span class=n>vec2</span> <span class=n>uv0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#pragma builtin(local)</span>
+</span></span><span class=line><span class=cl>    <span class=n>layout</span><span class=p>(</span><span class=n>set</span> <span class=o>=</span> <span class=mi>2</span><span class=p>,</span> <span class=n>binding</span> <span class=o>=</span> <span class=mi>12</span><span class=p>)</span> <span class=n>uniform</span> <span class=n>sampler2D</span> <span class=n>cc_spriteTexture</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#endif</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>uniform</span> <span class=n>Constant</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=ne>float</span> <span class=n>radius</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=ne>float</span> <span class=n>softness</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>vec4</span> <span class=n>frag</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>vec4</span> <span class=n>o</span> <span class=o>=</span> <span class=n>vec4</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#if USE_TEXTURE</span>
+</span></span><span class=line><span class=cl>      <span class=n>o</span> <span class=o>*=</span> <span class=n>CCSampleWithAlphaSeparated</span><span class=p>(</span><span class=n>cc_spriteTexture</span><span class=p>,</span> <span class=n>uv0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=c1>#if IS_GRAY</span>
+</span></span><span class=line><span class=cl>        <span class=ne>float</span> <span class=n>gray</span> <span class=o>=</span> <span class=mf>0.2126</span> <span class=o>*</span> <span class=n>o</span><span class=o>.</span><span class=n>r</span> <span class=o>+</span> <span class=mf>0.7152</span> <span class=o>*</span> <span class=n>o</span><span class=o>.</span><span class=n>g</span> <span class=o>+</span> <span class=mf>0.0722</span> <span class=o>*</span> <span class=n>o</span><span class=o>.</span><span class=n>b</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=n>o</span><span class=o>.</span><span class=n>r</span> <span class=o>=</span> <span class=n>o</span><span class=o>.</span><span class=n>g</span> <span class=o>=</span> <span class=n>o</span><span class=o>.</span><span class=n>b</span> <span class=o>=</span> <span class=n>gray</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=c1>#endif</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#endif</span>
+</span></span><span class=line><span class=cl>    <span class=n>o</span> <span class=o>*=</span> <span class=n>color</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>#if USE_TEXTURE</span>
+</span></span><span class=line><span class=cl>      <span class=n>vec2</span> <span class=n>center</span> <span class=o>=</span> <span class=n>vec2</span><span class=p>(</span><span class=mf>0.5</span><span class=p>,</span> <span class=mf>0.5</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=ne>float</span> <span class=n>dist</span> <span class=o>=</span> <span class=n>distance</span><span class=p>(</span><span class=n>uv0</span><span class=p>,</span> <span class=n>center</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=ne>float</span> <span class=n>a</span> <span class=o>=</span> <span class=n>smoothstep</span><span class=p>(</span><span class=n>radius</span><span class=p>,</span> <span class=n>radius</span> <span class=o>-</span> <span class=n>softness</span><span class=p>,</span> <span class=n>dist</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=n>o</span><span class=o>.</span><span class=n>a</span> <span class=o>*=</span> <span class=n>a</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=n>o</span><span class=o>.</span><span class=n>a</span> <span class=o>&lt;=</span> <span class=mf>0.001</span><span class=p>)</span> <span class=n>discard</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#endif</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>ALPHA_TEST</span><span class=p>(</span><span class=n>o</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>o</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span><span class=o>%</span></span></span></code></pre></td></tr></table></div></div><h2 id=create-a-material>Create a Material
+<a class=header-anchor href=#create-a-material></a></h2><p>Create a material and select <code>circle-mask.effect</code> in its <code>Effect</code> field.</p><a id=more></a><h2 id=assign-the-material-to-a-sprite>Assign the Material to a Sprite
+<a class=header-anchor href=#assign-the-material-to-a-sprite></a></h2><p>On the sprite node&rsquo;s Sprite component, assign the <code>circle-mask.mtl</code> material:</p><p><img src=/postImg/eff95905/2.png alt="Assign the material" decoding=async loading=eager fetchpriority=high></p><h2 id=shader-mask-notes>Shader Mask Notes
+<a class=header-anchor href=#shader-mask-notes></a></h2><ol><li><p>If the image becomes solid white after assigning the material, enable <code>USE TEXTURE</code> in the material.</p><p><img src=/postImg/eff95905/1.png alt="Enable USE TEXTURE" decoding=async loading=lazy></p></li><li><p>Remotely loaded resources may not become circular after loading, so this approach is recommended for local resources.</p></li><li><p>A non-square image will appear as an ellipse rather than a circle.</p></li></ol></div><footer class=post-footer><div class=post-tags><a href=/tags/cocos-creator/>Cocos Creator
+</a><a href=/tags/typescript/>TypeScript
+</a><a href=/tags/shader/>Shader</a></div><hr><aside aria-label=Advertisement><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3160571902547760" crossorigin=anonymous></script><ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-3160571902547760 data-ad-slot=8630948880></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></aside><div class=reward-container><div>If this article helped, you can support my work.</div><button>
+Donate</button><div class=post-reward><div class=post-reward-item><img src=/imgs/img-lazy-loading.gif data-src=/images/alipay.png alt="winner - Alipay">
+<span>Alipay</span></div><div class=post-reward-item><img src=/imgs/img-lazy-loading.gif data-src=/images/wechat.png alt="winner - WechatPay">
+<span>WechatPay</span></div></div></div><div class=post-copyright><img src=/imgs/cc/cc.svg class=cc-icon width=75 height=75 align=right alt="Creative Commons" title="Creative Commons"><ul><li class=post-copyright-title><strong>Post Title:</strong>
+Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping</li><li class=post-copyright-author><strong>Written By: </strong>winner</li><li class=post-copyright-link><strong>Post Link:</strong>
+<a id=post-cr-link href=https://releaseleaf.com/cocrcimash.html title="Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping">https://releaseleaf.com/cocrcimash.html</a></li><li class=post-copyright-license><strong>Copyright Notice: </strong>This work is licensed under <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en>BY-NC-SA</a> .</li><li><div class=license-icons><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en target=_blank><img src=/imgs/cc/big/by_nc_sa.svg alt=BY-NC-SA title=BY-NC-SA>
+</a><a href=https://notbyai.fyi target=_blank><img src=/imgs/notbyai/en/white.svg title="Not By AI"></a></div></li></ul></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/xcstcoshca.html rel=next title="Xcode Stuck on ‘Copying Shared Cache Symbols’: Causes and Fixes"><i class="fa fa-chevron-left"></i> Xcode Stuck on ‘Copying Shared Cache Symbols’: Causes and Fixes</a></div><div class="post-nav-prev post-nav-item"><a href=/saredeipwe.html rel=prev title="Safari Remote Debugging for iPhone: Web Inspector and Develop Menu">Safari Remote Debugging for iPhone: Web Inspector and Develop Menu
+<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
+<span itemprop=copyrightYear>2017 - 2026
+</span><span class=with-love><i class="fa fa-heart"></i>
+</span><span class=author itemprop=copyrightHolder>winner</span></div><div class=powered-by>Powered by <a href=https://gohugo.io title=0.168.0 target=_blank>Hugo</a> & <a href=https://github.com/hugo-next/hugo-theme-next title=4.8.3 target=_blank>Hugo NexT.Gemini</a></div></div></footer><script class=next-config data-name=page type=application/json>{"clipboard":{"js":{"alias":"clipboard","file":"dist/clipboard.min.js","name":"clipboard.js","version":"2.0.11"}},"comments":false,"expired":false,"isHome":false,"isPage":true,"path":"cocrcimash.html","permalink":"https://releaseleaf.com/cocrcimash.html","title":"Cocos Creator Circular Mask Shader: Effect, Material and Fragment Clipping","toc":true}</script><script type=text/javascript src=https://releaseleaf.com/js/3rd/animejs/3.2.2/anime.min.js crossorigin=anonymous defer></script><script type=text/javascript src=https://releaseleaf.com/js/3rd/viewerjs/1.11.6/viewer.min.js crossorigin=anonymous defer></script><script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":false,"save":"manual"},"copybtn":true,"darkmode":false,"hostname":"https://releaseleaf.com/","i18n":{"ds_day":" Day Ago","ds_days":" Day ","ds_hour":" Hour Ago","ds_hours":" Hour ","ds_just":"Just","ds_min":" Min Ago","ds_mins":" Min","ds_month":" Month Ago","ds_years":" Year ","empty":"We didn't find any results for the search: ${query}","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","placeholder":"Searching..."},"isMultiLang":false,"lang":"en-US","lazyload":false,"localSearch":{"enable":true,"limit":1e4,"path":"/search.xml","preload":false,"topnperarticle":1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"postmeta":{"comments":{"enable":false},"views":{"enable":false}},"root":"/","scheme":"Gemini","share":{"enable":false},"sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"vendor":{"plugins":"local","router":{"name":"local","type":"modern","url":"https://releaseleaf.com/js/3rd"}},"version":"4.8.3"}</script><script type=text/javascript src="/js/main.min.js?=1791958088" defer></script><script type=text/javascript src="/js/clipboard.min.js?=1791958088" defer></script><noscript><iframe title="Google Tag Manager" src="https://www.googletagmanager.com/ns.html?id=GTM-TBZBDMSJ" height=0 width=0 style=display:none;visibility:hidden></iframe></noscript><script>(function(){var e=document.querySelector('link[rel="canonical"]'),t=new Image;t.src="https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif?l="+encodeURIComponent(e?e.href:location.href)+"&r="+encodeURIComponent(document.referrer)})()</script></body></html>
