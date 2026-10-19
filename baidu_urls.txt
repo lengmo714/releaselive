@@ -1,4 +1,6 @@
 https://releaseleaf.com/
+https://releaseleaf.com/jsonbodybytes.html
+https://releaseleaf.com/urlqueryencoding.html
 https://releaseleaf.com/jsonlargeids.html
 https://releaseleaf.com/jsasynclimit.html
 https://releaseleaf.com/fetchstale.html
