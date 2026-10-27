@@ -1,4 +1,6 @@
 https://releaseleaf.com/
+https://releaseleaf.com/jsleaderboardsort.html
+https://releaseleaf.com/jsdedupeids.html
 https://releaseleaf.com/pythonatomicjson.html
 https://releaseleaf.com/pythonsubprocess.html
 https://releaseleaf.com/pythonfilehash.html
