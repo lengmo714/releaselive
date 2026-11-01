@@ -1,4 +1,5 @@
 https://releaseleaf.com/
+https://releaseleaf.com/jsstrictutf8.html
 https://releaseleaf.com/jsregexstate.html
 https://releaseleaf.com/pythonzipstrict.html
 https://releaseleaf.com/jsleaderboardsort.html
