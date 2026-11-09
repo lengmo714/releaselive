@@ -1,4 +1,8 @@
 https://releaseleaf.com/
+https://releaseleaf.com/pythonpairwisegaps.html
+https://releaseleaf.com/pythonmergelogs.html
+https://releaseleaf.com/pythonbisectwindow.html
+https://releaseleaf.com/nodeeventsonce.html
 https://releaseleaf.com/pythongroupby.html
 https://releaseleaf.com/jsownfields.html
 https://releaseleaf.com/jsintegerquery.html
