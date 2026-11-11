@@ -1,4 +1,6 @@
 https://releaseleaf.com/
+https://releaseleaf.com/pythonlrucache.html
+https://releaseleaf.com/pythondequetail.html
 https://releaseleaf.com/pythonpairwisegaps.html
 https://releaseleaf.com/pythonmergelogs.html
 https://releaseleaf.com/pythonbisectwindow.html
