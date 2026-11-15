@@ -1,4 +1,7 @@
 https://releaseleaf.com/
+https://releaseleaf.com/pythoncounterinventory.html
+https://releaseleaf.com/pythongrouplists.html
+https://releaseleaf.com/pythonexitstackfiles.html
 https://releaseleaf.com/pythonargparseexact.html
 https://releaseleaf.com/pythonlrucache.html
 https://releaseleaf.com/pythondequetail.html
