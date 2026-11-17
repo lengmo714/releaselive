@@ -1,4 +1,6 @@
 https://releaseleaf.com/
+https://releaseleaf.com/pythonpartitionoverrides.html
+https://releaseleaf.com/pythonliteralsuffix.html
 https://releaseleaf.com/pythoncounterinventory.html
 https://releaseleaf.com/pythongrouplists.html
 https://releaseleaf.com/pythonexitstackfiles.html
