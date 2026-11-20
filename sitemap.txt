@@ -1,4 +1,5 @@
 https://releaseleaf.com/
+https://releaseleaf.com/pythonstrictcidr.html
 https://releaseleaf.com/pythonmonotonicbudget.html
 https://releaseleaf.com/pythonscriptassets.html
 https://releaseleaf.com/pythonpartitionoverrides.html
