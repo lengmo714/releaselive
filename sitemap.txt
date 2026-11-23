@@ -1,4 +1,6 @@
 https://releaseleaf.com/
+https://releaseleaf.com/pythonreproduciblegzip.html
+https://releaseleaf.com/pythoncanonicalbase64.html
 https://releaseleaf.com/pythonstrictcidr.html
 https://releaseleaf.com/pythonmonotonicbudget.html
 https://releaseleaf.com/pythonscriptassets.html
